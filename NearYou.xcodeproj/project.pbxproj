@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		6A84DEE429DD98A3004AFD89 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A84DEE329DD98A3004AFD89 /* MapViewModel.swift */; };
+		6A84DEE729DD9942004AFD89 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A84DEE629DD9942004AFD89 /* MapView.swift */; };
+		6A84DEEA29DD9997004AFD89 /* HomeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A84DEE929DD9997004AFD89 /* HomeListView.swift */; };
+		6A84DEEC29DD99C0004AFD89 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A84DEEB29DD99C0004AFD89 /* HomeView.swift */; };
+		6A84DEEE29DD9A00004AFD89 /* CustomSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A84DEED29DD9A00004AFD89 /* CustomSearchBar.swift */; };
 		A7C125CC29DA0A0F0076B479 /* NearYouApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C125CB29DA0A0F0076B479 /* NearYouApp.swift */; };
 		A7C125CE29DA0A0F0076B479 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C125CD29DA0A0F0076B479 /* ContentView.swift */; };
 		A7C125D029DA0A110076B479 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A7C125CF29DA0A110076B479 /* Assets.xcassets */; };
@@ -36,6 +40,10 @@
 
 /* Begin PBXFileReference section */
 		6A84DEE329DD98A3004AFD89 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
+		6A84DEE629DD9942004AFD89 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		6A84DEE929DD9997004AFD89 /* HomeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeListView.swift; sourceTree = "<group>"; };
+		6A84DEEB29DD99C0004AFD89 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		6A84DEED29DD9A00004AFD89 /* CustomSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSearchBar.swift; sourceTree = "<group>"; };
 		A7C125C829DA0A0F0076B479 /* NearYou.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NearYou.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7C125CB29DA0A0F0076B479 /* NearYouApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearYouApp.swift; sourceTree = "<group>"; };
 		A7C125CD29DA0A0F0076B479 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -81,9 +89,29 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		6A84DEE529DD9932004AFD89 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6A84DEE629DD9942004AFD89 /* MapView.swift */,
+				6A84DEE929DD9997004AFD89 /* HomeListView.swift */,
+				6A84DEEB29DD99C0004AFD89 /* HomeView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		6A84DEE829DD9973004AFD89 /* CustomComponents */ = {
+			isa = PBXGroup;
+			children = (
+				6A84DEED29DD9A00004AFD89 /* CustomSearchBar.swift */,
+			);
+			path = CustomComponents;
+			sourceTree = "<group>";
+		};
 		A7C125BF29DA0A0F0076B479 = {
 			isa = PBXGroup;
 			children = (
+				6A84DEE829DD9973004AFD89 /* CustomComponents */,
+				6A84DEE529DD9932004AFD89 /* View */,
 				6A84DEE229DD988B004AFD89 /* ViewModel */,
 				A7C125CA29DA0A0F0076B479 /* NearYou */,
 				A7C125DB29DA0A110076B479 /* NearYouTests */,
@@ -268,7 +296,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A84DEEE29DD9A00004AFD89 /* CustomSearchBar.swift in Sources */,
 				A7C125CE29DA0A0F0076B479 /* ContentView.swift in Sources */,
+				6A84DEE729DD9942004AFD89 /* MapView.swift in Sources */,
+				6A84DEEA29DD9997004AFD89 /* HomeListView.swift in Sources */,
+				6A84DEEC29DD99C0004AFD89 /* HomeView.swift in Sources */,
 				A7C125CC29DA0A0F0076B479 /* NearYouApp.swift in Sources */,
 				6A84DEE429DD98A3004AFD89 /* MapViewModel.swift in Sources */,
 			);
