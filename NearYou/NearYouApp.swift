@@ -11,7 +11,7 @@ import SwiftUI
 struct NearYouApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            HamburgerView()
         }
     }
 }
