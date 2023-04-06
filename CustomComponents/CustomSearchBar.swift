@@ -24,7 +24,7 @@ struct CustomSearchBar: View {
                         .foregroundColor(.gray)
                 })
                 .disabled(true)
-              
+                
                 
                 TextField("Search", text: $searchText)
                     .padding(.horizontal, 5)

@@ -18,7 +18,7 @@ struct HomeView: View {
     @State var searchText = ""
     
     var body: some View {
-
+        
         ZStack {
             
             if selectedTab == 0 {
@@ -30,30 +30,39 @@ struct HomeView: View {
             VStack{
                 HStack (alignment: .top){
                     
+                    
                     ZStack{
                         RoundedRectangle(cornerRadius: 8)
                             .fill(Color(.systemGray6))
                             .frame(width: 30, height: 30)
                         
-                        Image(systemName: "line.horizontal.3")
-                            .imageScale(.large)
-                            .padding(25)
-                    }
-                    
-                
                         
-                        Picker(selection: $selectedTab, label: Text("Select a Tab")){
-                            Text("List").tag(0)
-                            Text("Map").tag(1)
+                        Button {
+                            //
+                            print("Open the door")
+                        } label: {
+                            Image(systemName: "line.horizontal.3")
+                                .imageScale(.large)
+                                .padding(25)
                         }
-                        .background(Color.white.cornerRadius(10))
-                        .foregroundColor(.blue)
-                        .frame(width: 130)
-                        .padding()
-                        .cornerRadius(20)
-                        .font(.headline)
-                        .pickerStyle(SegmentedPickerStyle())
+                    }
+            
+                    Spacer()
                     
+                    
+                    Picker(selection: $selectedTab, label: Text("Select a Tab")){
+                        Text("List").tag(0)
+                        Text("Map").tag(1)
+                    }
+                    .background(Color.white.cornerRadius(10))
+                    .foregroundColor(.blue)
+                    .frame(width: 130)
+                    .padding()
+                    .cornerRadius(20)
+                    .font(.headline)
+                    .pickerStyle(SegmentedPickerStyle())
+                    
+                    Spacer()
                     
                     ZStack{
                         RoundedRectangle(cornerRadius: 8)
@@ -66,7 +75,7 @@ struct HomeView: View {
                     }
                 }
                 Spacer()
-            
+                
             }
         }
         

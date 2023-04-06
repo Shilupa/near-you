@@ -8,13 +8,19 @@
 import SwiftUI
 
 struct HamburgerView: View {
-    @State private var isShowing = false
+    @State private var isShowing = true
     var body: some View {
+        
+        
+        
+        
         NavigationView{
+            
             ZStack {
                 if isShowing {
                     SideMenuView(isShowing: $isShowing)
                 }
+                
                 HomeView()
                     .cornerRadius(isShowing ? 20 : 10)
                     .offset(x: isShowing ? 300 : 0, y: isShowing ? 44 : 0)
@@ -27,13 +33,18 @@ struct HamburgerView: View {
                         Image(systemName: "list.bullet")
                             .foregroundColor(.black)
                     }))
-                    //.navigationTitle("List | Map")
-                Spacer()
             }
             .onAppear{
-                isShowing = false
+                isShowing = true
             }
+            
+            
         }
+        
+        
+        
+        
+        
     }
 }
 
@@ -43,14 +54,4 @@ struct HamburgerView_Previews: PreviewProvider {
     }
 }
 
-struct HomeView: View {
-    var body: some View {
-        ZStack{
-            Color(.white)
-            
-            Text("View made by Bibek will be Called")
-                .padding()
-        }
-        
-    }
-}
+
