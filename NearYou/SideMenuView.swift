@@ -21,17 +21,21 @@ struct SideMenuView: View {
                     .frame(height:240)
                 
                 ForEach(SideMenuViewModel.allCases, id: \.self) {option in
+                    
+                    /*
                     NavigationLink(
                         destination: Text(option.title),
-                                          label: {
-                                              SideMenuOptionView(viewModel:option)
-                                          })
+                        label: {
+                            SideMenuOptionView(viewModel:option)
+                        })
+                     */
                     
                     if(option.title == "Language"){
                         LanguageView()
                     }else if(option.title == "Home view"){
                         HomView()
                     }
+                    
                 }
                 Spacer()
             }
@@ -41,31 +45,44 @@ struct SideMenuView: View {
 
 struct LanguageView : View {
     var body: some View {
-        HStack{
-            Button("En", action: {})
-            Button("Fi", action: {})
-            Button("SV", action: greeting)
+        
+        VStack {
+            Text("Default Language")
+                .font(.headline)
+            HStack{
+                Button("En", action: {})
+                Button("Fi", action: {})
+                Button("SV", action: greeting)
+            }
         }
     }
 }
+
 func greeting() {
-       print("Hello, World!")
-   }
+    print("Hello, World!")
+       
+}
 
 struct HomView : View {
     var body: some View {
-        HStack{
-            Text("List")
-            Text("|")
-            Text("Map")
+        VStack{
+            Text("Default Home View")
+                .font(.headline)
+            
+            HStack{
+                Text("List")
+                Text("|")
+                Text("Map")
+            }
         }
+        
     }
 }
 
 
 struct Test1View : View {
-
-
+    
+    
     var body: some View {
         Text("test")
     }
