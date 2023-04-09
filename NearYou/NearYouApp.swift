@@ -9,11 +9,22 @@ import SwiftUI
 import CoreData
 
 @main
+
+struct NearYouApp: App {
+    var body: some Scene {
+        WindowGroup {
+            ContentView()
+        }
+    }
+}
+
+/*
+
 struct NearYouApp: App {
     
     // create persistance controller
     
-    //let persistenceController = PersistenceController.shared
+    let persistenceController = PersistenceController.shared
     
     init() {
         // updateDataFromNetwork(context: persistenceController.container.viewContext)
@@ -64,7 +75,7 @@ struct NearYouApp: App {
                         let response = try decoder.decode(TokenResponse.self, from: data)
                         
                         // print("Access token",response.access_token)
-                        fetchData(token: response.access_token)
+                        fetchData(token: response.access_token, context: persistenceController.container.viewContext)
                         
                     } catch let err {
                         print("Error: \(err)")
@@ -74,7 +85,7 @@ struct NearYouApp: App {
         }.resume()}
     
     
-    func fetchData(token: String) {
+    func fetchData(token: String, context: NSManagedObjectContext) {
         // Set up the URL and headers
         guard let dataUrl = URL(string: "https://api-datahub.visitfinland.com/graphql/v1/graphql") else {
             print("Bad Url")
@@ -85,7 +96,7 @@ struct NearYouApp: App {
         
         dataRequest.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         
-        let graphQLBody = ["query": graphQLQuery]
+        let graphQLBody = ["query": sampleGraphQLQuery]
         let jsonData = try! JSONSerialization.data(withJSONObject: graphQLBody, options: .prettyPrinted)
         
         // Set up the HTTP POST request with the GraphQL body
@@ -106,9 +117,30 @@ struct NearYouApp: App {
                 if let data = data {
                     do {
                         let decoder = JSONDecoder()
-                        let response = try decoder.decode(ProductData.self, from: data)
+                        let response = try decoder.decode(SampleResponse.self, from: data)
                         
-                        print("Data: \(response.data.product[0].id)")
+                        //print("Data: \(String(describing: String(data: data, encoding: .utf8)))")
+                    
+                        print("DATA: \(response.data.product)")
+                        
+                        // rest is core data related
+                        context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+                        
+                        var productInformationMap: [String:ProductInformations] = [:]
+                        let productInformation = Set(response.data.product.map { item in item.productInformations })
+                        
+                        productInformation.forEach { inf in
+                            let PI = ProductInformations(context: context)
+                            print("INF--: ", inf)
+                            
+                            // PI.name = inf
+                            //productInformationMap[inf] = PI
+                        }
+
+                        
+                        
+                        
+                        
                         
                         
                     } catch let err {
@@ -130,3 +162,4 @@ struct NearYouApp: App {
         }
     }
 }
+*/
