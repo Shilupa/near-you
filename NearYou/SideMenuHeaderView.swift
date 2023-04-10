@@ -17,7 +17,7 @@ struct SideMenuHeaderView: View {
                 isShowing.toggle()
             }}, label: {
                 Image(systemName: "xmark")
-                    .frame(width: 32, height: 32)
+                    .frame(width: 100, height: 32)
                     .padding()
             })
             VStack(alignment: .leading) {

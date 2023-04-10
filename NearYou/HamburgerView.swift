@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct HamburgerView: View {
-    @State private var isShowing = true
+    @State private var isShowing = false
     var body: some View {
         
         

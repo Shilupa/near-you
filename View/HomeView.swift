@@ -16,74 +16,89 @@ struct HomeView: View {
     @State private var showMenu = false
     @StateObject private var viewModel = MapViewModel()
     @State var searchText = ""
-    @State private var isShowing = true
+    @State private var isShowing = false
     
     var body: some View {
         
         NavigationView{
             
             ZStack {
-                
-                if selectedTab == 0 {
-                    HomeListView()
-                } else {
-                    MapView()
+                if(isShowing){
+                    SideMenuView(isShowing: $isShowing).frame(height: 800)
+                    MainView(selectedTab: $selectedTab).cornerRadius(isShowing ? 20 : 10)
+                        .offset(x: isShowing ? 300 : 0, y: isShowing ? 44 : 0)
+                        .scaleEffect(isShowing ? 0.8 : 1)
+                    
+                }else{
+                    MainView(selectedTab: $selectedTab)
                 }
                 
                 VStack{
                     HStack (alignment: .top){
-                        
-                        
                         ZStack{
-                            if isShowing {
-                                SideMenuView(isShowing: $isShowing)
-                            }
-                            SideMenuView(isShowing: $isShowing)
-                                .cornerRadius(isShowing ? 20 : 10)
-                                .offset(x: isShowing ? 300 : 0, y: isShowing ? 44 : 0)
-                                .scaleEffect(isShowing ? 0.8 : 1)
-                                .navigationBarItems(leading: Button(action: {
+                            if(!isShowing){
+                                Button(action: {
                                     withAnimation(.spring()) {
                                         isShowing.toggle()
                                     }
                                 },label: {
-                                Image(systemName: "line.horizontal.3")
-                                    .imageScale(.large)
-                                    .padding(25)
-                            }))
+                                    Image(systemName: "line.horizontal.3")
+                                        .imageScale(.large)
+                                        .padding(25)
+                                })
+                            }
                         }
                         
                         Spacer()
                         
-                        
-                        Picker(selection: $selectedTab, label: Text("Select a Tab")){
-                            Text("List").tag(0)
-                            Text("Map").tag(1)
-                        }
-                        .background(Color.white.cornerRadius(10))
-                        .foregroundColor(.blue)
-                        .frame(width: 130)
-                        .padding()
-                        .cornerRadius(20)
-                        .font(.headline)
-                        .pickerStyle(SegmentedPickerStyle())
-                        
-                        Spacer()
-                        
-                        ZStack{
-                            RoundedRectangle(cornerRadius: 8)
-                                .fill(Color(.systemGray6))
-                                .frame(width: 30, height: 30)
+                        if(!isShowing){
+                            Picker(selection: $selectedTab, label: Text("Select a Tab")){
+                                
+                                Text("List").tag(0)
+                                Text("Map").tag(1)
+                                
+                            }
+                            .background(Color.white.cornerRadius(10))
+                            .foregroundColor(.blue)
+                            .frame(width: 130)
+                            .padding()
+                            .cornerRadius(20)
+                            .font(.headline)
+                            .pickerStyle(SegmentedPickerStyle())
                             
-                            Image(systemName: "mappin")
-                                .imageScale(.medium)
-                                .padding(25)
+                            Spacer()
+                            
+                            ZStack{
+                                RoundedRectangle(cornerRadius: 8)
+                                    .fill(Color(.systemGray6))
+                                    .frame(width: 30, height: 30)
+                                
+                                Image(systemName: "mappin")
+                                    .imageScale(.medium)
+                                    .padding(25)
+                            }
                         }
+                        
                     }
                     Spacer()
                     
                 }
             }
+            .onAppear{
+                isShowing = true
+            }
+        }
+    }
+}
+
+// Conditional view rendering between MapView and HomeListView
+struct MainView: View {
+    @Binding var selectedTab: Int
+    var body: some View {
+        if(selectedTab == 0){
+            HomeListView()
+        }else{
+            MapView()
         }
     }
 }

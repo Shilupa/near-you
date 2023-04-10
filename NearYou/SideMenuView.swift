@@ -18,7 +18,7 @@ struct SideMenuView: View {
             
             VStack {
                 SideMenuHeaderView(isShowing: $isShowing)
-                    .frame(height:240)
+                    .frame(height:300)
                 
                 ForEach(SideMenuViewModel.allCases, id: \.self) {option in
                     
@@ -52,15 +52,10 @@ struct LanguageView : View {
             HStack{
                 Button("En", action: {})
                 Button("Fi", action: {})
-                Button("SV", action: greeting)
+                Button("SV", action: {})
             }
         }
     }
-}
-
-func greeting() {
-    print("Hello, World!")
-       
 }
 
 struct HomView : View {
@@ -76,15 +71,6 @@ struct HomView : View {
             }
         }
         
-    }
-}
-
-
-struct Test1View : View {
-    
-    
-    var body: some View {
-        Text("test")
     }
 }
 
