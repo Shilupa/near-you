@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SideMenuView: View {
     @Binding var isShowing: Bool
-    @EnvironmentObject private var lang: Lang
+    @EnvironmentObject private var lang: LangugageViewModel
     var body: some View {
         
         ZStack {
@@ -37,41 +37,110 @@ struct SideMenuView: View {
     }
 }
 
-struct LanguageView : View {
-    @EnvironmentObject private var lang: Lang
+struct RoundedButtonStyle: ButtonStyle {
+    var backgroundColor: Color
+    var foregroundColor: Color
+    
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .padding(EdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10))
+            .foregroundColor(foregroundColor)
+            .background(
+                            ZStack {
+                                RoundedRectangle(cornerRadius: 15.0)
+                                    .fill(backgroundColor)
+                                RoundedRectangle(cornerRadius: 15.0)
+                                    .stroke(Color.orange, lineWidth: 2)
+                            }
+                        )
+            .clipShape(RoundedRectangle(cornerRadius: 15.0))
+            .frame(height: 30)
+    }
+}
+
+struct LanguageView: View {
+    @EnvironmentObject private var lang: LangugageViewModel
+    @State private var selectedLang: String = ""
+    @State private var selectedButton: String? = "en"
+
     var body: some View {
-        HStack{
+        HStack {
             Button(action: {
                 lang.updateLang(lang: "fi")
+                selectedLang = "fi"
+                selectedButton = "fi"
             }, label: {
                 Text("Fi")
             })
+            .buttonStyle(RoundedButtonStyle(
+                backgroundColor: selectedButton == "fi" ? .orange : Color(.systemGray5),
+                foregroundColor: .black
+            ))
+            
             Button(action: {
                 lang.updateLang(lang: "en")
+                selectedLang = "en"
+                selectedButton = "en"
             }, label: {
                 Text("En")
             })
+            .buttonStyle(RoundedButtonStyle(
+                backgroundColor: selectedButton == "en" ? .orange : Color(.systemGray5),
+                foregroundColor: .black
+            ))
+            
             Button(action: {
                 lang.updateLang(lang: "sv")
+                selectedLang = "sv"
+                selectedButton = "sv"
             }, label: {
                 Text("Sv")
             })
+            .buttonStyle(RoundedButtonStyle(
+                backgroundColor: selectedButton == "sv" ? .orange : Color(.systemGray5),
+                foregroundColor: .black
+            ))
         }
     }
 }
 
 
-struct HomView : View {
-    @EnvironmentObject private var lang: Lang
+
+struct HomView: View {
+    @EnvironmentObject private var lang: LangugageViewModel
+    @State private var selectedButton: String? = "map"
+
     var body: some View {
-        HStack{
-            Button("List", action: {}).environment(\.locale, Locale.init(identifier: lang.currLang))
+        HStack {
+            Button(action: {
+                lang.updateLang(lang: "list")
+                selectedButton = "list"
+            }, label: {
+                Text("List")
+            })
+            .buttonStyle(RoundedButtonStyle(
+                backgroundColor: selectedButton == "list" ? .orange : Color(.systemGray5),
+                foregroundColor: .black
+            ))
+            .environment(\.locale, Locale(identifier: lang.currLang))
+
             Text("|")
-            Button("Map", action: {}).environment(\.locale, Locale.init(identifier: lang.currLang))
+
+            Button(action: {
+                lang.updateLang(lang: "map")
+                selectedButton = "map"
+            }, label: {
+                Text("Map")
+            })
+            .buttonStyle(RoundedButtonStyle(
+                backgroundColor: selectedButton == "map" ? .orange : Color(.systemGray5),
+                foregroundColor: .black
+            ))
+            .environment(\.locale, Locale(identifier: lang.currLang))
         }
     }
-    
 }
+
 
 struct SideMenuView_Previews: PreviewProvider {
     static var previews: some View {

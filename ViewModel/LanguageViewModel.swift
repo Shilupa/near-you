@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Lang: ObservableObject {
+class LangugageViewModel: ObservableObject {
     @Published internal var currLang: String = "en"
     
     func updateLang(lang: String){

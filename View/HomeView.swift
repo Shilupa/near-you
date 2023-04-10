@@ -17,19 +17,18 @@ struct HomeView: View {
     @StateObject private var viewModel = MapViewModel()
     @State var searchText = ""
     @State private var isShowing = false
-    @EnvironmentObject private var lang: Lang
-    
+    @EnvironmentObject private var lang: LangugageViewModel
+   
     var body: some View {
         
         NavigationView{
-            
+            let _ = print("isShowing",isShowing)
             ZStack {
-                if(isShowing){
+                if(isShowing == true){
                     SideMenuView(isShowing: $isShowing).frame(height: 800)
                     MainView(selectedTab: $selectedTab).cornerRadius(isShowing ? 20 : 10)
                         .offset(x: isShowing ? 300 : 0, y: isShowing ? 44 : 0)
                         .scaleEffect(isShowing ? 0.8 : 1)
-                    
                 }else{
                     MainView(selectedTab: $selectedTab)
                 }

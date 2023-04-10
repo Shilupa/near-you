@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SideMenuOptionView: View {
     let viewModel: SideMenuViewModel
-    @EnvironmentObject private var lang: Lang
+    @EnvironmentObject private var lang: LangugageViewModel
     
     var body: some View {
         HStack(spacing: 16) {
@@ -17,7 +17,7 @@ struct SideMenuOptionView: View {
                 .frame(width:24, height:24)
                 .padding(15)
             
-            Text(viewModel.title).environment(\.locale, Locale.init(identifier: lang.currLang))
+           Text(viewModel.title).environment(\.locale, Locale.init(identifier: lang.currLang))
             // Testing for hard coded value coz original does not work
             //Text("About Us").environment(\.locale, Locale.init(identifier: lang.currLang))
                 .font(.system(size: 15, weight: .semibold))
