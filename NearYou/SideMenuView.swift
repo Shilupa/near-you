@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SideMenuView: View {
     @Binding var isShowing: Bool
-    
+    @EnvironmentObject private var lang: Lang
     var body: some View {
         
         ZStack {
@@ -62,11 +62,12 @@ struct LanguageView : View {
 
 
 struct HomView : View {
+    @EnvironmentObject private var lang: Lang
     var body: some View {
         HStack{
-            Button("List", action: {})
+            Button("List", action: {}).environment(\.locale, Locale.init(identifier: lang.currLang))
             Text("|")
-            Button("Map", action: {})
+            Button("Map", action: {}).environment(\.locale, Locale.init(identifier: lang.currLang))
         }
     }
     

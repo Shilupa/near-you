@@ -18,6 +18,8 @@ struct SideMenuOptionView: View {
                 .padding(15)
             
             Text(viewModel.title).environment(\.locale, Locale.init(identifier: lang.currLang))
+            // Testing for hard coded value coz original does not work
+            //Text("About Us").environment(\.locale, Locale.init(identifier: lang.currLang))
                 .font(.system(size: 15, weight: .semibold))
                 .foregroundColor(.black)
             
@@ -27,6 +29,7 @@ struct SideMenuOptionView: View {
 }
 
 struct SideMenuOptionView_Previews: PreviewProvider {
+    
     static var previews: some View {
         SideMenuOptionView(viewModel: .home)
     }
