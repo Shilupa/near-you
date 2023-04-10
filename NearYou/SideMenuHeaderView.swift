@@ -27,11 +27,11 @@ struct SideMenuHeaderView: View {
                     .clipped()
                     .frame(width: 100, height: 100)
                     .clipShape(Circle())
-                    
+                
                     .overlay(
-                            Circle()
-                                .stroke(Color.orange, lineWidth: 3)
-                        )
+                        Circle()
+                            .stroke(Color.orange, lineWidth: 3)
+                    )
                     .padding(.bottom, 16)
                 
                 Text("Jane Korhonen")

@@ -17,6 +17,7 @@ struct HomeView: View {
     @StateObject private var viewModel = MapViewModel()
     @State var searchText = ""
     @State private var isShowing = false
+    @EnvironmentObject private var lang: Lang
     
     var body: some View {
         
@@ -54,8 +55,8 @@ struct HomeView: View {
                         if(!isShowing){
                             Picker(selection: $selectedTab, label: Text("Select a Tab")){
                                 
-                                Text("List").tag(0)
-                                Text("Map").tag(1)
+                                Text("List").tag(0).environment(\.locale, Locale.init(identifier: lang.currLang))
+                                Text("Map").tag(1).environment(\.locale, Locale.init(identifier: lang.currLang))
                                 
                             }
                             .background(Color.white.cornerRadius(10))

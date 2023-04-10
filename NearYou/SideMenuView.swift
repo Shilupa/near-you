@@ -23,7 +23,7 @@ struct SideMenuView: View {
                 ForEach(SideMenuViewModel.allCases, id: \.self) {option in
                     
                     SideMenuOptionView(viewModel:option)
-                        
+                    
                     if(option.title == "Language"){
                         LanguageView()
                     }else if(option.title == "Home view"){
@@ -38,28 +38,39 @@ struct SideMenuView: View {
 }
 
 struct LanguageView : View {
+    @EnvironmentObject private var lang: Lang
     var body: some View {
-            HStack{
-                Button("En", action: {})
-                Text("|")
-                Button("Fi", action: {})
-                Text("|")
-                Button("SV", action: {})
-            }
+        HStack{
+            Button(action: {
+                lang.updateLang(lang: "fi")
+            }, label: {
+                Text("Fi")
+            })
+            Button(action: {
+                lang.updateLang(lang: "en")
+            }, label: {
+                Text("En")
+            })
+            Button(action: {
+                lang.updateLang(lang: "sv")
+            }, label: {
+                Text("Sv")
+            })
         }
     }
+}
 
 
 struct HomView : View {
     var body: some View {
-            HStack{
-                Button("List", action: {})
-                Text("|")
-                Button("Map", action: {})
-            }
+        HStack{
+            Button("List", action: {})
+            Text("|")
+            Button("Map", action: {})
         }
-        
     }
+    
+}
 
 struct SideMenuView_Previews: PreviewProvider {
     static var previews: some View {
