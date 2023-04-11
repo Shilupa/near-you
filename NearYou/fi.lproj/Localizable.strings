@@ -6,7 +6,8 @@
   
 */
 
-"Home view" = "Koti View";
+"Home view" = "Kotinäkymä";
 "List" = "Lista";
 "Map" = "Kartta";
 "About Us" = "Meistä";
+"Language" = "Kieli" ;

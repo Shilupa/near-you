@@ -26,11 +26,10 @@ struct SideMenuView: View {
                             .frame(width:24, height:24)
                             .padding(15)
                         let _ = print(type(of: option.title))
-                        Text(option.title).environment(\.locale, Locale.init(identifier: lang.currLang))
-                        
+                        Text(option.title)
                             .font(.system(size: 15, weight: .semibold))
                             .foregroundColor(.black)
-                        
+                            .environment(\.locale, Locale(identifier: lang.currLang))
                         Spacer()
                     }
                     if(option.title == "Language"){

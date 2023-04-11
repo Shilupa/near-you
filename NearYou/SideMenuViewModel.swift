@@ -15,6 +15,9 @@ enum SideMenuViewModel: Int, CaseIterable {
     
     var title: String {
         switch self{
+//        case .home: return NSLocalizedString("Home view", comment: "")
+//        case .language: return NSLocalizedString("Language", comment: "")
+//        case .aboutus: return NSLocalizedString("About Us", comment: "")
         case .home: return "Home view"
         case .language: return "Language"
         case .aboutus: return "About Us"
