@@ -13,7 +13,6 @@ struct SideMenuView: View {
     var body: some View {
         
         ZStack {
-            let _ = print("Side view isShowing",isShowing)
             LinearGradient(gradient: Gradient(colors: [Color.white, Color.gray]), startPoint: .top, endPoint: .bottom)
                 .ignoresSafeArea()
             
@@ -22,9 +21,18 @@ struct SideMenuView: View {
                     .frame(height:300)
                 
                 ForEach(SideMenuViewModel.allCases, id: \.self) {option in
-                    
-                    SideMenuOptionView(viewModel:option)
-                    
+                    HStack(spacing: 16) {
+                        Image(systemName: option.imageName)
+                            .frame(width:24, height:24)
+                            .padding(15)
+                        let _ = print(type(of: option.title))
+                        Text(option.title).environment(\.locale, Locale.init(identifier: lang.currLang))
+                        
+                            .font(.system(size: 15, weight: .semibold))
+                            .foregroundColor(.black)
+                        
+                        Spacer()
+                    }
                     if(option.title == "Language"){
                         LanguageView()
                     }else if(option.title == "Home view"){
@@ -61,46 +69,74 @@ struct RoundedButtonStyle: ButtonStyle {
 
 struct LanguageView: View {
     @EnvironmentObject private var lang: LangugageViewModel
-    @AppStorage("selectedLanguage") private var selectedButton: String = "en"
+    @State private var selectedButton: Int = 0
+    @FocusState private var defaultButton: Int?
     
     var body: some View {
         HStack {
             Button(action: {
                 lang.updateLang(lang: "fi")
-                selectedButton = "fi"
+                selectedButton = 1
+                defaultButton = 1
             }, label: {
                 Text("Fi")
             })
+            .focused($defaultButton, equals: 1)
+            
             .buttonStyle(RoundedButtonStyle(
-                backgroundColor: selectedButton == "fi" ? .orange : Color(.systemGray5),
+                backgroundColor: selectedButton == 1 ? .orange : Color(.systemGray5),
                 foregroundColor: .black
             ))
-            
+            // Default langugae
             Button(action: {
                 lang.updateLang(lang: "en")
-                selectedButton = "en"
+                selectedButton = 0
+                defaultButton = 0
             }, label: {
                 Text("En")
             })
+            .focused($defaultButton, equals: 0)
             .buttonStyle(RoundedButtonStyle(
-                backgroundColor: selectedButton == "en" ? .orange : Color(.systemGray5),
+                backgroundColor: selectedButton == 0 ? .orange : Color(.systemGray5),
                 foregroundColor: .black
             ))
             
             Button(action: {
                 lang.updateLang(lang: "sv")
-                selectedButton = "sv"
+                selectedButton = 2
+                defaultButton = 2
             }, label: {
                 Text("Sv")
             })
+            .focused($defaultButton, equals: 2)
             .buttonStyle(RoundedButtonStyle(
-                backgroundColor: selectedButton == "sv" ? .orange : Color(.systemGray5),
+                backgroundColor: selectedButton == 2 ? .orange : Color(.systemGray5),
                 foregroundColor: .black
             ))
         }
     }
 }
 
+struct SelectedButtonStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .foregroundColor(.white)
+            .padding()
+            .background(Color.blue)
+            .cornerRadius(10)
+    }
+}
+
+struct DefaultButtonStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .foregroundColor(.blue)
+            .padding()
+            .background(Color.white)
+            .cornerRadius(10)
+        
+    }
+}
 
 struct HomView: View {
     @EnvironmentObject private var lang: LangugageViewModel
@@ -109,7 +145,6 @@ struct HomView: View {
     var body: some View {
         HStack {
             Button(action: {
-                lang.updateLang(lang: "list")
                 selectedButton = "list"
             }, label: {
                 Text("List")
@@ -123,7 +158,6 @@ struct HomView: View {
             Text("|")
             
             Button(action: {
-                lang.updateLang(lang: "map")
                 selectedButton = "map"
             }, label: {
                 Text("Map")

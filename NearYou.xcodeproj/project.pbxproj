@@ -25,7 +25,6 @@
 		A7C125E929DA0A110076B479 /* NearYouUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C125E829DA0A110076B479 /* NearYouUITestsLaunchTests.swift */; };
 		A7C125F629DA29FF0076B479 /* SideMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C125F529DA29FF0076B479 /* SideMenuView.swift */; };
 		A7C125F829DA2A4C0076B479 /* SideMenuHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C125F729DA2A4C0076B479 /* SideMenuHeaderView.swift */; };
-		A7C125FA29DA2A6E0076B479 /* SideMenuOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C125F929DA2A6E0076B479 /* SideMenuOptionView.swift */; };
 		A7C125FC29DA2A9B0076B479 /* SideMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C125FB29DA2A9B0076B479 /* SideMenuViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -70,7 +69,6 @@
 		A7C125E829DA0A110076B479 /* NearYouUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearYouUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		A7C125F529DA29FF0076B479 /* SideMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuView.swift; sourceTree = "<group>"; };
 		A7C125F729DA2A4C0076B479 /* SideMenuHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuHeaderView.swift; sourceTree = "<group>"; };
-		A7C125F929DA2A6E0076B479 /* SideMenuOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuOptionView.swift; sourceTree = "<group>"; };
 		A7C125FB29DA2A9B0076B479 /* SideMenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -161,7 +159,6 @@
 				A7C125D129DA0A110076B479 /* Preview Content */,
 				A7C125F529DA29FF0076B479 /* SideMenuView.swift */,
 				A7C125F729DA2A4C0076B479 /* SideMenuHeaderView.swift */,
-				A7C125F929DA2A6E0076B479 /* SideMenuOptionView.swift */,
 				A7C125FB29DA2A9B0076B479 /* SideMenuViewModel.swift */,
 			);
 			path = NearYou;
@@ -335,7 +332,6 @@
 				A7C125F829DA2A4C0076B479 /* SideMenuHeaderView.swift in Sources */,
 				A7C125CE29DA0A0F0076B479 /* ContentView.swift in Sources */,
 				A725244B29DB6AFA00886D41 /* BundleExtension.swift in Sources */,
-				A7C125FA29DA2A6E0076B479 /* SideMenuOptionView.swift in Sources */,
 				A7C125FC29DA2A9B0076B479 /* SideMenuViewModel.swift in Sources */,
 				038893F229DEE34C00B2EC01 /* HamburgerView.swift in Sources */,
 				A7C125CC29DA0A0F0076B479 /* NearYouApp.swift in Sources */,
