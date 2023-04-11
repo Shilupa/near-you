@@ -11,6 +11,10 @@ struct ContentView: View {
     
     @StateObject var vm = DataViewModel()
     
+//    func printProduct(){
+//        print("Hahaha: ", vm.allData?.data.product ?? "Haha")
+//    }
+    
     var body: some View {
         NavigationView {
             ZStack {
@@ -18,18 +22,24 @@ struct ContentView: View {
                 if vm.isRefreshing {
                     ProgressView()
                 } else {
+                    
+                    // Button("Press", action: printProduct)
+                    
+                    
                     List {
-                        ForEach(vm.allData.data.product, id: \.id) { product in
+                        ForEach(vm.allData?.data.product ?? [], id: \.id) { product in
                             
-                            Text("Hahaha \(product)")
-                            //ProductView(data: product)
+                        Text(product.productInformations.first?.name ?? "")
+                        //Text(product.productInformations.first?.name ?? "")
+                            
+                        //ProductView(data: product)
 //                                .listRowSeparator(.hidden)
                         }
                     }
                     .listStyle(.plain)
                 }
             }
-            .navigationTitle("Users")
+            .navigationTitle("Products")
             .onAppear(perform: vm.getData)
             .alert(isPresented: $vm.hasError,
                    error: vm.error) {

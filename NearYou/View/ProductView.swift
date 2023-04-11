@@ -9,23 +9,23 @@ import SwiftUI
 
 struct ProductView: View {
     
-    let data: SampleData
-    
+    let data: SampleData 
     
     var body: some View {
-//        VStack(alignment: .leading) {
+        VStack(alignment: .leading) {
+        Text("From Product View: \(data.id)" )
 //            Text("**Name**: \(data.data.product.id)")
 //            Text("**Email**: \(data.data.product.id)")
 //            Divider()
 //            Text("**Company**: \(data.data.product.id)")
 //
-//        }
-//        .frame(maxWidth: .infinity,
-//               alignment: .leading)
-//        .padding()
-//        .background(Color.gray.opacity(0.1), in: RoundedRectangle(cornerRadius: 10, style: .continuous))
-//        .padding(.horizontal, 4)
-        Text("Hello World")
+        }
+        .frame(maxWidth: .infinity,
+               alignment: .leading)
+        .padding()
+        .background(Color.gray.opacity(0.1), in: RoundedRectangle(cornerRadius: 10, style: .continuous))
+        .padding(.horizontal, 4)
+        
     }
 }
 

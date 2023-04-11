@@ -113,8 +113,20 @@ final class DataViewModel: ObservableObject {
                         
                         if let data = data,
                            let datas = try? decoder.decode(SampleResponse.self, from: data) {
+                            
+                            //print("Data: ", datas.data.product)
+                            
                             self?.allData = datas
-                            print("Data: ", datas)
+                            
+                            // print("All Data: ", self?.allData ?? "")
+//                            if let products = datas.data.product as? [SampleData] {
+//                                //self?.allData = products
+//                                print("Products: ", products)
+//                            } else{
+//                                print("Hahaha")"
+//                            }
+//
+                            
                         } else {
                             self?.hasError = true
                             self?.error = DataError.failedToDecode

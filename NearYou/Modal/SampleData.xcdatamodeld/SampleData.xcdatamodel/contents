@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21754" systemVersion="22D68" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Data" representedClassName="Data" syncable="YES" codeGenerationType="class">
+        <relationship name="product" optional="YES" maxCount="1" deletionRule="Nullify"/>
+    </entity>
     <entity name="Product" representedClassName="Product" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="String"/>
-        <relationship name="productInformations" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProductInformations"/>
+        <relationship name="productInformation" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProductInformations"/>
     </entity>
     <entity name="ProductInformations" representedClassName="ProductInformations" syncable="YES" codeGenerationType="class">
         <attribute name="language" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="productDescription" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="SampleResponse" representedClassName="SampleResponse" syncable="YES" codeGenerationType="class">
+        <relationship name="data" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Data"/>
     </entity>
 </model>
