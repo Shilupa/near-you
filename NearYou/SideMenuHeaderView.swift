@@ -53,6 +53,6 @@ struct SideMenuHeaderView: View {
 
 struct SideMenuHeaderView_Previews: PreviewProvider {
     static var previews: some View {
-        SideMenuHeaderView(isShowing: .constant(true))
+        SideMenuHeaderView(isShowing: .constant(true)).environmentObject(LangugageViewModel())
     }
 }

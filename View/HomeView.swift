@@ -16,7 +16,8 @@ struct HomeView: View {
     @State private var showMenu = false
     @StateObject private var viewModel = MapViewModel()
     @State var searchText = ""
-    @State private var isShowing = false
+    @State private var isShowing: Bool = false
+    
     @EnvironmentObject private var lang: LangugageViewModel
     
     var body: some View {
@@ -81,11 +82,7 @@ struct HomeView: View {
                         
                     }
                     Spacer()
-                    
                 }
-            }
-            .onAppear{
-                isShowing = true
             }
         }
     }
@@ -105,6 +102,6 @@ struct MainView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        HomeView().environmentObject(LangugageViewModel())
     }
 }

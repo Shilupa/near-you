@@ -13,6 +13,7 @@ struct SideMenuView: View {
     var body: some View {
         
         ZStack {
+            let _ = print("Side view isShowing",isShowing)
             LinearGradient(gradient: Gradient(colors: [Color.white, Color.gray]), startPoint: .top, endPoint: .bottom)
                 .ignoresSafeArea()
             
@@ -139,6 +140,6 @@ struct HomView: View {
 
 struct SideMenuView_Previews: PreviewProvider {
     static var previews: some View {
-        SideMenuView(isShowing: .constant(true))
+        SideMenuView(isShowing: .constant(true)).environmentObject(LangugageViewModel())
     }
 }
