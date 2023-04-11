@@ -46,13 +46,13 @@ struct RoundedButtonStyle: ButtonStyle {
             .padding(EdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10))
             .foregroundColor(foregroundColor)
             .background(
-                            ZStack {
-                                RoundedRectangle(cornerRadius: 15.0)
-                                    .fill(backgroundColor)
-                                RoundedRectangle(cornerRadius: 15.0)
-                                    .stroke(Color.orange, lineWidth: 2)
-                            }
-                        )
+                ZStack {
+                    RoundedRectangle(cornerRadius: 15.0)
+                        .fill(backgroundColor)
+                    RoundedRectangle(cornerRadius: 15.0)
+                        .stroke(Color.orange, lineWidth: 2)
+                }
+            )
             .clipShape(RoundedRectangle(cornerRadius: 15.0))
             .frame(height: 30)
     }
@@ -60,14 +60,12 @@ struct RoundedButtonStyle: ButtonStyle {
 
 struct LanguageView: View {
     @EnvironmentObject private var lang: LangugageViewModel
-    @State private var selectedLang: String = ""
-    @State private var selectedButton: String? = "en"
-
+    @AppStorage("selectedLanguage") private var selectedButton: String = "en"
+    
     var body: some View {
         HStack {
             Button(action: {
                 lang.updateLang(lang: "fi")
-                selectedLang = "fi"
                 selectedButton = "fi"
             }, label: {
                 Text("Fi")
@@ -79,7 +77,6 @@ struct LanguageView: View {
             
             Button(action: {
                 lang.updateLang(lang: "en")
-                selectedLang = "en"
                 selectedButton = "en"
             }, label: {
                 Text("En")
@@ -91,7 +88,6 @@ struct LanguageView: View {
             
             Button(action: {
                 lang.updateLang(lang: "sv")
-                selectedLang = "sv"
                 selectedButton = "sv"
             }, label: {
                 Text("Sv")
@@ -105,11 +101,10 @@ struct LanguageView: View {
 }
 
 
-
 struct HomView: View {
     @EnvironmentObject private var lang: LangugageViewModel
-    @State private var selectedButton: String? = "map"
-
+    @AppStorage("selectedButton") private var selectedButton: String = "map"
+    
     var body: some View {
         HStack {
             Button(action: {
@@ -123,9 +118,9 @@ struct HomView: View {
                 foregroundColor: .black
             ))
             .environment(\.locale, Locale(identifier: lang.currLang))
-
+            
             Text("|")
-
+            
             Button(action: {
                 lang.updateLang(lang: "map")
                 selectedButton = "map"

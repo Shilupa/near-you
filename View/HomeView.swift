@@ -18,7 +18,7 @@ struct HomeView: View {
     @State var searchText = ""
     @State private var isShowing = false
     @EnvironmentObject private var lang: LangugageViewModel
-   
+    
     var body: some View {
         
         NavigationView{
