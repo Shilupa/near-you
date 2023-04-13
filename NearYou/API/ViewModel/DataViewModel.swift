@@ -11,7 +11,7 @@ final class DataViewModel: ObservableObject {
     
     @Published var hasError = false
     @Published var error: DataError?
-    @Published var allData: SampleResponse?
+    @Published var allData: ProductResponse?
     @Published private(set) var isRefreshing = false
     
     private let client_id = "datahub-api"
@@ -20,7 +20,6 @@ final class DataViewModel: ObservableObject {
     private let username = "bibek.shrestha@metropolia.fi"
     private let password = "Hello404Datahub!"
     
-    //func updateDataFromNetwork(context: NSManagedObjectContext) {
     
     func getData(){
         
@@ -59,9 +58,7 @@ final class DataViewModel: ObservableObject {
                         do {
                             let decoder = JSONDecoder()
                             let response = try decoder.decode(TokenResponse.self, from: data)
-                            // print("Access token",response.access_token)
-                            // self.bearerToken = (response.access_token)
-                            // return String(data: response.access_token, encoding: .utf8)
+
                             self.fetchData(token: response.access_token)
                             
                         } catch let err {
@@ -87,7 +84,7 @@ final class DataViewModel: ObservableObject {
         
         dataRequest.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         
-        let graphQLBody = ["query": sampleGraphQLQuery]
+        let graphQLBody = ["query": graphQLQuery]
         let jsonData = try! JSONSerialization.data(withJSONObject: graphQLBody, options: .prettyPrinted)
         
         // Set up the HTTP POST request with the GraphQL body
@@ -109,24 +106,14 @@ final class DataViewModel: ObservableObject {
                     } else {
                         
                         let decoder = JSONDecoder()
-                        // decoder.keyDecodingStrategy = .convertFromSnakeCase // Handle properties that look like first_name > firstName
                         
                         if let data = data,
-                           let datas = try? decoder.decode(SampleResponse.self, from: data) {
+                           let datas = try? decoder.decode(ProductResponse.self, from: data) {
                             
                             //print("Data: ", datas.data.product)
                             
                             self?.allData = datas
-                            
-                            // print("All Data: ", self?.allData ?? "")
-//                            if let products = datas.data.product as? [SampleData] {
-//                                //self?.allData = products
-//                                print("Products: ", products)
-//                            } else{
-//                                print("Hahaha")"
-//                            }
-//
-                            
+                    
                         } else {
                             self?.hasError = true
                             self?.error = DataError.failedToDecode

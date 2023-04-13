@@ -9,11 +9,8 @@ import SwiftUI
 
 struct ContentView: View {
     
+    //@StateObject var vmh = HelsinkiDataViewModel()
     @StateObject var vm = DataViewModel()
-    
-//    func printProduct(){
-//        print("Hahaha: ", vm.allData?.data.product ?? "Haha")
-//    }
     
     var body: some View {
         NavigationView {
@@ -22,24 +19,20 @@ struct ContentView: View {
                 if vm.isRefreshing {
                     ProgressView()
                 } else {
-                    
-                    // Button("Press", action: printProduct)
-                    
-                    
+
                     List {
-                        ForEach(vm.allData?.data.product ?? [], id: \.id) { product in
-                            
-                        Text(product.productInformations.first?.name ?? "")
-                        //Text(product.productInformations.first?.name ?? "")
-                            
-                        //ProductView(data: product)
-//                                .listRowSeparator(.hidden)
+                        ForEach(vm.allData?.data.product ?? [] , id: \.id) { product in
+                        //ForEach(vm.allData?.data.product ?? [] , id: \.id) { product in
+                        //Text(product.id)
+                        //Text(product.id ?? "")
+
+                           ProductView(data: product)
+                               .listRowSeparator(.hidden)
                         }
                     }
                     .listStyle(.plain)
                 }
             }
-            .navigationTitle("Products")
             .onAppear(perform: vm.getData)
             .alert(isPresented: $vm.hasError,
                    error: vm.error) {
