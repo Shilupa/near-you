@@ -11,8 +11,33 @@ struct ProductCardHomeView: View {
     
     let data: ProductResponse.Product
     
+    func weekdayName(from weekday: Int) -> String {
+        switch weekday {
+        case 1:
+            return "Sunday"
+        case 2:
+            return "Monday"
+        case 3:
+            return "Tuesday"
+        case 4:
+            return "Wednesday"
+        case 5:
+            return "Thursday"
+        case 6:
+            return "Friday"
+        case 7:
+            return "Saturday"
+        default:
+            return ""
+        }
+    }
+    
     var body: some View {
-
+        
+        let currentDate = Date()
+        let calendar = Calendar.current
+        let weekday = calendar.component(.weekday, from: currentDate)
+        let time = DateFormatter.localizedString(from: currentDate, dateStyle: .none, timeStyle: .medium)
         
         
         let url = URL(string:data.productImages?[0].thumbnailUrl ?? "http://placekitten.com/g/200/300" )
@@ -52,9 +77,12 @@ struct ProductCardHomeView: View {
                     Text("Opening Hours:")
                         .font(.caption)
                         .bold()
-                    Text(data.postalAddresses![0].city ?? "")
+                    Text(data.businessHours.businessHoursDefault[0].weekday ?? "")
                         .font(.caption)
                 }
+                
+                Text("\(weekdayName(from: weekday)) \(time)")
+                    .font(.caption)
                 
                 
                 Text(data.productImages?[0].altText ?? "")
