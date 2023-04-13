@@ -13,12 +13,16 @@ final class DataViewModel: ObservableObject {
     @Published var error: DataError?
     @Published var allData: ProductResponse?
     @Published private(set) var isRefreshing = false
+    @Published var typeTuple = [(typeCategory:String, categoryCount:Int)]()
     
     private let client_id = "datahub-api"
     private let client_secret = "ed7cd94f-727e-4cf7-879c-1c26f798bcc0"
     private let grant_type = "password"
     private let username = "bibek.shrestha@metropolia.fi"
     private let password = "Hello404Datahub!"
+    
+    private var typeArray: Array<String> = []
+    private var typeSet: Set<String> = []
     
     
     func getData(){
@@ -95,7 +99,7 @@ final class DataViewModel: ObservableObject {
             .shared
             .dataTask(with: dataRequest) {  [weak self]  data, response, error in
                 
-                DispatchQueue.main.async {
+                DispatchQueue.main.async { [self] in
                     defer {
                         self?.isRefreshing = false
                     }
@@ -110,8 +114,23 @@ final class DataViewModel: ObservableObject {
                         if let data = data,
                            let datas = try? decoder.decode(ProductResponse.self, from: data) {
                             
-                            //print("Data: ", datas.data.product)
+                            // creating array and set of category
+                            for item in datas.data.product{
+                                self?.typeArray.append(item.type!)
+                                self?.typeSet.insert(item.type!)
+                            }
+
+                            // Creating tuple of category with the its count
+                            for item in self!.typeSet{
+                                let count = self?.typeArray.reduce(0) { $1 == item ? $0 + 1 : $0 }
+                                self?.typeTuple.append((item, count!))
+                            }
                             
+                            // Sorting tuple and publishing to use by all views
+                            let Temp = self!.typeTuple.sorted { $0.categoryCount > $1.categoryCount }
+                            self?.typeTuple = Temp
+
+                            //print("Data: ", datas.data.product)
                             self?.allData = datas
                     
                         } else {
