@@ -133,7 +133,6 @@ struct DefaultButtonStyle: ButtonStyle {
             .padding()
             .background(Color.white)
             .cornerRadius(10)
-        
     }
 }
 

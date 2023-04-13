@@ -14,7 +14,6 @@
 		6A84DEEC29DD99C0004AFD89 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A84DEEB29DD99C0004AFD89 /* HomeView.swift */; };
 		6A84DEEE29DD9A00004AFD89 /* CustomSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A84DEED29DD9A00004AFD89 /* CustomSearchBar.swift */; };
 		A725244529DB680600886D41 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A725244729DB680600886D41 /* Localizable.strings */; };
-		A725244B29DB6AFA00886D41 /* BundleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A725244A29DB6AFA00886D41 /* BundleExtension.swift */; };
 		A77B823029E471E600011E50 /* LanguageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77B822F29E471E600011E50 /* LanguageViewModel.swift */; };
 		A7C125CC29DA0A0F0076B479 /* NearYouApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C125CB29DA0A0F0076B479 /* NearYouApp.swift */; };
 		A7C125CE29DA0A0F0076B479 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C125CD29DA0A0F0076B479 /* ContentView.swift */; };
@@ -55,7 +54,6 @@
 		A725244629DB680600886D41 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A725244829DB680A00886D41 /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A725244929DB680B00886D41 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Localizable.strings; sourceTree = "<group>"; };
-		A725244A29DB6AFA00886D41 /* BundleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleExtension.swift; sourceTree = "<group>"; };
 		A77B822F29E471E600011E50 /* LanguageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageViewModel.swift; sourceTree = "<group>"; };
 		A7C125C829DA0A0F0076B479 /* NearYou.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NearYou.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7C125CB29DA0A0F0076B479 /* NearYouApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearYouApp.swift; sourceTree = "<group>"; };
@@ -101,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				6A84DEE329DD98A3004AFD89 /* MapViewModel.swift */,
+				A7C125FB29DA2A9B0076B479 /* SideMenuViewModel.swift */,
 				A77B822F29E471E600011E50 /* LanguageViewModel.swift */,
 			);
 			path = ViewModel;
@@ -109,9 +108,13 @@
 		6A84DEE529DD9932004AFD89 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				6A84DEE629DD9942004AFD89 /* MapView.swift */,
-				6A84DEE929DD9997004AFD89 /* HomeListView.swift */,
+				A7C125CD29DA0A0F0076B479 /* ContentView.swift */,
 				6A84DEEB29DD99C0004AFD89 /* HomeView.swift */,
+				6A84DEE629DD9942004AFD89 /* MapView.swift */,
+				038893F129DEE34C00B2EC01 /* HamburgerView.swift */,
+				6A84DEE929DD9997004AFD89 /* HomeListView.swift */,
+				A7C125F529DA29FF0076B479 /* SideMenuView.swift */,
+				A7C125F729DA2A4C0076B479 /* SideMenuHeaderView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -151,15 +154,9 @@
 				6A84DEE829DD9973004AFD89 /* CustomComponents */,
 				6A84DEE529DD9932004AFD89 /* View */,
 				6A84DEE229DD988B004AFD89 /* ViewModel */,
-				A725244A29DB6AFA00886D41 /* BundleExtension.swift */,
-				A7C125CD29DA0A0F0076B479 /* ContentView.swift */,
-				038893F129DEE34C00B2EC01 /* HamburgerView.swift */,
 				A725244729DB680600886D41 /* Localizable.strings */,
 				A7C125CF29DA0A110076B479 /* Assets.xcassets */,
 				A7C125D129DA0A110076B479 /* Preview Content */,
-				A7C125F529DA29FF0076B479 /* SideMenuView.swift */,
-				A7C125F729DA2A4C0076B479 /* SideMenuHeaderView.swift */,
-				A7C125FB29DA2A9B0076B479 /* SideMenuViewModel.swift */,
 			);
 			path = NearYou;
 			sourceTree = "<group>";
@@ -331,7 +328,6 @@
 				A7C125F629DA29FF0076B479 /* SideMenuView.swift in Sources */,
 				A7C125F829DA2A4C0076B479 /* SideMenuHeaderView.swift in Sources */,
 				A7C125CE29DA0A0F0076B479 /* ContentView.swift in Sources */,
-				A725244B29DB6AFA00886D41 /* BundleExtension.swift in Sources */,
 				A7C125FC29DA2A9B0076B479 /* SideMenuViewModel.swift in Sources */,
 				038893F229DEE34C00B2EC01 /* HamburgerView.swift in Sources */,
 				A7C125CC29DA0A0F0076B479 /* NearYouApp.swift in Sources */,

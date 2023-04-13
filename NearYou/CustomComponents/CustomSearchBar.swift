@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CustomSearchBar: View {
+    
     @Binding var searchText: String
     
     var body: some View {
@@ -42,3 +43,4 @@ struct CustomSearchBar: View {
         }
     }
 }
+
