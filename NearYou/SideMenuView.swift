@@ -86,7 +86,7 @@ struct LanguageView: View {
                 backgroundColor: selectedButton == 1 ? .orange : Color(.systemGray5),
                 foregroundColor: .black
             ))
-            // Default langugae
+            // Default language
             Button(action: {
                 lang.updateLang(lang: "en")
                 selectedButton = 0
