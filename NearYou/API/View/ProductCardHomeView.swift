@@ -47,7 +47,6 @@ struct ProductCardHomeView: View {
                         .font(.caption)
                 }
                 
-                
                 // Opening Hours
                 HStack{
                     Text("Opening Hours:")
@@ -58,10 +57,9 @@ struct ProductCardHomeView: View {
                 }
                 
                 
-                
                 Text(data.productImages?[0].altText ?? "")
                     .lineLimit(1)
-                    .font(.title3)
+                    .font(.caption)
                 
             }}
         .frame(maxWidth: .infinity, alignment: .leading)
