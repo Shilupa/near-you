@@ -23,15 +23,15 @@ struct ProductResponse: Codable {
         let productAvailableMonths: [ProductAvailableMonth]?
         let productInformations: [ProductInformation]
         let productImages: [ProductImage]?
-//        let productPricings: [ProductPricing]
-//        let accessible: Bool?
-//        let contactDetails: [ContactDetail]
-//        let productAvailabilities: [ProductAvailability]
-//        let productCapacities: [ProductCapacities]
-//        let updatedAt: String
-//        let businessHours: BusinessHours
-//        let productAvailabilityLanguages: [ProductAvailabilityLanguages?]
-//        let socialMedia: SocialMedia?
+        let productPricings: [ProductPricing]
+        let accessible: Bool?
+        let contactDetails: [ContactDetail]
+        let productAvailabilities: [ProductAvailability]
+        let productCapacities: [ProductCapacities]
+        let updatedAt: String
+        let businessHours: BusinessHours
+        let productAvailabilityLanguages: [ProductAvailabilityLanguages?]
+        let socialMedia: SocialMedia?
     }
     
     struct Company: Codable {

@@ -13,7 +13,7 @@ import CoreData
 struct NearYouApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            HomeListView()
         }
     }
 }
