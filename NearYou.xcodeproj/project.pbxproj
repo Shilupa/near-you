@@ -127,9 +127,6 @@
 		A7C125BF29DA0A0F0076B479 = {
 			isa = PBXGroup;
 			children = (
-				6A84DEE829DD9973004AFD89 /* CustomComponents */,
-				6A84DEE529DD9932004AFD89 /* View */,
-				6A84DEE229DD988B004AFD89 /* ViewModel */,
 				A7C125CA29DA0A0F0076B479 /* NearYou */,
 				A7C125DB29DA0A110076B479 /* NearYouTests */,
 				A7C125E529DA0A110076B479 /* NearYouUITests */,
@@ -150,8 +147,11 @@
 		A7C125CA29DA0A0F0076B479 /* NearYou */ = {
 			isa = PBXGroup;
 			children = (
-				A725244A29DB6AFA00886D41 /* BundleExtension.swift */,
 				A7C125CB29DA0A0F0076B479 /* NearYouApp.swift */,
+				6A84DEE829DD9973004AFD89 /* CustomComponents */,
+				6A84DEE529DD9932004AFD89 /* View */,
+				6A84DEE229DD988B004AFD89 /* ViewModel */,
+				A725244A29DB6AFA00886D41 /* BundleExtension.swift */,
 				A7C125CD29DA0A0F0076B479 /* ContentView.swift */,
 				038893F129DEE34C00B2EC01 /* HamburgerView.swift */,
 				A725244729DB680600886D41 /* Localizable.strings */,
