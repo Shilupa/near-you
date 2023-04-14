@@ -6,11 +6,12 @@
 //
 
 import Foundation
-
+import SwiftUI
 class LangugageViewModel: ObservableObject {
     @Published internal var currLang: String = "en"
     
     func updateLang(lang: String){
         self.currLang = lang
     }
+    
 }

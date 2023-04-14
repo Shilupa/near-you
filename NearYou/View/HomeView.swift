@@ -47,6 +47,16 @@ struct HomeView: View {
                                         .imageScale(.large)
                                         .padding(25)
                                 })
+                            }else{
+                                Button(action: {
+                                    withAnimation(.spring()) {
+                                        isShowing.toggle()
+                                    }
+                                },label: {
+                                    Image(systemName: "arrowshape.turn.up.backward")
+                                        .imageScale(.large)
+                                        .padding(25)
+                                })
                             }
                         }
                         
