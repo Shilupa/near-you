@@ -10,7 +10,10 @@ import SwiftUI
 struct TabView: View {
     @EnvironmentObject private var lang: LangugageViewModel
     var body: some View {
-        ListAndMap()
+        VStack{
+            ListAndMap()
+            LanguageOptionView()
+        }
     }
 }
 struct ListAndMap: View {

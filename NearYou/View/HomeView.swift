@@ -28,6 +28,11 @@ struct HomeView: View {
                 if(isShowing == true){
                     SideMenuView(isShowing: $isShowing).frame(height: 800)
                     MainView(selectedTab: $selectedTab).cornerRadius(isShowing ? 20 : 10)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: isShowing ? 20 : 10)
+                                .stroke(Color.orange.opacity(2), lineWidth: 2)
+                                .shadow(color: Color.gray.opacity(0.2), radius: 5, x: 0, y: 2)
+                        )
                         .offset(x: isShowing ? 300 : 0, y: isShowing ? 44 : 0)
                         .scaleEffect(isShowing ? 0.8 : 1)
                 }else{
@@ -53,9 +58,10 @@ struct HomeView: View {
                                         isShowing.toggle()
                                     }
                                 },label: {
-                                    Image(systemName: "arrowshape.turn.up.backward")
+                                    Image(systemName: "arrowshape.turn.up.backward.fill")
                                         .imageScale(.large)
-                                        .padding(25)
+                                        .colorMultiply(Color.black.opacity(0.8))
+                                        .padding(32)
                                 })
                             }
                         }
