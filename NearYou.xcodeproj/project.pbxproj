@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		038893F229DEE34C00B2EC01 /* HamburgerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038893F129DEE34C00B2EC01 /* HamburgerView.swift */; };
 		6A84DEE429DD98A3004AFD89 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A84DEE329DD98A3004AFD89 /* MapViewModel.swift */; };
 		6A84DEE729DD9942004AFD89 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A84DEE629DD9942004AFD89 /* MapView.swift */; };
 		6A84DEEA29DD9997004AFD89 /* HomeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A84DEE929DD9997004AFD89 /* HomeListView.swift */; };
@@ -24,7 +23,6 @@
 		A7C125E729DA0A110076B479 /* NearYouUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C125E629DA0A110076B479 /* NearYouUITests.swift */; };
 		A7C125E929DA0A110076B479 /* NearYouUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C125E829DA0A110076B479 /* NearYouUITestsLaunchTests.swift */; };
 		A7C125F629DA29FF0076B479 /* SideMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C125F529DA29FF0076B479 /* SideMenuView.swift */; };
-		A7C125F829DA2A4C0076B479 /* SideMenuHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C125F729DA2A4C0076B479 /* SideMenuHeaderView.swift */; };
 		A7C125FC29DA2A9B0076B479 /* SideMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C125FB29DA2A9B0076B479 /* SideMenuViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -46,7 +44,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		038893F129DEE34C00B2EC01 /* HamburgerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HamburgerView.swift; sourceTree = "<group>"; };
 		6A84DEE329DD98A3004AFD89 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		6A84DEE629DD9942004AFD89 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		6A84DEE929DD9997004AFD89 /* HomeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeListView.swift; sourceTree = "<group>"; };
@@ -68,7 +65,6 @@
 		A7C125E629DA0A110076B479 /* NearYouUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearYouUITests.swift; sourceTree = "<group>"; };
 		A7C125E829DA0A110076B479 /* NearYouUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearYouUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		A7C125F529DA29FF0076B479 /* SideMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuView.swift; sourceTree = "<group>"; };
-		A7C125F729DA2A4C0076B479 /* SideMenuHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuHeaderView.swift; sourceTree = "<group>"; };
 		A7C125FB29DA2A9B0076B479 /* SideMenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -113,10 +109,8 @@
 				A7C125CD29DA0A0F0076B479 /* ContentView.swift */,
 				6A84DEEB29DD99C0004AFD89 /* HomeView.swift */,
 				6A84DEE629DD9942004AFD89 /* MapView.swift */,
-				038893F129DEE34C00B2EC01 /* HamburgerView.swift */,
 				6A84DEE929DD9997004AFD89 /* HomeListView.swift */,
 				A7C125F529DA29FF0076B479 /* SideMenuView.swift */,
-				A7C125F729DA2A4C0076B479 /* SideMenuHeaderView.swift */,
 				A7A7135429E981A0000C80F8 /* TabView.swift */,
 			);
 			path = View;
@@ -330,10 +324,8 @@
 				A77B823029E471E600011E50 /* LanguageViewModel.swift in Sources */,
 				6A84DEEC29DD99C0004AFD89 /* HomeView.swift in Sources */,
 				A7C125F629DA29FF0076B479 /* SideMenuView.swift in Sources */,
-				A7C125F829DA2A4C0076B479 /* SideMenuHeaderView.swift in Sources */,
 				A7C125CE29DA0A0F0076B479 /* ContentView.swift in Sources */,
 				A7C125FC29DA2A9B0076B479 /* SideMenuViewModel.swift in Sources */,
-				038893F229DEE34C00B2EC01 /* HamburgerView.swift in Sources */,
 				A7C125CC29DA0A0F0076B479 /* NearYouApp.swift in Sources */,
 				6A84DEE429DD98A3004AFD89 /* MapViewModel.swift in Sources */,
 			);
