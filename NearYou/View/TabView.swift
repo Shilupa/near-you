@@ -16,35 +16,71 @@ struct TabView: View {
 struct ListAndMap: View {
     @EnvironmentObject private var lang: LangugageViewModel
     @AppStorage("selectedButton") private var selectedButton: String = "map"
+    var rightButtonText: String? = nil
+    var leftButtonText: String? = nil
+    var rightButtonAction: () -> Void = {}
+    var leftButtonAction: () -> Void = {}
+    @State private var isLeftButtonSelected: Bool = false
+    @State private var isRightButtonSelected: Bool = false
+    
+    init() {
+            _isLeftButtonSelected = State(initialValue: false)
+            _isRightButtonSelected = State(initialValue: true)
+        }
     
     var body: some View {
         HStack {
             Button(action: {
+                leftButtonAction()
+                isLeftButtonSelected = true
+                isRightButtonSelected = false
                 selectedButton = "list"
-            }, label: {
+            }) {
                 Text("List")
-            })
-            .buttonStyle(RoundedButtonStyle(
-                backgroundColor: selectedButton == "list" ? .orange : Color(.systemGray5),
-                foregroundColor: .black
-            ))
-            .environment(\.locale, Locale(identifier: lang.currLang))
-            
-            Text("|")
+                    .padding()
+                    .font(.system(size: 13))
+                    .foregroundColor(isLeftButtonSelected ? .white : .black)
+                    .frame(minWidth: 0, maxWidth: 63)
+                    .frame(minHeight: 0, maxHeight: 25)
+                    .background(isLeftButtonSelected ? Color.orange : Color.white)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 25)
+                            //.stroke(Color.orange, lineWidth: isLeftButtonSelected ? 0 : 1)
+                            .stroke(Color.clear, lineWidth: 0)
+                    ).environment(\.locale, Locale.init(identifier: lang.currLang))
+                    //.padding(EdgeInsets(top: 5, leading: 15, bottom: 5, trailing: 0))
+            }
             
             Button(action: {
+                rightButtonAction()
+                isLeftButtonSelected = false
+                isRightButtonSelected = true
                 selectedButton = "map"
-            }, label: {
+            }) {
                 Text("Map")
-            })
-            .buttonStyle(RoundedButtonStyle(
-                backgroundColor: selectedButton == "map" ? .orange : Color(.systemGray5),
-                foregroundColor: .black
-            ))
-            .environment(\.locale, Locale(identifier: lang.currLang))
-        }.padding(.leading, 40)
+                    .padding()
+                    .font(.system(size: 13))
+                    .foregroundColor(isRightButtonSelected ? .white : .black)
+                    .frame(minWidth: 0, maxWidth: 70)
+                    .frame(minHeight: 0, maxHeight: 25)
+                    .background(isRightButtonSelected ? Color.orange : Color.white)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 25)
+                            .stroke(Color.clear, lineWidth: 0) // remove the border color
+                    )
+                    .environment(\.locale, Locale.init(identifier: lang.currLang))
+                    //.padding(EdgeInsets(top: 5, leading: 12, bottom: 5, trailing: 0))
+            }
+        }
+        .padding(EdgeInsets(top: 5, leading: 0, bottom: 5, trailing: 0))
+        .mask {
+            RoundedRectangle(cornerRadius: 25)
+            // or Capsule()
+        }
+        //.frame(width: 250)
     }
 }
+
 
 struct LanguageOptionView: View {
     @EnvironmentObject private var lang: LangugageViewModel
@@ -92,27 +128,7 @@ struct LanguageOptionView: View {
                 backgroundColor: selectedButton == 2 ? .orange : Color(.systemGray5),
                 foregroundColor: .black
             ))
-        }.padding(.leading, 40)
-    }
-}
-
-struct SelectedButtonStyle: ButtonStyle {
-    func makeBody(configuration: Configuration) -> some View {
-        configuration.label
-            .foregroundColor(.white)
-            .padding()
-            .background(Color.blue)
-            .cornerRadius(10)
-    }
-}
-
-struct DefaultButtonStyle: ButtonStyle {
-    func makeBody(configuration: Configuration) -> some View {
-        configuration.label
-            .foregroundColor(.blue)
-            .padding()
-            .background(Color.white)
-            .cornerRadius(10)
+        }.padding(.trailing, 15)
     }
 }
 

@@ -47,7 +47,7 @@ struct ProfileView: View {
                         .resizable()
                         .scaledToFill()
                         .clipped()
-                        .frame(width: 100, height: 100)
+                        .frame(width: 135, height: 135)
                         .clipShape(Circle())
                     
                         .overlay(
@@ -89,9 +89,11 @@ struct MyHomeView: View {
         VStack{
             HStack{
                 Image(systemName: "house.fill")
-                    .frame(width:24, height:24)
+                    .frame(width:26, height:26)
                     .padding(15)
-                Text("Home view").environment(\.locale, Locale.init(identifier: lang.currLang))
+                Text("Home view")
+                    .font(.system(size: 22, weight: .semibold))
+                    .environment(\.locale, Locale.init(identifier: lang.currLang))
             }
             ListAndMap()
         }
@@ -106,7 +108,9 @@ struct LanguageView: View {
                 Image(systemName: "abc")
                     .frame(width:24, height:24)
                     .padding(15)
-                Text("Language").environment(\.locale, Locale.init(identifier: lang.currLang))
+                Text("Language")
+                    .font(.system(size: 22, weight: .semibold))
+                    .environment(\.locale, Locale.init(identifier: lang.currLang))
             }
             LanguageOptionView()
         }
@@ -119,10 +123,13 @@ struct AboutUsView: View {
         
         HStack{
             Image(systemName: "info.circle.fill")
-                .frame(width:24, height:24)
+                .frame(width:26, height:26)
                 .padding(15)
-            Text("About Us").environment(\.locale, Locale.init(identifier: lang.currLang))
+            Text("About Us")
+                .font(.system(size: 22, weight: .semibold))
+                .environment(\.locale, Locale.init(identifier: lang.currLang))
         }
+        .padding(.trailing, 20)
     }
 }
 
