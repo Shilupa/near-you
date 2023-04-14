@@ -32,12 +32,34 @@ struct ProductCardHomeView: View {
         }
     }
     
+    func isProductOpen(openTime: String, closeTime: String) -> String {
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm:ss"
+        
+        let open: Date = dateFormatter.date(from: openTime) ??
+        dateFormatter.date(from: "00:00:00")!
+        
+        let close: Date = dateFormatter.date(from: closeTime) ?? dateFormatter.date(from: "00:00:00")!
+        
+        let currentTime = Date()
+        let current = dateFormatter.string(from: currentTime)
+        let now = dateFormatter.date (from: current)
+        
+        
+        if now?.compare(open) == .orderedDescending && close.compare(now!) == .orderedDescending{
+            return "Open"
+        } else {
+            return "Closed"
+        }
+    }
+    
     var body: some View {
         
         let currentDate = Date()
         let calendar = Calendar.current
         let weekday = calendar.component(.weekday, from: currentDate)
-        let time = DateFormatter.localizedString(from: currentDate, dateStyle: .none, timeStyle: .medium)
+//        let time = DateFormatter.localizedString(from: currentDate, dateStyle: .none, timeStyle: .medium)
         
         
         let url = URL(string:data.productImages?[0].thumbnailUrl ?? "http://placekitten.com/g/200/300" )
@@ -72,20 +94,51 @@ struct ProductCardHomeView: View {
                         .font(.caption)
                 }
                 
+                
                 // Opening Hours
                 HStack{
-                    Text("Opening Hours:")
+                    Text("Opening:")
                         .font(.caption)
                         .bold()
-                    Text(data.businessHours.businessHoursDefault[0].weekday ?? "")
-                        .font(.caption)
+                        
+                    
+                    let todayWeek: String = weekdayName(from: weekday)
+                    
+                    let today = data.businessHours.businessHoursDefault.filter{$0.weekday == todayWeek.lowercased()}
+                    
+                        
+                    if today[0].opens == nil || today[0].closes == nil {
+                        Text("Unknown")
+                            .font(.caption)
+                            .foregroundColor(Color("ThemeColour"))
+                    } else {
+                        let openHours:String = today[0].opens!
+                        let openHour = openHours.prefix(openHours.count - 3)
+                        
+                        let closeHours:String = today[0].closes!
+                        let closeHour = closeHours.prefix(closeHours.count - 3)
+                        
+                        let isopen = isProductOpen(openTime: openHours, closeTime: closeHours )
+                        
+                        Text(openHour + "-" + closeHour)
+                            .font(.caption)
+                        
+                        if isopen == "Open" {
+                            Text(isopen)
+                                .font(.caption)
+                                .foregroundColor(Color(.green))
+                                .bold()
+                        }else {
+                            Text(isopen)
+                                .font(.caption)
+                                .foregroundColor(Color(.red))
+                                .bold()
+                        }
+                    }
+
                 }
                 
-                Text("\(weekdayName(from: weekday)) \(time)")
-                    .font(.caption)
-                
-                
-                Text(data.productImages?[0].altText ?? "")
+                Text("2 km away from your location")
                     .lineLimit(1)
                     .font(.caption)
                 
