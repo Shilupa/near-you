@@ -26,20 +26,21 @@ struct SideMenuView: View {
     @Binding var isShowing: Bool
     @EnvironmentObject private var lang: LangugageViewModel
     var body: some View {
-        
-        ZStack {
-            LinearGradient(gradient: Gradient(colors: [Color(hex: "FBF2B8"), Color(hex: "FACFD9")]), startPoint: .top, endPoint: .bottom)
-                .ignoresSafeArea()
-            
-            VStack {
-                ProfileView(isShowing: $isShowing)
-                    .frame(height:300)
-                CombineView()
-                Spacer()
-            }.padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 100))
-        }.navigationBarHidden(true)
-        
+        NavigationView {
+            ZStack {
+                LinearGradient(gradient: Gradient(colors: [Color(hex: "FBF2B8"), Color(hex: "FACFD9")]), startPoint: .top, endPoint: .bottom)
+                    .ignoresSafeArea()
+                
+                VStack {
+                    ProfileView(isShowing: $isShowing)
+                        .frame(height:300)
+                    CombineView()
+                    Spacer()
+                }.padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 100))
+            }.navigationBarHidden(true)
+        }
     }
+    
 }
 
 struct ProfileView: View {
@@ -49,27 +50,23 @@ struct ProfileView: View {
     var body: some View {
         VStack(){
             ZStack(alignment: .topTrailing){
-                //
-                //                Button(action: {withAnimation(.spring()) {
-                //                    isShowing.toggle()
-                //                }}, label: {
-                //                    Image(systemName: "xmark")
-                //                        .frame(width: 100, height: 32)
-                //                        .padding()
-                //                })
-                VStack(alignment: .center) {
-                    Image("profile")
-                        .resizable()
-                        .scaledToFill()
-                        .clipped()
-                        .frame(width: 135, height: 135)
-                        .clipShape(Circle())
-                    
-                        .overlay(
-                            Circle()
-                                .stroke(Color.orange, lineWidth: 3)
-                        )
-                        .padding(.bottom, 16)
+                VStack{
+                    NavigationLink(destination: MainProfileView(), label: {
+                        VStack(alignment: .center) {
+                            Image("profile")
+                                .resizable()
+                                .scaledToFill()
+                                .clipped()
+                                .frame(width: 135, height: 135)
+                                .clipShape(Circle())
+                            
+                                .overlay(
+                                    Circle()
+                                        .stroke(Color.orange, lineWidth: 3)
+                                )
+                                .padding(.bottom, 16)
+                        }
+                    })
                     
                     Text("Jane Korhonen")
                         .font(.system(size: 24, weight: .semibold))
@@ -81,7 +78,8 @@ struct ProfileView: View {
                     HStack(spacing: 12) {
                         Spacer()
                     }
-                }.padding()
+                }
+                
             }
             Spacer()
         }.padding(EdgeInsets(top: 50, leading: 0, bottom: 0, trailing: 0))
