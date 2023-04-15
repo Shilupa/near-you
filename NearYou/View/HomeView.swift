@@ -17,7 +17,7 @@ struct HomeView: View {
     @StateObject private var viewModel = MapViewModel()
     @State var searchText = ""
     @State private var isShowing: Bool = false
-    
+    @State private var showMainView = false
     @EnvironmentObject private var lang: LangugageViewModel
     
     var body: some View {
@@ -25,8 +25,10 @@ struct HomeView: View {
         NavigationView{
             let _ = print("isShowing",isShowing)
             ZStack {
-                if(isShowing == true){
-                    SideMenuView(isShowing: $isShowing).frame(height: 800)
+                if(showMainView){
+                    MainProfileView(isShowing: $isShowing, showMainView: $showMainView)
+                }else if(isShowing){
+                    SideMenuView(isShowing: $isShowing, showMainView: $showMainView).frame(height: 800)
                     MainView(selectedTab: $selectedTab).cornerRadius(isShowing ? 20 : 10)
                         .overlay(
                             RoundedRectangle(cornerRadius: isShowing ? 20 : 10)
@@ -52,7 +54,7 @@ struct HomeView: View {
                                         .imageScale(.large)
                                         .padding(25)
                                 })
-                            }else{
+                            }else if(!showMainView){
                                 Button(action: {
                                     withAnimation(.spring()) {
                                         isShowing.toggle()

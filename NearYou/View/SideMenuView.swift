@@ -24,7 +24,9 @@ extension Color {
 
 struct SideMenuView: View {
     @Binding var isShowing: Bool
+    @Binding var showMainView: Bool
     @EnvironmentObject private var lang: LangugageViewModel
+    
     var body: some View {
         NavigationView {
             ZStack {
@@ -32,7 +34,7 @@ struct SideMenuView: View {
                     .ignoresSafeArea()
                 
                 VStack {
-                    ProfileView(isShowing: $isShowing)
+                    ProfileView(isShowing: $isShowing, showMainView: $showMainView)
                         .frame(height:300)
                     CombineView()
                     Spacer()
@@ -46,12 +48,13 @@ struct SideMenuView: View {
 struct ProfileView: View {
     @Binding var isShowing: Bool
     @EnvironmentObject private var lang: LangugageViewModel
+    @Binding var showMainView: Bool
     
     var body: some View {
         VStack(){
             ZStack(alignment: .topTrailing){
                 VStack{
-                    NavigationLink(destination: MainProfileView(), label: {
+                    NavigationLink(destination: MainProfileView(isShowing: $isShowing, showMainView: $showMainView), label: {
                         VStack(alignment: .center) {
                             Image("profile")
                                 .resizable()
@@ -66,6 +69,9 @@ struct ProfileView: View {
                                 )
                                 .padding(.bottom, 16)
                         }
+                    }).simultaneousGesture(TapGesture().onEnded{
+                        showMainView = true
+                        print("Hello world!", showMainView)
                     })
                     
                     Text("Jane Korhonen")
@@ -148,6 +154,8 @@ struct AboutUsView: View {
 
 struct SideMenuView_Previews: PreviewProvider {
     static var previews: some View {
-        SideMenuView(isShowing: .constant(true)).environmentObject(LangugageViewModel())
+        SideMenuView(isShowing: .constant(true),
+                     showMainView: .constant(true)
+        ).environmentObject(LangugageViewModel())
     }
 }
