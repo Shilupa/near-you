@@ -24,12 +24,14 @@ struct ListAndMap: View {
     var leftButtonText: String? = nil
     var rightButtonAction: () -> Void = {}
     var leftButtonAction: () -> Void = {}
-    @State private var isLeftButtonSelected: Bool = false
+    @State private var isLeftButtonSelected: Bool = true
     @State private var isRightButtonSelected: Bool = false
     
+    //set the initial value based on the value stored in selectedButton
     init() {
-        _isLeftButtonSelected = State(initialValue: false)
-        _isRightButtonSelected = State(initialValue: true)
+        _isLeftButtonSelected = State(initialValue: selectedButton == "list")
+        _isRightButtonSelected = State(initialValue: selectedButton == "map")
+        
     }
     
     var body: some View {
@@ -75,7 +77,9 @@ struct ListAndMap: View {
                     .environment(\.locale, Locale.init(identifier: lang.currLang))
                 //.padding(EdgeInsets(top: 5, leading: 12, bottom: 5, trailing: 0))
             }
+            
         }
+        
         .padding(EdgeInsets(top: 5, leading: 0, bottom: 5, trailing: 0))
         .mask {
             RoundedRectangle(cornerRadius: 25)
@@ -90,6 +94,7 @@ struct LanguageOptionView: View {
     @EnvironmentObject private var lang: LangugageViewModel
     @State private var selectedButton: Int = 0
     @FocusState private var defaultButton: Int?
+    @AppStorage("selectedLanguage") var selectedLanguage = ""
     
     var body: some View {
         HStack {
@@ -97,6 +102,7 @@ struct LanguageOptionView: View {
                 lang.updateLang(lang: "fi")
                 selectedButton = 1
                 defaultButton = 1
+                selectedLanguage = "fi"
             }, label: {
                 Text("Fi")
             })
@@ -111,6 +117,7 @@ struct LanguageOptionView: View {
                 lang.updateLang(lang: "en")
                 selectedButton = 0
                 defaultButton = 0
+                selectedLanguage = "en"
             }, label: {
                 Text("En")
             })
@@ -124,6 +131,7 @@ struct LanguageOptionView: View {
                 lang.updateLang(lang: "sv")
                 selectedButton = 2
                 defaultButton = 2
+                selectedLanguage = "sv"
             }, label: {
                 Text("Sv")
             })
@@ -133,6 +141,21 @@ struct LanguageOptionView: View {
                 foregroundColor: .black
             ))
         }.padding(.trailing, 15)
+        //setting the value of selectedLanguage
+            .onAppear {
+                selectedLanguage = UserDefaults.standard.string(forKey: "selectedLanguage") ?? ""
+                switch selectedLanguage {
+                case "fi":
+                    selectedButton = 1
+                    defaultButton = 1
+                case "sv":
+                    selectedButton = 2
+                    defaultButton = 2
+                default:
+                    selectedButton = 0
+                    defaultButton = 0
+                }
+            }
     }
 }
 

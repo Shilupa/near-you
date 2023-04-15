@@ -40,6 +40,8 @@ struct HomeView: View {
                         )
                         .offset(x: isShowing ? 300 : 0, y: isShowing ? 44 : 0)
                         .scaleEffect(isShowing ? 0.8 : 1)
+                        // Disables MainView
+                        .allowsHitTesting(false)
                 }
                 // Displays MainView
                 else{
