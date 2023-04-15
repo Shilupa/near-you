@@ -8,14 +8,19 @@
 import SwiftUI
 
 struct MainProfileView: View {
+    // Variables passed as params from HomeView
     @Binding var isShowing: Bool
-    @EnvironmentObject private var lang: LangugageViewModel
     @Binding var showMainView: Bool
+    
+    @EnvironmentObject private var lang: LangugageViewModel
     
     var body: some View {
         NavigationView {
-            NavigationLink(destination: HomeView().navigationBarBackButtonHidden(true), label: {
+            NavigationLink(destination:
+                            // Hides navigator default back button during navigation
+                           HomeView().navigationBarBackButtonHidden(true), label: {
                 VStack(alignment: .center) {
+                    Text("Profile view").environment(\.locale, Locale.init(identifier: lang.currLang))
                     Image("profile")
                         .resizable()
                         .scaledToFill()
@@ -30,7 +35,7 @@ struct MainProfileView: View {
                         .padding(.bottom, 16)
                 }
             })
-            
+            // Event listner when navigation is done
             .simultaneousGesture(TapGesture().onEnded{
                 showMainView = false
                 isShowing = false
@@ -43,6 +48,6 @@ struct MainProfileView_Previews: PreviewProvider {
     static var previews: some View {
         MainProfileView(isShowing: .constant(true),
                         showMainView: .constant(true)
-           ).environmentObject(LangugageViewModel())
+        ).environmentObject(LangugageViewModel())
     }
 }

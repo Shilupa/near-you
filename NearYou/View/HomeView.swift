@@ -13,9 +13,9 @@ struct HomeView: View {
         UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor : UIColor.orange], for: .selected)
     }
     @State private var selectedTab = 1
-    @State private var showMenu = false
     @StateObject private var viewModel = MapViewModel()
     @State var searchText = ""
+    // Displaying views with desired conditions
     @State private var isShowing: Bool = false
     @State private var showMainView = false
     @EnvironmentObject private var lang: LangugageViewModel
@@ -25,9 +25,12 @@ struct HomeView: View {
         NavigationView{
             let _ = print("isShowing",isShowing)
             ZStack {
+                // Displays MainProfileView
                 if(showMainView){
                     MainProfileView(isShowing: $isShowing, showMainView: $showMainView)
-                }else if(isShowing){
+                }
+                // Displays SideMenuView with fraction of MainView
+                else if(isShowing){
                     SideMenuView(isShowing: $isShowing, showMainView: $showMainView).frame(height: 800)
                     MainView(selectedTab: $selectedTab).cornerRadius(isShowing ? 20 : 10)
                         .overlay(
@@ -37,10 +40,11 @@ struct HomeView: View {
                         )
                         .offset(x: isShowing ? 300 : 0, y: isShowing ? 44 : 0)
                         .scaleEffect(isShowing ? 0.8 : 1)
-                }else{
+                }
+                // Displays MainView
+                else{
                     MainView(selectedTab: $selectedTab)
                 }
-                
                 VStack{
                     HStack (alignment: .top){
                         ZStack{

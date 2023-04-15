@@ -7,20 +7,11 @@
 
 import SwiftUI
 
-extension Color {
-    init(hex: String) {
-        let scanner = Scanner(string: hex)
-        var rgbValue: UInt64 = 0
-        
-        scanner.scanHexInt64(&rgbValue)
-        
-        let red = Double((rgbValue & 0xFF0000) >> 16) / 255.0
-        let green = Double((rgbValue & 0xFF00) >> 8) / 255.0
-        let blue = Double(rgbValue & 0xFF) / 255.0
-        
-        self.init(red: red, green: green, blue: blue)
-    }
-}
+// Sample for add padding to all direction in Vstack
+// To be deleted later
+// VStack{
+//    bla bla bla
+// }.padding(EdgeInsets(top: 50, leading: 0, bottom: 0, trailing: 0))
 
 struct SideMenuView: View {
     @Binding var isShowing: Bool
@@ -28,6 +19,7 @@ struct SideMenuView: View {
     @EnvironmentObject private var lang: LangugageViewModel
     
     var body: some View {
+        // Added entire view for navigation to get full view for navigated screen
         NavigationView {
             ZStack {
                 LinearGradient(gradient: Gradient(colors: [Color(hex: "FBF2B8"), Color(hex: "FACFD9")]), startPoint: .top, endPoint: .bottom)
@@ -36,24 +28,28 @@ struct SideMenuView: View {
                 VStack {
                     ProfileView(isShowing: $isShowing, showMainView: $showMainView)
                         .frame(height:300)
+                    // Contains MyHomeView, LanguageView & AboutUsView
                     CombineView()
                     Spacer()
                 }.padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 100))
             }.navigationBarHidden(true)
         }
     }
-    
 }
 
+// User profile
 struct ProfileView: View {
+    // Variables passed as params from HomeView
     @Binding var isShowing: Bool
-    @EnvironmentObject private var lang: LangugageViewModel
     @Binding var showMainView: Bool
+    
+    @EnvironmentObject private var lang: LangugageViewModel
     
     var body: some View {
         VStack(){
             ZStack(alignment: .topTrailing){
                 VStack{
+                    // Navigation to MainProfileView on user image click
                     NavigationLink(destination: MainProfileView(isShowing: $isShowing, showMainView: $showMainView), label: {
                         VStack(alignment: .center) {
                             Image("profile")
@@ -69,9 +65,11 @@ struct ProfileView: View {
                                 )
                                 .padding(.bottom, 16)
                         }
-                    }).simultaneousGesture(TapGesture().onEnded{
+                    })
+                    // Event listner when navigation is done
+                    .simultaneousGesture(TapGesture().onEnded{
+                        // Hides MainView when showMainView is true
                         showMainView = true
-                        print("Hello world!", showMainView)
                     })
                     
                     Text("Jane Korhonen")
@@ -88,8 +86,7 @@ struct ProfileView: View {
                 
             }
             Spacer()
-        }.padding(EdgeInsets(top: 50, leading: 0, bottom: 0, trailing: 0))
-        
+        }.padding(.top, 50)
     }
 }
 
@@ -102,6 +99,7 @@ struct CombineView: View{
         }.padding(EdgeInsets(top: -20, leading: -20, bottom: 0, trailing: 0))
     }
 }
+
 struct MyHomeView: View {
     @EnvironmentObject private var lang: LangugageViewModel
     var body: some View {

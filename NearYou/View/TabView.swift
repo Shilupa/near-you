@@ -16,6 +16,7 @@ struct TabView: View {
         }
     }
 }
+
 struct ListAndMap: View {
     @EnvironmentObject private var lang: LangugageViewModel
     @AppStorage("selectedButton") private var selectedButton: String = "map"
@@ -27,9 +28,9 @@ struct ListAndMap: View {
     @State private var isRightButtonSelected: Bool = false
     
     init() {
-            _isLeftButtonSelected = State(initialValue: false)
-            _isRightButtonSelected = State(initialValue: true)
-        }
+        _isLeftButtonSelected = State(initialValue: false)
+        _isRightButtonSelected = State(initialValue: true)
+    }
     
     var body: some View {
         HStack {
@@ -48,10 +49,10 @@ struct ListAndMap: View {
                     .background(isLeftButtonSelected ? Color.orange : Color.white)
                     .overlay(
                         RoundedRectangle(cornerRadius: 25)
-                            //.stroke(Color.orange, lineWidth: isLeftButtonSelected ? 0 : 1)
+                        //.stroke(Color.orange, lineWidth: isLeftButtonSelected ? 0 : 1)
                             .stroke(Color.clear, lineWidth: 0)
                     ).environment(\.locale, Locale.init(identifier: lang.currLang))
-                    //.padding(EdgeInsets(top: 5, leading: 15, bottom: 5, trailing: 0))
+                //.padding(EdgeInsets(top: 5, leading: 15, bottom: 5, trailing: 0))
             }
             
             Button(action: {
@@ -72,7 +73,7 @@ struct ListAndMap: View {
                             .stroke(Color.clear, lineWidth: 0) // remove the border color
                     )
                     .environment(\.locale, Locale.init(identifier: lang.currLang))
-                    //.padding(EdgeInsets(top: 5, leading: 12, bottom: 5, trailing: 0))
+                //.padding(EdgeInsets(top: 5, leading: 12, bottom: 5, trailing: 0))
             }
         }
         .padding(EdgeInsets(top: 5, leading: 0, bottom: 5, trailing: 0))
