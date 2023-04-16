@@ -59,8 +59,6 @@ struct ProductCardHomeView: View {
         let currentDate = Date()
         let calendar = Calendar.current
         let weekday = calendar.component(.weekday, from: currentDate)
-//        let time = DateFormatter.localizedString(from: currentDate, dateStyle: .none, timeStyle: .medium)
-        
         
         let url = URL(string:data.productImages?[0].thumbnailUrl ?? "http://placekitten.com/g/200/300" )
         
@@ -83,23 +81,22 @@ struct ProductCardHomeView: View {
                 // Title of the product
                 Text(data.productInformations[0].name ?? "")
                     .lineLimit(1)
-                    .font(.title3)
+                    .font(Font.custom("Poppins-Regular", size: 20))
                     .shadow(radius: 0.5)
                 
                 // Address of the product
                 HStack{
                     Text(data.postalAddresses![0].streetName ?? "")
-                        .font(.caption)
+                        .font(Font.custom("Poppins-Regular", size: 14))
                     Text(data.postalAddresses![0].city ?? "")
-                        .font(.caption)
+                        .font(Font.custom("Poppins-Regular", size: 14))
                 }
                 
                 
                 // Opening Hours
                 HStack{
                     Text("Opening:")
-                        .font(.caption)
-                        .bold()
+                        .font(Font.custom("Poppins-SemiBold", size: 14))
                         
                     
                     let todayWeek: String = weekdayName(from: weekday)
@@ -109,7 +106,7 @@ struct ProductCardHomeView: View {
                         
                     if today[0].opens == nil || today[0].closes == nil {
                         Text("Unknown")
-                            .font(.caption)
+                            .font(Font.custom("Poppins-Regular", size: 14))
                             .foregroundColor(Color("ThemeColour"))
                     } else {
                         let openHours:String = today[0].opens!
@@ -125,12 +122,12 @@ struct ProductCardHomeView: View {
                         
                         if isopen == "Open" {
                             Text(isopen)
-                                .font(.caption)
+                                .font(Font.custom("Poppins-Regular", size: 14))
                                 .foregroundColor(Color(.green))
                                 .bold()
                         }else {
                             Text(isopen)
-                                .font(.caption)
+                                .font(Font.custom("Poppins-Regular", size: 14))
                                 .foregroundColor(Color(.red))
                                 .bold()
                         }
@@ -140,7 +137,7 @@ struct ProductCardHomeView: View {
                 
                 Text("2 km away from your location")
                     .lineLimit(1)
-                    .font(.caption)
+                    .font(Font.custom("Poppins-Regular", size: 14))
                 
             }}
         .frame(maxWidth: .infinity, alignment: .leading)

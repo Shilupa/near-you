@@ -9,23 +9,20 @@ import SwiftUI
 
 struct HomeListView: View {
     
-    //@StateObject var vmh = HelsinkiDataViewModel()
     @StateObject var vm = DataViewModel()
     
-    init(){
-        for familyName in UIFont.familyNames{
-            print(familyName)
+//    init(){
+//        for familyName in UIFont.familyNames{
+//            print(familyName)
+//
+//            for fontName in UIFont.fontNames(forFamilyName: familyName){
+//                print("-- \(fontName)")
+//            }
+//
+//        }
+//    }
+    
 
-            for fontName in UIFont.fontNames(forFamilyName: familyName){
-                print("-- \(fontName)")
-            }
-
-        }
-    }
-    
-    
- 
-    
     var body: some View {
         
         
@@ -38,9 +35,12 @@ struct HomeListView: View {
 
                     List {
                         ForEach(vm.allData?.data.product ?? [] , id: \.id) { product in
-                           ProductCardHomeView(data: product)
-                               .listRowSeparator(.hidden)
                             
+                            NavigationLink(destination: DetailProductView(data: product)){
+                                ProductCardHomeView(data: product)
+                                    .listRowSeparator(.hidden)
+                            }
+
                         }
                     }
                     .listStyle(.plain)
