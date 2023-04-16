@@ -34,7 +34,7 @@ struct HomeView: View {
                 // Displays SideMenuView with fraction of MainView
                 else if(isShowing){
                     SideMenuView(isShowing: $isShowing, selectedView: $selectedView, showMainView: $showMainView).frame(height: 800)
-                    MainView(selectedView: $selectedView, selectedTab: $selectedTab).cornerRadius(isShowing ? 20 : 10)
+                    ToggleHomeView(selectedView: $selectedView, selectedTab: $selectedTab).cornerRadius(isShowing ? 20 : 10)
                         .overlay(
                             RoundedRectangle(cornerRadius: isShowing ? 20 : 10)
                                 .stroke(Color.orange.opacity(2), lineWidth: 2)
@@ -47,7 +47,7 @@ struct HomeView: View {
                 }
                 // Displays MainView
                 else{
-                    MainView(selectedView: $selectedView, selectedTab: $selectedTab)
+                    ToggleHomeView(selectedView: $selectedView, selectedTab: $selectedTab)
                 }
                 VStack{
                     HStack (alignment: .top){
@@ -115,13 +115,14 @@ struct HomeView: View {
 }
 
 // Conditional view rendering between MapView and HomeListView
-struct MainView: View {
+struct ToggleHomeView: View {
     @Binding var selectedView: Int
     @Binding var selectedTab: Int
     
     var body: some View {
         if(selectedTab == 0){
             HomeListView()
+                .padding(.top, 60)
         }else{
             MapView()
         }

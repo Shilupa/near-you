@@ -1,0 +1,13 @@
+/* 
+  Localizable.strings
+  NearYou
+
+  Created by Suraj Rana Bhat on 17.4.2023.
+  
+*/
+"Default view" = "Oletusnäkymä";
+"List" = "Lista";
+"Map" = "Kartta";
+"About Us" = "Meistä";
+"Language" = "Kieli" ;
+"Profile view" = "Profiilinäkymä";

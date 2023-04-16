@@ -37,10 +37,10 @@ struct HomeListView: View {
                         ForEach(vm.allData?.data.product ?? [] , id: \.id) { product in
                             
                             NavigationLink(destination: DetailProductView(data: product)){
+                                
                                 ProductCardHomeView(data: product)
                                     .listRowSeparator(.hidden)
                             }
-
                         }
                     }
                     .listStyle(.plain)

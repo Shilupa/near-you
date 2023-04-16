@@ -2,13 +2,12 @@
   Localizable.strings
   NearYou
 
-  Created by Shilpa Singh on 3.4.2023.
+  Created by Suraj Rana Bhat on 17.4.2023.
   
 */
-
 "Default view" = "Default view";
 "List" = "List";
 "Map" = "Map";
 "About Us" = "About us" ;
-"Language" = "Language" ; 
+"Language" = "Language" ;
 "Profile view" = "Profile view";

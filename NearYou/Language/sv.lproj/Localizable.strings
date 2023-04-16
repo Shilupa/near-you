@@ -1,0 +1,13 @@
+/* 
+  Localizable.strings
+  NearYou
+
+  Created by Suraj Rana Bhat on 17.4.2023.
+  
+*/
+"Default view" = "Standardläget";
+"About Us" = "Om oss";
+"List" = "Lista";
+"Map" = "Karta";
+"Language" = "Språk" ;
+"Profile view" = "Profilvy";

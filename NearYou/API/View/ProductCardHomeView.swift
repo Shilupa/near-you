@@ -81,22 +81,22 @@ struct ProductCardHomeView: View {
                 // Title of the product
                 Text(data.productInformations[0].name ?? "")
                     .lineLimit(1)
-                    .font(Font.custom("Poppins-Regular", size: 20))
+                    .font(Font.custom("Poppins-Regular", size: 18))
                     .shadow(radius: 0.5)
                 
                 // Address of the product
                 HStack{
                     Text(data.postalAddresses![0].streetName ?? "")
-                        .font(Font.custom("Poppins-Regular", size: 14))
+                        .font(Font.custom("Poppins-Regular", size: 12))
                     Text(data.postalAddresses![0].city ?? "")
-                        .font(Font.custom("Poppins-Regular", size: 14))
+                        .font(Font.custom("Poppins-Regular", size: 12))
                 }
                 
                 
                 // Opening Hours
                 HStack{
                     Text("Opening:")
-                        .font(Font.custom("Poppins-SemiBold", size: 14))
+                        .font(Font.custom("Poppins-SemiBold", size: 12))
                         
                     
                     let todayWeek: String = weekdayName(from: weekday)
@@ -106,7 +106,7 @@ struct ProductCardHomeView: View {
                         
                     if today[0].opens == nil || today[0].closes == nil {
                         Text("Unknown")
-                            .font(Font.custom("Poppins-Regular", size: 14))
+                            .font(Font.custom("Poppins-Regular", size: 12))
                             .foregroundColor(Color("ThemeColour"))
                     } else {
                         let openHours:String = today[0].opens!
@@ -122,12 +122,12 @@ struct ProductCardHomeView: View {
                         
                         if isopen == "Open" {
                             Text(isopen)
-                                .font(Font.custom("Poppins-Regular", size: 14))
+                                .font(Font.custom("Poppins-Regular", size: 12))
                                 .foregroundColor(Color(.green))
                                 .bold()
                         }else {
                             Text(isopen)
-                                .font(Font.custom("Poppins-Regular", size: 14))
+                                .font(Font.custom("Poppins-Regular", size: 12))
                                 .foregroundColor(Color(.red))
                                 .bold()
                         }
@@ -137,7 +137,7 @@ struct ProductCardHomeView: View {
                 
                 Text("2 km away from your location")
                     .lineLimit(1)
-                    .font(Font.custom("Poppins-Regular", size: 14))
+                    .font(Font.custom("Poppins-Regular", size: 12))
                 
             }}
         .frame(maxWidth: .infinity, alignment: .leading)
