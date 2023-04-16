@@ -6,12 +6,13 @@
 //
 
 import SwiftUI
+import CoreData
 
 @main
 struct NearYouApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            HomeListView()
         }
     }
 }
