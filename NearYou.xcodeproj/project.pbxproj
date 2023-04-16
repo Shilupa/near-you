@@ -14,6 +14,7 @@
 		A7C125DD29DA0A110076B479 /* NearYouTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C125DC29DA0A110076B479 /* NearYouTests.swift */; };
 		A7C125E729DA0A110076B479 /* NearYouUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C125E629DA0A110076B479 /* NearYouUITests.swift */; };
 		A7C125E929DA0A110076B479 /* NearYouUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C125E829DA0A110076B479 /* NearYouUITestsLaunchTests.swift */; };
+		A7F2956629EC4E6D00F0A449 /* Testview.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F2956529EC4E6D00F0A449 /* Testview.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		A7C125E229DA0A110076B479 /* NearYouUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NearYouUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7C125E629DA0A110076B479 /* NearYouUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearYouUITests.swift; sourceTree = "<group>"; };
 		A7C125E829DA0A110076B479 /* NearYouUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearYouUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		A7F2956529EC4E6D00F0A449 /* Testview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Testview.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 				A7C125CD29DA0A0F0076B479 /* ContentView.swift */,
 				A7C125CF29DA0A110076B479 /* Assets.xcassets */,
 				A7C125D129DA0A110076B479 /* Preview Content */,
+				A7F2956529EC4E6D00F0A449 /* Testview.swift */,
 			);
 			path = NearYou;
 			sourceTree = "<group>";
@@ -259,6 +262,7 @@
 			files = (
 				A7C125CE29DA0A0F0076B479 /* ContentView.swift in Sources */,
 				A7C125CC29DA0A0F0076B479 /* NearYouApp.swift in Sources */,
+				A7F2956629EC4E6D00F0A449 /* Testview.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
