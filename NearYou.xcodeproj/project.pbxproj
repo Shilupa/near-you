@@ -10,6 +10,12 @@
 		03553C9029E887C4008B7286 /* HomeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03553C8F29E887C4008B7286 /* HomeListView.swift */; };
 		03553C9229E93104008B7286 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 03553C9129E93104008B7286 /* OpenSans-Regular.ttf */; };
 		03553C9729EB28BC008B7286 /* DetailProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03553C9629EB28BC008B7286 /* DetailProductView.swift */; };
+		03553CA429EC892E008B7286 /* DemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03553CA029EC892E008B7286 /* DemoView.swift */; };
+		03553CA529EC892E008B7286 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03553CA129EC892E008B7286 /* MainView.swift */; };
+		03553CA629EC892E008B7286 /* MapCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03553CA229EC892E008B7286 /* MapCardView.swift */; };
+		03553CA729EC892E008B7286 /* LocationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03553CA329EC892E008B7286 /* LocationsView.swift */; };
+		03553CAA29EC8942008B7286 /* LocationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03553CA829EC8942008B7286 /* LocationsViewModel.swift */; };
+		03553CAB29EC8942008B7286 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03553CA929EC8942008B7286 /* Test.swift */; };
 		0388941529E0CC7500B2EC01 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0388941429E0CC7500B2EC01 /* Constants.swift */; };
 		0388941A29E20C6600B2EC01 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0388941929E20C6600B2EC01 /* Persistence.swift */; };
 		0388941E29E3263200B2EC01 /* DataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0388941D29E3263200B2EC01 /* DataViewModel.swift */; };
@@ -54,6 +60,12 @@
 		03553C8F29E887C4008B7286 /* HomeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeListView.swift; sourceTree = "<group>"; };
 		03553C9129E93104008B7286 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		03553C9629EB28BC008B7286 /* DetailProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailProductView.swift; sourceTree = "<group>"; };
+		03553CA029EC892E008B7286 /* DemoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoView.swift; sourceTree = "<group>"; };
+		03553CA129EC892E008B7286 /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		03553CA229EC892E008B7286 /* MapCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapCardView.swift; sourceTree = "<group>"; };
+		03553CA329EC892E008B7286 /* LocationsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationsView.swift; sourceTree = "<group>"; };
+		03553CA829EC8942008B7286 /* LocationsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationsViewModel.swift; sourceTree = "<group>"; };
+		03553CA929EC8942008B7286 /* Test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 		0388941429E0CC7500B2EC01 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		0388941929E20C6600B2EC01 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		0388941D29E3263200B2EC01 /* DataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataViewModel.swift; sourceTree = "<group>"; };
@@ -111,6 +123,43 @@
 			children = (
 			);
 			path = Language;
+			sourceTree = "<group>";
+		};
+		03553C9C29EC88CB008B7286 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				03553C9F29EC88E8008B7286 /* View */,
+				03553C9E29EC88DE008B7286 /* ViewModel */,
+				03553C9D29EC88D8008B7286 /* Model */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		03553C9D29EC88D8008B7286 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		03553C9E29EC88DE008B7286 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				03553CA829EC8942008B7286 /* LocationsViewModel.swift */,
+				03553CA929EC8942008B7286 /* Test.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		03553C9F29EC88E8008B7286 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				03553CA029EC892E008B7286 /* DemoView.swift */,
+				03553CA329EC892E008B7286 /* LocationsView.swift */,
+				03553CA129EC892E008B7286 /* MainView.swift */,
+				03553CA229EC892E008B7286 /* MapCardView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		0388941B29E213BD00B2EC01 /* Modal */ = {
@@ -192,6 +241,7 @@
 		A7C125CA29DA0A0F0076B479 /* NearYou */ = {
 			isa = PBXGroup;
 			children = (
+				03553C9C29EC88CB008B7286 /* Map */,
 				A7C125CB29DA0A0F0076B479 /* NearYouApp.swift */,
 				0392B09329E87FDD00CE6A7C /* Font */,
 				0392B09229E87FC300CE6A7C /* Info.plist */,
@@ -372,9 +422,15 @@
 				0388942129E3471300B2EC01 /* ProductModel.swift in Sources */,
 				03553C9729EB28BC008B7286 /* DetailProductView.swift in Sources */,
 				A7C125CC29DA0A0F0076B479 /* NearYouApp.swift in Sources */,
+				03553CAB29EC8942008B7286 /* Test.swift in Sources */,
+				03553CA529EC892E008B7286 /* MainView.swift in Sources */,
 				0388942429E3475700B2EC01 /* ProductCardHomeView.swift in Sources */,
+				03553CA429EC892E008B7286 /* DemoView.swift in Sources */,
+				03553CA629EC892E008B7286 /* MapCardView.swift in Sources */,
+				03553CAA29EC8942008B7286 /* LocationsViewModel.swift in Sources */,
 				0388941E29E3263200B2EC01 /* DataViewModel.swift in Sources */,
 				03553C9029E887C4008B7286 /* HomeListView.swift in Sources */,
+				03553CA729EC892E008B7286 /* LocationsView.swift in Sources */,
 				0388941529E0CC7500B2EC01 /* Constants.swift in Sources */,
 				0388941A29E20C6600B2EC01 /* Persistence.swift in Sources */,
 			);
