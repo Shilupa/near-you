@@ -135,9 +135,30 @@ struct ProductCardHomeView: View {
 
                 }
                 
-                Text("2 km away from your location")
-                    .lineLimit(1)
-                    .font(Font.custom("Poppins-Regular", size: 12))
+                HStack{
+                    
+                    VStack (alignment: .leading){
+                        Text("2 km away")
+                            .lineLimit(1)
+                            .font(Font.custom("Poppins-Regular", size: 12))
+                        
+                        Text("from your location")
+                            .lineLimit(1)
+                            .font(Font.custom("Poppins-Regular", size: 12))
+                    }
+                    
+                    Spacer()
+                    
+                    
+                    // Sebastian will work on this part of UI
+                    
+                    Text("WEATHER")
+                        .lineLimit(1)
+                        .font(Font.custom("Poppins-Regular", size: 12))
+                    
+                }
+                
+
                 
             }}
         .frame(maxWidth: .infinity, alignment: .leading)
