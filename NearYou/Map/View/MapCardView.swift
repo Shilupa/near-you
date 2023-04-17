@@ -22,7 +22,7 @@ struct MapCardView: View {
             Text("Latitude: \(coordinate.latitude)")
             Text("Longtitude: \(coordinate.longitude)")
         }
-        .frame(width: 250, height: 100)
+        .frame(width: 300, height: 100, alignment: .center)
         .padding(10)
         .background(Color.white)
         .cornerRadius(10)

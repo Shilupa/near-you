@@ -18,7 +18,7 @@ struct DemoView: View {
     
     @StateObject var vm = DataViewModel()
     
-    @State private var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 60.1580144972565, longitude: 24.9126525486217), span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))
+    @State private var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 64.1580144972565, longitude: 19.9126525486217), span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
     
     
     

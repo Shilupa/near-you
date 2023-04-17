@@ -50,6 +50,12 @@ struct HomeView: View {
                     ToggleHomeView(selectedView: $selectedView, selectedTab: $selectedTab)
                 }
                 VStack{
+                    ZStack(alignment: .top) {
+                        Rectangle()
+                            .fill(Color(.systemGray6).opacity(0.7))
+                            .cornerRadius(10)
+                            .frame(height: 120)
+                            .ignoresSafeArea()
                     HStack (alignment: .top){
                         ZStack{
                             if(!isShowing){
@@ -106,6 +112,7 @@ struct HomeView: View {
                             }
                         }
                         
+                    }
                     }
                     Spacer()
                 }
