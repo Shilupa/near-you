@@ -12,8 +12,11 @@ struct DetailProductView: View {
     let data: ProductResponse.Product
     
     var body: some View {
-        Text("Detail Product View")
+        PhotoGalaryView()
     }
+    
+    
+    
 }
 
 //struct DetailProductView_Previews: PreviewProvider {

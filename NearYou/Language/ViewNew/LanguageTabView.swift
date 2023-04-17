@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct TabView: View {
+struct LanguageTabView: View {
     @EnvironmentObject private var lang: LangugageViewModel
     var body: some View {
         VStack{
@@ -163,8 +163,8 @@ struct RoundedButtonStyle: ButtonStyle {
     }
 }
 
-struct TabView_Previews: PreviewProvider {
+struct LanguageTabView_Previews: PreviewProvider {
     static var previews: some View {
-        TabView().environmentObject(LangugageViewModel())
+        LanguageTabView().environmentObject(LangugageViewModel())
     }
 }

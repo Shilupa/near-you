@@ -52,7 +52,7 @@ struct HomeView: View {
                 VStack{
                     ZStack(alignment: .top) {
                             Rectangle()
-                            .fill(LinearGradient(gradient: Gradient(colors: [Color.white.opacity(1.0),  Color.white.opacity(1.0),  Color.white.opacity(0.5), Color.white.opacity(0.0)]), startPoint: .top, endPoint: .bottom))
+                            .fill(LinearGradient(gradient: Gradient(colors: [Color.white.opacity(1.0),  Color.white.opacity(1.0),  Color.white.opacity(0.9), Color.white.opacity(0.8)]), startPoint: .top, endPoint: .bottom))
                                 .frame(height: 110)
                                 .ignoresSafeArea()
 

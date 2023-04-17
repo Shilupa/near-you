@@ -11,15 +11,19 @@ import MapKit
 
 struct MapView: View {
     
+    @EnvironmentObject var vm: DataViewModel
+    
     @StateObject private var viewModel = MapViewModel()
     @State var searchText = ""
-    @StateObject var vm = DataViewModel()
+    //@StateObject var vm = DataViewModel()
     @State private var currentIndex = 0
     
     
     
     var body: some View {
         ZStack(alignment: .bottomTrailing){
+            
+            
             if vm.isRefreshing {
                 ProgressView()
             } else {
@@ -37,8 +41,8 @@ struct MapView: View {
                     Spacer()
                     
                     if let products = vm.allData?.data.product {
-
-
+                        
+                        
                         MapCardView(data: products[currentIndex])
                             .gesture(
                                 DragGesture(minimumDistance: 20)
@@ -73,9 +77,9 @@ struct MapView: View {
                 }
             }
         }
-        .onAppear(perform:{
-            vm.getData()
-        })
+        //        .onAppear(perform:{
+        //            vm.getData()
+        //        })
     }
 }
 

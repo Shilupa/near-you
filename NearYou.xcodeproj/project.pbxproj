@@ -29,7 +29,7 @@
 		036F0BFB29EC93BB004A8A14 /* weatherData.json in Resources */ = {isa = PBXBuildFile; fileRef = 036F0BFA29EC93BB004A8A14 /* weatherData.json */; };
 		036F0BFF29EC9425004A8A14 /* CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F0BFD29EC9425004A8A14 /* CustomColor.swift */; };
 		036F0C0029EC9425004A8A14 /* CustomSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F0BFE29EC9425004A8A14 /* CustomSearchBar.swift */; };
-		036F0C0929EC9820004A8A14 /* TabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F0C0329EC9820004A8A14 /* TabView.swift */; };
+		036F0C0929EC9820004A8A14 /* LanguageTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F0C0329EC9820004A8A14 /* LanguageTabView.swift */; };
 		036F0C0A29EC9820004A8A14 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F0C0429EC9820004A8A14 /* HomeView.swift */; };
 		036F0C0B29EC9820004A8A14 /* MainProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F0C0529EC9820004A8A14 /* MainProfileView.swift */; };
 		036F0C0C29EC9820004A8A14 /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F0C0629EC9820004A8A14 /* EditProfileView.swift */; };
@@ -55,6 +55,7 @@
 		0392B0A529E8829900CE6A7C /* Poppins-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0392B09B29E8829900CE6A7C /* Poppins-ThinItalic.ttf */; };
 		0392B0A629E8829900CE6A7C /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0392B09C29E8829900CE6A7C /* Poppins-Bold.ttf */; };
 		0392B0A729E8829900CE6A7C /* Poppins-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0392B09D29E8829900CE6A7C /* Poppins-Thin.ttf */; };
+		03F6F8BC29EDE14200DE28C6 /* PhotoGalaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F6F8BB29EDE14200DE28C6 /* PhotoGalaryView.swift */; };
 		A7C125CC29DA0A0F0076B479 /* NearYouApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C125CB29DA0A0F0076B479 /* NearYouApp.swift */; };
 		A7C125D029DA0A110076B479 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A7C125CF29DA0A110076B479 /* Assets.xcassets */; };
 		A7C125D329DA0A110076B479 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A7C125D229DA0A110076B479 /* Preview Assets.xcassets */; };
@@ -103,7 +104,7 @@
 		036F0BFA29EC93BB004A8A14 /* weatherData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = weatherData.json; sourceTree = "<group>"; };
 		036F0BFD29EC9425004A8A14 /* CustomColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomColor.swift; sourceTree = "<group>"; };
 		036F0BFE29EC9425004A8A14 /* CustomSearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSearchBar.swift; sourceTree = "<group>"; };
-		036F0C0329EC9820004A8A14 /* TabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabView.swift; sourceTree = "<group>"; };
+		036F0C0329EC9820004A8A14 /* LanguageTabView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageTabView.swift; sourceTree = "<group>"; };
 		036F0C0429EC9820004A8A14 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		036F0C0529EC9820004A8A14 /* MainProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainProfileView.swift; sourceTree = "<group>"; };
 		036F0C0629EC9820004A8A14 /* EditProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
@@ -132,6 +133,7 @@
 		0392B09B29E8829900CE6A7C /* Poppins-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ThinItalic.ttf"; sourceTree = "<group>"; };
 		0392B09C29E8829900CE6A7C /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
 		0392B09D29E8829900CE6A7C /* Poppins-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Thin.ttf"; sourceTree = "<group>"; };
+		03F6F8BB29EDE14200DE28C6 /* PhotoGalaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoGalaryView.swift; sourceTree = "<group>"; };
 		A7C125C829DA0A0F0076B479 /* NearYou.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NearYou.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7C125CB29DA0A0F0076B479 /* NearYouApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearYouApp.swift; sourceTree = "<group>"; };
 		A7C125CF29DA0A110076B479 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -282,7 +284,7 @@
 				036F0C0529EC9820004A8A14 /* MainProfileView.swift */,
 				036F0C0729EC9820004A8A14 /* MapView.swift */,
 				036F0C0829EC9820004A8A14 /* SideMenuView.swift */,
-				036F0C0329EC9820004A8A14 /* TabView.swift */,
+				036F0C0329EC9820004A8A14 /* LanguageTabView.swift */,
 			);
 			path = ViewNew;
 			sourceTree = "<group>";
@@ -322,6 +324,7 @@
 				0388942329E3475700B2EC01 /* ProductCardHomeView.swift */,
 				03553C8F29E887C4008B7286 /* HomeListView.swift */,
 				03553C9629EB28BC008B7286 /* DetailProductView.swift */,
+				03F6F8BB29EDE14200DE28C6 /* PhotoGalaryView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -595,7 +598,8 @@
 				03553CA729EC892E008B7286 /* LocationsView.swift in Sources */,
 				036F0C1429EC984A004A8A14 /* SelectedButtonViewModel.swift in Sources */,
 				0388941529E0CC7500B2EC01 /* Constants.swift in Sources */,
-				036F0C0929EC9820004A8A14 /* TabView.swift in Sources */,
+				03F6F8BC29EDE14200DE28C6 /* PhotoGalaryView.swift in Sources */,
+				036F0C0929EC9820004A8A14 /* LanguageTabView.swift in Sources */,
 				0388941A29E20C6600B2EC01 /* Persistence.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

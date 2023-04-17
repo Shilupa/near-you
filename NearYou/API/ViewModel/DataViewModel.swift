@@ -7,8 +7,10 @@
 
 import Foundation
 
+
+
 final class DataViewModel: ObservableObject {
-    
+
     @Published var hasError = false
     @Published var error: DataError?
     @Published var allData: ProductResponse?
@@ -23,6 +25,11 @@ final class DataViewModel: ObservableObject {
     
     private var typeArray: Array<String> = []
     private var typeSet: Set<String> = []
+    
+    
+    init () {
+        getData()
+    }
     
     
     func getData(){
