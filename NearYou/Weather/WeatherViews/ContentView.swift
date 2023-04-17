@@ -16,7 +16,7 @@ struct ContentView: View {
         VStack {
             
             //The version with preset coordinates
-            if let location = locationManager.location {
+            if locationManager.location != nil {
                 if let weather = weather {
                     WeatherView(weather: weather)
                 } else {

@@ -7,10 +7,41 @@
 
 import Foundation
 import SwiftUI
-class LangugageViewModel: ObservableObject {
+class GlobalVarsViewModel: ObservableObject {
     @Published internal var currLang: String = "en"
+    @Published internal var showProfileView: Bool = false
+    @Published internal var showSideView: Bool = false
+    @Published internal var showBackButton: Bool = false
+    @Published internal var showHomeView: Bool = false
+    @AppStorage("selectedView") internal var selectedView: Int = 1
+    @Published internal var selectedTab = 1
+
     
-    func updateLang(lang: String){
+    init(){
+        self.selectedTab = self.selectedView
+    }
+    
+    func updateLang(_ lang: String){
         self.currLang = lang
+    }
+
+    func updateShowProfileView(_ showProfile: Bool){
+        self.showProfileView = showProfile
+    }
+    
+    func updateSideView(_ sideView: Bool){
+        self.showSideView = sideView
+    }
+    
+    func updateSelectedView(_ selectedView: Int){
+        self.selectedView = selectedView
+    }
+    
+    func updateShowBackButton(_ showBackButton: Bool){
+        self.showBackButton = showBackButton
+    }
+    
+    func updateShowHomeView(_ showHomeView: Bool){
+        self.showHomeView = showHomeView
     }
 }

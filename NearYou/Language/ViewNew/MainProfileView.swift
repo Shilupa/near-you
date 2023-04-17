@@ -9,10 +9,10 @@ import SwiftUI
 
 struct MainProfileView: View {
     // Variables passed as params from HomeView
-    @Binding var isShowing: Bool
-    @Binding var showMainView: Bool
+//    @Binding var isShowing: Bool
+//    @Binding var showMainView: Bool
     
-    @EnvironmentObject private var lang: LangugageViewModel
+    @EnvironmentObject private var gvvm: GlobalVarsViewModel
     
     // Tracks the selected tab
     @State private var selectedTab = "Favourites"
@@ -74,8 +74,7 @@ struct MainProfileView: View {
                 .navigationBarItems(
                     leading:
                         NavigationLink(
-                            destination: SideMenuView(isShowing: .constant(true),
-                                                      selectedView: .constant(1), showMainView: .constant(true)).navigationBarBackButtonHidden(true),
+                            destination: SideMenuView().navigationBarBackButtonHidden(true),
                             label: {
                                 Image(systemName: "chevron.left")
                                     .foregroundColor(.primary)
@@ -101,9 +100,8 @@ struct MainProfileView: View {
 
 struct MainProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        MainProfileView(isShowing: .constant(true),
-                        showMainView: .constant(true))
-        .environmentObject(LangugageViewModel())
+        MainProfileView()
+        .environmentObject(GlobalVarsViewModel())
     }
 }
 
