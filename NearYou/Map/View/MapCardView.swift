@@ -10,7 +10,9 @@ import CoreLocation
 
 struct MapCardView: View {
     let data: ProductResponse.Product
-
+    @State private var isSelected = false
+    
+    
     var body: some View {
         VStack {
             let trimmedCoordinates = data.postalAddresses?[0]
@@ -24,7 +26,13 @@ struct MapCardView: View {
         }
         .frame(width: 300, height: 100, alignment: .center)
         .padding(10)
-        .background(Color.white)
+        .background(isSelected ? Color.blue : Color.white)
         .cornerRadius(10)
+        .gesture(
+            TapGesture()
+                .onEnded {
+                    isSelected.toggle()
+                }
+        )
     }
 }

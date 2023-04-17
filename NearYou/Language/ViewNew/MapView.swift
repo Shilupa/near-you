@@ -37,8 +37,8 @@ struct MapView: View {
                     Spacer()
                     
                     if let products = vm.allData?.data.product {
-
-
+                        
+                        
                         MapCardView(data: products[currentIndex])
                             .gesture(
                                 DragGesture(minimumDistance: 20)
@@ -75,6 +75,9 @@ struct MapView: View {
         }
         .onAppear(perform:{
             vm.getData()
+            viewModel.locationManager.delegate = viewModel
+            viewModel.locationManager.requestWhenInUseAuthorization()
+            
         })
     }
 }
