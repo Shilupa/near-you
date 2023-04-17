@@ -12,10 +12,10 @@ class GlobalVarsViewModel: ObservableObject {
     @Published internal var showProfileView: Bool = false
     @Published internal var showSideView: Bool = false
     @Published internal var showBackButton: Bool = false
-    @Published internal var showHomeView: Bool = false
+    @Published internal var showHamButton: Bool = true
+    
     @AppStorage("selectedView") internal var selectedView: Int = 1
     @Published internal var selectedTab = 1
-
     
     init(){
         self.selectedTab = self.selectedView
@@ -29,7 +29,7 @@ class GlobalVarsViewModel: ObservableObject {
         self.showProfileView = showProfile
     }
     
-    func updateSideView(_ sideView: Bool){
+    func updateShowSideView(_ sideView: Bool){
         self.showSideView = sideView
     }
     
@@ -41,7 +41,7 @@ class GlobalVarsViewModel: ObservableObject {
         self.showBackButton = showBackButton
     }
     
-    func updateShowHomeView(_ showHomeView: Bool){
-        self.showHomeView = showHomeView
+    func updateShowHamButton(_ showHamButton: Bool){
+        self.showHamButton = showHamButton
     }
 }

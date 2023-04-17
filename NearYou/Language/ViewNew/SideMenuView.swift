@@ -24,8 +24,7 @@ struct SideMenuView: View {
                     .ignoresSafeArea()
                 
                 VStack {
-                    ProfileView()
-                        .frame(height:300)
+                    ProfileView().frame(height:300)
                     // Contains MyHomeView, LanguageView & AboutUsView
                     CombineView()
                     Spacer()
@@ -43,28 +42,22 @@ struct ProfileView: View {
         VStack(){
             ZStack(alignment: .topTrailing){
                 VStack{
-                    // Navigation to MainProfileView on user image click
-                    NavigationLink(destination: MainProfileView().navigationBarBackButtonHidden(true), label: {
-                        VStack(alignment: .center) {
-                            Image("profile")
-                                .resizable()
-                                .scaledToFill()
-                                .clipped()
-                                .frame(width: 135, height: 135)
-                                .clipShape(Circle())
-                            
-                                .overlay(
-                                    Circle()
-                                        .stroke(Color.orange, lineWidth: 3)
-                                )
-                                .padding(.bottom, 16)
-                        }
-                    })
-                    // Event listner when navigation is done
-                    .simultaneousGesture(TapGesture().onEnded{
-                        // Hides MainView when showMainView is true
-                        gvvm.updateShowProfileView(true)
-                    })
+                    VStack(alignment: .center) {
+                        Image("profile")
+                            .resizable()
+                            .scaledToFill()
+                            .clipped()
+                            .frame(width: 135, height: 135)
+                            .clipShape(Circle())
+                            .overlay(
+                                Circle()
+                                    .stroke(Color.orange, lineWidth: 3)
+                            )
+                            .padding(.bottom, 16)
+                            .onTapGesture {
+                                gvvm.updateShowProfileView(true)
+                            }
+                    }
                     
                     Text("Jane Korhonen")
                         .font(.system(size: 24, weight: .semibold))

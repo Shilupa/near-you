@@ -7,11 +7,7 @@
 
 import SwiftUI
 
-struct MainProfileView: View {
-    // Variables passed as params from HomeView
-//    @Binding var isShowing: Bool
-//    @Binding var showMainView: Bool
-    
+struct MainProfileView: View {    
     @EnvironmentObject private var gvvm: GlobalVarsViewModel
     
     // Tracks the selected tab
@@ -62,7 +58,7 @@ struct MainProfileView: View {
                             .cornerRadius(0)
                         }
                     }
-
+                    
                     .frame(height: 40)
                     .padding(.bottom, 24)
                     .padding(.horizontal, 16)
@@ -79,7 +75,14 @@ struct MainProfileView: View {
                                 Image(systemName: "chevron.left")
                                     .foregroundColor(.primary)
                                     .imageScale(.large)
-                            }),
+                            })
+                    // Event listner when navigation is done
+                        .simultaneousGesture(TapGesture().onEnded{
+                            // Hides MainView when showMainView is true
+                            gvvm.updateShowProfileView(false)
+                            gvvm.updateShowSideView(true)
+                            gvvm.updateShowBackButton(true)
+                        }),
                     trailing:
                         NavigationLink(
                             destination: EditProfileView(),
@@ -101,7 +104,7 @@ struct MainProfileView: View {
 struct MainProfileView_Previews: PreviewProvider {
     static var previews: some View {
         MainProfileView()
-        .environmentObject(GlobalVarsViewModel())
+            .environmentObject(GlobalVarsViewModel())
     }
 }
 
