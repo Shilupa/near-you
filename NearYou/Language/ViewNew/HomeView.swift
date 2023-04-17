@@ -51,68 +51,69 @@ struct HomeView: View {
                 }
                 VStack{
                     ZStack(alignment: .top) {
-                        Rectangle()
-                            .fill(Color(.systemGray6).opacity(0.7))
-                            .cornerRadius(10)
-                            .frame(height: 120)
-                            .ignoresSafeArea()
-                    HStack (alignment: .top){
-                        ZStack{
-                            if(!isShowing){
-                                Button(action: {
-                                    withAnimation(.spring()) {
-                                        isShowing.toggle()
-                                    }
-                                },label: {
-                                    Image(systemName: "line.horizontal.3")
-                                        .imageScale(.large)
-                                        .padding(25)
-                                })
-                            }else if(!showMainView){
-                                Button(action: {
-                                    withAnimation(.spring()) {
-                                        isShowing.toggle()
-                                    }
-                                },label: {
-                                    Image(systemName: "arrowshape.turn.up.backward.fill")
-                                        .imageScale(.large)
-                                        .colorMultiply(Color.black.opacity(0.8))
-                                        .padding(32)
-                                })
-                            }
-                        }
+                            Rectangle()
+                            .fill(LinearGradient(gradient: Gradient(colors: [Color.white.opacity(1.0),  Color.white.opacity(1.0),  Color.white.opacity(0.5), Color.white.opacity(0.0)]), startPoint: .top, endPoint: .bottom))
+                                .frame(height: 110)
+                                .ignoresSafeArea()
+
                         
-                        Spacer()
-                        
-                        if(!isShowing){
-                            Picker(selection: $selectedTab, label: Text("Select a Tab")){
-                                
-                                Text("List").tag(0).environment(\.locale, Locale.init(identifier: lang.currLang))
-                                Text("Map").tag(1).environment(\.locale, Locale.init(identifier: lang.currLang))
-                                
+                        HStack (alignment: .top){
+                            ZStack{
+                                if(!isShowing){
+                                    Button(action: {
+                                        withAnimation(.spring()) {
+                                            isShowing.toggle()
+                                        }
+                                    },label: {
+                                        Image(systemName: "line.horizontal.3")
+                                            .imageScale(.large)
+                                            .padding(25)
+                                    })
+                                }else if(!showMainView){
+                                    Button(action: {
+                                        withAnimation(.spring()) {
+                                            isShowing.toggle()
+                                        }
+                                    },label: {
+                                        Image(systemName: "arrowshape.turn.up.backward.fill")
+                                            .imageScale(.large)
+                                            .colorMultiply(Color.black.opacity(0.8))
+                                            .padding(32)
+                                    })
+                                }
                             }
-                            .background(Color.white.cornerRadius(10))
-                            .foregroundColor(.blue)
-                            .frame(width: 130)
-                            .padding()
-                            .cornerRadius(20)
-                            .font(.headline)
-                            .pickerStyle(SegmentedPickerStyle())
                             
                             Spacer()
                             
-                            ZStack{
-                                RoundedRectangle(cornerRadius: 8)
-                                    .fill(Color(.systemGray6))
-                                    .frame(width: 30, height: 30)
+                            if(!isShowing){
+                                Picker(selection: $selectedTab, label: Text("Select a Tab")){
+                                    
+                                    Text("List").tag(0).environment(\.locale, Locale.init(identifier: lang.currLang))
+                                    Text("Map").tag(1).environment(\.locale, Locale.init(identifier: lang.currLang))
+                                    
+                                }
+                                .background(Color.white.cornerRadius(10))
+                                .foregroundColor(.blue)
+                                .frame(width: 130)
+                                .padding()
+                                .cornerRadius(20)
+                                .font(.headline)
+                                .pickerStyle(SegmentedPickerStyle())
                                 
-                                Image(systemName: "mappin")
-                                    .imageScale(.medium)
-                                    .padding(25)
+                                Spacer()
+                                
+                                ZStack{
+                                    RoundedRectangle(cornerRadius: 8)
+                                        .fill(Color(.systemGray6))
+                                        .frame(width: 30, height: 30)
+                                    
+                                    Image(systemName: "mappin")
+                                        .imageScale(.medium)
+                                        .padding(25)
+                                }
                             }
+                            
                         }
-                        
-                    }
                     }
                     Spacer()
                 }
