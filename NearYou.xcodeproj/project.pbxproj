@@ -35,8 +35,6 @@
 		036F0C0C29EC9820004A8A14 /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F0C0629EC9820004A8A14 /* EditProfileView.swift */; };
 		036F0C0D29EC9820004A8A14 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F0C0729EC9820004A8A14 /* MapView.swift */; };
 		036F0C0E29EC9820004A8A14 /* SideMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F0C0829EC9820004A8A14 /* SideMenuView.swift */; };
-		036F0C1429EC984A004A8A14 /* SelectedButtonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F0C1029EC984A004A8A14 /* SelectedButtonViewModel.swift */; };
-		036F0C1529EC984A004A8A14 /* SideMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F0C1129EC984A004A8A14 /* SideMenuViewModel.swift */; };
 		036F0C1629EC984A004A8A14 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F0C1229EC984A004A8A14 /* MapViewModel.swift */; };
 		036F0C1729EC984A004A8A14 /* LanguageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036F0C1329EC984A004A8A14 /* LanguageViewModel.swift */; };
 		036F0C2429EC9CBD004A8A14 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 036F0C2629EC9CBD004A8A14 /* Localizable.strings */; };
@@ -109,8 +107,6 @@
 		036F0C0629EC9820004A8A14 /* EditProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 		036F0C0729EC9820004A8A14 /* MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		036F0C0829EC9820004A8A14 /* SideMenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuView.swift; sourceTree = "<group>"; };
-		036F0C1029EC984A004A8A14 /* SelectedButtonViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectedButtonViewModel.swift; sourceTree = "<group>"; };
-		036F0C1129EC984A004A8A14 /* SideMenuViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuViewModel.swift; sourceTree = "<group>"; };
 		036F0C1229EC984A004A8A14 /* MapViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		036F0C1329EC984A004A8A14 /* LanguageViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageViewModel.swift; sourceTree = "<group>"; };
 		036F0C2529EC9CBD004A8A14 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -292,8 +288,6 @@
 			children = (
 				036F0C1329EC984A004A8A14 /* LanguageViewModel.swift */,
 				036F0C1229EC984A004A8A14 /* MapViewModel.swift */,
-				036F0C1029EC984A004A8A14 /* SelectedButtonViewModel.swift */,
-				036F0C1129EC984A004A8A14 /* SideMenuViewModel.swift */,
 			);
 			path = ViewModelNew;
 			sourceTree = "<group>";
@@ -576,7 +570,6 @@
 				036F0C0D29EC9820004A8A14 /* MapView.swift in Sources */,
 				036F0BE629EC9334004A8A14 /* Coordinates.swift in Sources */,
 				03553CAB29EC8942008B7286 /* Test.swift in Sources */,
-				036F0C1529EC984A004A8A14 /* SideMenuViewModel.swift in Sources */,
 				03553CA529EC892E008B7286 /* MainView.swift in Sources */,
 				0388942429E3475700B2EC01 /* ProductCardHomeView.swift in Sources */,
 				036F0BF529EC9379004A8A14 /* WelcomeView.swift in Sources */,
@@ -593,7 +586,6 @@
 				036F0BF229EC9379004A8A14 /* WeatherView.swift in Sources */,
 				036F0BEC29EC935D004A8A14 /* WeatherManager.swift in Sources */,
 				03553CA729EC892E008B7286 /* LocationsView.swift in Sources */,
-				036F0C1429EC984A004A8A14 /* SelectedButtonViewModel.swift in Sources */,
 				0388941529E0CC7500B2EC01 /* Constants.swift in Sources */,
 				036F0C0929EC9820004A8A14 /* TabView.swift in Sources */,
 				0388941A29E20C6600B2EC01 /* Persistence.swift in Sources */,
