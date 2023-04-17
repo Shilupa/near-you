@@ -15,54 +15,104 @@ struct EditProfileView: View {
     @State private var address = ""
     
     var body: some View {
-        VStack {
-            if profileImage != nil {
-                profileImage?
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 150, height: 150)
-                    .clipShape(RoundedRectangle(cornerRadius: 20))
-            } else {
-                Image(systemName: "person.circle.fill")
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 150, height: 150)
-                    .clipShape(RoundedRectangle(cornerRadius: 20))
-            }
+        ZStack {
+            LinearGradient(gradient: Gradient(colors: [Color(hex: "FBF2B8"), Color(hex: "FACFD9")]), startPoint: .top, endPoint: .bottom)
+                .ignoresSafeArea()
             
-            Button(action: {
-                isShowingImagePicker.toggle()
-            }) {
-                Text("Add Photo")
-                    .foregroundColor(.white)
-                    .padding()
+            VStack {
+                if profileImage != nil {
+                    profileImage?
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 250, height: 250)
+                        .clipShape(RoundedRectangle(cornerRadius: 20))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 20)
+                                .stroke(Color.orange, lineWidth: 5)
+                        )
+                    
+                } else {
+//                    Image(systemName: "person.circle.fill")
+//                        .resizable()
+//                        .aspectRatio(contentMode: .fill)
+//                        .frame(width: 150, height: 150)
+//                        .clipShape(RoundedRectangle(cornerRadius: 20))
+                    Image("profile")
+                        .resizable()
+                        .scaledToFill()
+                        .clipped()
+                        .frame(width: 250, height: 250)
+                        .clipShape(RoundedRectangle(cornerRadius: 20))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 20)
+                                .stroke(Color.orange, lineWidth: 5)
+                        )
+                }
+                
+                Button(action: {
+                    isShowingImagePicker.toggle()
+                }) {
+                    Text("Add Photo")
+                        .foregroundColor(.white)
+                        .padding()
+                }
+                .background(Color.orange)
+                .clipShape(RoundedRectangle(cornerRadius: 40))
+                .sheet(isPresented: $isShowingImagePicker) {
+                    ImagePicker(image: $profileImage)
+                }.padding(.bottom, -70)
+                
+                VStack {
+                    HStack {
+                        Text("Name")
+                            .foregroundColor(.orange)
+                        
+                        Spacer()
+                    }
+                    .padding(.horizontal)
+                    
+                    TextField("Jane Korhonen", text: $name)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .padding(.horizontal)
+                    
+                    HStack {
+                        Text("Address")
+                            .foregroundColor(.orange)
+                        
+                        Spacer()
+                        
+                        Image(systemName: "mappin.and.ellipse")
+                            .foregroundColor(.orange)
+                            .padding(.leading, 4)
+                    
+                    }
+                    .padding(.horizontal)
+                    
+                    TextField("Some street no.15, London", text: $address)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .padding(.horizontal)
+                    
+                    Spacer()
+                }
+                .padding(.top, 80)
+                
+                Button(action: {
+                    // Code to update user information
+                }) {
+                    Text("Update")
+                        .foregroundColor(.white)
+                        .padding()
+                }
+                .background(Color.orange)
+                .clipShape(RoundedRectangle(cornerRadius: 40))
+                .padding(.bottom, 250)
+                
             }
-            .background(Color.orange)
-            .clipShape(RoundedRectangle(cornerRadius: 10))
-            .sheet(isPresented: $isShowingImagePicker) {
-                ImagePicker(image: $profileImage)
-            }
+            .padding(.horizontal, 20)
+            .padding(.top, 90)
             
-            TextField("Name", text: $name)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding()
-            
-            TextField("Address", text: $address)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding()
-            
-            Button(action: {
-                // Code to update user information
-            }) {
-                Text("Update")
-                    .foregroundColor(.white)
-                    .padding()
-            }
-            .background(Color.orange)
-            .clipShape(RoundedRectangle(cornerRadius: 10))
             
         }
-        .padding()
     }
 }
 
