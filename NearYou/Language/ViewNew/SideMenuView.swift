@@ -14,10 +14,7 @@ import SwiftUI
 // }.padding(EdgeInsets(top: 50, leading: 0, bottom: 0, trailing: 0))
 
 struct SideMenuView: View {
-    @Binding var isShowing: Bool
-    @Binding var selectedView: Int
-    @Binding var showMainView: Bool
-    @EnvironmentObject private var lang: LangugageViewModel
+    @EnvironmentObject private var gvvm: GlobalVarsViewModel
     
     var body: some View {
         // Added entire view for navigation to get full view for navigated screen
@@ -27,10 +24,9 @@ struct SideMenuView: View {
                     .ignoresSafeArea()
                 
                 VStack {
-                    ProfileView(isShowing: $isShowing, showMainView: $showMainView)
-                        .frame(height:300)
+                    ProfileView().frame(height:300)
                     // Contains MyHomeView, LanguageView & AboutUsView
-                    CombineView(selectedView: $selectedView)
+                    CombineView()
                     Spacer()
                 }.padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 100))
             }.navigationBarHidden(true)
@@ -40,38 +36,28 @@ struct SideMenuView: View {
 
 // User profile
 struct ProfileView: View {
-    // Variables passed as params from HomeView
-    @Binding var isShowing: Bool
-    @Binding var showMainView: Bool
-    
-    @EnvironmentObject private var lang: LangugageViewModel
+    @EnvironmentObject private var gvvm: GlobalVarsViewModel
     
     var body: some View {
         VStack(){
             ZStack(alignment: .topTrailing){
                 VStack{
-                    // Navigation to MainProfileView on user image click
-                    NavigationLink(destination: MainProfileView(isShowing: $isShowing, showMainView: $showMainView).navigationBarBackButtonHidden(true), label: {
-                        VStack(alignment: .center) {
-                            Image("profile")
-                                .resizable()
-                                .scaledToFill()
-                                .clipped()
-                                .frame(width: 135, height: 135)
-                                .clipShape(Circle())
-                            
-                                .overlay(
-                                    Circle()
-                                        .stroke(Color.orange, lineWidth: 3)
-                                )
-                                .padding(.bottom, 16)
-                        }
-                    })
-                    // Event listner when navigation is done
-                    .simultaneousGesture(TapGesture().onEnded{
-                        // Hides MainView when showMainView is true
-                        showMainView = true
-                    })
+                    VStack(alignment: .center) {
+                        Image("profile")
+                            .resizable()
+                            .scaledToFill()
+                            .clipped()
+                            .frame(width: 135, height: 135)
+                            .clipShape(Circle())
+                            .overlay(
+                                Circle()
+                                    .stroke(Color.orange, lineWidth: 3)
+                            )
+                            .padding(.bottom, 16)
+                            .onTapGesture {
+                                gvvm.updateShowProfileView(true)
+                            }
+                    }
                     
                     Text("Jane Korhonen")
                         .font(.system(size: 24, weight: .semibold))
@@ -93,10 +79,9 @@ struct ProfileView: View {
 }
 
 struct CombineView: View{
-    @Binding var selectedView: Int
     var body: some View {
         VStack{
-            MyHomeView(selectedView: $selectedView)
+            MyHomeView()
             LanguageView()
             AboutUsView()
         }.padding(EdgeInsets(top: -20, leading: -20, bottom: 0, trailing: 0))
@@ -104,8 +89,7 @@ struct CombineView: View{
 }
 
 struct MyHomeView: View {
-    @Binding var selectedView: Int
-    @EnvironmentObject private var lang: LangugageViewModel
+    @EnvironmentObject private var gvvm: GlobalVarsViewModel
     var body: some View {
         VStack{
             HStack{
@@ -114,15 +98,15 @@ struct MyHomeView: View {
                     .padding(15)
                 Text("Default view")
                     .font(.system(size: 22, weight: .semibold))
-                    .environment(\.locale, Locale.init(identifier: lang.currLang))
+                    .environment(\.locale, Locale.init(identifier: gvvm.currLang))
             }.padding(.leading, 22)
-            ListAndMap(selectedView: $selectedView)
+            ListAndMap()
         }
     }
 }
 
 struct LanguageView: View {
-    @EnvironmentObject private var lang: LangugageViewModel
+    @EnvironmentObject private var gvvm: GlobalVarsViewModel
     var body: some View {
         VStack{
             HStack{
@@ -131,7 +115,7 @@ struct LanguageView: View {
                     .padding(15)
                 Text("Language")
                     .font(.system(size: 22, weight: .semibold))
-                    .environment(\.locale, Locale.init(identifier: lang.currLang))
+                    .environment(\.locale, Locale.init(identifier: gvvm.currLang))
             }
             LanguageOptionView()
         }
@@ -139,7 +123,7 @@ struct LanguageView: View {
 }
 
 struct AboutUsView: View {
-    @EnvironmentObject private var lang: LangugageViewModel
+    @EnvironmentObject private var gvvm: GlobalVarsViewModel
     var body: some View {
         
         HStack{
@@ -148,7 +132,7 @@ struct AboutUsView: View {
                 .padding(15)
             Text("About Us")
                 .font(.system(size: 22, weight: .semibold))
-                .environment(\.locale, Locale.init(identifier: lang.currLang))
+                .environment(\.locale, Locale.init(identifier: gvvm.currLang))
         }
         .padding(.trailing, 20)
     }
@@ -156,8 +140,6 @@ struct AboutUsView: View {
 
 struct SideMenuView_Previews: PreviewProvider {
     static var previews: some View {
-        SideMenuView(isShowing: .constant(true),
-                     selectedView: .constant(1), showMainView: .constant(true)
-        ).environmentObject(LangugageViewModel())
+        SideMenuView().environmentObject(GlobalVarsViewModel())
     }
 }

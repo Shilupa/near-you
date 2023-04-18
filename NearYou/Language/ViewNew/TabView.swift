@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TabView: View {
-    @EnvironmentObject private var lang: LangugageViewModel
+    @EnvironmentObject private var lang: GlobalVarsViewModel
     var body: some View {
         VStack{
 //            ListAndMap()
@@ -18,47 +18,45 @@ struct TabView: View {
 }
 
 struct ListAndMap: View {
-    @Binding var selectedView: Int
-    @EnvironmentObject private var lang: LangugageViewModel
+    @EnvironmentObject private var gvvm: GlobalVarsViewModel
     
     var body: some View {
-        let _ = print(selectedView)
         HStack {
             Button(action: {
                 // Sets list as default view
-                selectedView = 0
+                gvvm.updateSelectedView(0)
             }) {
                 Text("List")
                     .padding()
                     .font(.system(size: 13))
-                    .foregroundColor(selectedView == 0 ? .white : .black)
+                    .foregroundColor(gvvm.selectedView == 0 ? .white : .black)
                     .frame(minWidth: 0, maxWidth: 63)
                     .frame(minHeight: 0, maxHeight: 25)
-                    .background(selectedView == 0 ? Color.orange : Color.white)
+                    .background(gvvm.selectedView == 0 ? Color.orange : Color.white)
                     .overlay(
                         RoundedRectangle(cornerRadius: 25)
                         //.stroke(Color.orange, lineWidth: isLeftButtonSelected ? 0 : 1)
                             .stroke(Color.clear, lineWidth: 0)
-                    ).environment(\.locale, Locale.init(identifier: lang.currLang))
+                    ).environment(\.locale, Locale.init(identifier: gvvm.currLang))
                 //.padding(EdgeInsets(top: 5, leading: 15, bottom: 5, trailing: 0))
             }
             
             Button(action: {
                 // // Sets list as Map default view
-                selectedView = 1
+                gvvm.updateSelectedView(1)
             }) {
                 Text("Map")
                     .padding()
                     .font(.system(size: 13))
-                    .foregroundColor(selectedView == 1 ? .white : .black)
+                    .foregroundColor(gvvm.selectedView == 1 ? .white : .black)
                     .frame(minWidth: 0, maxWidth: 70)
                     .frame(minHeight: 0, maxHeight: 25)
-                    .background(selectedView == 1 ? Color.orange : Color.white)
+                    .background(gvvm.selectedView == 1 ? Color.orange : Color.white)
                     .overlay(
                         RoundedRectangle(cornerRadius: 25)
                             .stroke(Color.clear, lineWidth: 0) // remove the border color
                     )
-                    .environment(\.locale, Locale.init(identifier: lang.currLang))
+                    .environment(\.locale, Locale.init(identifier: gvvm.currLang))
             }
         }
         .padding(EdgeInsets(top: 5, leading: 0, bottom: 5, trailing: 0))
@@ -74,7 +72,7 @@ struct ListAndMap: View {
 
 
 struct LanguageOptionView: View {
-    @EnvironmentObject private var lang: LangugageViewModel
+    @EnvironmentObject private var gvvm: GlobalVarsViewModel
     @State private var selectedButton: Int = 0
     @FocusState private var defaultButton: Int?
     @AppStorage("selectedLanguage") var selectedLanguage = ""
@@ -82,7 +80,7 @@ struct LanguageOptionView: View {
     var body: some View {
         HStack {
             Button(action: {
-                lang.updateLang(lang: "fi")
+                gvvm.updateLang("fi")
                 selectedButton = 1
                 defaultButton = 1
                 selectedLanguage = "fi"
@@ -97,7 +95,7 @@ struct LanguageOptionView: View {
             ))
             // Default language
             Button(action: {
-                lang.updateLang(lang: "en")
+                gvvm.updateLang("en")
                 selectedButton = 0
                 defaultButton = 0
                 selectedLanguage = "en"
@@ -111,7 +109,7 @@ struct LanguageOptionView: View {
             ))
             
             Button(action: {
-                lang.updateLang(lang: "sv")
+                gvvm.updateLang("sv")
                 selectedButton = 2
                 defaultButton = 2
                 selectedLanguage = "sv"
@@ -165,6 +163,6 @@ struct RoundedButtonStyle: ButtonStyle {
 
 struct TabView_Previews: PreviewProvider {
     static var previews: some View {
-        TabView().environmentObject(LangugageViewModel())
+        TabView().environmentObject(GlobalVarsViewModel())
     }
 }
