@@ -24,6 +24,9 @@ final class DataViewModel: ObservableObject {
     private var typeArray: Array<String> = []
     private var typeSet: Set<String> = []
     
+    init () {
+            getData()
+        }
     
     func getData(){
         

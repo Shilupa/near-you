@@ -10,9 +10,12 @@ import CoreData
 
 @main
 struct NearYouApp: App {
+    @StateObject var vm: DataViewModel = DataViewModel()
+    
     var body: some Scene {
         WindowGroup {
             HomeView().environmentObject(LangugageViewModel())
+                .environmentObject(DataViewModel())
             //MainView()
         }
     }

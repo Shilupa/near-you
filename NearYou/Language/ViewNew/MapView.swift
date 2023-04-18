@@ -11,13 +11,11 @@ import MapKit
 
 struct MapView: View {
     
-    @StateObject private var viewModel = MapViewModel()
+    @StateObject var viewModel = MapViewModel()
     @State var searchText = ""
-    @StateObject var vm = DataViewModel()
     @State private var currentIndex = 0
-    
-    
-    
+    @EnvironmentObject var vm: DataViewModel
+
     var body: some View {
         ZStack(alignment: .bottomTrailing){
             if vm.isRefreshing {
@@ -29,6 +27,7 @@ struct MapView: View {
                 Map(coordinateRegion: $viewModel.region, showsUserLocation: true,
                     annotationItems: markers) { marker in
                     marker.location
+                        
                 }
                     .ignoresSafeArea()
                     .accentColor(Color(.systemPink))
@@ -40,6 +39,7 @@ struct MapView: View {
                         
                         
                         MapCardView(data: products[currentIndex])
+                            .environmentObject(MapViewModel())
                             .gesture(
                                 DragGesture(minimumDistance: 20)
                                     .onEnded { value in
@@ -74,7 +74,6 @@ struct MapView: View {
             }
         }
         .onAppear(perform:{
-            vm.getData()
             viewModel.locationManager.delegate = viewModel
             viewModel.locationManager.requestWhenInUseAuthorization()
             

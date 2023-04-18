@@ -9,8 +9,8 @@ import SwiftUI
 
 struct HomeListView: View {
     
-    @StateObject var vm = DataViewModel()
-    
+//    @StateObject var vm = DataViewModel()
+    @EnvironmentObject var vm: DataViewModel
 //    init(){
 //        for familyName in UIFont.familyNames{
 //            print(familyName)
@@ -47,13 +47,13 @@ struct HomeListView: View {
                     
                 }
             }
-            .onAppear(perform: vm.getData)
-            .alert(isPresented: $vm.hasError,
-                   error: vm.error) {
-                Button(action: vm.getData) {
-                    Text("Retry")
-                }
-            }
+//            .onAppear(perform: vm.getData)
+//            .alert(isPresented: $vm.hasError,
+//                   error: vm.error) {
+//                Button(action: vm.getData) {
+//                    Text("Retry")
+//                }
+//            }
         }
     }
 }
