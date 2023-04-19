@@ -9,8 +9,6 @@ import SwiftUI
 
 struct HomeListView: View {
     
-    //@StateObject var vm: DataViewModel = DataViewModel()
-    
     @EnvironmentObject var vm: DataViewModel
     
 //    init(){
@@ -27,8 +25,6 @@ struct HomeListView: View {
 
     var body: some View {
         
-        
-        NavigationView {
             ZStack {
                 
                 if vm.isRefreshing {
@@ -49,14 +45,11 @@ struct HomeListView: View {
                     
                 }
             }
-            //.onAppear(perform: vm.getData)
-//            .alert(isPresented: $vm.hasError,
-//                   error: vm.error) {
-//                Button(action: vm.getData) {
-//                    Text("Retry")
- //               }
-  //          }
-        }
+            .alert(isPresented: $vm.hasError,
+                   error: vm.error) {
+                Button(action: vm.getData) {
+                    Text("Retry")
+                }}
     }
 }
 
