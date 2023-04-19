@@ -12,7 +12,7 @@ struct HomeView: View {
     
     @AppStorage("selectedView") private var selectedView: Int = 1
     @State private var selectedTab = 1
-    @StateObject private var viewModel = MapViewModel()
+    @StateObject var viewModel = MapViewModel()
     @State var searchText = ""
     // Displaying views with desired conditions
     @State private var isShowing: Bool = false
@@ -133,6 +133,7 @@ struct ToggleHomeView: View {
                 .padding(.top, 60)
         }else{
             MapView()
+                .environmentObject(MapViewModel())
         }
     }
 }

@@ -11,10 +11,13 @@ import MapKit
 
 struct MapView: View {
     
-    @StateObject var viewModel = MapViewModel()
+//    @StateObject var viewModel = MapViewModel()
+    @EnvironmentObject  var viewModel : MapViewModel
+
     @State var searchText = ""
     @State private var currentIndex = 0
     @EnvironmentObject var vm: DataViewModel
+    @State private var isSelected = false
 
     var body: some View {
         ZStack(alignment: .bottomTrailing){
@@ -34,10 +37,8 @@ struct MapView: View {
                 VStack{
                     
                     Spacer()
-                    
+                
                     if let products = vm.allData?.data.product {
-                        
-                        
                         MapCardView(data: products[currentIndex])
                             .environmentObject(MapViewModel())
                             .gesture(
@@ -48,12 +49,13 @@ struct MapView: View {
                                         } else {
                                             currentIndex = min(currentIndex + 1, products.count - 1)
                                         }
+                                        viewModel.region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 61.158014,longitude: 24.912653), span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
                                     }
-                            )
+                                
+                            )           
                     } else {
                         Text("No products found.")
                     }
-                    
                     
                     HStack{
                         
@@ -81,8 +83,3 @@ struct MapView: View {
     }
 }
 
-struct MapView_Previews: PreviewProvider {
-    static var previews: some View {
-        MapView()
-    }
-}

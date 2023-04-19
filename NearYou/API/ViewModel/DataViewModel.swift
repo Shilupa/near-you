@@ -117,21 +117,21 @@ final class DataViewModel: ObservableObject {
                         if let data = data,
                            let datas = try? decoder.decode(ProductResponse.self, from: data) {
                             
-                            // creating array and set of category
-                            for item in datas.data.product{
-                                self?.typeArray.append(item.type!)
-                                self?.typeSet.insert(item.type!)
-                            }
-
-                            // Creating tuple of category with the its count
-                            for item in self!.typeSet{
-                                let count = self?.typeArray.reduce(0) { $1 == item ? $0 + 1 : $0 }
-                                self?.typeTuple.append((item, count!))
-                            }
-                            
-                            // Sorting tuple and publishing to use by all views
-                            let Temp = self!.typeTuple.sorted { $0.categoryCount > $1.categoryCount }
-                            self?.typeTuple = Temp
+//                            // creating array and set of category
+//                            for item in datas.data.product{
+//                                self?.typeArray.append(item.type!)
+//                                self?.typeSet.insert(item.type!)
+//                            }
+//
+//                            // Creating tuple of category with the its count
+//                            for item in self!.typeSet{
+//                                let count = self?.typeArray.reduce(0) { $1 == item ? $0 + 1 : $0 }
+//                                self?.typeTuple.append((item, count!))
+//                            }
+//                            
+//                            // Sorting tuple and publishing to use by all views
+//                            let Temp = self!.typeTuple.sorted { $0.categoryCount > $1.categoryCount }
+//                            self?.typeTuple = Temp
 
                             //print("Data: ", datas.data.product)
                             self?.allData = datas
