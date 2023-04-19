@@ -11,14 +11,14 @@ import MapKit
 
 struct MapView: View {
     
-//    @StateObject var viewModel = MapViewModel()
+    //    @StateObject var viewModel = MapViewModel()
     @EnvironmentObject  var viewModel : MapViewModel
-
+    
     @State var searchText = ""
     @State private var currentIndex = 0
     @EnvironmentObject var vm: DataViewModel
     @State private var isSelected = false
-
+    
     var body: some View {
         ZStack(alignment: .bottomTrailing){
             if vm.isRefreshing {
@@ -30,14 +30,14 @@ struct MapView: View {
                 Map(coordinateRegion: $viewModel.region, showsUserLocation: true,
                     annotationItems: markers) { marker in
                     marker.location
-                        
+                    
                 }
                     .ignoresSafeArea()
                     .accentColor(Color(.systemPink))
                 VStack{
                     
                     Spacer()
-                
+                    
                     if let products = vm.allData?.data.product {
                         MapCardView(data: products[currentIndex])
                             .environmentObject(MapViewModel())
@@ -49,10 +49,21 @@ struct MapView: View {
                                         } else {
                                             currentIndex = min(currentIndex + 1, products.count - 1)
                                         }
-                                        viewModel.region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 61.158014,longitude: 24.912653), span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
                                     }
                                 
-                            )           
+                            )
+                            .gesture(
+                                TapGesture()
+                                    .onEnded {
+                                        let trimmedCoordinates = products[currentIndex].postalAddresses?[0]
+                                            .location?
+                                            .trimmingCharacters(in: CharacterSet(charactersIn: "()")) ?? ""
+                                        
+                                        let coordinateComponents = trimmedCoordinates.components(separatedBy: ",")
+                                        let coordinate = CLLocationCoordinate2D(latitude: Double(coordinateComponents[0]) ?? 0.0, longitude: Double(coordinateComponents[1]) ?? 0.0)
+                                        viewModel.region = MKCoordinateRegion(center: coordinate, span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
+                                    }
+                            )
                     } else {
                         Text("No products found.")
                     }
@@ -61,7 +72,7 @@ struct MapView: View {
                         
                         CustomSearchBar(searchText: $searchText)
                         
-                        LocationButton(.currentLocation){
+                        LocationButton(.shareMyCurrentLocation){
                             viewModel.requestAllowOnceLocationPermission()
                         }
                         .foregroundColor(.white)

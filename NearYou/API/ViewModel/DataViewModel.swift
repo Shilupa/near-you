@@ -59,7 +59,7 @@ final class DataViewModel: ObservableObject {
                         print("Bad response")
                         return
                     }
-                    print("response: \(response.expectedContentLength)")
+                    //print("response: \(response.expectedContentLength)")
                     
                     if let data = data {
                         do {

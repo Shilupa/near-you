@@ -50,27 +50,5 @@ struct MapCardView: View {
         .background(isSelected ? Color.blue : Color.white)
         .cornerRadius(10)
         .shadow(color: Color.gray.opacity(0.5), radius: 5, x: 0, y: 2)
-        .gesture(
-            TapGesture()
-                .onEnded {
-                    isSelected.toggle()
-                    if (isSelected) {
-                        passCoordinates()
-                    }
-                }
-        )
-        
-    }
-
-    func passCoordinates (){
-        let trimmedCoordinates = data.postalAddresses?[0]
-            .location?
-            .trimmingCharacters(in: CharacterSet(charactersIn: "()")) ?? ""
-
-        let coordinateComponents = trimmedCoordinates.components(separatedBy: ",")
-        let coordinate = CLLocationCoordinate2D(latitude: Double(coordinateComponents[0]) ?? 0.0, longitude: Double(coordinateComponents[1]) ?? 0.0)
-        viewModel.region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 61.158014,longitude: 24.912653), span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
-        
-        print("Mapcardview", viewModel.region)
     }
 }
