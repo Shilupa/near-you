@@ -16,56 +16,56 @@ struct ContentView: View {
         VStack {
             
             //The version with preset coordinates
-            if let location = locationManager.location {
-                if let weather = weather {
-                    WeatherView(weather: weather)
-                } else {
-                    LoadingView()
-                        .task {
-                            do {
-                                weather = try await weatherManager.getCurrentWeather(latitude: DummyCoordinates(), longitude: DummyCoordinates())
-                            } catch {
-                                print("Error getting weather: \(error)")
-                            }
-                        }
-                }
-                
-                
-                //                Text("Your coordinates are: \(location.longitude), \(location.latitude)")
-            } else {
-                if locationManager.isLoading {
-                    ProgressView()
-                } else {
-                    WelcomeView()
-                    .environmentObject(locationManager)}
-            }
+//            if let location = locationManager.location {
+//                if let weather = weather {
+//                    WeatherView(weather: weather)
+//                } else {
+//                    LoadingView()
+//                        .task {
+//                            do {
+//                                weather = try await weatherManager.getCurrentWeather(latitude: DummyCoordinates(), longitude: DummyCoordinates())
+//                            } catch {
+//                                print("Error getting weather: \(error)")
+//                            }
+//                        }
+//                }
+//
+//
+//                //                Text("Your coordinates are: \(location.longitude), \(location.latitude)")
+//            } else {
+//                if locationManager.isLoading {
+//                    ProgressView()
+//                } else {
+//                    WelcomeView()
+//                    .environmentObject(locationManager)}
+//            }
             
             
             // The version with phone's location
             
-            //            if let location = locationManager.location {
-            //                if let weather = weather {
-            //                    WeatherView(weather: weather)
-            //                } else {
-            //                        LoadingView()
-            //                            .task {
-            //                                do {
-            //                                    weather = try await weatherManager.getCurrentWeather(latitude: location.latitude, longitude: location.longitude)
-            //                                } catch {
-            //                                    print("Error getting weather: \(error)")
-            //                                }
-            //                            }
-            //                    }
-            //
-            //
-            //                //                Text("Your coordinates are: \(location.longitude), \(location.latitude)")
-            //            } else {
-            //                if locationManager.isLoading {
-            //                    ProgressView()
-            //                } else {
-            //                    WelcomeView()
-            //                    .environmentObject(locationManager)}
-            //            }
+                        if let location = locationManager.location {
+                            if let weather = weather {
+                                WeatherView(weather: weather)
+                            } else {
+                                    LoadingView()
+                                        .task {
+                                            do {
+                                                weather = try await weatherManager.getCurrentWeather(latitude: location.latitude, longitude: location.longitude)
+                                            } catch {
+                                                print("Error getting weather: \(error)")
+                                            }
+                                        }
+                                }
+            
+            
+                            //                Text("Your coordinates are: \(location.longitude), \(location.latitude)")
+                        } else {
+                            if locationManager.isLoading {
+                                ProgressView()
+                            } else {
+                                WelcomeView()
+                                .environmentObject(locationManager)}
+                        }
             
         }
     }
