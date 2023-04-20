@@ -40,7 +40,6 @@ struct MapCardView: View {
                 }
                 .frame(width: 200, height: 100)
             }
-            
         }
         .frame(width: 330, height: 100, alignment: .center)
         .padding(10)

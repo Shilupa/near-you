@@ -9,20 +9,20 @@ import SwiftUI
 
 struct HomeListView: View {
     
-//    @StateObject var vm = DataViewModel()
+    //    @StateObject var vm = DataViewModel()
     @EnvironmentObject var vm: DataViewModel
-//    init(){
-//        for familyName in UIFont.familyNames{
-//            print(familyName)
-//
-//            for fontName in UIFont.fontNames(forFamilyName: familyName){
-//                print("-- \(fontName)")
-//            }
-//
-//        }
-//    }
+    //    init(){
+    //        for familyName in UIFont.familyNames{
+    //            print(familyName)
+    //
+    //            for fontName in UIFont.fontNames(forFamilyName: familyName){
+    //                print("-- \(fontName)")
+    //            }
+    //
+    //        }
+    //    }
     
-
+    
     var body: some View {
         
         
@@ -32,7 +32,7 @@ struct HomeListView: View {
                 if vm.isRefreshing {
                     ProgressView()
                 } else {
-
+                    
                     List {
                         ForEach(vm.allData?.data.product ?? [] , id: \.id) { product in
                             
@@ -47,13 +47,13 @@ struct HomeListView: View {
                     
                 }
             }
-//            .onAppear(perform: vm.getData)
-//            .alert(isPresented: $vm.hasError,
-//                   error: vm.error) {
-//                Button(action: vm.getData) {
-//                    Text("Retry")
-//                }
-//            }
+            //            .onAppear(perform: vm.getData)
+            //            .alert(isPresented: $vm.hasError,
+            //                   error: vm.error) {
+            //                Button(action: vm.getData) {
+            //                    Text("Retry")
+            //                }
+            //            }
         }
     }
 }
