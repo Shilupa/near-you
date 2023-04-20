@@ -45,6 +45,13 @@ struct ProductResponse: Codable {
         let city: String?
     }
     
+    //Sebastian - I need this to pass the coordinates to the weather icon
+    struct Location {
+        var latitude: Double?
+        var longitude: Double?
+    }
+    //Sebastian - I need this to pass the coordinates to the weather icon
+    
     struct ProductAvailableMonth: Codable {
         let month: String?
     }

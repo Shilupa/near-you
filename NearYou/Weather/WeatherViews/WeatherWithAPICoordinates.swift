@@ -17,7 +17,7 @@ struct WeatherWithAPICoordinates: View {
                     image
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .frame(maxWidth: 50, maxHeight: 50)
+                        .frame(maxWidth: 35, maxHeight: 35)
                     
                 } placeholder: {
                     ProgressView()
@@ -25,11 +25,16 @@ struct WeatherWithAPICoordinates: View {
                     Text("Loading...")
                 }
             Text("\(Int(viewModel.temperature))°C")
-                .font(.system(size: 15))
-        }.border(Color.blue)
+                .font(.system(size: 12))
+//            Text(data.postalAddresses![0].streetName ?? "")
+//            .font(Font.custom("Poppins-Regular", size: 12))
+            
+        }
         
         .onAppear {
-            viewModel.fetchWeatherData(latitude: 45.753836, longitude: 21.225747)
+            
+//            viewModel.fetchWeatherData(latitude: 45.753836, longitude: 21.225747)
+            
         }
     }
 }

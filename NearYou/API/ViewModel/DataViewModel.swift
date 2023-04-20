@@ -25,8 +25,8 @@ final class DataViewModel: ObservableObject {
     private var typeSet: Set<String> = []
     
     init () {
-            getData()
-        }
+        getData()
+    }
     
     func getData(){
         
@@ -65,7 +65,7 @@ final class DataViewModel: ObservableObject {
                         do {
                             let decoder = JSONDecoder()
                             let response = try decoder.decode(TokenResponse.self, from: data)
-
+                            
                             self.fetchData(token: response.access_token)
                             
                         } catch let err {
@@ -74,8 +74,15 @@ final class DataViewModel: ObservableObject {
                     }
                 }
             }}.resume()}
+    //Sebastian - bla
+    struct Location: Codable {
+        var location: String
+        var postalCode: String
+        var streetName: String
+        var city: String
+    }
     
-    
+    //Sebastian - this is where it ends
     
     func fetchData(token: String) {
         
@@ -122,7 +129,7 @@ final class DataViewModel: ObservableObject {
                                 self?.typeArray.append(item.type!)
                                 self?.typeSet.insert(item.type!)
                             }
-
+                            
                             // Creating tuple of category with the its count
                             for item in self!.typeSet{
                                 let count = self?.typeArray.reduce(0) { $1 == item ? $0 + 1 : $0 }
@@ -132,10 +139,80 @@ final class DataViewModel: ObservableObject {
                             // Sorting tuple and publishing to use by all views
                             let Temp = self!.typeTuple.sorted { $0.categoryCount > $1.categoryCount }
                             self?.typeTuple = Temp
-
+                            
                             //print("Data: ", datas.data.product)
                             self?.allData = datas
-                    
+                            
+                            //Sebastian - This is for accessing location data
+                            let products = datas.data.product
+                            for product in products {
+//                                if let postalAddresses = product.postalAddresses?.first {
+                                    for postalAddress in product.postalAddresses ?? [] {
+                                        let locationString = postalAddress.location
+//                                        let coordinates = locationString.replacingOccurrences(of: "(", with: "")
+//                                            .replacingOccurrences(of: ")", with: "")
+//                                            .components(separatedBy: ",")
+//                                            .compactMap { Double($0.trimmingCharacters(in: .whitespaces)) }
+                                        let coordinates = locationString?.components(separatedBy: ",").map({ $0.trimmingCharacters(in: .whitespacesAndNewlines).replacingOccurrences(of: "(", with: "").replacingOccurrences(of: ")", with: "") })
+                                        let latitude = Double(coordinates?.first ?? "0")
+                                        let longitude = Double(coordinates?.last ?? "0")
+                                        if let latitude = Double(coordinates?.first ?? "0") {
+                                            print("latitude= ", latitude)
+                                        } else {
+                                            print("Wrong latitude: \(coordinates?.first ?? "nil")")
+                                        }
+                                        if let longitude = Double(coordinates?.last ?? "0") {
+                                            print("longitude= ", longitude)
+                                        } else {
+                                            print("Wrong longitude: \(coordinates?.last ?? "nil")")
+                                        }
+                                        
+                                        
+                                        var productLocation = ProductResponse.Location(latitude: latitude, longitude: longitude)
+//                                        product.location = productLocation
+                                        
+                                        if let latitude = Double(coordinates?[0] ?? ""), let longitude = Double(coordinates?[1] ?? "") {
+                                            productLocation.latitude = latitude
+                                            productLocation.longitude = longitude
+                                        } else {
+//                                            print("Invalid coordinates: \(location)")
+                                        }
+                                    }
+//                                }
+                            }
+                            
+                            //                            let products = datas.data.product
+                            //                            for product in products {
+                            //                                for postalAddress in product.postalAddresses {
+                            //                                    let locationArray = postalAddress.location
+                            //                                        .replacingOccurrences(of: "(", with: "")
+                            //                                        .replacingOccurrences(of: ")", with: "")
+                            //                                        .split(separator: ",")
+                            //
+                            //                                    guard locationArray.count == 2,
+                            //                                          let latitude = Double(locationArray[0]),
+                            //                                          let longitude = Double(locationArray[1]) else {
+                            //                                        print("Invalid location data: \(postalAddress.location)")
+                            //                                        continue
+                            //                                    }
+                            //                                    let location = Location(latitude: latitude, longitude: longitude)
+                            //                                    postalAddress.location = location
+                            //
+                            //                                }
+                            //                            }
+                            //
+                            //                            self.products = products
+                            //                            self.delegate?.didFetchData()
+                            
+                            //                            if let products = self?.allData?.data.product {
+                            //                                for product in products {
+                            //                                    if let location = produ
+                            //                                }
+                            //                            }
+                            
+                            
+                            //Sebastian - this is where my part ends
+                            
                         } else {
                             self?.hasError = true
                             self?.error = DataError.failedToDecode
