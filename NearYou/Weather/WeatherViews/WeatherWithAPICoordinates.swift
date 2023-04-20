@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct WeatherWithAPICoordinates: View {
+    let data: ProductResponse.Product
     @StateObject var viewModel = WeatherViewModel()
     
     var body: some View {
@@ -32,8 +33,9 @@ struct WeatherWithAPICoordinates: View {
         }
         
         .onAppear {
-            
+            print(data.location)
 //            viewModel.fetchWeatherData(latitude: 45.753836, longitude: 21.225747)
+            
             
         }
     }

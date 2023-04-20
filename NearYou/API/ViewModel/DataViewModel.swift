@@ -74,15 +74,6 @@ final class DataViewModel: ObservableObject {
                     }
                 }
             }}.resume()}
-    //Sebastian - bla
-    struct Location: Codable {
-        var location: String
-        var postalCode: String
-        var streetName: String
-        var city: String
-    }
-    
-    //Sebastian - this is where it ends
     
     func fetchData(token: String) {
         
