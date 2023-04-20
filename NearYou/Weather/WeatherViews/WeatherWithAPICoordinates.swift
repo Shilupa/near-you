@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct WeatherWithAPICoordinates: View {
+    
     let data: ProductResponse.Product
+    
     @StateObject var viewModel = WeatherViewModel()
     
     var body: some View {
@@ -23,22 +25,26 @@ struct WeatherWithAPICoordinates: View {
                 } placeholder: {
                     ProgressView()
                 }} else {
-                    Text("Loading...")
                 }
-            Text("\(Int(viewModel.temperature))°C")
-                .font(.system(size: 12))
-//            Text(data.postalAddresses![0].streetName ?? "")
-//            .font(Font.custom("Poppins-Regular", size: 12))
             
+            Text("\(Int(viewModel.temperature))°C")
+            .font(Font.custom("Poppins-Regular", size: 12))
         }
         
         .onAppear {
             
-            print("Test Data: ", data.postalAddresses?[0].location ?? "")
+            let trimmedCoordinates = data.postalAddresses?[0].location?
+                .trimmingCharacters(in: CharacterSet(charactersIn: "()")) ?? ""
             
-           // print(data.location)
-//            viewModel.fetchWeatherData(latitude: 45.753836, longitude: 21.225747)
+            let coordinateComponents = trimmedCoordinates.components(separatedBy: ",")
             
+            let lat: Double = Double(coordinateComponents[0]) ?? 0.0
+            let long: Double = Double(coordinateComponents[1]) ?? 0.0
+            
+            let location = Location(latitude: lat, longitude: long)
+            
+            print("Hahaha: ", coordinateComponents)
+            viewModel.fetchWeatherData(location: location)
             
         }
     }

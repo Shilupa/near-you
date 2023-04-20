@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+
+
 class WeatherViewModel: ObservableObject {
     @Published var icon: String = ""
     @Published var temperature: Double = 0
@@ -35,12 +37,11 @@ class WeatherViewModel: ObservableObject {
 //            }
 //        }.resume()
 //    }
-    struct Location {
-        let latitude: Double
-        let longitude: Double
-    }
+ 
     
-    func fetchWeatherData(for location: Location, completion: @escaping(Result<WeatherData, Error>) -> Void) {
+    // func fetchWeatherData(for location: Location, completion: @escaping(Result<WeatherData, Error>) -> Void) {
+    
+    func fetchWeatherData(location: Location) {
         guard let url = URL(string: "https://api.openweathermap.org/data/2.5/weather?lat=\(location.latitude)&lon=\(location.longitude)&appid=\("147feb2c7edb8e7e106380dff079bcab")&units=metric") else {
             return
         }
