@@ -10,12 +10,13 @@ import SwiftUI
 struct CustomSearchBar: View {
     
     @Binding var searchText: String
+    @State private var isSearchViewActive = false
     
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 8)
                 .fill(Color(.systemGray6))
-                .frame(width: 300, height: 40)
+                .frame(width: 300, height: 45)
             
             HStack {
                 Button(action: {
@@ -26,12 +27,12 @@ struct CustomSearchBar: View {
                 })
                 .disabled(true)
                 
-                
                 TextField("Search", text: $searchText)
                     .padding(.horizontal, 5)
                     .padding(.vertical, 10)
                     .background(Color(.systemGray6))
                     .frame(width: 220)
+                    .disabled(true)
                 
                 Button(action: {
                     // Your second button action goes here
@@ -39,8 +40,16 @@ struct CustomSearchBar: View {
                     Image(systemName: "mic.fill")
                         .foregroundColor(.gray)
                 })
+                .disabled(true)
             }
         }
+        .onTapGesture {
+            isSearchViewActive = true
+        }
+        .sheet(isPresented: $isSearchViewActive, content: {
+            SearchView()
+                .transition(.move(edge: .bottom))
+                .animation(.spring(), value: 1)
+        })
     }
 }
-

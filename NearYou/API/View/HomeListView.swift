@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HomeListView: View {
     
-//    @StateObject var vm = DataViewModel()
+    //    @StateObject var vm = DataViewModel()
     @EnvironmentObject var vm: DataViewModel
     
 //    init(){
@@ -31,7 +31,7 @@ struct HomeListView: View {
                 if vm.isRefreshing {
                     ProgressView()
                 } else {
-
+                    
                     List {
                         ForEach(vm.allData?.data.product ?? [] , id: \.id) { product in
                             

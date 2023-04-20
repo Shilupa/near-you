@@ -11,13 +11,16 @@ import MapKit
 
 struct MapView: View {
     
-    @EnvironmentObject var vm: DataViewModel
+    //    @StateObject var viewModel = MapViewModel()
+    @EnvironmentObject  var viewModel : MapViewModel
     
     @StateObject private var viewModel = MapViewModel()
     @State var searchText = ""
     //@StateObject var vm = DataViewModel()
     @State private var currentIndex = 0
-
+    @EnvironmentObject var vm: DataViewModel
+    @State private var isSelected = false
+    
     var body: some View {
         ZStack(alignment: .bottomTrailing){
             
@@ -31,7 +34,6 @@ struct MapView: View {
                 Map(coordinateRegion: $viewModel.region, showsUserLocation: true,
                     annotationItems: markers) { marker in
                     marker.location
-                        
                 }
                     .ignoresSafeArea()
                     .accentColor(Color(.systemPink))
@@ -40,17 +42,33 @@ struct MapView: View {
                     Spacer()
                     
                     if let products = vm.allData?.data.product {
-                        
-                        
                         MapCardView(data: products[currentIndex])
                             .environmentObject(MapViewModel())
                             .gesture(
                                 DragGesture(minimumDistance: 20)
                                     .onEnded { value in
-                                        if value.translation.width > 0 {
-                                            currentIndex = max(currentIndex - 1, 0)
-                                        } else {
-                                            currentIndex = min(currentIndex + 1, products.count - 1)
+                                        withAnimation(.spring())
+                                        {
+                                            if value.translation.width > 0 {
+                                                currentIndex = max(currentIndex - 1, 0)
+                                            } else {
+                                                currentIndex = min(currentIndex + 1, products.count - 1)
+                                            }
+                                        }
+                                    }
+                                
+                            )
+                            .gesture(
+                                TapGesture()
+                                    .onEnded {
+                                        withAnimation(.easeInOut(duration: 1.0)){
+                                            let trimmedCoordinates = products[currentIndex].postalAddresses?[0]
+                                                .location?
+                                                .trimmingCharacters(in: CharacterSet(charactersIn: "()")) ?? ""
+                                            
+                                            let coordinateComponents = trimmedCoordinates.components(separatedBy: ",")
+                                            let coordinate = CLLocationCoordinate2D(latitude: Double(coordinateComponents[0]) ?? 0.0, longitude: Double(coordinateComponents[1]) ?? 0.0)
+                                            viewModel.region = MKCoordinateRegion(center: coordinate, span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005))
                                         }
                                     }
                             )
@@ -58,12 +76,11 @@ struct MapView: View {
                         Text("No products found.")
                     }
                     
-                    
                     HStack{
                         
                         CustomSearchBar(searchText: $searchText)
                         
-                        LocationButton(.currentLocation){
+                        LocationButton(.shareMyCurrentLocation){
                             viewModel.requestAllowOnceLocationPermission()
                         }
                         .foregroundColor(.white)

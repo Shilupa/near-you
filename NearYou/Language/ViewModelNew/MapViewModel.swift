@@ -11,7 +11,7 @@ import MapKit
 
 final class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     
-    @Published var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 60.158014,longitude: 24.912653), span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
+    @Published var region = MKCoordinateRegion()
     
     // alert when permission is denied
     @Published var permissionDenied = false
@@ -65,9 +65,9 @@ final class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate 
         print(error.localizedDescription)
     }
     
-    func updateRegion(for location: CLLocationCoordinate2D) {
-        let newRegion = MKCoordinateRegion(center: location, span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
-        self.region = newRegion
-        selectedLocation = location
-    }
+//    func updateRegion(for location: CLLocationCoordinate2D) {
+//        let newRegion = MKCoordinateRegion(center: location, span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
+//        self.region = newRegion
+//        selectedLocation = location
+//    }
 }
