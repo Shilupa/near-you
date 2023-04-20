@@ -26,11 +26,9 @@ final class DataViewModel: ObservableObject {
     private var typeArray: Array<String> = []
     private var typeSet: Set<String> = []
     
-    
     init () {
         getData()
     }
-    
     
     func getData(){
         
@@ -63,13 +61,13 @@ final class DataViewModel: ObservableObject {
                         print("Bad response")
                         return
                     }
-                    print("response: \(response.expectedContentLength)")
+                    //print("response: \(response.expectedContentLength)")
                     
                     if let data = data {
                         do {
                             let decoder = JSONDecoder()
                             let response = try decoder.decode(TokenResponse.self, from: data)
-
+                            
                             self.fetchData(token: response.access_token)
                             
                         } catch let err {
@@ -78,8 +76,6 @@ final class DataViewModel: ObservableObject {
                     }
                 }
             }}.resume()}
-    
-    
     
     func fetchData(token: String) {
         
@@ -142,7 +138,7 @@ final class DataViewModel: ObservableObject {
 
                             //print("Data: ", datas.data.product)
                             self?.allData = datas
-                    
+
                         } else {
                             self?.hasError = true
                             self?.error = DataError.failedToDecode

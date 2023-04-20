@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HomeListView: View {
     
+//    @StateObject var vm = DataViewModel()
     @EnvironmentObject var vm: DataViewModel
     
 //    init(){

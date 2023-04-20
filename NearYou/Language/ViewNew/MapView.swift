@@ -17,9 +17,8 @@ struct MapView: View {
     @State var searchText = ""
     //@StateObject var vm = DataViewModel()
     @State private var currentIndex = 0
-    
-    
-    
+    @EnvironmentObject var vm: DataViewModel
+
     var body: some View {
         ZStack(alignment: .bottomTrailing){
             
@@ -33,6 +32,7 @@ struct MapView: View {
                 Map(coordinateRegion: $viewModel.region, showsUserLocation: true,
                     annotationItems: markers) { marker in
                     marker.location
+                        
                 }
                     .ignoresSafeArea()
                     .accentColor(Color(.systemPink))
@@ -44,6 +44,7 @@ struct MapView: View {
                         
                         
                         MapCardView(data: products[currentIndex])
+                            .environmentObject(MapViewModel())
                             .gesture(
                                 DragGesture(minimumDistance: 20)
                                     .onEnded { value in
