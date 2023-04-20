@@ -11,7 +11,6 @@ import _MapKit_SwiftUI
 
 let vm = DataViewModel()
 
-
 func getMarkers() -> [Marker] {
 
     vm.getData()
@@ -24,22 +23,11 @@ func getMarkers() -> [Marker] {
             
             let trimmedCoordinates = product.postalAddresses?[0].location?
                 .trimmingCharacters(in: CharacterSet(charactersIn: "()")) ?? ""
-            
-            //print("Haha: ", product.postalAddresses?[0].location)
-            
-            //print("trimmedCoordinates: ", trimmedCoordinates)
-            
             let coordinateComponents = trimmedCoordinates.components(separatedBy: ",")
- 
-            // print("Coordinate", coordinateComponents)
-            
             if coordinateComponents.count>1 {
                 latitudes.append(Double(coordinateComponents[0]) ?? 0.0)
                 longitudes.append(Double(coordinateComponents[1]) ?? 0.0)
             }
-            
-           
-
         }
     }
     
@@ -49,9 +37,9 @@ func getMarkers() -> [Marker] {
     for location in locations {
         markers.append(Marker(location: MapMarker(coordinate: location, tint: .red)))
     }
-    
     return markers
 }
+
 
 
 

@@ -30,7 +30,6 @@ struct MapView: View {
                 Map(coordinateRegion: $viewModel.region, showsUserLocation: true,
                     annotationItems: markers) { marker in
                     marker.location
-                    
                 }
                     .ignoresSafeArea()
                     .accentColor(Color(.systemPink))
@@ -44,10 +43,13 @@ struct MapView: View {
                             .gesture(
                                 DragGesture(minimumDistance: 20)
                                     .onEnded { value in
-                                        if value.translation.width > 0 {
-                                            currentIndex = max(currentIndex - 1, 0)
-                                        } else {
-                                            currentIndex = min(currentIndex + 1, products.count - 1)
+                                        withAnimation(.spring())
+                                        {
+                                            if value.translation.width > 0 {
+                                                currentIndex = max(currentIndex - 1, 0)
+                                            } else {
+                                                currentIndex = min(currentIndex + 1, products.count - 1)
+                                            }
                                         }
                                     }
                                 
@@ -55,13 +57,15 @@ struct MapView: View {
                             .gesture(
                                 TapGesture()
                                     .onEnded {
-                                        let trimmedCoordinates = products[currentIndex].postalAddresses?[0]
-                                            .location?
-                                            .trimmingCharacters(in: CharacterSet(charactersIn: "()")) ?? ""
-                                        
-                                        let coordinateComponents = trimmedCoordinates.components(separatedBy: ",")
-                                        let coordinate = CLLocationCoordinate2D(latitude: Double(coordinateComponents[0]) ?? 0.0, longitude: Double(coordinateComponents[1]) ?? 0.0)
-                                        viewModel.region = MKCoordinateRegion(center: coordinate, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+                                        withAnimation(.easeInOut(duration: 1.0)){
+                                            let trimmedCoordinates = products[currentIndex].postalAddresses?[0]
+                                                .location?
+                                                .trimmingCharacters(in: CharacterSet(charactersIn: "()")) ?? ""
+                                            
+                                            let coordinateComponents = trimmedCoordinates.components(separatedBy: ",")
+                                            let coordinate = CLLocationCoordinate2D(latitude: Double(coordinateComponents[0]) ?? 0.0, longitude: Double(coordinateComponents[1]) ?? 0.0)
+                                            viewModel.region = MKCoordinateRegion(center: coordinate, span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005))
+                                        }
                                     }
                             )
                     } else {

@@ -13,13 +13,10 @@ struct MapCardView: View {
     let data: ProductResponse.Product
     @State private var isSelected = false
     @EnvironmentObject  var viewModel : MapViewModel
-
+    
     var body: some View {
         VStack(alignment: .leading){
             let url = URL(string:data.productImages?[0].thumbnailUrl ?? "http://placekitten.com/g/200/300" )
-
-            //            Text("Latitude: \(coordinate.latitude)")
-            //            Text("Longtitude: \(coordinate.longitude)")
             HStack{
                 AsyncImage(url: url) { Image in
                     Image
@@ -28,11 +25,11 @@ struct MapCardView: View {
                         .frame(width: 120, height: 100)
                         .cornerRadius(10)
                 } placeholder: {
-
+                    
                     ProgressView()
                         .frame(width: 120, height: 100)
                 }
-
+                
                 VStack(alignment: .leading){
                     Text(data.productInformations[0].name ?? "")
                         .font(Font.custom("Poppins-Regular", size: 12))
@@ -43,7 +40,7 @@ struct MapCardView: View {
                 }
                 .frame(width: 200, height: 100)
             }
-
+            
         }
         .frame(width: 330, height: 100, alignment: .center)
         .padding(10)
