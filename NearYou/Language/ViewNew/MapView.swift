@@ -17,7 +17,6 @@ struct MapView: View {
     @State var searchText = ""
     //@StateObject var vm = DataViewModel()
     @State private var currentIndex = 0
-    @EnvironmentObject var vm: DataViewModel
 
     var body: some View {
         ZStack(alignment: .bottomTrailing){
@@ -84,8 +83,8 @@ struct MapView: View {
     }
 }
 
-struct MapView_Previews: PreviewProvider {
-    static var previews: some View {
-        MapView()
-    }
-}
+//struct MapView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        MapView()
+//    }
+//}
