@@ -33,16 +33,19 @@ struct WeatherWithAPICoordinates: View {
         }
         
         .onAppear {
-            print(data.location)
+            
+            print("Test Data: ", data.postalAddresses?[0].location ?? "")
+            
+           // print(data.location)
 //            viewModel.fetchWeatherData(latitude: 45.753836, longitude: 21.225747)
             
             
         }
     }
 }
-
-struct WeatherWithAPICoordinates_Previews: PreviewProvider {
-    static var previews: some View {
-        WeatherWithAPICoordinates()
-    }
-}
+//
+//struct WeatherWithAPICoordinates_Previews: PreviewProvider {
+//    static var previews: some View {
+//        WeatherWithAPICoordinates()
+//    }
+//}

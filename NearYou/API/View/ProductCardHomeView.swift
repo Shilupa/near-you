@@ -151,7 +151,7 @@ struct ProductCardHomeView: View {
                     
                     
                     // Sebastian will work on this part of UI
-                    WeatherWithAPICoordinates(data)
+                    WeatherWithAPICoordinates(data: data)
 //                    Text("WEATHER")
 //                        .lineLimit(1)
 //                        .font(Font.custom("Poppins-Regular", size: 12))

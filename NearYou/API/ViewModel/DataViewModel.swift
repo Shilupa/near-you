@@ -59,7 +59,7 @@ final class DataViewModel: ObservableObject {
                         print("Bad response")
                         return
                     }
-                    print("response: \(response.expectedContentLength)")
+                    //print("response: \(response.expectedContentLength)")
                     
                     if let data = data {
                         do {
@@ -115,21 +115,21 @@ final class DataViewModel: ObservableObject {
                         if let data = data,
                            let datas = try? decoder.decode(ProductResponse.self, from: data) {
                             
-                            // creating array and set of category
-                            for item in datas.data.product{
-                                self?.typeArray.append(item.type!)
-                                self?.typeSet.insert(item.type!)
-                            }
-                            
-                            // Creating tuple of category with the its count
-                            for item in self!.typeSet{
-                                let count = self?.typeArray.reduce(0) { $1 == item ? $0 + 1 : $0 }
-                                self?.typeTuple.append((item, count!))
-                            }
-                            
-                            // Sorting tuple and publishing to use by all views
-                            let Temp = self!.typeTuple.sorted { $0.categoryCount > $1.categoryCount }
-                            self?.typeTuple = Temp
+//                            // creating array and set of category
+//                            for item in datas.data.product{
+//                                self?.typeArray.append(item.type!)
+//                                self?.typeSet.insert(item.type!)
+//                            }
+//
+//                            // Creating tuple of category with the its count
+//                            for item in self!.typeSet{
+//                                let count = self?.typeArray.reduce(0) { $1 == item ? $0 + 1 : $0 }
+//                                self?.typeTuple.append((item, count!))
+//                            }
+//
+//                            // Sorting tuple and publishing to use by all views
+//                            let Temp = self!.typeTuple.sorted { $0.categoryCount > $1.categoryCount }
+//                            self?.typeTuple = Temp
                             
                             //print("Data: ", datas.data.product)
                             self?.allData = datas
@@ -137,39 +137,41 @@ final class DataViewModel: ObservableObject {
                             //Sebastian - This is for accessing location data
                             let products = datas.data.product
                             for product in products {
-//                                if let postalAddresses = product.postalAddresses?.first {
-                                    for postalAddress in product.postalAddresses ?? [] {
-                                        let locationString = postalAddress.location
-//                                        let coordinates = locationString.replacingOccurrences(of: "(", with: "")
-//                                            .replacingOccurrences(of: ")", with: "")
-//                                            .components(separatedBy: ",")
-//                                            .compactMap { Double($0.trimmingCharacters(in: .whitespaces)) }
-                                        let coordinates = locationString?.components(separatedBy: ",").map({ $0.trimmingCharacters(in: .whitespacesAndNewlines).replacingOccurrences(of: "(", with: "").replacingOccurrences(of: ")", with: "") })
-                                        let latitude = Double(coordinates?.first ?? "0")
-                                        let longitude = Double(coordinates?.last ?? "0")
-                                        if let latitude = Double(coordinates?.first ?? "0") {
-                                            print("latitude= ", latitude)
-                                        } else {
-                                            print("Wrong latitude: \(coordinates?.first ?? "nil")")
-                                        }
-                                        if let longitude = Double(coordinates?.last ?? "0") {
-                                            print("longitude= ", longitude)
-                                        } else {
-                                            print("Wrong longitude: \(coordinates?.last ?? "nil")")
-                                        }
-                                        
-                                        
-                                        var productLocation = ProductResponse.Location(latitude: latitude, longitude: longitude)
-//                                        product.location = productLocation
-                                        
-                                        if let latitude = Double(coordinates?[0] ?? ""), let longitude = Double(coordinates?[1] ?? "") {
-                                            productLocation.latitude = latitude
-                                            productLocation.longitude = longitude
-                                        } else {
-//                                            print("Invalid coordinates: \(location)")
-                                        }
+                                //                                if let postalAddresses = product.postalAddresses?.first {
+                                for postalAddress in product.postalAddresses ?? [] {
+                                    let locationString = postalAddress.location
+                                    //                                        let coordinates = locationString.replacingOccurrences(of: "(", with: "")
+                                    //                                            .replacingOccurrences(of: ")", with: "")
+                                    //                                            .components(separatedBy: ",")
+                                    //                                            .compactMap { Double($0.trimmingCharacters(in: .whitespaces)) }
+                                    let coordinates = locationString?.components(separatedBy: ",").map({ $0.trimmingCharacters(in: .whitespacesAndNewlines).replacingOccurrences(of: "(", with: "").replacingOccurrences(of: ")", with: "") })
+                                    let latitude = Double(coordinates?.first ?? "0")
+                                    let longitude = Double(coordinates?.last ?? "0")
+//                                    if let latitude = Double(coordinates?.first ?? "0") {
+//                                        print("latitude= ", latitude)
+//                                    } else {
+//                                        print("Wrong latitude: \(coordinates?.first ?? "nil")")
+//                                    }
+//                                    if let longitude = Double(coordinates?.last ?? "0") {
+//                                        print("longitude= ", longitude)
+//                                    } else {
+//                                        print("Wrong longitude: \(coordinates?.last ?? "nil")")
+//                                    }
+//
+                                    
+                                    var productLocation = ProductResponse.Location(latitude: latitude, longitude: longitude)
+                                    //                                        product.location = productLocation
+                                    
+                                    //print("Product Location:", productLocation)
+                                    
+                                    if let latitude = Double(coordinates?[0] ?? ""), let longitude = Double(coordinates?[1] ?? "") {
+                                        productLocation.latitude = latitude
+                                        productLocation.longitude = longitude
+                                    } else {
+                                        //                                            print("Invalid coordinates: \(location)")
                                     }
-//                                }
+                                }
+                                //                                }
                             }
                             
                             //                            let products = datas.data.product
