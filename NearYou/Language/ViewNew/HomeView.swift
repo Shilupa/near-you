@@ -51,11 +51,11 @@ struct HomeView: View {
                 }
                 VStack{
                     ZStack(alignment: .top) {
-                            Rectangle()
-                            .fill(LinearGradient(gradient: Gradient(colors: [Color.white.opacity(1.0),  Color.white.opacity(1.0),  Color.white.opacity(0.9), Color.white.opacity(0.8)]), startPoint: .top, endPoint: .bottom))
-                                .frame(height: 110)
-                                .ignoresSafeArea()
-
+                        Rectangle()
+                            .fill(LinearGradient(gradient: Gradient(colors: [Color.white.opacity(1.0),  Color.white.opacity(1.0),  Color.white.opacity(0.5), Color.white.opacity(0.0)]), startPoint: .top, endPoint: .bottom))
+                            .frame(height: 110)
+                            .ignoresSafeArea()
+                        
                         
                         HStack (alignment: .top){
                             ZStack{
@@ -102,15 +102,13 @@ struct HomeView: View {
                                 
                                 Spacer()
                                 
-                                ZStack{
-                                    RoundedRectangle(cornerRadius: 8)
-                                        .fill(Color(.systemGray6))
-                                        .frame(width: 30, height: 30)
-                                    
-                                    Image(systemName: "mappin")
-                                        .imageScale(.medium)
-                                        .padding(25)
-                                }
+                                
+                                Image("AppIconLogo")
+                                    .resizable()
+                                    .frame(width: 50, height: 50)
+                                    .padding(.trailing, 20)
+                                    .padding(.top, 8)
+                                //.padding(25)
                             }
                             
                         }

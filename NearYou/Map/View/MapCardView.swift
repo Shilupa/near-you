@@ -38,7 +38,7 @@ struct MapCardView: View {
                     Text(data.postalAddresses![0].city ?? "")
                         .font(Font.custom("Poppins-Regular", size: 12))
                 }
-                .frame(width: 200, height: 100)
+                .frame(width: 200, height: 100, alignment: .topLeading)
             }
         }
         .frame(width: 330, height: 100, alignment: .center)

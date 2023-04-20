@@ -11,12 +11,8 @@ import MapKit
 
 struct MapView: View {
     
-    //    @StateObject var viewModel = MapViewModel()
     @EnvironmentObject  var viewModel : MapViewModel
-    
-    @StateObject private var viewModel = MapViewModel()
     @State var searchText = ""
-    //@StateObject var vm = DataViewModel()
     @State private var currentIndex = 0
     @EnvironmentObject var vm: DataViewModel
     @State private var isSelected = false

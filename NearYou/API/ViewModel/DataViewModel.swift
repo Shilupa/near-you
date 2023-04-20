@@ -7,8 +7,6 @@
 
 import Foundation
 
-
-
 final class DataViewModel: ObservableObject {
 
     @Published var hasError = false
@@ -57,11 +55,10 @@ final class DataViewModel: ObservableObject {
                     print("dataTask error: \(error.localizedDescription)")
                     return
                 } else {
-                    guard let response = response else {
+                    guard response != nil else {
                         print("Bad response")
                         return
                     }
-                    //print("response: \(response.expectedContentLength)")
                     
                     if let data = data {
                         do {
