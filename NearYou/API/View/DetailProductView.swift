@@ -43,8 +43,8 @@ struct DetailProductView: View {
             ScrollView{
                 
                 // Photos
-                //PhotoGalaryView(ImagesFile: allPhoto())
-                PhotoGalaryView()
+                PhotoGalaryView(ImagesFile: allPhoto())
+                //PhotoGalaryView()
 
                 // Information update date
                 Text("Information updated on " + dateFormated(data.updatedAt).formatted(date: .abbreviated, time: .shortened))

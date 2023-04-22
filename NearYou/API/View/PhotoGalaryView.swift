@@ -9,10 +9,7 @@ import SwiftUI
 
 struct PhotoGalaryView: View {
     
-    //var ImagesFile: [String]
-    
-    let ImagesFile = ["https://cdn-datahub.visitfinland.com/images/e149cdb0-67d8-11ec-91fb-3b444fc9a7da-Hel%20picture2.JPG","https://cdn-datahub.visitfinland.com/images/e149cdb0-67d8-11ec-91fb-3b444fc9a7da-Hel%20picture2.JPG","https://cdn-datahub.visitfinland.com/images/e149cdb0-67d8-11ec-91fb-3b444fc9a7da-Hel%20picture2.JPG","https://cdn-datahub.visitfinland.com/images/e149cdb0-67d8-11ec-91fb-3b444fc9a7da-Hel%20picture2.JPG","https://cdn-datahub.visitfinland.com/images/e149cdb0-67d8-11ec-91fb-3b444fc9a7da-Hel%20picture2.JPG"]
-    
+    var ImagesFile: [String]
 
     private let timer = Timer.publish(every: 3, on: .main, in: .common).autoconnect()
     
@@ -23,22 +20,42 @@ struct PhotoGalaryView: View {
         VStack{
             GeometryReader{ proxy in
                 TabView (selection: $currentIndex) {
-                    ForEach(ImagesFile, id: \.self ){ urlName in
-                        let url = URL(string: urlName )
+                    
+                    
+                    ForEach(0..<ImagesFile.count){ count in
+                        let url = URL(string: ImagesFile[count] )
                         AsyncImage(url: url) { Image in
                             Image
                                 .resizable()
                                 .scaledToFill()
                         } placeholder: {
-                            
+
                             ProgressView()
                                 .frame(width: 120, height: 100)
                         }
                     }
+                    
+                    
+                    
+                    
+//                    ForEach(ImagesFile, id: \.self ){ urlName in
+//                        let url = URL(string: urlName )
+//                        AsyncImage(url: url) { Image in
+//                            Image
+//                                .resizable()
+//                                .scaledToFill()
+//                        } placeholder: {
+//
+//                            ProgressView()
+//                                .frame(width: 120, height: 100)
+//                        }
+//                    }
                 }
                 .tabViewStyle(PageTabViewStyle())
                 .onReceive(timer, perform: {_ in
-                    withAnimation{currentIndex = currentIndex < 5 ? currentIndex + 1 : 0}})
+                    withAnimation{
+                        currentIndex = currentIndex < ImagesFile.count ? currentIndex + 1 : 0
+                    }})
                 .clipShape(RoundedRectangle(cornerRadius: 10))
                 .padding(5)
                 .frame(width: proxy.size.width, height: 250)
