@@ -7,16 +7,17 @@
 
 import SwiftUI
 
-import SwiftUI
-
 struct SearchView: View {
     @State var searchText = ""
+    @State private var isRecording = false
     @EnvironmentObject var vm: DataViewModel
+    @StateObject var speechRecognizer = SpeechRecognizer()
+    
     
     var body: some View {
         NavigationView {
             VStack {
-                SearchBar(text: $searchText, placeholder: "Search")
+                SearchBar(text: $speechRecognizer.transcript, placeholder: "Search")
                     .padding()
                 List {
                     ForEach(vm.allData?.data.product ?? [] , id: \.id) { product in
@@ -32,12 +33,15 @@ struct SearchView: View {
             }
         }
     }
+
 }
 
 struct SearchBar: View {
+    @State private var isRecording = false
+    @StateObject var speechRecognizer = SpeechRecognizer()
     @Binding var text: String
     var placeholder: String
-
+    
     var body: some View {
         HStack {
             Image(systemName: "magnifyingglass")
@@ -55,12 +59,19 @@ struct SearchBar: View {
                         .foregroundColor(.gray)
                 }
             }
+            Text(speechRecognizer.transcript)
+
             Button(action: {
-                //button action 
+                if !isRecording {
+                    speechRecognizer.transcribe()
+                } else {
+                    speechRecognizer.stopTranscribing()
+                }
+                isRecording.toggle()
             }, label: {
-                Image(systemName: "mic.fill")
-                    .foregroundColor(.gray)
-            })
+                    Image(systemName: "mic.fill")
+                        .foregroundColor(.gray)
+                })
             .padding(.horizontal)
         }
         .frame(height: 40)
