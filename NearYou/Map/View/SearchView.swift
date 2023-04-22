@@ -17,7 +17,7 @@ struct SearchView: View {
     var body: some View {
         NavigationView {
             VStack {
-                SearchBar(text: $speechRecognizer.transcript, placeholder: "Search")
+                SearchBar(text: $searchText, placeholder: "Search")
                     .padding()
                 List {
                     ForEach(vm.allData?.data.product ?? [] , id: \.id) { product in
@@ -47,7 +47,7 @@ struct SearchBar: View {
             Image(systemName: "magnifyingglass")
                 .foregroundColor(.gray)
                 .padding(.horizontal)
-            TextField(placeholder, text: $text)
+            TextField(placeholder, text: $speechRecognizer.transcript)
                 .foregroundColor(.primary)
                 .autocapitalization(.none)
                 .disableAutocorrection(true)
@@ -59,7 +59,6 @@ struct SearchBar: View {
                         .foregroundColor(.gray)
                 }
             }
-            Text(speechRecognizer.transcript)
 
             Button(action: {
                 if !isRecording {
