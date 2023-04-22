@@ -55,7 +55,7 @@ struct ProductResponse: Codable {
         let webshopUrl: String?
     }
     
-    struct ProductImage: Codable {
+    struct ProductImage: Codable, Hashable {
         let filename, altText: String?
         let largeUrl, originalUrl, thumbnailUrl: String?
     }

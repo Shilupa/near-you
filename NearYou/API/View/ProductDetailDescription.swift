@@ -8,22 +8,87 @@
 import SwiftUI
 
 struct ProductDetailDescription: View {
+    
+    //let data: ProductResponse.Product
+    
     var body: some View {
         VStack(alignment: .leading){
             
-            Text("Description")
-                .font(Font.custom("Poppins-Regular", size: 16))
-                .bold()
+            HStack {
+                Text("Description")
+                    .font(Font.custom("Poppins-Regular", size: 16))
+                    .bold()
                 .padding(.leading)
+                Spacer()
+                Text("Weather")
+            }
             
-            Text ("UNITY. For tomorrow's professionals. \n\nModern studio apartments and workspaces for efficient work and better life. Stay for a day, a month, or a year.")
-                .padding(10)
+            Group {
+                
+                VStack (alignment: .leading){
+                    HStack {
+                        Text("Title of Product")
+                            .bold()
+                        .padding(.bottom)
+                        Spacer()
+                        Text("Address of product")
+                            .padding(.bottom)
+                    }
+                    
+                    
+                    
+                    Text("UNITY. For tomorrow's professionals. \n\nModern studio apartments and workspaces for efficient work and better life. Stay for a day, a month, or a year.")
+                        .padding(.leading)
+                    
+                    Text("Product Availability")
+                        .padding(.top)
+                        .padding(.bottom)
+                    
+                    HStack{
+                        VStack(alignment: .leading){
+                            Text("Opening Days")
+                                .padding(.bottom)
+                            Text("Sun: 09:00 - 10:00")
+                            Text("Mon: 09:00 - 10:00")
+                            Text("Tue: 09:00 - 10:00")
+                            Text("Wed: 09:00 - 10:00")
+                            Text("Thu: 09:00 - 10:00")
+                            Text("Fri: 09:00 - 10:00")
+                            Text("Sat: 09:00 - 10:00")
+                        }
+                        Spacer()
+                        VStack(alignment: .leading){
+                            Text("Opening Month")
+                                .padding(.bottom)
+                            Text("Jan")
+                            Text("Feb")
+                            Text("Mar")
+                            Text("Apr")
+                            Text("May")
+                            Text("June")
+                            Text("July")
+                        }
+                    }
+                    
+                    Text("Product Price: 10 euros per hour")
+                        .padding(.top)
+                        .padding(.bottom)
+                    
+                    
+                }
+                
+                
+            }.padding(10)
                 .foregroundColor(Color.black)
-                .frame(width: UIScreen.main.bounds.width, height: 300)
                 .multilineTextAlignment(.leading)
                 .background(Color(.lightGray).opacity(0.2))
                 .cornerRadius(20)
-                .shadow(color: Color.gray, radius: 7, x: 0, y: 2)
+                //.shadow(color: Color.gray, radius: 7, x: 0, y: 2)
+            
+            
+            
+            
+            
         }
     }
 }

@@ -6,16 +6,36 @@
 //
 
 import SwiftUI
-
+import UIKit
 
 func goNavigation () {
     
 }
 
+func makeCall () {
+    
+    let phoneNumber = "+358442311309"
+    
+    if let phoneCallURL = URL(string: "tel:\(phoneNumber)") {
+        let application:UIApplication = UIApplication.shared
+        if (application.canOpenURL(phoneCallURL)) {
+            application.open(phoneCallURL, options: [:], completionHandler: nil)
+        }
+    }
+}
+
+
+
+
 
 struct DetailViewOptions: View {
+    
+    let websiteURL: String
+
+    
+    
+    
     var body: some View {
-        
         HStack(alignment: .top){
             Button(action: goNavigation) {
                 Image(systemName: "arrow.triangle.turn.up.right.diamond")
@@ -34,17 +54,12 @@ struct DetailViewOptions: View {
             }.shadow(color: Color.gray, radius: 7, x: 0, y: 2)
                 .padding(5)
             
-            Button(action: goNavigation) {
+            Button(action: makeCall) {
                 Image(systemName: "phone")
                     .frame(width: 50, height: 50)
                     .padding(10)
                     .foregroundColor(.white)
-                    .background(LinearGradient(
-                        gradient: Gradient(
-                            colors: [Color("ThemeColour"), Color("ThemeColourLight")]),
-                        startPoint: .top,
-                        endPoint: .bottom))
-                
+                    .background(Color.gray)
                     .cornerRadius(20)
                     .font(.system(size: 40))
                 
@@ -52,7 +67,10 @@ struct DetailViewOptions: View {
                 .padding(5)
             
             
-            Button(action: goNavigation) {
+            
+            Button(action: {
+                UIApplication.shared.open(URL(string: websiteURL)!)
+            }) {
                 Image(systemName: "network")
                     .frame(width: 50, height: 50)
                     .padding(10)
@@ -75,12 +93,7 @@ struct DetailViewOptions: View {
                     .frame(width: 50, height: 50)
                     .padding(10)
                     .foregroundColor(.white)
-                    .background(LinearGradient(
-                        gradient: Gradient(
-                            colors: [Color("ThemeColour"), Color("ThemeColourLight")]),
-                        startPoint: .top,
-                        endPoint: .bottom))
-                
+                    .background(Color.gray)
                     .cornerRadius(20)
                     .font(.system(size: 40))
                 
@@ -93,8 +106,8 @@ struct DetailViewOptions: View {
     }
 }
 
-struct DetailViewOptions_Previews: PreviewProvider {
-    static var previews: some View {
-        DetailViewOptions()
-    }
-}
+//struct DetailViewOptions_Previews: PreviewProvider {
+//    static var previews: some View {
+//        DetailViewOptions()
+//    }
+//}

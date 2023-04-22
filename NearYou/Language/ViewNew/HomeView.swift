@@ -25,7 +25,7 @@ struct HomeView: View {
     var body: some View {
         
         NavigationView{
-            let _ = print("isShowing",isShowing)
+            //let _ = print("isShowing",isShowing)
             ZStack {
                 // Displays MainProfileView
                 if(showMainView){

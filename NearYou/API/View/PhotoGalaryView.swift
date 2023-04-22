@@ -9,20 +9,22 @@ import SwiftUI
 
 struct PhotoGalaryView: View {
     
-    private let ImagesFile = ["https://cdn-datahub.visitfinland.com/images/e149cdb0-67d8-11ec-91fb-3b444fc9a7da-Hel%20picture2.JPG", "https://cdn-datahub.visitfinland.com/images/dd560c70-5434-11ed-ae94-05cf802d2c37.jpeg","https://cdn-datahub.visitfinland.com/images/df168120-5434-11ed-ae94-05cf802d2c37.jpeg","https://cdn-datahub.visitfinland.com/images/e05d5900-5434-11ed-ae94-05cf802d2c37.jpeg","https://cdn-datahub.visitfinland.com/images/e15bdd40-5434-11ed-ae94-05cf802d2c37.jpeg","https://cdn-datahub.visitfinland.com/images/e2b10d00-5434-11ed-ae94-05cf802d2c37.jpeg"]
+    //var ImagesFile: [String]
     
+    let ImagesFile = ["https://cdn-datahub.visitfinland.com/images/e149cdb0-67d8-11ec-91fb-3b444fc9a7da-Hel%20picture2.JPG","https://cdn-datahub.visitfinland.com/images/e149cdb0-67d8-11ec-91fb-3b444fc9a7da-Hel%20picture2.JPG","https://cdn-datahub.visitfinland.com/images/e149cdb0-67d8-11ec-91fb-3b444fc9a7da-Hel%20picture2.JPG","https://cdn-datahub.visitfinland.com/images/e149cdb0-67d8-11ec-91fb-3b444fc9a7da-Hel%20picture2.JPG","https://cdn-datahub.visitfinland.com/images/e149cdb0-67d8-11ec-91fb-3b444fc9a7da-Hel%20picture2.JPG"]
+    
+
     private let timer = Timer.publish(every: 3, on: .main, in: .common).autoconnect()
     
     @State private var currentIndex = 0
     
+    
     var body: some View {
-        
-        
         VStack{
             GeometryReader{ proxy in
                 TabView (selection: $currentIndex) {
-                    ForEach(0..<5){ count in
-                        let url = URL(string: ImagesFile[count] )
+                    ForEach(ImagesFile, id: \.self ){ urlName in
+                        let url = URL(string: urlName )
                         AsyncImage(url: url) { Image in
                             Image
                                 .resizable()
@@ -41,13 +43,13 @@ struct PhotoGalaryView: View {
                 .padding(5)
                 .frame(width: proxy.size.width, height: 250)
             }
-            Spacer(minLength: 265)
+            Spacer(minLength: 250)
         }
     }
 }
 
-struct PhotoGalaryView_Previews: PreviewProvider {
-    static var previews: some View {
-        PhotoGalaryView()
-    }
-}
+//struct PhotoGalaryView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        PhotoGalaryView()
+//    }
+//}

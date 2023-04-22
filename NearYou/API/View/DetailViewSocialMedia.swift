@@ -26,10 +26,6 @@ struct DetailViewSocialMedia: View {
                     .padding(.leading)
             } else{
                 
-                Text("Social media")
-                    .bold()
-                    .padding(.leading)
-                
                 HStack{
                     ForEach(socialMediaList, id: \.self){ item in
                         

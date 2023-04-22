@@ -43,7 +43,7 @@ struct WeatherWithAPICoordinates: View {
             
             let location = Location(latitude: lat, longitude: long)
             
-            print("Hahaha: ", coordinateComponents)
+            //print("Hahaha: ", coordinateComponents)
             viewModel.fetchWeatherData(location: location)
             
         }

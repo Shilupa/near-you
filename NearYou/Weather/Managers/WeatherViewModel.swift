@@ -56,8 +56,8 @@ class WeatherViewModel: ObservableObject {
                 DispatchQueue.main.async {
                     let iconName = weatherData.weather.first?.icon ?? ""
                     self.icon = "https://openweathermap.org/img/wn/\(iconName)@2x.png"
-                    print("blabla", self.icon)
-                    print("blablalblalalal", iconName)
+                    //print("blabla", self.icon)
+                    //print("blablalblalalal", iconName)
                     self.temperature = weatherData.main.temp
                 }
             } catch let error {
