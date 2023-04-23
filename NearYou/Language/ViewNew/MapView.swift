@@ -39,6 +39,8 @@ struct MapView: View {
                     
                     if let products = vm.allData?.data.product {
                         MapCardView(data: products[currentIndex])
+                            .background(isSelected ? Color.orange : Color.white)
+                            .cornerRadius(10)
                             .environmentObject(MapViewModel())
                             .gesture(
                                 DragGesture(minimumDistance: 20)
@@ -57,6 +59,7 @@ struct MapView: View {
                             .gesture(
                                 TapGesture()
                                     .onEnded {
+                                            isSelected.toggle()
                                         withAnimation(.easeInOut(duration: 1.0)){
                                             let trimmedCoordinates = products[currentIndex].postalAddresses?[0]
                                                 .location?
