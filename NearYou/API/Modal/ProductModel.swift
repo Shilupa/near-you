@@ -45,7 +45,7 @@ struct ProductResponse: Codable {
         let city: String?
     }
     
-    struct ProductAvailableMonth: Codable {
+    struct ProductAvailableMonth: Codable, Hashable {
         let month: String?
     }
     
