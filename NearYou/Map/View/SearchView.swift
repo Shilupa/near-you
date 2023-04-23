@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SearchView: View {
     @State var searchText = ""
+    @State private var isRecording = false
     @EnvironmentObject var vm: DataViewModel
     @State private var filteredList: [ProductResponse.Product] = []
     @State private var categories : [String] = []
@@ -41,6 +42,8 @@ struct SearchView: View {
         selectedCategory = category
         searchText = category
     }
+    @StateObject var speechRecognizer = SpeechRecognizer()
+    
     
     var body: some View {
         NavigationView {
@@ -90,9 +93,12 @@ struct SearchView: View {
             
         }
     }
+
 }
 
 struct SearchBar: View {
+    @State private var isRecording = false
+    @StateObject var speechRecognizer = SpeechRecognizer()
     @Binding var text: String
     var placeholder: String
     var onSearch: () -> Void
@@ -103,6 +109,7 @@ struct SearchBar: View {
                 .foregroundColor(.gray)
                 .padding(.horizontal)
             TextField(placeholder, text: $text, onCommit: onSearch)
+            TextField(placeholder, text: $speechRecognizer.transcript)
                 .foregroundColor(.primary)
                 .autocapitalization(.none)
                 .disableAutocorrection(true)
@@ -115,12 +122,18 @@ struct SearchBar: View {
                         .foregroundColor(.gray)
                 }
             }
+
             Button(action: {
-                // button action
+                if !isRecording {
+                    speechRecognizer.transcribe()
+                } else {
+                    speechRecognizer.stopTranscribing()
+                }
+                isRecording.toggle()
             }, label: {
-                Image(systemName: "mic.fill")
-                    .foregroundColor(.gray)
-            })
+                    Image(systemName: "mic.fill")
+                        .foregroundColor(.gray)
+                })
             .padding(.horizontal)
         }
         .frame(height: 30)
