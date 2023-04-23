@@ -59,7 +59,7 @@ struct MapView: View {
                             .gesture(
                                 TapGesture()
                                     .onEnded {
-                                            isSelected.toggle()
+                                        isSelected.toggle()
                                         withAnimation(.easeInOut(duration: 1.0)){
                                             let trimmedCoordinates = products[currentIndex].postalAddresses?[0]
                                                 .location?

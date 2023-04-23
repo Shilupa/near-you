@@ -8,57 +8,55 @@
 import SwiftUI
 
 struct LanguageTabView: View {
-    @EnvironmentObject private var lang: LangugageViewModel
+    @EnvironmentObject private var lang: GlobalVarsViewModel
     var body: some View {
         VStack{
-            //            ListAndMap()
             LanguageOptionView()
         }
     }
 }
 
 struct ListAndMap: View {
-    @Binding var selectedView: Int
-    @EnvironmentObject private var lang: LangugageViewModel
+    @EnvironmentObject private var gvvm: GlobalVarsViewModel
+    @StateObject private var dvm = DefaultViewModel()
     
     var body: some View {
-        let _ = print(selectedView)
         HStack {
             Button(action: {
                 // Sets list as default view
-                selectedView = 0
+                dvm.addDefaultView(0)
             }) {
                 Text("List")
                     .padding()
                     .font(.system(size: 13))
-                    .foregroundColor(selectedView == 0 ? .white : .black)
+                    .foregroundColor(Int(dvm.savedSetting.last?.listOrMap ?? 0) == 0 ? .white : .black)
                     .frame(minWidth: 0, maxWidth: 63)
                     .frame(minHeight: 0, maxHeight: 25)
-                    .background(selectedView == 0 ? Color.orange : Color.white)
+                    .background(Int(dvm.savedSetting.last?.listOrMap ?? 0) == 0 ? Color.orange : Color.white)
                     .overlay(
                         RoundedRectangle(cornerRadius: 25)
                         //.stroke(Color.orange, lineWidth: isLeftButtonSelected ? 0 : 1)
                             .stroke(Color.clear, lineWidth: 0)
-                    ).environment(\.locale, Locale.init(identifier: lang.currLang))
+                    ).environment(\.locale, Locale.init(identifier: gvvm.currLang))
                 //.padding(EdgeInsets(top: 5, leading: 15, bottom: 5, trailing: 0))
             }
             
             Button(action: {
-                // // Sets list as Map default view
-                selectedView = 1
+                // Sets Map as default view
+                dvm.addDefaultView(1)
             }) {
                 Text("Map")
                     .padding()
                     .font(.system(size: 13))
-                    .foregroundColor(selectedView == 1 ? .white : .black)
+                    .foregroundColor(Int(dvm.savedSetting.last?.listOrMap ?? 0) == 1 ? .white : .black)
                     .frame(minWidth: 0, maxWidth: 70)
                     .frame(minHeight: 0, maxHeight: 25)
-                    .background(selectedView == 1 ? Color.orange : Color.white)
+                    .background(Int(dvm.savedSetting.last?.listOrMap ?? 0) == 1 ? Color.orange : Color.white)
                     .overlay(
                         RoundedRectangle(cornerRadius: 25)
                             .stroke(Color.clear, lineWidth: 0) // remove the border color
                     )
-                    .environment(\.locale, Locale.init(identifier: lang.currLang))
+                    .environment(\.locale, Locale.init(identifier: gvvm.currLang))
             }
         }
         .padding(EdgeInsets(top: 5, leading: 0, bottom: 5, trailing: 0))
@@ -66,24 +64,27 @@ struct ListAndMap: View {
             RoundedRectangle(cornerRadius: 25)
             // or Capsule()
         }
-        //.frame(width: 250)
     }
 }
 
 
-
-
 struct LanguageOptionView: View {
-    @EnvironmentObject private var lang: LangugageViewModel
-    @State private var selectedButton: Int = 0
+    @EnvironmentObject private var gvvm: GlobalVarsViewModel
     @FocusState private var defaultButton: Int?
-    @AppStorage("selectedLanguage") var selectedLanguage = ""
+    @State private var selectedLanguage = "en"
+    @StateObject private var dvm = DefaultViewModel()
+    @StateObject private var dlvm = DefaultLangViewModel()
     
     var body: some View {
+        
         HStack {
+            let _ = print("curr", gvvm.currLang)
+            let _ = print("selected", selectedLanguage)
+            let _ = print("def", dlvm.savedSetting.last?.myLang ?? "en")
+           
             Button(action: {
-                lang.updateLang(lang: "fi")
-                selectedButton = 1
+                gvvm.updateLang("fi")
+                dlvm.addDefaultLang("fi")
                 defaultButton = 1
                 selectedLanguage = "fi"
             }, label: {
@@ -92,13 +93,13 @@ struct LanguageOptionView: View {
             .focused($defaultButton, equals: 1)
             
             .buttonStyle(RoundedButtonStyle(
-                backgroundColor: selectedButton == 1 ? .orange : Color(.systemGray5),
+                backgroundColor: selectedLanguage == "fi" ? .orange : Color(.systemGray5),
                 foregroundColor: .black
             ))
             // Default language
             Button(action: {
-                lang.updateLang(lang: "en")
-                selectedButton = 0
+                gvvm.updateLang("en")
+                dlvm.addDefaultLang("en")
                 defaultButton = 0
                 selectedLanguage = "en"
             }, label: {
@@ -106,13 +107,13 @@ struct LanguageOptionView: View {
             })
             .focused($defaultButton, equals: 0)
             .buttonStyle(RoundedButtonStyle(
-                backgroundColor: selectedButton == 0 ? .orange : Color(.systemGray5),
+                backgroundColor: selectedLanguage == "en" ? .orange : Color(.systemGray5),
                 foregroundColor: .black
             ))
             
             Button(action: {
-                lang.updateLang(lang: "sv")
-                selectedButton = 2
+                gvvm.updateLang("sv")
+                dlvm.addDefaultLang("sv")
                 defaultButton = 2
                 selectedLanguage = "sv"
             }, label: {
@@ -120,24 +121,17 @@ struct LanguageOptionView: View {
             })
             .focused($defaultButton, equals: 2)
             .buttonStyle(RoundedButtonStyle(
-                backgroundColor: selectedButton == 2 ? .orange : Color(.systemGray5),
+                backgroundColor: selectedLanguage == "sv" ? .orange : Color(.systemGray5),
                 foregroundColor: .black
             ))
-        }.padding(.trailing, 15)
+        }
+        .padding(.trailing, 15)
+        .onAppear{
+            selectedLanguage = gvvm.currLang
+        }
         //setting the value of selectedLanguage
             .onAppear {
-                selectedLanguage = UserDefaults.standard.string(forKey: "selectedLanguage") ?? ""
-                switch selectedLanguage {
-                case "fi":
-                    selectedButton = 1
-                    defaultButton = 1
-                case "sv":
-                    selectedButton = 2
-                    defaultButton = 2
-                default:
-                    selectedButton = 0
-                    defaultButton = 0
-                }
+                selectedLanguage = gvvm.currLang
             }
     }
 }
@@ -163,8 +157,8 @@ struct RoundedButtonStyle: ButtonStyle {
     }
 }
 
-struct LanguageTabView_Previews: PreviewProvider {
+struct TabView_Previews: PreviewProvider {
     static var previews: some View {
-        LanguageTabView().environmentObject(LangugageViewModel())
+        LanguageTabView().environmentObject(GlobalVarsViewModel())
     }
 }

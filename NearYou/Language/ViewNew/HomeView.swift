@@ -10,16 +10,20 @@ import CoreLocationUI
 
 struct HomeView: View {
     
-    @AppStorage("selectedView") private var selectedView: Int = 1
-    @State private var selectedTab = 1
+
     @StateObject var viewModel = MapViewModel()
     @State var searchText = ""
-    // Displaying views with desired conditions
     @State private var isShowing: Bool = false
     @State private var showMainView = false
-    @EnvironmentObject private var lang: LangugageViewModel
+    
+    @EnvironmentObject private var gvvm: GlobalVarsViewModel
+    @StateObject private var dvm = DefaultViewModel()
+    @StateObject private var dlvm = DefaultLangViewModel()
+    @State private var selectedTab = 0
+    @StateObject private var mypvm = MyProfileViewModel()
+    
+
     init() {
-        _selectedTab = State(initialValue: selectedView)
         UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor : UIColor.orange], for: .selected)
     }
     var body: some View {

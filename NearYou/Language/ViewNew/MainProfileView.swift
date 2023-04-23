@@ -8,57 +8,70 @@
 import SwiftUI
 
 struct MainProfileView: View {
-    // Variables passed as params from HomeView
-    @Binding var isShowing: Bool
-    @Binding var showMainView: Bool
-    
-    @EnvironmentObject private var lang: LangugageViewModel
+    @EnvironmentObject private var gvvm: GlobalVarsViewModel
+    // Tracks the selected tab
+    @State private var selectedTab = 0
+    @State private var profileImage: UIImage?
+    @StateObject private var mypvm = MyProfileViewModel()
     
     var body: some View {
         NavigationView {
             ZStack {
                 LinearGradient(gradient: Gradient(colors: [Color(hex: "FBF2B8"), Color(hex: "FACFD9")]), startPoint: .top, endPoint: .bottom)
                     .ignoresSafeArea()
+                
                 VStack(alignment: .center) {
-                    Image("profile")
+                    Image(uiImage: gvvm.profileImage!)
                         .resizable()
                         .scaledToFill()
                         .clipped()
                         .frame(width: 135, height: 135)
                         .clipShape(Circle())
-                    
                         .overlay(
                             Circle()
                                 .stroke(Color.orange, lineWidth: 3)
                         )
                         .padding(.bottom, 16)
-                    
-                    Text("Jane Korhonen")
+                    //                    }
+                    Text(gvvm.userName)
                         .font(.title)
                         .bold()
                         .padding(.bottom, 8)
                     
-                    Text("Some street no.15, London")
+                    Text(gvvm.userAddress)
                         .font(.subheadline)
                         .foregroundColor(.secondary)
-                        .padding(.bottom, 24)
+                        .padding(.bottom, 8)
+                    
+                    Picker(selection: $selectedTab, label: Text("Select a Tab")){
+                        Text("Favourites").tag(0).environment(\.locale, Locale.init(identifier: gvvm.currLang))
+                        Text("Planned").tag(1).environment(\.locale, Locale.init(identifier: gvvm.currLang))
+                        Text("Visited").tag(2).environment(\.locale, Locale.init(identifier: gvvm.currLang))
+                    }
+                    .pickerStyle(SegmentedPickerStyle())
+                    .padding(.bottom, 24)
+                    .padding(.horizontal, 16)
                     
                     Spacer()
-                    
-                    
                 }
-                
+                .padding(.horizontal, 16)
                 .navigationBarTitle("")
                 .navigationBarItems(
                     leading:
                         NavigationLink(
-                            destination: SideMenuView(isShowing: .constant(true),
-                                                      selectedView: .constant(1), showMainView: .constant(true)).navigationBarBackButtonHidden(true),
+                            destination: SideMenuView().navigationBarBackButtonHidden(true),
                             label: {
                                 Image(systemName: "chevron.left")
                                     .foregroundColor(.primary)
                                     .imageScale(.large)
-                            }),
+                            })
+                    // Event listner when navigation is done
+                        .simultaneousGesture(TapGesture().onEnded{
+                            // Hides MainView when showMainView is true
+                            gvvm.updateShowProfileView(false)
+                            gvvm.updateShowSideView(true)
+                            gvvm.updateShowBackButton(true)
+                        }),
                     trailing:
                         NavigationLink(
                             destination: EditProfileView(),
@@ -70,12 +83,16 @@ struct MainProfileView: View {
                             }
                         )
                 )
-                
-                // Event listener when navigation is done
-//                .simultaneousGesture(TapGesture().onEnded{
-//                    showMainView = false
-//                    isShowing = false
-//                })
+            }
+        }
+        // When view is loaded these values are set
+        .onAppear{
+            if(mypvm.savedSetting.last?.my_Image == nil){
+                gvvm.profileImage = UIImage(named: "profile")
+            }else{
+                gvvm.profileImage = UIImage(data: (mypvm.savedSetting.last?.my_Image)!)
+                gvvm.userName = mypvm.savedSetting.last?.my_Name ?? "Not Set"
+                gvvm.userAddress = mypvm.savedSetting.last?.my_Address ?? "Not Set"
             }
         }
     }
@@ -83,8 +100,8 @@ struct MainProfileView: View {
 
 struct MainProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        MainProfileView(isShowing: .constant(true),
-                        showMainView: .constant(true))
-        .environmentObject(LangugageViewModel())
+        MainProfileView()
+            .environmentObject(GlobalVarsViewModel())
     }
 }
+
