@@ -12,45 +12,50 @@ struct HomeListView: View {
     //    @StateObject var vm = DataViewModel()
     @EnvironmentObject var vm: DataViewModel
     
-//    init(){
-//        for familyName in UIFont.familyNames{
-//            print(familyName)
-//
-//            for fontName in UIFont.fontNames(forFamilyName: familyName){
-//                print("-- \(fontName)")
-//            }
-//
-//        }
-//    }
+    //    init(){
+    //        for familyName in UIFont.familyNames{
+    //            print(familyName)
+    //
+    //            for fontName in UIFont.fontNames(forFamilyName: familyName){
+    //                print("-- \(fontName)")
+    //            }
+    //
+    //        }
+    //    }
     
-
+    
     var body: some View {
         
-            ZStack {
+        ZStack {
+            
+            if vm.isRefreshing {
+                ProgressView()
+            } else {
                 
-                if vm.isRefreshing {
-                    ProgressView()
-                } else {
-                    
-                    List {
-                        ForEach(vm.allData?.data.product ?? [] , id: \.id) { product in
+                List {
+                    ForEach(vm.allData?.data.product ?? [] , id: \.id) { product in
+                        
+                        ZStack(alignment: .leading){
                             
+                            ProductCardHomeView(data: product)
+                                .listRowSeparator(.hidden)
                             NavigationLink(destination: DetailProductView(data: product)){
                                 
-                                ProductCardHomeView(data: product)
-                                    .listRowSeparator(.hidden)
+                                
                             }
+                            .opacity(0.0)
                         }
                     }
-                    .listStyle(.plain)
-                    
                 }
+                .listStyle(.plain)
+                
             }
-            .alert(isPresented: $vm.hasError,
-                   error: vm.error) {
-                Button(action: vm.getData) {
-                    Text("Retry")
-                }}
+        }
+        .alert(isPresented: $vm.hasError,
+               error: vm.error) {
+            Button(action: vm.getData) {
+                Text("Retry")
+            }}
     }
 }
 
