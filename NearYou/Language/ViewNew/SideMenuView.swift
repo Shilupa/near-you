@@ -44,7 +44,8 @@ struct ProfileView: View {
         VStack {
             ZStack(alignment: .topTrailing) {
                 VStack {
-                    Image(uiImage: gvvm.profileImage!)
+                    let defImage = UIImage(named: "profile")!
+                    Image(uiImage: gvvm.profileImage ?? defImage)
                         .resizable()
                         .scaledToFill()
                         .frame(width: 135, height: 135)

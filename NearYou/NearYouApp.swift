@@ -17,7 +17,7 @@ struct NearYouApp: App {
     
     var body: some Scene {
         WindowGroup {
-            HomeView().environmentObject(LangugageViewModel())
+            HomeView().environmentObject(GlobalVarsViewModel())
                 .environmentObject(DataViewModel())
             //MainView()
         }
