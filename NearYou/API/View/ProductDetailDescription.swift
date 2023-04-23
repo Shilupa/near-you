@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ProductDetailDescription: View {
     
-    //let data: ProductResponse.Product
+    let data: ProductResponse.Product
     
     var body: some View {
         VStack(alignment: .leading){
@@ -27,50 +27,63 @@ struct ProductDetailDescription: View {
                 
                 VStack (alignment: .leading){
                     HStack {
-                        Text("Title of Product")
+                        Text(data.productInformations[0].name ?? "")
                             .bold()
                         .padding(.bottom)
                         Spacer()
-                        Text("Address of product")
-                            .padding(.bottom)
+                        
+                        VStack(alignment: .leading) {
+                            Text(data.postalAddresses?[0].streetName ?? "")
+                            Text(data.postalAddresses?[0].city ?? "")
+                            Text(data.postalAddresses?[0].postalCode ?? "")
+                        }
+                        
                     }
                     
                     
                     
-                    Text("UNITY. For tomorrow's professionals. \n\nModern studio apartments and workspaces for efficient work and better life. Stay for a day, a month, or a year.")
+                    Text(data.productInformations[0].description ?? "")
                         .padding(.leading)
                     
                     Text("Product Availability")
+                        .bold()
                         .padding(.top)
                         .padding(.bottom)
                     
                     HStack{
                         VStack(alignment: .leading){
+                            
+                            
                             Text("Opening Days")
                                 .padding(.bottom)
-                            Text("Sun: 09:00 - 10:00")
-                            Text("Mon: 09:00 - 10:00")
-                            Text("Tue: 09:00 - 10:00")
-                            Text("Wed: 09:00 - 10:00")
-                            Text("Thu: 09:00 - 10:00")
-                            Text("Fri: 09:00 - 10:00")
-                            Text("Sat: 09:00 - 10:00")
+                            
+                            ForEach(data.businessHours.businessHoursDefault, id: \.self){ item in
+                                HStack {
+                                    Text(item.weekday?.prefix(3) ?? "")
+                                    Text(": ")
+                                    Text(item.opens?.prefix(5) ?? "")
+                                    Text("-")
+                                    Text(item.closes?.prefix(5) ?? "")
+                                }
+                            }
+                            
                         }
                         Spacer()
-                        VStack(alignment: .leading){
-                            Text("Opening Month")
-                                .padding(.bottom)
-                            Text("Jan")
-                            Text("Feb")
-                            Text("Mar")
-                            Text("Apr")
-                            Text("May")
-                            Text("June")
-                            Text("July")
-                        }
+//                        VStack(alignment: .leading){
+//                            Text("Opening Month")
+//                                .padding(.bottom)
+//
+//                            let Hahaha = data.productAvailableMonths
+//
+//                            HStack {
+//                                ForEach(Hahaha, id: \.self){ month in
+//                                    Text(month.month ?? "")
+//                                }
+//                            }
+//                        }
                     }
                     
-                    Text("Product Price: 10 euros per hour")
+                    Text("Price: 10 euros per hour")
                         .padding(.top)
                         .padding(.bottom)
                     
@@ -94,8 +107,8 @@ struct ProductDetailDescription: View {
 }
 
 
-struct ProductDetailDescription_Previews: PreviewProvider {
-    static var previews: some View {
-        ProductDetailDescription()
-    }
-}
+//struct ProductDetailDescription_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ProductDetailDescription()
+//    }
+//}

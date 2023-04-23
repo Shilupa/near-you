@@ -89,7 +89,7 @@ struct ProductResponse: Codable {
             case businessHoursDefault = "default"
         }
         
-        struct Default: Codable {
+        struct Default: Codable, Hashable {
             let closes: String?
             let open: Bool?
             let opens: String?

@@ -62,12 +62,9 @@ struct DetailProductView: View {
                 Spacer(minLength: 50)
                 
                 // pass all this information to product detail description
-                ProductDetailDescription()
+                ProductDetailDescription(data: data)
                 
 
-
-                
-                
                 DetailViewSocialMedia()
                 
             }
