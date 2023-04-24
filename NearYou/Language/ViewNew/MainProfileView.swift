@@ -31,6 +31,7 @@ struct MainProfileView: View {
                     .overlay(
                         Circle()
                             .stroke(Color("ThemeColour"), lineWidth: 5)
+                            .shadow(color: Color.gray, radius: 7, x: 0, y: 2)
                     )
                 Text(gvvm.userName)
                     .font(.custom("Poppins-Bold", size: 25))

@@ -20,7 +20,7 @@ struct SideMenuView: View {
         NavigationView {
             ZStack {
                 //LinearGradient(gradient: Gradient(colors: [Color(hex: "FBF2B8"), Color(hex: "FACFD9")]), startPoint: .top, endPoint: .bottom)
-                    //.ignoresSafeArea()
+                //.ignoresSafeArea()
                 
                 VStack {
                     ProfileView().frame(height: 300)
@@ -184,7 +184,7 @@ struct AboutUs: View {
             }
         }
     }
-
+    
     struct SideMenuView_Previews: PreviewProvider {
         static var previews: some View {
             SideMenuView().environmentObject(GlobalVarsViewModel())

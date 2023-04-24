@@ -84,7 +84,7 @@ struct LanguageOptionView: View {
             let _ = print("curr", gvvm.currLang)
             let _ = print("selected", selectedLanguage)
             let _ = print("def", dlvm.savedSetting.last?.myLang ?? "en")
-           
+            
             Button(action: {
                 gvvm.updateLang("fi")
                 dlvm.addDefaultLang("fi")
@@ -133,9 +133,9 @@ struct LanguageOptionView: View {
             selectedLanguage = gvvm.currLang
         }
         //setting the value of selectedLanguage
-            .onAppear {
-                selectedLanguage = gvvm.currLang
-            }
+        .onAppear {
+            selectedLanguage = gvvm.currLang
+        }
     }
 }
 
