@@ -54,7 +54,7 @@ struct ProfileView: View {
                             Circle()
                                 .stroke(Color("ThemeColour"), lineWidth: 5)
                         )
-                        .padding(.bottom, 16)
+                        .padding(.bottom, -5)
                         .shadow(color: Color.gray, radius: 7, x: 0, y: 2)
                         .onTapGesture {
                             gvvm.updateShowProfileView(true)
@@ -63,7 +63,7 @@ struct ProfileView: View {
                     Text(gvvm.userName)
                         .font(.system(size: 24, weight: .semibold))
                         .fixedSize(horizontal: false, vertical: true)
-                        .padding(.bottom, 8)
+                        .padding(.bottom, -5)
                     
                     Text(gvvm.userAddress)
                         .font(.subheadline)
@@ -74,6 +74,7 @@ struct ProfileView: View {
                 
             }
             Spacer()
+            
         }
         .padding(.top, 50)
         // When view is loaded these values are set
@@ -96,6 +97,7 @@ struct CombineView: View{
             LanguageView()
             AboutUs()
         }
+        .padding(.top, -30)
     }
 }
 

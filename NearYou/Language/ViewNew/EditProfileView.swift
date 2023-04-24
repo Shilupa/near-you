@@ -32,7 +32,7 @@ struct EditProfileView: View {
                             .clipShape(RoundedRectangle(cornerRadius: 20))
                             .overlay(
                                 RoundedRectangle(cornerRadius: 20)
-                                    .stroke(Color.orange, lineWidth: 5)
+                                    .stroke(Color("ThemeColour"), lineWidth: 5)
                             )
                     }
                     Button(action: {
@@ -44,7 +44,7 @@ struct EditProfileView: View {
                             .padding()
                             .environment(\.locale, Locale.init(identifier: gvvm.currLang))
                     }
-                    .background(Color.orange)
+                    .background(Color("ThemeColour"))
                     .clipShape(RoundedRectangle(cornerRadius: 40))
                     .sheet(isPresented: $showImagePicker) {
                         ImagePicker(selectedImage: $selectedImage)
@@ -53,7 +53,7 @@ struct EditProfileView: View {
                     VStack {
                         HStack {
                             Text("Name")
-                                .foregroundColor(.orange)
+                                .foregroundColor(Color("ThemeColour"))
                                 .environment(\.locale, Locale.init(identifier: gvvm.currLang))
                             
                             Spacer()
@@ -71,13 +71,13 @@ struct EditProfileView: View {
                         
                         HStack {
                             Text("Address")
-                                .foregroundColor(.orange)
+                                .foregroundColor(Color("ThemeColour"))
                                 .environment(\.locale, Locale.init(identifier: gvvm.currLang))
                             
                             Spacer()
                             
                             Image(systemName: "mappin.and.ellipse")
-                                .foregroundColor(.orange)
+                                .foregroundColor(Color("ThemeColour"))
                                 .padding(.leading, 4)
                             
                         }
@@ -104,7 +104,7 @@ struct EditProfileView: View {
                             .padding()
                             .environment(\.locale, Locale.init(identifier: gvvm.currLang))
                     }
-                    .background(Color.orange)
+                    .background(Color("ThemeColour"))
                     .clipShape(RoundedRectangle(cornerRadius: 40))
                     .padding(.bottom, 250)
                     .disabled(isButtonDisabled)

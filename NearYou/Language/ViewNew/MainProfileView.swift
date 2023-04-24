@@ -30,7 +30,7 @@ struct MainProfileView: View {
                     .clipShape(Circle())
                     .overlay(
                         Circle()
-                            .stroke(Color.orange, lineWidth: 3)
+                            .stroke(Color("ThemeColour"), lineWidth: 5)
                     )
                 Text(gvvm.userName)
                     .font(.custom("Poppins-Bold", size: 25))

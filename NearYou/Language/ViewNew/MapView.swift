@@ -39,7 +39,7 @@ struct MapView: View {
                     
                     if let products = vm.allData?.data.product {
                         MapCardView(data: products[currentIndex])
-                            .background(isSelected ? Color.orange : Color.white)
+                            .background(isSelected ? Color("ThemeColour") : Color.white)
                             .cornerRadius(10)
                             .environmentObject(MapViewModel())
                             .gesture(
@@ -85,7 +85,7 @@ struct MapView: View {
                         .foregroundColor(.white)
                         .cornerRadius(8)
                         .labelStyle(.iconOnly)
-                        .tint(.orange)
+                        .tint(Color("ThemeColour"))
                         .symbolVariant(.fill)
                         
                     }

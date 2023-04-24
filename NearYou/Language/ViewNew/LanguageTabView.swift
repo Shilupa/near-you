@@ -31,13 +31,9 @@ struct ListAndMap: View {
                     .foregroundColor(Int(dvm.savedSetting.last?.listOrMap ?? 0) == 0 ? .white : .black)
                     .frame(minWidth: 0, maxWidth: 63)
                     .frame(minHeight: 0, maxHeight: 25)
-                    .background(Int(dvm.savedSetting.last?.listOrMap ?? 0) == 0 ? Color.orange : Color.white)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 25)
-                        //.stroke(Color.orange, lineWidth: isLeftButtonSelected ? 0 : 1)
-                            .stroke(Color.clear, lineWidth: 0)
-                    ).environment(\.locale, Locale.init(identifier: gvvm.currLang))
-                //.padding(EdgeInsets(top: 5, leading: 15, bottom: 5, trailing: 0))
+                    .background(Int(dvm.savedSetting.last?.listOrMap ?? 0) == 0 ? Color("ThemeColour") : Color.gray.opacity(0.5))
+                    .buttonStyle(CustomButtonStyle())
+                    .environment(\.locale, Locale.init(identifier: gvvm.currLang))
             }
             
             Button(action: {
@@ -49,11 +45,8 @@ struct ListAndMap: View {
                     .foregroundColor(Int(dvm.savedSetting.last?.listOrMap ?? 0) == 1 ? .white : .black)
                     .frame(minWidth: 0, maxWidth: 70)
                     .frame(minHeight: 0, maxHeight: 25)
-                    .background(Int(dvm.savedSetting.last?.listOrMap ?? 0) == 1 ? Color.orange : Color.white)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 25)
-                            .stroke(Color.clear, lineWidth: 0) // remove the border color
-                    )
+                    .background(Int(dvm.savedSetting.last?.listOrMap ?? 0) == 1 ? Color("ThemeColour") : Color.gray.opacity(0.5))
+                    .buttonStyle(CustomButtonStyle())
                     .environment(\.locale, Locale.init(identifier: gvvm.currLang))
             }
         }
@@ -62,6 +55,18 @@ struct ListAndMap: View {
             RoundedRectangle(cornerRadius: 25)
             // or Capsule()
         }
+    }
+}
+
+struct CustomButtonStyle: ButtonStyle {
+    func makeBody(configuration: Self.Configuration) -> some View {
+        configuration.label
+            .padding(10)
+            .background(
+                RoundedRectangle(cornerRadius: 25)
+                    .stroke(Color("ThemeColour"), lineWidth: configuration.isPressed ? 3 : 1)
+            )
+            .contentShape(RoundedRectangle(cornerRadius: 25))
     }
 }
 
@@ -91,7 +96,7 @@ struct LanguageOptionView: View {
             .focused($defaultButton, equals: 1)
             
             .buttonStyle(RoundedButtonStyle(
-                backgroundColor: selectedLanguage == "fi" ? .orange : Color(.systemGray5),
+                backgroundColor: selectedLanguage == "fi" ? Color("ThemeColour") : Color(.systemGray5),
                 foregroundColor: .black
             ))
             // Default language
@@ -105,7 +110,7 @@ struct LanguageOptionView: View {
             })
             .focused($defaultButton, equals: 0)
             .buttonStyle(RoundedButtonStyle(
-                backgroundColor: selectedLanguage == "en" ? .orange : Color(.systemGray5),
+                backgroundColor: selectedLanguage == "en" ? Color("ThemeColour") : Color(.systemGray5),
                 foregroundColor: .black
             ))
             
@@ -119,7 +124,7 @@ struct LanguageOptionView: View {
             })
             .focused($defaultButton, equals: 2)
             .buttonStyle(RoundedButtonStyle(
-                backgroundColor: selectedLanguage == "sv" ? .orange : Color(.systemGray5),
+                backgroundColor: selectedLanguage == "sv" ? Color("ThemeColour") : Color(.systemGray5),
                 foregroundColor: .black
             ))
         }
@@ -147,7 +152,7 @@ struct RoundedButtonStyle: ButtonStyle {
                     RoundedRectangle(cornerRadius: 15.0)
                         .fill(backgroundColor)
                     RoundedRectangle(cornerRadius: 15.0)
-                        .stroke(Color.orange, lineWidth: 2)
+                        .stroke(Color("ThemeColour"), lineWidth: 2)
                 }
             )
             .clipShape(RoundedRectangle(cornerRadius: 15.0))

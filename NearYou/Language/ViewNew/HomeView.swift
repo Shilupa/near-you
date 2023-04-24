@@ -130,7 +130,7 @@ struct MixedView: View {
         ToggleHomeView(selectedTab: $selectedTab).cornerRadius(gvvm.showSideView ? 20 : 10)
             .overlay(
                 RoundedRectangle(cornerRadius: gvvm.showSideView ? 20 : 10)
-                    .stroke(Color.orange.opacity(2), lineWidth: 2)
+                    .stroke(Color("ThemeColour").opacity(2), lineWidth: 2)
                     .shadow(color: Color.gray.opacity(0.2), radius: 5, x: 0, y: 2)
             )
             .offset(x: gvvm.showSideView ? 300 : 0, y: gvvm.showSideView ? 44 : 0)
