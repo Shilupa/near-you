@@ -93,7 +93,7 @@ struct CombineView: View{
         VStack(spacing: 0) {
             MyHomeView()
             LanguageView()
-            AboutUsView()
+            AboutUs()
         }
     }
 }
@@ -116,7 +116,7 @@ struct MyHomeView: View {
             .padding(.leading, 30)
             ListAndMap()
                 .padding(EdgeInsets(top: -32, leading: 40, bottom: 20, trailing: 0))
-                .font(Font.custom("Poppins-Regular", size: 17))
+                .font(Font.custom("Poppins-Regular", size: 12))
         }
     }
 }
@@ -142,31 +142,49 @@ struct LanguageView: View {
             
             LanguageOptionView()
                 .padding(EdgeInsets(top: -25, leading: 40, bottom: 20, trailing: 0))
-                .font(Font.custom("Poppins-Regular", size: 17))
+                .font(Font.custom("Poppins-Regular", size: 15))
         }
     }
 }
 
-struct AboutUsView: View {
+struct AboutUs: View {
     @EnvironmentObject private var gvvm: GlobalVarsViewModel
+    @State private var navigateToAboutUsView = false
     
     var body: some View {
-        HStack{
-            Image(systemName: "info.circle.fill")
-                .frame(width:26, height:26)
-                .padding(15)
-            Text("About Us")
-                .font(.system(size: 22, weight: .semibold))
-                .environment(\.locale, Locale.init(identifier: gvvm.currLang))
-                .frame(maxWidth: .infinity, alignment: .leading)
+        Button(action: {
+            navigateToAboutUsView = true
+        }) {
+            HStack {
+                Image(systemName: "info.circle.fill")
+                    .frame(width: 26, height: 26)
+                    .padding(15)
+                    .foregroundColor(.black)
+                Text("About Us")
+                    .font(.system(size: 22, weight: .semibold))
+                    .environment(\.locale, Locale.init(identifier: gvvm.currLang))
+                    .foregroundColor(.black)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+            }
+            .padding(.leading, 28)
+            .environment(\.locale, Locale.init(identifier: gvvm.currLang))
         }
-        .padding(.leading, 28)
-        .environment(\.locale, Locale.init(identifier: gvvm.currLang))
+        .fullScreenCover(isPresented: $navigateToAboutUsView) {
+            NavigationView {
+                AboutUsView()
+                    .navigationBarItems(leading: Button(action: {
+                        navigateToAboutUsView = false
+                    }, label: {
+                        Image(systemName: "chevron.backward")
+                            .foregroundColor(.black)
+                    }))
+            }
+        }
     }
-}
 
-struct SideMenuView_Previews: PreviewProvider {
-    static var previews: some View {
-        SideMenuView().environmentObject(GlobalVarsViewModel())
+    struct SideMenuView_Previews: PreviewProvider {
+        static var previews: some View {
+            SideMenuView().environmentObject(GlobalVarsViewModel())
+        }
     }
 }

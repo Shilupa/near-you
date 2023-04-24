@@ -22,9 +22,6 @@ struct EditProfileView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                //LinearGradient(gradient: Gradient(colors: [Color(hex: "FBF2B8"), Color(hex: "FACFD9")]), startPoint: .top, endPoint: .bottom)
-                    //.ignoresSafeArea()
-                
                 VStack {
                     if selectedImage != nil {
                         Image(uiImage: selectedImage!)
@@ -64,6 +61,11 @@ struct EditProfileView: View {
                         .padding(.horizontal)
                         
                         TextField("Jane Korhonen", text: $name)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 8)
+                                    .stroke(Color.gray, lineWidth: 2)
+                                    .opacity(0.6)
+                            )
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                             .padding(.horizontal)
                         
@@ -82,9 +84,13 @@ struct EditProfileView: View {
                         .padding(.horizontal)
                         
                         TextField("Some street no.15, London", text: $address)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 8)
+                                    .stroke(Color.gray, lineWidth: 2)
+                                    .opacity(0.6)
+                            )
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                             .padding(.horizontal)
-                        
                         Spacer()
                     }
                     .padding(.top, 80)
