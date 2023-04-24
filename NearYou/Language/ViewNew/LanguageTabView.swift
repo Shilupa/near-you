@@ -28,7 +28,6 @@ struct ListAndMap: View {
             }) {
                 Text("List")
                     .padding()
-                    .font(.system(size: 13))
                     .foregroundColor(Int(dvm.savedSetting.last?.listOrMap ?? 0) == 0 ? .white : .black)
                     .frame(minWidth: 0, maxWidth: 63)
                     .frame(minHeight: 0, maxHeight: 25)
@@ -47,7 +46,6 @@ struct ListAndMap: View {
             }) {
                 Text("Map")
                     .padding()
-                    .font(.system(size: 13))
                     .foregroundColor(Int(dvm.savedSetting.last?.listOrMap ?? 0) == 1 ? .white : .black)
                     .frame(minWidth: 0, maxWidth: 70)
                     .frame(minHeight: 0, maxHeight: 25)

@@ -108,13 +108,15 @@ struct MyHomeView: View {
                     .padding(15)
                 
                 Text("Default view")
-                    .font(.system(size: 22, weight: .semibold))
+                    .font(Font.custom("Poppins-SemiBold", size: 20))
                     .environment(\.locale, Locale.init(identifier: gvvm.currLang))
                 
                 Spacer()
             }
             .padding(.leading, 30)
             ListAndMap()
+                .padding(EdgeInsets(top: -32, leading: 40, bottom: 20, trailing: 0))
+                .font(Font.custom("Poppins-Regular", size: 17))
         }
     }
 }
@@ -129,8 +131,8 @@ struct LanguageView: View {
                     .padding(15)
                 
                 Text("Language")
-                    .font(.system(size: 22, weight: .semibold))
                     .environment(\.locale, Locale.init(identifier: gvvm.currLang))
+                    .font(Font.custom("Poppins-SemiBold", size: 20))
                 
                 Spacer()
             }
@@ -139,6 +141,8 @@ struct LanguageView: View {
             .environment(\.locale, Locale.init(identifier: gvvm.currLang))
             
             LanguageOptionView()
+                .padding(EdgeInsets(top: -25, leading: 40, bottom: 20, trailing: 0))
+                .font(Font.custom("Poppins-Regular", size: 17))
         }
     }
 }

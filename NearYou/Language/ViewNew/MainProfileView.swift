@@ -17,8 +17,8 @@ struct MainProfileView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                LinearGradient(gradient: Gradient(colors: [Color(hex: "FBF2B8"), Color(hex: "FACFD9")]), startPoint: .top, endPoint: .bottom)
-                    .ignoresSafeArea()
+                //                LinearGradient(gradient: Gradient(colors: [Color(hex: "FBF2B8"), Color(hex: "FACFD9")]), startPoint: .top, endPoint: .bottom)
+                //                    .ignoresSafeArea()
                 
                 VStack(alignment: .center) {
                     Image(uiImage: gvvm.profileImage!)
