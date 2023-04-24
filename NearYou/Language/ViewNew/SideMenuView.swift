@@ -19,8 +19,8 @@ struct SideMenuView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                LinearGradient(gradient: Gradient(colors: [Color(hex: "FBF2B8"), Color(hex: "FACFD9")]), startPoint: .top, endPoint: .bottom)
-                    .ignoresSafeArea()
+                //LinearGradient(gradient: Gradient(colors: [Color(hex: "FBF2B8"), Color(hex: "FACFD9")]), startPoint: .top, endPoint: .bottom)
+                    //.ignoresSafeArea()
                 
                 VStack {
                     ProfileView().frame(height: 300)
@@ -52,9 +52,10 @@ struct ProfileView: View {
                         .clipShape(Circle())
                         .overlay(
                             Circle()
-                                .stroke(Color.orange, lineWidth: 3)
+                                .stroke(Color("ThemeColour"), lineWidth: 5)
                         )
                         .padding(.bottom, 16)
+                        .shadow(color: Color.gray, radius: 7, x: 0, y: 2)
                         .onTapGesture {
                             gvvm.updateShowProfileView(true)
                         }

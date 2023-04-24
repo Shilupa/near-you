@@ -17,6 +17,8 @@ struct MainProfileView: View {
     // State objects
     @State private var profileImage: UIImage?
     @StateObject private var mypvm = MyProfileViewModel()
+    @EnvironmentObject var vm: DataViewModel
+    @StateObject private var fvm = FavouritesViewModel()
     
     var body: some View {
         NavigationView {
@@ -30,7 +32,6 @@ struct MainProfileView: View {
                         Circle()
                             .stroke(Color.orange, lineWidth: 3)
                     )
-                
                 Text(gvvm.userName)
                     .font(.custom("Poppins-Bold", size: 25))
                 
@@ -56,6 +57,7 @@ struct MainProfileView: View {
                 .padding(.top, 14)
                 
                 Spacer()
+                MainProfilePickerView(selectedTab: $selectedTab)
             }
             .padding(.horizontal, 16)
             .navigationBarTitle("")
@@ -69,12 +71,12 @@ struct MainProfileView: View {
                                 .imageScale(.large)
                         })
                 // Event listner when navigation is done
-                        .simultaneousGesture(TapGesture().onEnded{
-                            // Hides MainView when showMainView is true
-                            gvvm.updateShowProfileView(false)
-                            gvvm.updateShowSideView(true)
-                            gvvm.updateShowBackButton(true)
-                        }),
+                    .simultaneousGesture(TapGesture().onEnded{
+                        // Hides MainView when showMainView is true
+                        gvvm.updateShowProfileView(false)
+                        gvvm.updateShowSideView(true)
+                        gvvm.updateShowBackButton(true)
+                    }),
                 trailing:
                     NavigationLink(
                         destination: EditProfileView(),
@@ -98,6 +100,16 @@ struct MainProfileView: View {
         }
     }
 }
+
+struct MainProfilePickerView: View {
+    @Binding var selectedTab: Int
+    var body: some View {
+        if(selectedTab == 2){
+            FavouritesView()
+        }
+    }
+}
+
 
 struct MainProfileView_Previews: PreviewProvider {
     static var previews: some View {
