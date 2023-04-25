@@ -81,10 +81,6 @@ struct LanguageOptionView: View {
     var body: some View {
         
         HStack {
-            let _ = print("curr", gvvm.currLang)
-            let _ = print("selected", selectedLanguage)
-            let _ = print("def", dlvm.savedSetting.last?.myLang ?? "en")
-            
             Button(action: {
                 gvvm.updateLang("fi")
                 dlvm.addDefaultLang("fi")

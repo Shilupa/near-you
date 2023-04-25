@@ -6,7 +6,6 @@
 //
 
 import Foundation
-
 import CoreData
 import SwiftUI
 
@@ -35,14 +34,25 @@ class FavouritesViewModel: ObservableObject {
             print("Error fetching user data \(error)")
         }
     }
-
+    
     // Adding user data to Core Data
     func addfavourite(_ id : String){
         let favourite = Favourites(context: container.viewContext)
         favourite.favouriteId = id
         saveData()
     }
-
+    
+    func deleteFavourite(_ id: String){
+        let fetchRequest = NSFetchRequest<Favourites>(entityName: "Favourites")
+        fetchRequest.predicate = NSPredicate(format: "id == %@", id)
+        
+        // Delete the entity if it exists
+        if let entityToDelete = self.savedSetting.first {
+            container.viewContext.delete(entityToDelete)
+            saveData()
+        }
+    }
+    
     // Saving data in Core Data
     func saveData(){
         do{
@@ -53,5 +63,5 @@ class FavouritesViewModel: ObservableObject {
             print("Error saving  user data \(error)")
         }
     }
-
+    
 }

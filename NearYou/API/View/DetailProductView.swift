@@ -43,7 +43,6 @@ struct DetailProductView: View {
         
         VStack(alignment: .leading){
             ScrollView{
-                let _ = print(id, isFavourite)
                 // Photos
                 PhotoGalaryView(ImagesFile: allPhoto())
                 //PhotoGalaryView()

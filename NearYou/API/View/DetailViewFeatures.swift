@@ -46,9 +46,8 @@ struct DetailViewFeatures: View {
             }.onTapGesture {
                 if(!isFavourite){
                     fvm.addfavourite(id)
-                    print("Fav added")
                 }else{
-                    print("Nothing")
+                    fvm.deleteFavourite(id)
                 }
             }
             
