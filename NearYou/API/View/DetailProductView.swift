@@ -12,6 +12,7 @@ struct DetailProductView: View {
     let data: ProductResponse.Product
     @State var isFavourite = false
     @StateObject private var fvm = FavouritesViewModel()
+    @State var id = ""
     
     func allPhoto() -> [String] {
         var pictureArray : [String] = []
@@ -42,7 +43,7 @@ struct DetailProductView: View {
         
         VStack(alignment: .leading){
             ScrollView{
-                
+                let _ = print(id, isFavourite)
                 // Photos
                 PhotoGalaryView(ImagesFile: allPhoto())
                 //PhotoGalaryView()
@@ -58,7 +59,7 @@ struct DetailProductView: View {
                 
                 
                 // Language selector, Plan the trip, favourite
-                DetailViewFeatures(isFavourite: $isFavourite)
+                DetailViewFeatures(isFavourite: $isFavourite, id: $id)
                 
                 Spacer(minLength: 50)
                 
@@ -71,6 +72,7 @@ struct DetailProductView: View {
             }
         }.onAppear{
             isFavourite = fvm.savedSetting.contains(where: {$0.favouriteId == data.id})
+            id = data.id ?? "No value"
         }
         
     }

@@ -12,7 +12,8 @@ struct DetailViewFeatures: View {
     let options = ["Option 1", "Option 2", "Option 3"]
     @State private var selectedOption = "Option 1"
     @Binding var isFavourite: Bool
-    
+    @Binding var id: String
+    @StateObject private var fvm = FavouritesViewModel()
     
     var body: some View {
         
@@ -42,6 +43,13 @@ struct DetailViewFeatures: View {
                     .foregroundColor(isFavourite ? .red : .gray)
                     .scaledToFit()
                     .frame(width: 30, height: 30)
+            }.onTapGesture {
+                if(!isFavourite){
+                    fvm.addfavourite(id)
+                    print("Fav added")
+                }else{
+                    print("Nothing")
+                }
             }
             
         }
