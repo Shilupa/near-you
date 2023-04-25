@@ -10,21 +10,21 @@ import AVFoundation
 import Speech
 
 class SpeechRecognizer: ObservableObject {
-    
+
     init() {
         recognizer = SFSpeechRecognizer()
     }
-    
+
     deinit {
         reset()
     }
-    
+
     enum RecognizerError: Error {
         case nilRecognizer
         case notAuthorizedToRecognize
         case notPermittedToRecord
         case recognizerIsUnavailable
-        
+
         var message: String {
             switch self {
             case .nilRecognizer: return "Can't initialize speech recognizer"
@@ -34,14 +34,15 @@ class SpeechRecognizer: ObservableObject {
             }
         }
     }
-    
+
     @Published var transcript: String = ""
-    
+
     private var audioEngine: AVAudioEngine?
     private var request: SFSpeechAudioBufferRecognitionRequest?
     private var task: SFSpeechRecognitionTask?
     private let recognizer: SFSpeechRecognizer?
-    
+    private var isRecording = false
+
     /// Reset the speech recognizer.
     func reset() {
         task?.cancel()
@@ -49,35 +50,41 @@ class SpeechRecognizer: ObservableObject {
         audioEngine = nil
         request = nil
         task = nil
+        isRecording = false
     }
-    
+
     /**
      Begin transcribing audio.
-     
+
      Creates a `SFSpeechRecognitionTask` that transcribes speech to text until you call `stopTranscribing()`.
      The resulting transcription is continuously written to the published `transcript` property.
      */
     func transcribe() {
+        guard !isRecording else {
+            return
+        }
+        isRecording = true
         DispatchQueue(label: "Speech Recognizer Queue", qos: .background).async { [weak self] in
             guard let self = self, let recognizer = self.recognizer, recognizer.isAvailable else {
                 self?.speakError(RecognizerError.recognizerIsUnavailable)
                 return
             }
-            
+
             do {
                 let (audioEngine, request) = try Self.prepareEngine()
                 self.audioEngine = audioEngine
                 self.request = request
-                
+
                 self.task = recognizer.recognitionTask(with: request) { result, error in
                     let receivedFinalResult = result?.isFinal ?? false
                     let receivedError = error != nil // != nil mean there's error (true)
-                    
+
                     if receivedFinalResult || receivedError {
+                        self.isRecording = false
                         audioEngine.stop()
                         audioEngine.inputNode.removeTap(onBus: 0)
                     }
-                    
+
                     if let result = result {
                         self.speak(result.bestTranscription.formattedString)
                     }
@@ -88,18 +95,27 @@ class SpeechRecognizer: ObservableObject {
             }
         }
     }
-    
+
+    // Stop transcribing audio.
+        func stopTranscribing() {
+            guard isRecording else {
+                return
+            }
+            isRecording = false
+            reset()
+        }
+
     private static func prepareEngine() throws -> (AVAudioEngine, SFSpeechAudioBufferRecognitionRequest) {
         let audioEngine = AVAudioEngine()
-        
+
         let request = SFSpeechAudioBufferRecognitionRequest()
         request.shouldReportPartialResults = true
-        
+
         let audioSession = AVAudioSession.sharedInstance()
         try audioSession.setCategory(.record, mode: .measurement, options: .duckOthers)
         try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
         let inputNode = audioEngine.inputNode
-        
+
         let recordingFormat = inputNode.outputFormat(forBus: 0)
         inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) {
             (buffer: AVAudioPCMBuffer, when: AVAudioTime) in
@@ -107,19 +123,15 @@ class SpeechRecognizer: ObservableObject {
         }
         audioEngine.prepare()
         try audioEngine.start()
-        
+
         return (audioEngine, request)
     }
-    
-    /// Stop transcribing audio.
-        func stopTranscribing() {
-            reset()
-        }
-    
+
     private func speak(_ message: String) {
             transcript = message
+        print("Transcript", transcript)
     }
-    
+
     private func speakError(_ error: Error) {
             var errorMessage = ""
             if let error = error as? RecognizerError {
@@ -129,7 +141,7 @@ class SpeechRecognizer: ObservableObject {
             }
             transcript = "<< \(errorMessage) >>"
     }
-    
+
 }
 
 extension SFSpeechRecognizer {
@@ -151,3 +163,69 @@ extension AVAudioSession {
         }
     }
 }
+
+
+
+
+
+
+//class SpeechRecognizer: NSObject, ObservableObject {
+//    private let speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: "en-US"))
+//    private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
+//    private var recognitionTask: SFSpeechRecognitionTask?
+//    private let audioEngine = AVAudioEngine()
+//
+//    @Published var transcript = ""
+//
+//    func transcribe() {
+//        guard let recognitionRequest = recognitionRequest else {
+//            return
+//        }
+//
+//        if recognitionTask != nil {
+//            recognitionTask?.cancel()
+//            self.recognitionTask = nil
+//        }
+//
+//        let audioSession = AVAudioSession.sharedInstance()
+//        do {
+//            try audioSession.setCategory(.record, mode: .measurement, options: .duckOthers)
+//            try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
+//        } catch {
+//            print("audioSession properties weren't set because of an error.")
+//        }
+//
+//        recognitionTask = speechRecognizer?.recognitionTask(with: recognitionRequest, resultHandler: { result, error in
+//            if let result = result {
+//                self.transcript = result.bestTranscription.formattedString
+//            }
+//
+//            if error != nil {
+//                self.stopTranscribing()
+//            }
+//        })
+//
+//        let inputNode = audioEngine.inputNode
+//        let recordingFormat = inputNode.outputFormat(forBus: 0)
+//
+//        inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { buffer, _ in
+//            recognitionRequest.append(buffer)
+//        }
+//
+//        audioEngine.prepare()
+//
+//        do {
+//            try audioEngine.start()
+//        } catch {
+//            print("audioEngine couldn't start because of an error.")
+//        }
+//    }
+//
+//    func stopTranscribing() {
+//        audioEngine.stop()
+//        recognitionRequest?.endAudio()
+//        recognitionTask?.cancel()
+//        recognitionTask = nil
+//        recognitionRequest = nil
+//    }
+//}

@@ -14,7 +14,7 @@ struct SearchView: View {
     @State private var filteredList: [ProductResponse.Product] = []
     @State private var categories : [String] = []
     @State private var selectedCategory : String?
-
+    
     
     private func performSearch() {
         if let allData = vm.allData {
@@ -67,7 +67,7 @@ struct SearchView: View {
                 }
                 .frame(height: 40)
                 .padding(.horizontal)
-            
+                
                 
                 List {
                     ForEach(filteredList, id: \.id) { product in
@@ -89,11 +89,8 @@ struct SearchView: View {
         }
         .onChange(of: searchText) { _ in
             performSearch()
-                
-            
         }
     }
-
 }
 
 struct SearchBar: View {
@@ -109,10 +106,10 @@ struct SearchBar: View {
                 .foregroundColor(.gray)
                 .padding(.horizontal)
             TextField(placeholder, text: $text, onCommit: onSearch)
-            TextField(placeholder, text: $speechRecognizer.transcript)
                 .foregroundColor(.primary)
                 .autocapitalization(.none)
                 .disableAutocorrection(true)
+            
             if !text.isEmpty {
                 Button(action: {
                     text = ""
@@ -122,31 +119,34 @@ struct SearchBar: View {
                         .foregroundColor(.gray)
                 }
             }
-
+            
             Button(action: {
-                if !isRecording {
+                isRecording.toggle()
+                if isRecording {
                     speechRecognizer.transcribe()
                 } else {
                     speechRecognizer.stopTranscribing()
+                    text = speechRecognizer.transcript
                 }
-                isRecording.toggle()
             }, label: {
-                    Image(systemName: "mic.fill")
-                        .foregroundColor(.gray)
-                })
+                Image(systemName: "mic.fill")
+                    .foregroundColor(isRecording ? .red : .gray)
+            })
             .padding(.horizontal)
         }
         .frame(height: 30)
         .padding(.vertical, 10)
         .background(Color(.systemGray5))
         .cornerRadius(10)
+        
     }
 }
+
 
 struct CategoryCardView: View {
     let category: String
     let isSelected: Bool
-
+    
     var body: some View {
         VStack {
             Text(category)
