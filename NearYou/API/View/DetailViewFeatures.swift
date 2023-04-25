@@ -11,7 +11,7 @@ struct DetailViewFeatures: View {
     
     let options = ["Option 1", "Option 2", "Option 3"]
     @State private var selectedOption = "Option 1"
-    @State private var isFavourite = false
+    @Binding var isFavourite: Bool
     
     
     var body: some View {
@@ -50,9 +50,9 @@ struct DetailViewFeatures: View {
         
     }
 }
-
-struct DetailViewFeatures_Previews: PreviewProvider {
-    static var previews: some View {
-        DetailViewFeatures()
-    }
-}
+//
+//struct DetailViewFeatures_Previews: PreviewProvider {
+//    static var previews: some View {
+//        DetailViewFeatures()
+//    }
+//}

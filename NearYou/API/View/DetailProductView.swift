@@ -10,7 +10,8 @@ import SwiftUI
 struct DetailProductView: View {
     
     let data: ProductResponse.Product
-    
+    @State var isFavourite = false
+    @StateObject private var fvm = FavouritesViewModel()
     
     func allPhoto() -> [String] {
         var pictureArray : [String] = []
@@ -45,33 +46,31 @@ struct DetailProductView: View {
                 // Photos
                 PhotoGalaryView(ImagesFile: allPhoto())
                 //PhotoGalaryView()
-
+                
                 // Information update date
                 Text("Information updated on " + dateFormated(data.updatedAt).formatted(date: .abbreviated, time: .shortened))
                     .font(Font.custom("Poppins-LightItalic", size: 14))
                     .frame(width: 370, height: 30, alignment: .topLeading)
                     .padding(.leading, 10)
-
+                
                 // pass information like naviation coordinate, phone, website and email
                 DetailViewOptions(websiteURL: data.productInformations[0].url ?? "https://www.example.com")
                 
                 
                 // Language selector, Plan the trip, favourite
-                DetailViewFeatures()
+                DetailViewFeatures(isFavourite: $isFavourite)
                 
                 Spacer(minLength: 50)
                 
                 // pass all this information to product detail description
                 ProductDetailDescription(data: data)
                 
-
+                
                 DetailViewSocialMedia()
                 
             }
-            
-            
-            
-            
+        }.onAppear{
+            isFavourite = fvm.savedSetting.contains(where: {$0.favouriteId == data.id})
         }
         
     }
