@@ -6,7 +6,7 @@
 </p>
 
 ## Swift UI IOS project
-To fulfill the requirements of our second-year course at Metropolia University of Applied Sciences, our group of four students has been tasked with creating an iOS app using SwiftUI. The purpose of the course is to create a mobile application using Swift programming language while integrating user interface control with SwiftUI and following guidelines as well as course requirements.  
+To fulfill the requirements of our second-year course at Metropolia University of Applied Sciences, our group of four students has been tasked with creating an iOS app using SwiftUI. The purpose of the course is to create a mobile application while integrating user interface control with SwiftUI and following guidelines as well as course requirements.  
 
 ## Contents
 - Overview
