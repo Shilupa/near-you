@@ -7,12 +7,6 @@
 
 import SwiftUI
 
-// Sample for add padding to all direction in Vstack
-// To be deleted later
-// VStack{
-//    bla bla bla
-// }.padding(EdgeInsets(top: 50, leading: 0, bottom: 0, trailing: 0))
-
 struct SideMenuView: View {
     @EnvironmentObject private var gvvm: GlobalVarsViewModel
     
