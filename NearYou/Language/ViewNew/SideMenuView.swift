@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import CoreLocation
+
 
 // Sample for add padding to all direction in Vstack
 // To be deleted later
@@ -26,6 +28,8 @@ struct SideMenuView: View {
                     ProfileView().frame(height: 300)
                     
                     CombineView()
+                    
+                    
                     
                     Spacer()
                 }
@@ -89,11 +93,41 @@ struct ProfileView: View {
 }
 
 struct CombineView: View{
+    var weatherManager = WeatherManager()
+    @State var weather: ResponseBody?
+    @StateObject var locationManager = LocationManager()
+    
     var body: some View {
         VStack(spacing: 0) {
             MyHomeView()
             LanguageView()
             AboutUsView()
+            ContentView()
+            
+//            if let location = locationManager.location {
+//                if let weather = weather {
+//                    WeatherView(weather: weather)
+//                } else {
+//                    LoadingView()
+//                        .task {
+//                            do {
+//                                weather = try await weatherManager.getCurrentWeather(latitude: location.latitude, longitude: location.longitude)
+//                            } catch {
+//                                print("Error getting weather: \(error)")
+//                            }
+//                        }
+//                }
+//                Text("Your coordinates are: \(location.longitude), \(location.latitude)")
+//            }
+////            else {
+////                if locationManager.isLoading {
+////                    ProgressView()
+////                } else {
+////                    WelcomeView()
+////                    .environmentObject(locationManager)
+////
+////                }
+////            }
         }
     }
 }
@@ -147,17 +181,21 @@ struct AboutUsView: View {
     @EnvironmentObject private var gvvm: GlobalVarsViewModel
     
     var body: some View {
-        HStack{
-            Image(systemName: "info.circle.fill")
-                .frame(width:26, height:26)
-                .padding(15)
-            Text("About Us")
-                .font(.system(size: 22, weight: .semibold))
-                .environment(\.locale, Locale.init(identifier: gvvm.currLang))
-                .frame(maxWidth: .infinity, alignment: .leading)
+        VStack {
+            HStack{
+                Image(systemName: "info.circle.fill")
+                    .frame(width:26, height:26)
+                    .padding(15)
+                Text("About Us")
+                    .font(.system(size: 22, weight: .semibold))
+                    .environment(\.locale, Locale.init(identifier: gvvm.currLang))
+                    .frame(maxWidth: .infinity, alignment: .leading)
+            }
+            .padding(.leading, 28)
+            .environment(\.locale, Locale.init(identifier: gvvm.currLang))
+            .padding(.bottom)
+            Text("Weather at current location:")
         }
-        .padding(.leading, 28)
-        .environment(\.locale, Locale.init(identifier: gvvm.currLang))
     }
 }
 

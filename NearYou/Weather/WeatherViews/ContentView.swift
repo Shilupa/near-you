@@ -14,35 +14,6 @@ struct ContentView: View {
     @State var weather: ResponseBody?
     var body: some View {
         VStack {
-            
-            //The version with preset coordinates
-//            if let location = locationManager.location {
-//                if let weather = weather {
-//                    WeatherView(weather: weather)
-//                } else {
-//                    LoadingView()
-//                        .task {
-//                            do {
-//                                weather = try await weatherManager.getCurrentWeather(latitude: DummyCoordinates(), longitude: DummyCoordinates())
-//                            } catch {
-//                                print("Error getting weather: \(error)")
-//                            }
-//                        }
-//                }
-//
-//
-//                //                Text("Your coordinates are: \(location.longitude), \(location.latitude)")
-//            } else {
-//                if locationManager.isLoading {
-//                    ProgressView()
-//                } else {
-//                    WelcomeView()
-//                    .environmentObject(locationManager)}
-//            }
-            
-            
-            // The version with phone's location
-            
                         if let location = locationManager.location {
                             if let weather = weather {
                                 WeatherView(weather: weather)
@@ -56,17 +27,18 @@ struct ContentView: View {
                                             }
                                         }
                                 }
-            
-            
+
+
                             //                Text("Your coordinates are: \(location.longitude), \(location.latitude)")
-                        } else {
-                            if locationManager.isLoading {
-                                ProgressView()
-                            } else {
-                                WelcomeView()
-                                .environmentObject(locationManager)}
                         }
-            
+//            else {
+//                            if locationManager.isLoading {
+//                                ProgressView()
+//                            } else {
+//                                WelcomeView()
+//                                .environmentObject(locationManager)}
+//                        }
+
         }
     }
 }

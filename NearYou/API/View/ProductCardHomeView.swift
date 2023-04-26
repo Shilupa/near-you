@@ -60,6 +60,7 @@ struct ProductCardHomeView: View {
         let calendar = Calendar.current
         let weekday = calendar.component(.weekday, from: currentDate)
         
+        
         let url = URL(string:data.productImages?[0].thumbnailUrl ?? "http://placekitten.com/g/200/300" )
         
         HStack {
@@ -152,10 +153,6 @@ struct ProductCardHomeView: View {
                     
                     // Sebastian will work on this part of UI
                     WeatherWithAPICoordinates(data: data)
-//                    Text("WEATHER")
-//                        .lineLimit(1)
-//                        .font(Font.custom("Poppins-Regular", size: 12))
-                    
                 }
                 
 

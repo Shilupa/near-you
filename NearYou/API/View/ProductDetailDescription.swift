@@ -20,7 +20,7 @@ struct ProductDetailDescription: View {
                     .bold()
                 .padding(.leading)
                 Spacer()
-                Text("Weather")
+                ShowPopover(data: data)
             }
             
             Group {
