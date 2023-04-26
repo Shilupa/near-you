@@ -1,8 +1,8 @@
 # Near You
 ## Discover Finland at your fingertips with Near You.
 
-<p style="align: center">
-    <img src="https://users.metropolia.fi/~shilpasy/nearyouLogo/transparentLogo.png" alt="Near You Logo" width="200" height="200">
+<p align="center">
+  <img width="200" height="200" src="https://users.metropolia.fi/~shilpasy/nearyouLogo/transparentLogo.png">
 </p>
 
 ## Swift UI IOS project
