@@ -35,22 +35,24 @@ class FavouritesViewModel: ObservableObject {
         }
     }
     
-    // Adding user data to Core Data
+    // Adds favourites data to Core Data
     func addfavourite(_ id : String){
         let favourite = Favourites(context: container.viewContext)
         favourite.favouriteId = id
         saveData()
     }
     
+    // Deletes favourite from Core Data by favouriteId
     func deleteFavourite(_ id: String){
         let fetchRequest = NSFetchRequest<Favourites>(entityName: "Favourites")
-        fetchRequest.predicate = NSPredicate(format: "id == %@", id)
-        
-        // Delete the entity if it exists
-        if let entityToDelete = self.savedSetting.first {
-            container.viewContext.delete(entityToDelete)
-            saveData()
+        fetchRequest.predicate = NSPredicate(format: "favouriteId == %@", id)
+        // Searches for entity with given id in Core Data and returns entity if found
+        guard let entity = try? container.viewContext.fetch(fetchRequest).first else {
+            return
         }
+        // Deletes entity from CoreData
+        container.viewContext.delete(entity)
+        saveData()
     }
     
     // Saving data in Core Data

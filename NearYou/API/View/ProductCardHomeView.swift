@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ProductCardHomeView: View {
-    
+    @StateObject private var fvm = FavouritesViewModel()
     let data: ProductResponse.Product
     
     func weekdayName(from weekday: Int) -> String {
@@ -167,6 +167,9 @@ struct ProductCardHomeView: View {
         .cornerRadius(10)
         .shadow(color: .black.opacity(0.3), radius: 5, x: 0, y: 2)
         .shadow(color: Color("ThemeColour").opacity(0.1), radius: 5)
+        .onAppear{
+            fvm.fetchSettings()
+        }
 
     }
 }

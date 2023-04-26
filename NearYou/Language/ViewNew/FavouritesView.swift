@@ -28,6 +28,9 @@ struct FavouritesView: View {
             .listStyle(.plain)
             
         }.onAppear{
+            // Fetching latest data from Core Data
+            fvm.fetchSettings()
+            // Product is added to favList if product id is equal to Coredata favouriteId
             favList = vm.allData?.data.product.filter { product in
                 fvm.savedSetting.contains { fav in
                     fav.favouriteId == product.id
