@@ -105,7 +105,9 @@ struct MainProfileView: View {
 struct MainProfilePickerView: View {
     @Binding var selectedTab: Int
     var body: some View {
-        if(selectedTab == 2){
+        if(selectedTab == 0){
+            PlannedView()
+        }else if(selectedTab == 2){
             FavouritesView()
         }
     }

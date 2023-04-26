@@ -14,7 +14,7 @@ struct DetailViewFeatures: View {
     @Binding var isFavourite: Bool
     @Binding var id: String
     @StateObject private var fvm = FavouritesViewModel()
-    
+    @StateObject private var pvm = PlannedViewModel()
     var body: some View {
         
         HStack{
@@ -28,7 +28,7 @@ struct DetailViewFeatures: View {
             
             
             Button {
-                
+                pvm.addplanned(id)
             } label: {
                 Text("Plan Trip")
                     .padding()
