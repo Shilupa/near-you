@@ -1,7 +1,5 @@
-<center>
-# Near You
-## Discover Finland at your fingertips with Near You.
-</center>
+<h1 align="center">Near You</h1> 
+<h2 align="center">Discover Finland at your fingertips with Near You.</h2> 
 
 <p align="center">
   <img width="200" height="200" src="https://users.metropolia.fi/~shilpasy/nearyouLogo/transparentLogo.png">
