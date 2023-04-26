@@ -97,7 +97,7 @@ struct CombineView: View{
             LanguageView()
             AboutUs()
         }
-        .padding(.top, -30)
+        .padding(.top, -50)
     }
 }
 
