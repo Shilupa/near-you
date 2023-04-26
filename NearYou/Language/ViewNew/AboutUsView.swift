@@ -4,9 +4,8 @@ struct AboutUsView: View {
     var body: some View {
         ScrollView {
             VStack(spacing: 20) {
-                Text("About-Us")
-                    .font(.largeTitle)
-                    .bold()
+                Text("ABOUT US")
+                    .font(Font.custom("Poppins-Bold", size: 27))
                     .padding(.top, 70)
                 
                 Image("finland")
@@ -19,12 +18,12 @@ struct AboutUsView: View {
                 
                 VStack(alignment: .center, spacing: 10) {
                     Text("We are a group of students who are passionate about traveling and exploring different cultures. Our love for Finland inspired us to create this travel app called 'Near You' that will help you plan your dream trip to this beautiful country.")
-                        .font(.body)
+                        .font(Font.custom("Poppins-Regular", size: 16))
                         .multilineTextAlignment(.center)
                         .padding(.horizontal)
                     
                     Text("Our app provides you with insider tips on the best places to visit, eat, and stay, as well as practical information on directions, weather, and local customs. We have also included various categories in search area for different types of travelers, whether you're looking for accomodation, events, attraction, or rental services.")
-                        .font(.body)
+                        .font(Font.custom("Poppins-Regular", size: 16))
                         .multilineTextAlignment(.center)
                         .padding(.horizontal)
                 }
@@ -34,11 +33,10 @@ struct AboutUsView: View {
                 
                 VStack(spacing: 10) {
                     Text("Contact Us")
-                        .font(.title)
-                        .bold()
+                        .font(Font.custom("Poppins-Bold", size: 27))
                     
                     Text("If you have any questions or feedback about our app, please don't hesitate to contact us:")
-                        .font(.body)
+                        .font(Font.custom("Poppins-Regular", size: 16))
                         .multilineTextAlignment(.center)
                         .padding(.horizontal)
                         .fixedSize(horizontal: false, vertical: true)
@@ -65,9 +63,10 @@ struct AboutUsView: View {
                 .padding(.vertical)
                 .background(Color.secondary.opacity(0.2))
                 .cornerRadius(10)
+                .font(Font.custom("Poppins-LightItalic", size: 16))
                 
                 Text("We hope our app will inspire you to discover the beauty of Finland and create unforgettable memories. Happy travels!")
-                    .font(.body)
+                    .font(Font.custom("Poppins-Regular", size: 16))
                     .multilineTextAlignment(.center)
                     .padding(.horizontal)
                     .padding(.top, 20)
