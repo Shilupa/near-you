@@ -1,7 +1,7 @@
 # Near You
-### Discover Finland at your fingertips with Near You.
+## Discover Finland at your fingertips with Near You.
 
-<div style="text-align: center;">
+<div style="align: center">
     <img src="https://users.metropolia.fi/~shilpasy/nearyouLogo/transparentLogo.png" alt="Near You Logo" width="200" height="200">
 </div>
 
