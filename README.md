@@ -1,9 +1,9 @@
 # Near You
 ## Discover Finland at your fingertips with Near You.
 
-<div style="align: center">
+<p style="align: center">
     <img src="https://users.metropolia.fi/~shilpasy/nearyouLogo/transparentLogo.png" alt="Near You Logo" width="200" height="200">
-</div>
+</p>
 
 ## Swift UI IOS project
 To fulfill the requirements of our second-year course at Metropolia University of Applied Sciences, our group of four students has been tasked with creating an iOS app using SwiftUI. The purpose of the app is to adhere to specific guidelines and meet course requirements.
