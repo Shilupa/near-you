@@ -37,65 +37,62 @@ struct MapView: View {
                     
                     Spacer()
                     
+                    
+                    
                     if let products = vm.allData?.data.product {
-                        MapCardView(data: products[currentIndex])
-                            .background(isSelected ? Color.orange : Color.white)
-                            .cornerRadius(10)
-                            .environmentObject(MapViewModel())
-                            .gesture(
-                                DragGesture(minimumDistance: 20)
-                                    .onEnded { value in
-                                        withAnimation(.spring())
-                                        {
-                                            if value.translation.width > 0 {
-                                                currentIndex = max(currentIndex - 1, 0)
-                                            } else {
-                                                currentIndex = min(currentIndex + 1, products.count - 1)
+                        NavigationLink(destination: DetailProductView(data: products[currentIndex])){
+                            MapCardView(data: products[currentIndex])
+                                .background(isSelected ? Color.orange : Color.white)
+                                .cornerRadius(10)
+                                .environmentObject(MapViewModel())
+                                .gesture(
+                                    DragGesture(minimumDistance: 20)
+                                        .onEnded { value in
+                                            withAnimation(.spring())
+                                            {
+                                                if value.translation.width > 0 {
+                                                    currentIndex = max(currentIndex - 1, 0)
+                                                } else {
+                                                    currentIndex = min(currentIndex + 1, products.count - 1)
+                                                }
+                                                let trimmedCoordinates = products[currentIndex].postalAddresses?[0]
+                                                    .location?
+                                                    .trimmingCharacters(in: CharacterSet(charactersIn: "()")) ?? ""
+
+                                                let coordinateComponents = trimmedCoordinates.components(separatedBy: ",")
+                                                let coordinate = CLLocationCoordinate2D(latitude: Double(coordinateComponents[0]) ?? 0.0, longitude: Double(coordinateComponents[1]) ?? 0.0)
+                                                viewModel.region = MKCoordinateRegion(center: coordinate, span: MKCoordinateSpan(latitudeDelta: 0.001, longitudeDelta: 0.001))
                                             }
                                         }
-                                    }
-                                
-                            )
-                            .gesture(
-                                TapGesture()
-                                    .onEnded {
-                                        isSelected.toggle()
-                                        withAnimation(.easeInOut(duration: 1.0)){
-                                            let trimmedCoordinates = products[currentIndex].postalAddresses?[0]
-                                                .location?
-                                                .trimmingCharacters(in: CharacterSet(charactersIn: "()")) ?? ""
-                                            
-                                            let coordinateComponents = trimmedCoordinates.components(separatedBy: ",")
-                                            let coordinate = CLLocationCoordinate2D(latitude: Double(coordinateComponents[0]) ?? 0.0, longitude: Double(coordinateComponents[1]) ?? 0.0)
-                                            viewModel.region = MKCoordinateRegion(center: coordinate, span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005))
-                                        }
-                                    }
-                            )
+                                )
+                        }
+                        .accentColor(.black)
                     } else {
-                        Text("No products found.")
+                        Text("Products loading...")
                     }
+                
                     
                     HStack{
                         
                         CustomSearchBar(searchText: $searchText)
                         
-                        LocationButton(.shareMyCurrentLocation){
+                        Button(action: {
                             viewModel.requestAllowOnceLocationPermission()
+                        }) {
+                            Image(systemName: "scope")
+                                .foregroundColor(.white)
+                                .symbolVariant(.fill)
+                                .font(Font.system(size: 24, weight: .bold))
+                                .frame(width: 40, height: 40)
+                                .background(Color.orange)
+                                .clipShape(RoundedRectangle(cornerRadius: 10))
                         }
-                        .foregroundColor(.white)
-                        .cornerRadius(8)
-                        .labelStyle(.iconOnly)
-                        .tint(.orange)
-                        .symbolVariant(.fill)
                         
                     }
                     .padding()
                 }
             }
         }
-        //        .onAppear(perform:{
-        //            vm.getData()
-        //        })
     }
 }
 

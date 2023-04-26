@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreLocation
 
 struct DetailProductView: View {
     
@@ -53,7 +54,13 @@ struct DetailProductView: View {
                     .padding(.leading, 10)
 
                 // pass information like naviation coordinate, phone, website and email
-                DetailViewOptions(websiteURL: data.productInformations[0].url ?? "https://www.example.com")
+                let trimmedCoordinates = data.postalAddresses?[0].location?.trimmingCharacters(in: CharacterSet(charactersIn: "()")) ?? ""
+                
+                let coordinateComponents = trimmedCoordinates.components(separatedBy: ",")
+                
+                let coordinate = CLLocationCoordinate2D(latitude: Double(coordinateComponents[0]) ?? 0.0, longitude: Double(coordinateComponents[1]) ?? 0.0)
+               
+                DetailViewOptions(websiteURL: data.productInformations[0].url ?? "https://www.example.com",destination: coordinate, selectedOption: "nice")
                 
                 
                 // Language selector, Plan the trip, favourite

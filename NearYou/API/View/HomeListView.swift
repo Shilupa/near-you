@@ -40,8 +40,7 @@ struct HomeListView: View {
                             ProductCardHomeView(data: product)
                                 .listRowSeparator(.hidden)
                             NavigationLink(destination: DetailProductView(data: product)){
-                                
-                                
+  
                             }
                             .opacity(0.0)
                         }

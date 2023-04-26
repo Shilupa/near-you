@@ -59,6 +59,7 @@ struct HomeView: View {
                                         Image(systemName: "line.horizontal.3")
                                             .imageScale(.large)
                                             .padding(25)
+                                            .accentColor(Color("ThemeColour"))
                                     })
                                 }else if(gvvm.showBackButton){
                                     Button(action: {
