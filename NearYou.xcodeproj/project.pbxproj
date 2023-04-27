@@ -76,6 +76,10 @@
 		A7C125DD29DA0A110076B479 /* NearYouTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C125DC29DA0A110076B479 /* NearYouTests.swift */; };
 		A7C125E729DA0A110076B479 /* NearYouUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C125E629DA0A110076B479 /* NearYouUITests.swift */; };
 		A7C125E929DA0A110076B479 /* NearYouUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C125E829DA0A110076B479 /* NearYouUITestsLaunchTests.swift */; };
+		A7CD132829F6DF190083426C /* AboutUsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CD132729F6DF190083426C /* AboutUsView.swift */; };
+		A7CD132B29F704160083426C /* MyFavourites.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A7CD132929F704160083426C /* MyFavourites.xcdatamodeld */; };
+		A7CD132D29F7044F0083426C /* FavouritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CD132C29F7044F0083426C /* FavouritesViewModel.swift */; };
+		A7CD132F29F71A4C0083426C /* FavouritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CD132E29F71A4C0083426C /* FavouritesView.swift */; };
 		A7F2956629EC4E6D00F0A449 /* Testview.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F2956529EC4E6D00F0A449 /* Testview.swift */; };
 /* End PBXBuildFile section */
 
@@ -172,6 +176,10 @@
 		A7C125E229DA0A110076B479 /* NearYouUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NearYouUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7C125E629DA0A110076B479 /* NearYouUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearYouUITests.swift; sourceTree = "<group>"; };
 		A7C125E829DA0A110076B479 /* NearYouUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearYouUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		A7CD132729F6DF190083426C /* AboutUsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsView.swift; sourceTree = "<group>"; };
+		A7CD132A29F704160083426C /* MyFavourites.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyFavourites.xcdatamodel; sourceTree = "<group>"; };
+		A7CD132C29F7044F0083426C /* FavouritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewModel.swift; sourceTree = "<group>"; };
+		A7CD132E29F71A4C0083426C /* FavouritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesView.swift; sourceTree = "<group>"; };
 		A7F2956529EC4E6D00F0A449 /* Testview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Testview.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -209,6 +217,7 @@
 				036F0C0F29EC983C004A8A14 /* ViewModelNew */,
 				036F0C0229EC980C004A8A14 /* ViewNew */,
 				036F0C2629EC9CBD004A8A14 /* Localizable.strings */,
+				A7CD132929F704160083426C /* MyFavourites.xcdatamodeld */,
 			);
 			path = Language;
 			sourceTree = "<group>";
@@ -323,7 +332,9 @@
 				036F0C0529EC9820004A8A14 /* MainProfileView.swift */,
 				036F0C0729EC9820004A8A14 /* MapView.swift */,
 				036F0C0829EC9820004A8A14 /* SideMenuView.swift */,
+				A7CD132729F6DF190083426C /* AboutUsView.swift */,
 				036F0C0329EC9820004A8A14 /* LanguageTabView.swift */,
+				A7CD132E29F71A4C0083426C /* FavouritesView.swift */,
 			);
 			path = ViewNew;
 			sourceTree = "<group>";
@@ -336,6 +347,7 @@
 				03F7BA2129F5DD840033A484 /* MyProfileViewModel.swift */,
 				036F0C1329EC984A004A8A14 /* LanguageViewModel.swift */,
 				036F0C1229EC984A004A8A14 /* MapViewModel.swift */,
+				A7CD132C29F7044F0083426C /* FavouritesViewModel.swift */,
 			);
 			path = ViewModelNew;
 			sourceTree = "<group>";
@@ -617,6 +629,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7CD132D29F7044F0083426C /* FavouritesViewModel.swift in Sources */,
 				036F0C0C29EC9820004A8A14 /* EditProfileView.swift in Sources */,
 				03F7BA2529F5DD840033A484 /* DefaultLangViewModel.swift in Sources */,
 				6A4BDEC629F03FCE00D8598C /* WeatherViewModel.swift in Sources */,
@@ -638,9 +651,11 @@
 				036F0BE629EC9334004A8A14 /* Coordinates.swift in Sources */,
 				03553CAB29EC8942008B7286 /* Test.swift in Sources */,
 				03553CA529EC892E008B7286 /* MainView.swift in Sources */,
+				A7CD132829F6DF190083426C /* AboutUsView.swift in Sources */,
 				6A4BDEC429F03F6D00D8598C /* WeatherWithAPICoordinates.swift in Sources */,
 				0388942429E3475700B2EC01 /* ProductCardHomeView.swift in Sources */,
 				03F7BA2429F5DD840033A484 /* MyProfileViewModel.swift in Sources */,
+				A7CD132F29F71A4C0083426C /* FavouritesView.swift in Sources */,
 				036F0BF529EC9379004A8A14 /* WelcomeView.swift in Sources */,
 				036F0BEB29EC935D004A8A14 /* LocationManager.swift in Sources */,
 				03F7BA2629F5DD840033A484 /* DefaultViewModel.swift in Sources */,
@@ -649,6 +664,7 @@
 				6AC71A6229EDE8BC00E8E273 /* CustomAnnotationView.swift in Sources */,
 				03553CA429EC892E008B7286 /* DemoView.swift in Sources */,
 				03F6F8F729EE831500DE28C6 /* DetailViewOptions.swift in Sources */,
+				A7CD132B29F704160083426C /* MyFavourites.xcdatamodeld in Sources */,
 				03F6F8FB29EF014400DE28C6 /* DetailViewSocialMedia.swift in Sources */,
 				036F0C1729EC984A004A8A14 /* LanguageViewModel.swift in Sources */,
 				03553CA629EC892E008B7286 /* MapCardView.swift in Sources */,
@@ -1041,6 +1057,16 @@
 			);
 			currentVersion = 03F7BA1D29F5DD020033A484 /* DefaultLanguage.xcdatamodel */;
 			path = DefaultLanguage.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		A7CD132929F704160083426C /* MyFavourites.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				A7CD132A29F704160083426C /* MyFavourites.xcdatamodel */,
+			);
+			currentVersion = A7CD132A29F704160083426C /* MyFavourites.xcdatamodel */;
+			path = MyFavourites.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

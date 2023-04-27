@@ -21,8 +21,8 @@ struct SideMenuView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                LinearGradient(gradient: Gradient(colors: [Color(hex: "FBF2B8"), Color(hex: "FACFD9")]), startPoint: .top, endPoint: .bottom)
-                    .ignoresSafeArea()
+                //LinearGradient(gradient: Gradient(colors: [Color(hex: "FBF2B8"), Color(hex: "FACFD9")]), startPoint: .top, endPoint: .bottom)
+                    //.ignoresSafeArea()
                 
                 VStack {
                     ProfileView().frame(height: 300)
@@ -56,9 +56,10 @@ struct ProfileView: View {
                         .clipShape(Circle())
                         .overlay(
                             Circle()
-                                .stroke(Color.orange, lineWidth: 3)
+                                .stroke(Color("ThemeColour"), lineWidth: 5)
                         )
                         .padding(.bottom, 16)
+                        .shadow(color: Color.gray, radius: 7, x: 0, y: 2)
                         .onTapGesture {
                             gvvm.updateShowProfileView(true)
                         }
@@ -128,6 +129,7 @@ struct CombineView: View{
 ////
 ////                }
 ////            }
+            AboutUs()
         }
     }
 }
@@ -142,13 +144,15 @@ struct MyHomeView: View {
                     .padding(15)
                 
                 Text("Default view")
-                    .font(.system(size: 22, weight: .semibold))
+                    .font(Font.custom("Poppins-SemiBold", size: 20))
                     .environment(\.locale, Locale.init(identifier: gvvm.currLang))
                 
                 Spacer()
             }
             .padding(.leading, 30)
             ListAndMap()
+                .padding(EdgeInsets(top: -32, leading: 40, bottom: 20, trailing: 0))
+                .font(Font.custom("Poppins-Regular", size: 12))
         }
     }
 }
@@ -163,8 +167,8 @@ struct LanguageView: View {
                     .padding(15)
                 
                 Text("Language")
-                    .font(.system(size: 22, weight: .semibold))
                     .environment(\.locale, Locale.init(identifier: gvvm.currLang))
+                    .font(Font.custom("Poppins-SemiBold", size: 20))
                 
                 Spacer()
             }
@@ -173,34 +177,50 @@ struct LanguageView: View {
             .environment(\.locale, Locale.init(identifier: gvvm.currLang))
             
             LanguageOptionView()
+                .padding(EdgeInsets(top: -25, leading: 40, bottom: 20, trailing: 0))
+                .font(Font.custom("Poppins-Regular", size: 15))
         }
     }
 }
 
-struct AboutUsView: View {
+struct AboutUs: View {
     @EnvironmentObject private var gvvm: GlobalVarsViewModel
+    @State private var navigateToAboutUsView = false
     
     var body: some View {
-        VStack {
-            HStack{
+        Button(action: {
+            navigateToAboutUsView = true
+        }) {
+            HStack {
                 Image(systemName: "info.circle.fill")
-                    .frame(width:26, height:26)
+                    .frame(width: 26, height: 26)
                     .padding(15)
+                    .foregroundColor(.black)
                 Text("About Us")
                     .font(.system(size: 22, weight: .semibold))
                     .environment(\.locale, Locale.init(identifier: gvvm.currLang))
+                    .foregroundColor(.black)
                     .frame(maxWidth: .infinity, alignment: .leading)
             }
             .padding(.leading, 28)
             .environment(\.locale, Locale.init(identifier: gvvm.currLang))
-            .padding(.bottom)
-            Text("Weather at current location:")
+        }
+        .fullScreenCover(isPresented: $navigateToAboutUsView) {
+            NavigationView {
+                AboutUsView()
+                    .navigationBarItems(leading: Button(action: {
+                        navigateToAboutUsView = false
+                    }, label: {
+                        Image(systemName: "chevron.backward")
+                            .foregroundColor(.black)
+                    }))
+            }
         }
     }
-}
 
-struct SideMenuView_Previews: PreviewProvider {
-    static var previews: some View {
-        SideMenuView().environmentObject(GlobalVarsViewModel())
+    struct SideMenuView_Previews: PreviewProvider {
+        static var previews: some View {
+            SideMenuView().environmentObject(GlobalVarsViewModel())
+        }
     }
 }
