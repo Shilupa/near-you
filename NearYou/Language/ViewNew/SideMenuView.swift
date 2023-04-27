@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import CoreLocation
+
 
 struct SideMenuView: View {
     @EnvironmentObject private var gvvm: GlobalVarsViewModel
@@ -20,6 +22,8 @@ struct SideMenuView: View {
                     ProfileView().frame(height: 300)
                     
                     CombineView()
+                    
+                    
                     
                     Spacer()
                 }
@@ -85,11 +89,16 @@ struct ProfileView: View {
 }
 
 struct CombineView: View{
+    var weatherManager = WeatherManager()
+    @State var weather: ResponseBody?
+    @StateObject var locationManager = LocationManager()
+    
     var body: some View {
         VStack(spacing: 0) {
             MyHomeView()
             LanguageView()
             AboutUs()
+            ContentView()
         }
         .padding(.top, -50)
     }
@@ -148,12 +157,12 @@ struct AboutUs: View {
     @EnvironmentObject private var gvvm: GlobalVarsViewModel
     @State private var navigateToAboutUsView = false
     
-    var body: some View {
         Button(action: {
             navigateToAboutUsView = true
         }) {
             HStack {
-                Image(systemName: "info.circle.fill")
+            HStack {
+                    .frame(width: 26, height: 26)
                     .frame(width: 26, height: 26)
                     .padding(15)
                     .foregroundColor(.black)
@@ -164,7 +173,6 @@ struct AboutUs: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
             }
             .padding(.leading, 28)
-            .environment(\.locale, Locale.init(identifier: gvvm.currLang))
         }
         .fullScreenCover(isPresented: $navigateToAboutUsView) {
             NavigationView {
@@ -175,6 +183,7 @@ struct AboutUs: View {
                         Image(systemName: "chevron.backward")
                             .foregroundColor(.black)
                     }))
+            }
             }
         }
     }
