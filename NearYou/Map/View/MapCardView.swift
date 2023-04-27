@@ -32,6 +32,8 @@ struct MapCardView: View {
                 
                 VStack(alignment: .leading){
                     Text(data.productInformations[0].name ?? "")
+                        .bold()
+                        .lineLimit(1)
                         .font(Font.custom("Poppins-Regular", size: 12))
                     Text(data.postalAddresses![0].streetName ?? "")
                         .font(Font.custom("Poppins-Regular", size: 12))
@@ -43,6 +45,6 @@ struct MapCardView: View {
         }
         .frame(width: 330, height: 100, alignment: .center)
         .padding(10)
-        .shadow(color: Color.gray.opacity(0.5), radius: 5, x: 0, y: 2)
     }
+    
 }

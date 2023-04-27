@@ -15,16 +15,87 @@ struct DirectionsView: View {
     
     init(destination: CLLocationCoordinate2D) {
         self.destination = destination
+        
     }
     
     @State private var directions : [String] = []
+    @State private var distanceToDestination : Double?
     @State private var showDirections = false
-    
+    @State private var estimatedTravelTime : TimeInterval?
+    @State private var selectedTransportType = TransportType.walking
     @StateObject private var locationManager = LocationManager()
+    
+    enum TransportType: String, CaseIterable {
+        case walking
+        case driving
+        
+        var title: String {
+            switch self {
+            case .walking:
+                return "Walking"
+            case .driving:
+                return "Driving"
+                
+            }
+        }
+        
+        var mkDirectionsTransportType: MKDirectionsTransportType {
+            switch self {
+            case .walking:
+                return .walking
+            case .driving:
+                return .automobile
+                
+            }
+        }
+    }
     
     var body: some View {
         VStack{
-            DirectionsMapView(destination: destination, directions: $directions)
+            
+            ZStack (alignment: .topLeading) {
+                
+                if (selectedTransportType == TransportType.walking) {
+                    DirectionsMapView(destination: destination,
+                                      transportType: selectedTransportType.mkDirectionsTransportType,
+                                      directions: $directions,
+                                      distanceToDestination: $distanceToDestination,
+                                      estimatedTravelTime: $estimatedTravelTime
+                    )
+                }else {
+                    DirectionsMapView(destination: destination,
+                                      transportType: TransportType.driving.mkDirectionsTransportType,
+                                      directions: $directions,
+                                      distanceToDestination: $distanceToDestination,
+                                      estimatedTravelTime: $estimatedTravelTime
+                    )
+                }
+                
+                
+                
+                HStack {
+                    
+                    Spacer()
+                    
+                    Picker(selection: $selectedTransportType, label: Text("Transport Type")) {
+                        ForEach(TransportType.allCases, id: \.self) { transportType in
+                            Text(transportType.title).tag(transportType)
+                            
+                        }
+                    }
+                    .frame(width: 200)
+                    .background(Color.white.cornerRadius(10))
+                    .foregroundColor(.blue)
+                    .padding()
+                    .cornerRadius(20)
+                    .font(.headline)
+                    .pickerStyle(SegmentedPickerStyle())
+                    
+                    Spacer()
+                }
+                
+            }
+            
             Button(action: {
                 self.showDirections.toggle()
             }, label: {
@@ -32,7 +103,6 @@ struct DirectionsView: View {
             })
             .disabled(directions.isEmpty)
             .padding()
-            //            Text(String(format: "Lat: %.2f, Long: %.2f", destination.latitude, destination.longitude))
         }
         .sheet(isPresented: $showDirections, content: {
             VStack{
@@ -40,7 +110,14 @@ struct DirectionsView: View {
                     .font(.largeTitle)
                     .bold()
                     .padding()
-                                
+                
+                Text("Distance To Destination: " + String(distanceToDestination ?? 0.0) + "km")
+                    .bold()
+                
+                Text("Etimated Travel Time: " + String(estimatedTravelTime ?? 0.0) + "hrs")
+                    .bold()
+                    .padding()
+                
                 List {
                     ForEach(0..<self.directions.count, id: \.self) { i in
                         Text(self.directions[i])
@@ -50,9 +127,10 @@ struct DirectionsView: View {
                 
             }
         })
-        
     }
+    
 }
+
 
 class DirectionsLocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     
@@ -71,70 +149,3 @@ class DirectionsLocationManager: NSObject, ObservableObject, CLLocationManagerDe
         self.location = userLocation.coordinate
     }
 }
-
-struct DirectionsMapView : UIViewRepresentable {
-        
-    typealias UIViewType = MKMapView
-    let destination: CLLocationCoordinate2D
-    
-    @Binding var directions : [String]
-    
-    @ObservedObject var locationManager = DirectionsLocationManager()
-
-    
-    func makeCoordinator() -> DirectionsMapViewCoordinator {
-        return DirectionsMapViewCoordinator()
-    }
-    
-    
-    func makeUIView(context: Context) -> MKMapView {
-        let mapView = MKMapView()
-        mapView.delegate = context.coordinator
-        
-        let region = MKCoordinateRegion(center: destination, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
-        mapView.setRegion(region, animated: true)
-        mapView.showsUserLocation = true
-        print("userlocation", mapView.userLocation)
-        
-        let destinationPlaceMark = MKPlacemark(coordinate: destination)
-//        let startPlaceMark = MKPlacemark(coordinate
-//                                         : CLLocationCoordinate2D(latitude: 42.36, longitude: -71.05))
-        
-        if let userLocation = mapView.userLocation.location {
-            let startPlacemark = MKPlacemark(coordinate: userLocation.coordinate)
-            let request = MKDirections.Request()
-            request.source = MKMapItem(placemark: startPlacemark) // Use startPlacemark instead of startPlaceMark
-            request.destination = MKMapItem(placemark: destinationPlaceMark)
-            request.transportType = .walking
-            
-            let directions = MKDirections(request: request)
-            directions.calculate{ response, error in
-                guard let route = response?.routes.first else {return}
-                mapView.addAnnotations([destinationPlaceMark])
-                mapView.addOverlay(route.polyline)
-                mapView.setVisibleMapRect(route.polyline.boundingMapRect, edgePadding: UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20),
-                                          animated: true)
-                
-                self.directions = route.steps.map {$0.instructions}.filter{!$0.isEmpty}
-        }
-        
-        
-        }
-        return mapView
-  
-    }
-    
-    func updateUIView(_ uiView: MKMapView, context: Context) {
-    }
-    
-    class DirectionsMapViewCoordinator : NSObject, MKMapViewDelegate {
-        func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-            let renderer = MKPolylineRenderer(overlay: overlay)
-            renderer.strokeColor = .orange
-            renderer.lineWidth = 5
-            
-            return renderer
-        }
-    }
-}
-
