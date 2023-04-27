@@ -157,15 +157,15 @@ struct AboutUs: View {
     @EnvironmentObject private var gvvm: GlobalVarsViewModel
     @State private var navigateToAboutUsView = false
     
-        Button(action: {
-            navigateToAboutUsView = true
-        }) {
+    Button(action: {
+        navigateToAboutUsView = true
+    }) {
+        HStack {
             HStack {
-            HStack {
-                    .frame(width: 26, height: 26)
-                    .frame(width: 26, height: 26)
-                    .padding(15)
-                    .foregroundColor(.black)
+                .frame(width: 26, height: 26)
+                .frame(width: 26, height: 26)
+                .padding(15)
+                .foregroundColor(.black)
                 Text("About Us")
                     .font(.system(size: 22, weight: .semibold))
                     .environment(\.locale, Locale.init(identifier: gvvm.currLang))
@@ -184,13 +184,13 @@ struct AboutUs: View {
                             .foregroundColor(.black)
                     }))
             }
-            }
-        }
-    }
-    
-    struct SideMenuView_Previews: PreviewProvider {
-        static var previews: some View {
-            SideMenuView().environmentObject(GlobalVarsViewModel())
         }
     }
 }
+
+struct SideMenuView_Previews: PreviewProvider {
+    static var previews: some View {
+        SideMenuView().environmentObject(GlobalVarsViewModel())
+    }
+}
+
