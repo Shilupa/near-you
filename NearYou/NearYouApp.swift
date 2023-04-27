@@ -17,7 +17,7 @@ struct NearYouApp: App {
     
     var body: some Scene {
         WindowGroup {
-            HomeView().environmentObject(GlobalVarsViewModel())
+            SplashScreenView().environmentObject(GlobalVarsViewModel())
                 .environmentObject(DataViewModel())
             //MainView()
         }
