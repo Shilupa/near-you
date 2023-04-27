@@ -26,7 +26,6 @@ class WeatherManager: ObservableObject {
     
 }
 
-
 // Model of the response body we get from calling the OpenWeather API
 struct ResponseBody: Decodable {
     var coord: CoordinatesResponse
