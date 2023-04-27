@@ -38,23 +38,24 @@ struct SplashScreenView: View {
                     .font(Font.custom("Poppins-Regular", size: 19))
                     .foregroundColor(.white)
                     .shadow(color: Color.black.opacity(0.8), radius: 2, x: 0, y: 2)
-                    .multilineTextAlignment(.center) // align text in the center
-                    .padding(.horizontal, 32) // add horizontal padding
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal, 32)
                     .padding(.bottom, 32)
                 
                 Button(action: {
-                    isShowingHomeView = true // set state to true to trigger navigation
+                    // set state to true to trigger navigation
+                    isShowingHomeView = true
                 }) {
                     Text("Start Exploring")
                         .foregroundColor(.white)
                         .font(Font.custom("Poppins-Regular", size: 20))
-                        .padding(.horizontal, 32) // add horizontal padding
+                        .padding(.horizontal, 32)
                         .padding(.vertical, 16)
-                        .background(Color("ThemeColour")) // use orange as the theme color
+                        .background(Color("ThemeColour"))
                         .cornerRadius(8)
                         .shadow(color: Color("ThemeColour").opacity(0.5), radius: 6, x: 0, y: 3)
                 }
-                .padding(.horizontal, 32) // add horizontal padding
+                .padding(.horizontal, 32)
                 
                 Spacer()
             }
