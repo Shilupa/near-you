@@ -8,34 +8,37 @@
 import SwiftUI
 
 struct DetailViewFeatures: View {
-    
     let options = ["Option 1", "Option 2", "Option 3"]
     @State private var selectedOption = "Option 1"
-    @Binding var isFavourite: Bool
-    @Binding var id: String
     @StateObject private var fvm = FavouritesViewModel()
     @StateObject private var pvm = PlannedViewModel()
+    @Binding var isFavourite: Bool
+    @Binding var id: String
+    @Binding var isPlanned: Bool
+    
     var body: some View {
         
         HStack{
-            
-            
             Picker("Options", selection: $selectedOption) {
                 ForEach(options, id: \.self) {
                     Text($0)
                 }}
                 
-            
-            
             Button {
-                pvm.addplanned(id)
+                if(isPlanned){
+                    pvm.deletePlanned(id)
+                    isPlanned = false
+                }else{
+                    isPlanned = true
+                    pvm.addplanned(id)
+                }
             } label: {
                 Text("Plan Trip")
                     .padding()
-            }.background(Color.blue)
+            }.background(isPlanned ? Color.blue: Color.gray)
                 .cornerRadius(10)
                 .foregroundColor(Color.white)
-
+                
             
             Toggle(isOn: $isFavourite) {
                 Image(systemName: isFavourite ? "heart.fill" : "heart")
@@ -52,9 +55,6 @@ struct DetailViewFeatures: View {
             }
             
         }
-        
-        
-        
     }
 }
 //

@@ -12,7 +12,9 @@ struct DetailProductView: View {
     
     let data: ProductResponse.Product
     @State var isFavourite = false
+    @State var isPlanned = false
     @StateObject private var fvm = FavouritesViewModel()
+    @StateObject private var pvm = PlannedViewModel()
     @State var id = ""
     
     func allPhoto() -> [String] {
@@ -65,7 +67,7 @@ struct DetailProductView: View {
                 
                 
                 // Language selector, Plan the trip, favourite
-                DetailViewFeatures(isFavourite: $isFavourite, id: $id)
+                DetailViewFeatures(isFavourite: $isFavourite, id: $id, isPlanned: $isPlanned)
                 
                 Spacer(minLength: 50)
                 
@@ -77,8 +79,9 @@ struct DetailProductView: View {
                 
             }
         }.onAppear{
-            isFavourite = fvm.savedSetting.contains(where: {$0.favouriteId == data.id})
             id = data.id ?? "No value"
+            isFavourite = fvm.savedSetting.contains(where: {$0.favouriteId == data.id})
+            isPlanned = pvm.savedSetting.contains(where: {$0.plannedId == data.id})
         }
         
     }
