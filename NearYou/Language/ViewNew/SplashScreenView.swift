@@ -12,12 +12,7 @@ struct SplashScreenView: View {
     
     var body: some View {
         ZStack {
-            Image("finland")
-                .resizable()
-                .scaledToFill()
-                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
-                .edgesIgnoringSafeArea(.all)
-                .overlay(Color.black.opacity(0.5))
+            Image("finland") .resizable() .scaledToFill() .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity) .edgesIgnoringSafeArea(.all) .overlay(LinearGradient(gradient: Gradient(colors: [.clear, .black]), startPoint: .top, endPoint: .bottom))
             
             VStack {
                 Spacer()
