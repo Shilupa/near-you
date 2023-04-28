@@ -23,6 +23,7 @@ struct HomeView: View {
     
     init() {
         UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor : UIColor.orange], for: .selected)
+        _selectedTab = State(initialValue:  Int(dvm.savedSetting.last?.listOrMap ?? 0))
     }
     
     var body: some View {
@@ -105,7 +106,6 @@ struct HomeView: View {
             }
             // When view is loaded these values are set
             .onAppear{
-                selectedTab = Int(dvm.savedSetting.last?.listOrMap ?? 0)
                 gvvm.currLang =  dlvm.savedSetting.last?.myLang ?? "en"
                 
                 if(mypvm.savedSetting.last?.my_Image == nil){
