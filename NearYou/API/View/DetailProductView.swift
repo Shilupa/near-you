@@ -18,6 +18,7 @@ struct DetailProductView: View {
     
     @State private var showCallToast = false
     @State private var showEmailToast = false
+    @State var selectedLanguageOption = "en"
     
     private let toastOptions = SimpleToastOptions(
         alignment: .top,
@@ -32,18 +33,35 @@ struct DetailProductView: View {
         var pictureArray : [String] = []
         
         if let count: Int = data.productImages?.count {
-            for i in 0...count-1 {
+            for i in 0..<count {
                 pictureArray.append(data.productImages?[i].originalUrl ?? "")
             }
+            
             return pictureArray
         } else{
             return pictureArray
         }
     }
     
+    func allSocialMedia() ->  [[String]]{
+        var socialMediaArray : [[String]] = []
+        
+        if let count: Int = data.socialMedia?.socialMediaLinks.count {
+            print("Count:", count)
+            for i in 0..<count {
+                var item: [String] = []
+                item.append(data.socialMedia?.socialMediaLinks[i]?.linkType ?? "")
+                item.append(data.socialMedia?.socialMediaLinks[i]?.verifiedLink?.url ?? "")
+                socialMediaArray.append(item)
+            }
+            print("Hahaha: ", socialMediaArray)
+            return socialMediaArray
+        } else{
+            return socialMediaArray
+        }
+    }
+    
 
-    
-    
     private func dateFormated(_ dateString: String) -> Date {
         let trimmedDateString = dateString.prefix(19)
         let formatter = DateFormatter()
@@ -74,7 +92,7 @@ struct DetailProductView: View {
                 let coordinateComponents = trimmedCoordinates.components(separatedBy: ",")
                 let coordinate = CLLocationCoordinate2D(latitude: Double(coordinateComponents[0]) ?? 0.0, longitude: Double(coordinateComponents[1]) ?? 0.0)
                
-                DetailViewOptions(websiteURL: data.productInformations[0].url ?? "https://www.example.com",destination: coordinate, selectedOption: "nice", showCallToast: $showCallToast, showEmailToast: $showEmailToast)
+                DetailViewOptions(websiteURL: data.productInformations?[0].url ?? "https://www.example.com",destination: coordinate, data: data, selectedOption: "nice", showCallToast: $showCallToast, showEmailToast: $showEmailToast, selectedLanguageOption : $selectedLanguageOption)
                 
                 
                 // Language selector, Plan the trip, favourite
@@ -83,10 +101,11 @@ struct DetailProductView: View {
                 Spacer(minLength: 50)
                 
                 // pass all this information to product detail description
-                ProductDetailDescription(data: data)
+                ProductDetailDescription(data: data, selectedLanguageOption: $selectedLanguageOption)
                 
+                //let _ = allSocialMedia()
                 
-                DetailViewSocialMedia(data: data)
+                DetailViewSocialMedia(socialMediaList: allSocialMedia())
                 
             }
         }.onAppear{

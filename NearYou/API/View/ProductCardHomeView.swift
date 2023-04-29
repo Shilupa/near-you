@@ -80,7 +80,7 @@ struct ProductCardHomeView: View {
             VStack(alignment: .leading){
                 
                 // Title of the product
-                Text(data.productInformations[0].name ?? "")
+                Text(data.productInformations?[0].name ?? "")
                     .lineLimit(1)
                     .font(Font.custom("Poppins-Regular", size: 18))
                     .shadow(radius: 0.5)

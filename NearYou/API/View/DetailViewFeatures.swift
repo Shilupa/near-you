@@ -9,8 +9,7 @@ import SwiftUI
 
 struct DetailViewFeatures: View {
     
-    let options = ["Option 1", "Option 2", "Option 3"]
-    @State private var selectedOption = "Option 1"
+    
     @Binding var isFavourite: Bool
     @Binding var id: String
     @StateObject private var fvm = FavouritesViewModel()
@@ -18,13 +17,6 @@ struct DetailViewFeatures: View {
     var body: some View {
         
         HStack{
-            
-            
-            Picker("Options", selection: $selectedOption) {
-                ForEach(options, id: \.self) {
-                    Text($0)
-                }}
-                
             
             
             Button {

@@ -31,7 +31,7 @@ struct MapCardView: View {
                 }
                 
                 VStack(alignment: .leading){
-                    Text(data.productInformations[0].name ?? "")
+                    Text(data.productInformations?[0].name ?? "")
                         .bold()
                         .lineLimit(1)
                         .font(Font.custom("Poppins-Regular", size: 12))

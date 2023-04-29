@@ -9,10 +9,25 @@ import SwiftUI
 
 
 
-
 struct ProductDetailDescription: View {
     
     let data: ProductResponse.Product
+    
+    @Binding var selectedLanguageOption : String
+    
+    func allLanguage() -> [String] {
+        var languages : [String] = []
+        
+        if let count:Int = data.productInformations?.count {
+            for i in 0..<count {
+                languages.append(data.productInformations?[i].language ?? "")
+            }
+            return languages
+        } else{
+            return languages
+        }
+    }
+
     
     var body: some View {
         VStack(alignment: .leading){
@@ -21,23 +36,35 @@ struct ProductDetailDescription: View {
                 Text("Description")
                     .font(Font.custom("Poppins-Regular", size: 16))
                     .bold()
-                .padding(.leading)
+                    .padding(.leading)
                 
                 Spacer()
                 
-                Text("Language Picker")
-            }
+                let options = allLanguage()
                 
-            
+                Image("languageIcon")
+                    .resizable()
+                    .frame(width: 30, height: 30)
+                // Language Picker
+                Picker("Options", selection: $selectedLanguageOption) {
+                    ForEach(options, id: \.self) {
+                        Text($0.capitalized)
+                    }}
+            }
             
             Group {
                 
                 VStack (alignment: .leading){
                     HStack {
-                        Text(data.productInformations[0].name ?? "")
-                            .bold()
-                            .font(Font.custom("Poppins-Regular", size: 16))
-                        .padding(.bottom)
+                        
+                        // language functionality in Name
+                        if let nameLanguage: ProductResponse.ProductInformation = data.productInformations?.first(where: { $0.language == selectedLanguageOption }){
+                            Text(nameLanguage.name ?? "")
+                                .bold()
+                                .font(Font.custom("Poppins-Regular", size: 16))
+                                .padding(.bottom)
+                        }
+                        
                         Spacer()
                         
                         VStack(alignment: .leading) {
@@ -51,15 +78,17 @@ struct ProductDetailDescription: View {
                             ShowPopover(data: data)
                         }
                         .font(Font.custom("Poppins-Regular", size: 14))
-                            .frame(width: 150, height: 20)
+                        .frame(width: 150, height: 20)
                     }.padding(.top)
+                    
+                    // language functionality in description
+                    if let descriptionLanguage: ProductResponse.ProductInformation = data.productInformations?.first(where: { $0.language == selectedLanguageOption }){
+                        Text(descriptionLanguage.description ?? "")
+                            .font(Font.custom("Poppins-Regular", size: 16))
+                    }
+                    
 
                     
-                    Text(data.productInformations[0].description ?? "")
-                        .font(Font.custom("Poppins-Regular", size: 16))
-                        
-                        
-
                     if data.accessible != nil {
                         HStack{
                             Text("Accessibility: ")
@@ -89,12 +118,12 @@ struct ProductDetailDescription: View {
                     
                     HStack(alignment: .top){
                         VStack(alignment: .leading){
-
-
+                            
+                            
                             Text("Opening Days")
                                 .font(Font.custom("Poppins-Regular", size: 14))
                                 .bold()
-
+                            
                             ForEach(data.businessHours.businessHoursDefault, id: \.self){ item in
                                 HStack {
                                     Text(item.weekday?.capitalized.prefix(3) ?? "")
@@ -104,7 +133,7 @@ struct ProductDetailDescription: View {
                                     Text(item.closes?.prefix(5) ?? "")
                                 }.font(Font.custom("Poppins-Regular", size: 14))
                             }
-
+                            
                         }
                         Spacer()
                         VStack(alignment: .leading){
@@ -132,7 +161,7 @@ struct ProductDetailDescription: View {
                             Text("euros/" + unit)
                             //Text(unit)
                         }.font(Font.custom("Poppins-Regular", size: 16))
-                        .padding(.top)
+                            .padding(.top)
                             .padding(.bottom)
                     }
                 }

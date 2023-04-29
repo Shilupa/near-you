@@ -19,14 +19,14 @@ struct SearchView: View {
     private func performSearch() {
         if let allData = vm.allData {
             filteredList = allData.data.product.filter { product in
-                let containsKeyword = product.productInformations.contains { information in
+                let containsKeyword = product.productInformations?.contains { information in
                     if let description = information.description {
                         return description.localizedCaseInsensitiveContains(searchText)
                     } else {
                         return false
                     }
                 }
-                return containsKeyword
+                return containsKeyword ?? false
             }
         }
     }

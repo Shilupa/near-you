@@ -8,53 +8,33 @@
 import SwiftUI
 
 
-//func goSocialMedia () {
-//
-//}
-
-// private let socialMediaList: [String] = ["facebook","instagram","linkedin"]
-
-
 
 struct DetailViewSocialMedia: View {
     
-    let data: ProductResponse.Product
-    
+    let socialMediaList: [[String]]
     
     var body: some View {
         
         VStack(alignment: .leading){
             
-            
-            HStack{
-                
-                if let socialMediaData: ProductResponse.SocialMedia = data.socialMedia {
-                    
-                    ForEach(socialMediaData.socialMediaLinks, id: \.self) { item in
-                        
-                        let url = item?.verifiedLink
-                        
-                        Link(destination: URL(string: url))!, label: {
-                            
-                            Image(item.linkType ?? "")
+            if socialMediaList.count == 0 {
+                Text("No social media available.")
+                    .padding(.leading)
+            } else{
+                HStack{
+                    ForEach(socialMediaList, id: \.self){ item in
+                        Link(destination: URL(string: item[1])!, label: {
+                            Image(item[0])
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .frame(width: 60, height: 60)
                                 .shadow(color: Color.gray, radius: 7, x: 0, y: 2)
                                 .padding(10)
                             
-                        }
-                        
+                        })
                     }
-                } else {
-                    Text("No social media available.")
-                        .padding(.leading)
                 }
-                
-                
             }
-            
-            
         }
     }
 }

@@ -21,7 +21,7 @@ struct ProductResponse: Codable {
         let company: Company?
         let postalAddresses: [PostalAddress]?
         let productAvailableMonths: [ProductAvailableMonth]?
-        let productInformations: [ProductInformation]
+        let productInformations: [ProductInformation]?
         let productImages: [ProductImage]?
         let productPricings: [ProductPricing]
         let accessible: Bool?
