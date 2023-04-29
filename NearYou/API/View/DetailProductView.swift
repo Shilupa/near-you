@@ -7,6 +7,7 @@
 
 import SwiftUI
 import CoreLocation
+import SimpleToast
 
 struct DetailProductView: View {
     
@@ -14,6 +15,18 @@ struct DetailProductView: View {
     @State var isFavourite = false
     @StateObject private var fvm = FavouritesViewModel()
     @State var id = ""
+    
+    @State private var showCallToast = false
+    @State private var showEmailToast = false
+    
+    private let toastOptions = SimpleToastOptions(
+        alignment: .top,
+        hideAfter: 2,
+        backdrop: Color.black.opacity(0.4),
+        animation: .default,
+        modifierType: .slide,
+        dismissOnTap: true)
+    
     
     func allPhoto() -> [String] {
         var pictureArray : [String] = []
@@ -27,6 +40,8 @@ struct DetailProductView: View {
             return pictureArray
         }
     }
+    
+
     
     
     private func dateFormated(_ dateString: String) -> Date {
@@ -56,12 +71,10 @@ struct DetailProductView: View {
                 
                 // pass information like naviation coordinate, phone, website and email
                 let trimmedCoordinates = data.postalAddresses?[0].location?.trimmingCharacters(in: CharacterSet(charactersIn: "()")) ?? ""
-                
                 let coordinateComponents = trimmedCoordinates.components(separatedBy: ",")
-                
                 let coordinate = CLLocationCoordinate2D(latitude: Double(coordinateComponents[0]) ?? 0.0, longitude: Double(coordinateComponents[1]) ?? 0.0)
                
-                DetailViewOptions(websiteURL: data.productInformations[0].url ?? "https://www.example.com",destination: coordinate, selectedOption: "nice")
+                DetailViewOptions(websiteURL: data.productInformations[0].url ?? "https://www.example.com",destination: coordinate, selectedOption: "nice", showCallToast: $showCallToast, showEmailToast: $showEmailToast)
                 
                 
                 // Language selector, Plan the trip, favourite
@@ -73,12 +86,26 @@ struct DetailProductView: View {
                 ProductDetailDescription(data: data)
                 
                 
-                DetailViewSocialMedia()
+                DetailViewSocialMedia(data: data)
                 
             }
         }.onAppear{
             isFavourite = fvm.savedSetting.contains(where: {$0.favouriteId == data.id})
             id = data.id ?? "No value"
+        }.simpleToast(isPresented: $showCallToast, options: toastOptions){
+            Text("Call functionality is disabled in simulator")
+                .bold()
+                .padding()
+                .foregroundColor(.white)
+                .background(Color("ThemeColour").opacity(0.8))
+                .cornerRadius(10)
+        }.simpleToast(isPresented: $showEmailToast, options: toastOptions){
+            Text("Email functionality is disabled in simulator")
+                .bold()
+                .padding()
+                .foregroundColor(.white)
+                .background(Color("ThemeColour").opacity(0.8))
+                .cornerRadius(10)
         }
         
     }

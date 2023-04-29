@@ -8,6 +8,7 @@
 import SwiftUI
 import UIKit
 import CoreLocation
+import SimpleToast
 
 
 func sendEmail () {
@@ -38,38 +39,49 @@ struct DetailViewOptions: View {
     @State private var showActionSheet = false
     @State var selectedOption : String
     
+    @Binding var showCallToast: Bool
+    @Binding var showEmailToast: Bool
+    
     var body: some View {
         HStack(alignment: .top){
             
-             //Buttom to show map navigation between you and near you
-                        NavigationLink(destination: DirectionsView(destination: destination)) {
-                            Image(systemName: "arrow.triangle.turn.up.right.diamond")
-                                .frame(width: 50, height: 50)
-                                .padding(10)
-                                .foregroundColor(.white)
-                                .background(LinearGradient(
-                                    gradient: Gradient(
-                                        colors: [Color("ThemeColour"), Color("ThemeColourLight")]),
-                                    startPoint: .top,
-                                    endPoint: .bottom))
-                                .cornerRadius(20)
-                                .font(.system(size: 40))
-                        }.shadow(color: Color.gray, radius: 7, x: 0, y: 2)
-                            .padding(5)
+            //Buttom to show map navigation between you and near you
+            NavigationLink(destination: DirectionsView(destination: destination)) {
+                Image(systemName: "arrow.triangle.turn.up.right.diamond")
+                    .frame(width: 50, height: 50)
+                    .padding(10)
+                    .foregroundColor(.white)
+                    .background(LinearGradient(
+                        gradient: Gradient(
+                            colors: [Color("ThemeColour"), Color("ThemeColourLight")]),
+                        startPoint: .top,
+                        endPoint: .bottom))
+                    .cornerRadius(20)
+                    .font(.system(size: 40))
+            }.shadow(color: Color.gray, radius: 7, x: 0, y: 2)
+                .padding(5)
             
             
             // Button view to make call (Doesnot work in the simulator)
-            Button(action: makeCall) {
+            Button(action: {makeCall()
+                showCallToast.toggle()
+            }) {
                 Image(systemName: "phone")
                     .frame(width: 50, height: 50)
                     .padding(10)
                     .foregroundColor(.white)
-                    .background(Color.gray)
+                    .background(LinearGradient(
+                        gradient: Gradient(
+                            colors: [Color("ThemeColour"), Color("ThemeColourLight")]),
+                        startPoint: .top,
+                        endPoint: .bottom))
                     .cornerRadius(20)
                     .font(.system(size: 40))
                 
             }.shadow(color: Color.gray, radius: 7, x: 0, y: 2)
                 .padding(5)
+            
+            
             
             
             // Button view to navigate to the URL link
@@ -93,12 +105,18 @@ struct DetailViewOptions: View {
                 .padding(5)
             
             // Button view to send email to the address (doesnot work in the simulator)
-            Button(action: sendEmail) {
+            Button(action: {sendEmail()
+                showEmailToast.toggle()
+            }) {
                 Image(systemName: "envelope")
                     .frame(width: 50, height: 50)
                     .padding(10)
                     .foregroundColor(.white)
-                    .background(Color.gray)
+                    .background(LinearGradient(
+                        gradient: Gradient(
+                            colors: [Color("ThemeColour"), Color("ThemeColourLight")]),
+                        startPoint: .top,
+                        endPoint: .bottom))
                     .cornerRadius(20)
                     .font(.system(size: 40))
                 

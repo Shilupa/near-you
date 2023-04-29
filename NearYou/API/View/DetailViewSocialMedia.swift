@@ -8,46 +8,59 @@
 import SwiftUI
 
 
-func goSocialMedia () {
-    
-}
+//func goSocialMedia () {
+//
+//}
 
-private let socialMediaList: [String] = ["facebook","instagram","linkedin"]
+// private let socialMediaList: [String] = ["facebook","instagram","linkedin"]
 
 
 
 struct DetailViewSocialMedia: View {
+    
+    let data: ProductResponse.Product
+    
+    
     var body: some View {
         
         VStack(alignment: .leading){
             
-            if socialMediaList.count == 0 {
-                Text("No social media available.")
-                    .padding(.leading)
-            } else{
+            
+            HStack{
                 
-                HStack{
-                    ForEach(socialMediaList, id: \.self){ item in
+                if let socialMediaData: ProductResponse.SocialMedia = data.socialMedia {
+                    
+                    ForEach(socialMediaData.socialMediaLinks, id: \.self) { item in
                         
-                        Link(destination: URL(string: "https://www.facebook.com/profile.php?id=100083195533791")!, label: {
+                        let url = item?.verifiedLink
+                        
+                        Link(destination: URL(string: url))!, label: {
                             
-                            Image(item)
+                            Image(item.linkType ?? "")
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .frame(width: 60, height: 60)
                                 .shadow(color: Color.gray, radius: 7, x: 0, y: 2)
                                 .padding(10)
                             
-                        })
+                        }
+                        
                     }
+                } else {
+                    Text("No social media available.")
+                        .padding(.leading)
                 }
+                
+                
             }
+            
+            
         }
     }
 }
 
-struct DetailViewSocialMedia_Previews: PreviewProvider {
-    static var previews: some View {
-        DetailViewSocialMedia()
-    }
-}
+//struct DetailViewSocialMedia_Previews: PreviewProvider {
+//    static var previews: some View {
+//        DetailViewSocialMedia()
+//    }
+//}

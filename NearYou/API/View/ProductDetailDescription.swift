@@ -7,6 +7,9 @@
 
 import SwiftUI
 
+
+
+
 struct ProductDetailDescription: View {
     
     let data: ProductResponse.Product
@@ -14,14 +17,18 @@ struct ProductDetailDescription: View {
     var body: some View {
         VStack(alignment: .leading){
             
-            HStack {
+            HStack{
                 Text("Description")
                     .font(Font.custom("Poppins-Regular", size: 16))
                     .bold()
                 .padding(.leading)
+                
                 Spacer()
-                ShowPopover(data: data)
+                
+                Text("Language Picker")
             }
+                
+            
             
             Group {
                 
@@ -38,56 +45,80 @@ struct ProductDetailDescription: View {
                             
                             HStack {
                                 Text(data.postalAddresses?[0].city ?? "")
-                                
                                 Text(data.postalAddresses?[0].postalCode ?? "")
                             }
                             
-                        }.font(Font.custom("Poppins-Regular", size: 14))
+                            ShowPopover(data: data)
+                        }
+                        .font(Font.custom("Poppins-Regular", size: 14))
                             .frame(width: 150, height: 20)
+                    }.padding(.top)
+
+                    
+                    Text(data.productInformations[0].description ?? "")
+                        .font(Font.custom("Poppins-Regular", size: 16))
                         
+                        
+
+                    if data.accessible != nil {
+                        HStack{
+                            Text("Accessibility: ")
+                                .font(Font.custom("Poppins-Regular", size: 16))
+                                .padding(.top)
+                                .padding(.bottom)
+                            Text("Yes")
+                                .bold()
+                                .font(Font.custom("Poppins-Regular", size: 16))
+                                .foregroundColor(Color(.systemGreen))
+                        }
+                        
+                    }else{
+                        HStack{
+                            Text("Accessibility: ")
+                                .font(Font.custom("Poppins-Regular", size: 16))
+                                .padding(.top)
+                                .padding(.bottom)
+                            Text("No")
+                                .bold()
+                                .font(Font.custom("Poppins-Regular", size: 16))
+                                .foregroundColor(Color(.red))
+                        }
                     }
                     
-
-
-                    Text(data.productInformations[0].description ?? "")
-                        //.padding(.leading)
-
-                    Text("Product Availability")
-                        .bold()
-                        .padding(.top)
-                        .padding(.bottom)
+                    
                     
                     HStack(alignment: .top){
                         VStack(alignment: .leading){
 
 
                             Text("Opening Days")
-                                .padding(.bottom)
+                                .font(Font.custom("Poppins-Regular", size: 14))
+                                .bold()
 
                             ForEach(data.businessHours.businessHoursDefault, id: \.self){ item in
                                 HStack {
-                                    Text(item.weekday?.prefix(3) ?? "")
+                                    Text(item.weekday?.capitalized.prefix(3) ?? "")
                                     Text(": ")
                                     Text(item.opens?.prefix(5) ?? "")
                                     Text("-")
                                     Text(item.closes?.prefix(5) ?? "")
-                                }
+                                }.font(Font.custom("Poppins-Regular", size: 14))
                             }
 
                         }
                         Spacer()
                         VStack(alignment: .leading){
-                            Text("Opening Month")
-                                .padding(.bottom)
+                            Text("Opening Months")
+                                .font(Font.custom("Poppins-Regular", size: 14))
+                                .bold()
                             VStack(alignment: .leading) {
                                 ForEach(data.productAvailableMonths ?? [], id: \.self){ month in
-                                    Text(month.month ?? "")
+                                    Text(month.month?.capitalized ?? "")
+                                        .font(Font.custom("Poppins-Regular", size: 14))
                                 }
                             }
                         }
                     }
-                    
-                    
                     
                     if let unit: String = data.productPricings[0].pricingUnit{
                         HStack {
@@ -98,34 +129,24 @@ struct ProductDetailDescription: View {
                             Text("-")
                             let endPrice:Double = data.productPricings[0].toPrice ?? 0.0
                             Text(String(format: "%.1f", endPrice))
-                            Text(" per ")
-                            Text(unit)
-                        }.padding(.top)
+                            Text("euros/" + unit)
+                            //Text(unit)
+                        }.font(Font.custom("Poppins-Regular", size: 16))
+                        .padding(.top)
                             .padding(.bottom)
-
                     }
-                    
-                    
-                    
-                    
                 }
-                
-                
             }.padding(10)
                 .foregroundColor(Color.black)
                 .multilineTextAlignment(.leading)
-                .background(Color(.lightGray).opacity(0.2))
+                .background(Color("CardBackground"))
                 .cornerRadius(20)
-            
-            
-            
-            
-            
+                .shadow(color: .black.opacity(0.3), radius: 5, x: 0, y: 2)
+                .shadow(color: Color("ThemeColour").opacity(0.1), radius: 5)
         }
         .padding()
     }
 }
-
 
 //struct ProductDetailDescription_Previews: PreviewProvider {
 //    static var previews: some View {
