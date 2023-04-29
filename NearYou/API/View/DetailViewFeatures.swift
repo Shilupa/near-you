@@ -27,20 +27,45 @@ struct DetailViewFeatures: View {
             }.background(Color.blue)
                 .cornerRadius(10)
                 .foregroundColor(Color.white)
+            
+            
+            Button {
+                
+            } label: {
+                Text("Visited")
+                    .padding()
+            }.background(Color.blue)
+                .cornerRadius(10)
+                .foregroundColor(Color.white)
 
             
-            Toggle(isOn: $isFavourite) {
+            
+
                 Image(systemName: isFavourite ? "heart.fill" : "heart")
                     .resizable()
                     .foregroundColor(isFavourite ? .red : .gray)
                     .scaledToFit()
                     .frame(width: 30, height: 30)
-            }.onTapGesture {
-                if(!isFavourite){
-                    fvm.addfavourite(id)
-                }else{
-                    fvm.deleteFavourite(id)
-                }
+                    .onTapGesture {
+                        if(!isFavourite){
+                            fvm.addfavourite(id)
+                        }else{
+                            fvm.deleteFavourite(id)
+                        }
+            
+            
+//            Toggle(isOn: $isFavourite) {
+//                Image(systemName: isFavourite ? "heart.fill" : "heart")
+//                    .resizable()
+//                    .foregroundColor(isFavourite ? .red : .gray)
+//                    .scaledToFit()
+//                    .frame(width: 30, height: 30)
+//            }.onTapGesture {
+//                if(!isFavourite){
+//                    fvm.addfavourite(id)
+//                }else{
+//                    fvm.deleteFavourite(id)
+//                }
             }
             
         }
@@ -49,7 +74,7 @@ struct DetailViewFeatures: View {
         
     }
 }
-//
+
 //struct DetailViewFeatures_Previews: PreviewProvider {
 //    static var previews: some View {
 //        DetailViewFeatures()

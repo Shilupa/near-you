@@ -34,7 +34,7 @@ struct ProductDetailDescription: View {
             
             HStack{
                 Text("Description")
-                    .font(Font.custom("Poppins-Regular", size: 16))
+                    .font(Font.custom("Poppins-Regular", size: 18))
                     .bold()
                     .padding(.leading)
                 
