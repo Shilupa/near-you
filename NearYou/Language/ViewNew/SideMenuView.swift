@@ -89,6 +89,7 @@ struct CombineView: View{
         VStack(spacing: 0) {
             
             ContentView()
+                .frame(width: 100, height: 100)
             MyHomeView()
             LanguageView()
             AboutUs()
