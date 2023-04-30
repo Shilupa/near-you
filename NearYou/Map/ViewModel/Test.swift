@@ -20,7 +20,6 @@ func getMarkers() -> [Marker] {
     
     if let products = vm.allData?.data.product {
         for product in products {
-            
             let trimmedCoordinates = product.postalAddresses?[0].location?
                 .trimmingCharacters(in: CharacterSet(charactersIn: "()")) ?? ""
             let coordinateComponents = trimmedCoordinates.components(separatedBy: ",")

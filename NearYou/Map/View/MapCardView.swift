@@ -2,7 +2,7 @@
 //  MapCardView.swift
 //  NearYou
 //
-//  Created by iosdev on 16.4.2023.
+//  Created by Bibek on 16.4.2023.
 //
 
 import SwiftUI
@@ -25,11 +25,9 @@ struct MapCardView: View {
                         .frame(width: 120, height: 100)
                         .cornerRadius(10)
                 } placeholder: {
-                    
                     ProgressView()
                         .frame(width: 120, height: 100)
                 }
-                
                 VStack(alignment: .leading){
                     Text(data.productInformations?[0].name ?? "")
                         .bold()
@@ -39,6 +37,7 @@ struct MapCardView: View {
                         .font(Font.custom("Poppins-Regular", size: 12))
                     Text(data.postalAddresses![0].city ?? "")
                         .font(Font.custom("Poppins-Regular", size: 12))
+                    WeatherWithAPICoordinates(data: data)
                 }
                 .frame(width: 200, height: 100, alignment: .topLeading)
             }

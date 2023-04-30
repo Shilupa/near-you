@@ -14,9 +14,10 @@ struct CustomSearchBar: View {
     
     var body: some View {
         ZStack {
-            RoundedRectangle(cornerRadius: 8)
-                .fill(Color(.systemGray6))
+            RoundedRectangle(cornerRadius: 30)
+                .fill(Color(.white))
                 .frame(width: 300, height: 45)
+                .shadow(color:.gray,radius: 10)
             
             HStack {
                 Button(action: {
@@ -30,7 +31,7 @@ struct CustomSearchBar: View {
                 TextField("Search", text: $searchText)
                     .padding(.horizontal, 5)
                     .padding(.vertical, 10)
-                    .background(Color(.systemGray6))
+                    .background(Color(.white))
                     .frame(width: 220)
                     .disabled(true)
                 
@@ -48,6 +49,7 @@ struct CustomSearchBar: View {
         }
         .sheet(isPresented: $isSearchViewActive, content: {
             SearchView()
+                .padding(.top)
                 .transition(.move(edge: .bottom))
                 .animation(.spring(), value: 1)
         })

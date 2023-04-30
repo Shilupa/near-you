@@ -2,7 +2,7 @@
 //  CustomAnnotationView.swift
 //  NearYou
 //
-//  Created by iosdev on 17.4.2023.
+//  Created by Bibek on 17.4.2023.
 //
 
 import SwiftUI

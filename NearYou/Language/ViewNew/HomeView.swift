@@ -22,7 +22,7 @@ struct HomeView: View {
     
     
     init() {
-        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor : UIColor.orange], for: .selected)
+        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor : UIColor(named: "ThemeColour")!], for: .selected)
     }
     
     var body: some View {
@@ -150,11 +150,13 @@ struct ToggleHomeView: View {
     
     var body: some View {
         if(selectedTab == 0){
-            HomeListView()
+            SearchView(searchText: "All", isRecording: false, selectedCategory: "All")
+                .environmentObject(MapViewModel())
                 .padding(.top, 60)
         }else{
-            MapView()
-                .environmentObject(MapViewModel())
+                MapView()
+                    .environmentObject(MapViewModel())
+//            DraggablePins()
         }
     }
 }
