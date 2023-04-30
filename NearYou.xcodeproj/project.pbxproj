@@ -79,6 +79,7 @@
 		A77C012629F954AB0069D6D2 /* PlannedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77C012529F954AB0069D6D2 /* PlannedViewModel.swift */; };
 		A77C012829F954C10069D6D2 /* PlannedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77C012729F954C10069D6D2 /* PlannedView.swift */; };
 		A77C012B29F956A00069D6D2 /* MyPlanned.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A77C012929F956A00069D6D2 /* MyPlanned.xcdatamodeld */; };
+		A77C013529FAE1450069D6D2 /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77C013429FAE1450069D6D2 /* SplashScreenView.swift */; };
 		A7C125CC29DA0A0F0076B479 /* NearYouApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C125CB29DA0A0F0076B479 /* NearYouApp.swift */; };
 		A7C125D029DA0A110076B479 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A7C125CF29DA0A110076B479 /* Assets.xcassets */; };
 		A7C125D329DA0A110076B479 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A7C125D229DA0A110076B479 /* Preview Assets.xcassets */; };
@@ -184,6 +185,7 @@
 		A77C012529F954AB0069D6D2 /* PlannedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannedViewModel.swift; sourceTree = "<group>"; };
 		A77C012729F954C10069D6D2 /* PlannedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannedView.swift; sourceTree = "<group>"; };
 		A77C012A29F956A00069D6D2 /* MyPlanned.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyPlanned.xcdatamodel; sourceTree = "<group>"; };
+		A77C013429FAE1450069D6D2 /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 		A7C125C829DA0A0F0076B479 /* NearYou.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NearYou.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7C125CB29DA0A0F0076B479 /* NearYouApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearYouApp.swift; sourceTree = "<group>"; };
 		A7C125CF29DA0A110076B479 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -360,6 +362,7 @@
 				036F0C0329EC9820004A8A14 /* LanguageTabView.swift */,
 				A7CD132E29F71A4C0083426C /* FavouritesView.swift */,
 				A77C012729F954C10069D6D2 /* PlannedView.swift */,
+				A77C013429FAE1450069D6D2 /* SplashScreenView.swift */,
 			);
 			path = ViewNew;
 			sourceTree = "<group>";
@@ -713,6 +716,7 @@
 				03553C9029E887C4008B7286 /* HomeListView.swift in Sources */,
 				036F0BF229EC9379004A8A14 /* WeatherView.swift in Sources */,
 				6A7FE60629F54CF9002D3D95 /* DirectionsView.swift in Sources */,
+				A77C013529FAE1450069D6D2 /* SplashScreenView.swift in Sources */,
 				036F0BEC29EC935D004A8A14 /* WeatherManager.swift in Sources */,
 				03F6F8F929EEBCBD00DE28C6 /* ProductDetailDescription.swift in Sources */,
 				03553CA729EC892E008B7286 /* LocationsView.swift in Sources */,

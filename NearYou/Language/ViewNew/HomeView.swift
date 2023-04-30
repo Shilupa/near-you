@@ -19,7 +19,7 @@ struct HomeView: View {
     @StateObject private var dlvm = DefaultLangViewModel()
     @State private var selectedTab = 0
     @StateObject private var mypvm = MyProfileViewModel()
-    
+    @State private var listOrMap = false
     
     init() {
         UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor : UIColor(named: "ThemeColour")!], for: .selected)
@@ -105,9 +105,13 @@ struct HomeView: View {
             }
             // When view is loaded these values are set
             .onAppear{
-                selectedTab = Int(dvm.savedSetting.last?.listOrMap ?? 0)
                 gvvm.currLang =  dlvm.savedSetting.last?.myLang ?? "en"
-                
+                // List or Map value is loaded only once
+                if(!listOrMap){
+                    selectedTab = Int(dvm.savedSetting.last?.listOrMap ?? 0)
+                }
+                // Prohibits to fetch value default value of list or map more than once from CoreData
+                listOrMap = true
                 if(mypvm.savedSetting.last?.my_Image == nil){
                     gvvm.profileImage = UIImage(named: "profile")
                 }else{

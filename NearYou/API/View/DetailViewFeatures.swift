@@ -14,17 +14,27 @@ struct DetailViewFeatures: View {
     @Binding var id: String
     @StateObject private var fvm = FavouritesViewModel()
     @StateObject private var pvm = PlannedViewModel()
+    @Binding var isFavourite: Bool
+    @Binding var id: String
+    @Binding var isPlanned: Bool
+    
     var body: some View {
         
         HStack{
             
             
             Button {
-                pvm.addplanned(id)
+                if(isPlanned){
+                    pvm.deletePlanned(id)
+                    isPlanned = false
+                }else{
+                    isPlanned = true
+                    pvm.addplanned(id)
+                }
             } label: {
                 Text("Plan Trip")
                     .padding()
-            }.background(Color.blue)
+            }.background(isPlanned ? Color.blue: Color.gray)
                 .cornerRadius(10)
                 .foregroundColor(Color.white)
             
@@ -69,9 +79,6 @@ struct DetailViewFeatures: View {
             }
             
         }
-        
-        
-        
     }
 }
 
