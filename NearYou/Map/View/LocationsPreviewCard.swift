@@ -144,7 +144,7 @@ extension LocationsPreviewCard {
     
     private var titleSection : some View {
         VStack(alignment: .leading, spacing: 4){
-            Text(data.productInformations[0].name ?? "")
+            Text(data.productInformations?[0].name ?? "")
                 .fontWeight(.bold)
                 .font(.title3)
                 .lineLimit(1)

@@ -101,8 +101,7 @@ extension SearchView {
     //List of filtered list
     private var productsListSection : some View {
         List {
-            let haha = filteredList.sorted()
-            ForEach(haha, id: \.id) { product in
+            ForEach(filteredList, id: \.id) { product in
                 ZStack(alignment: .leading){
                     ProductCardHomeView(data: product)
                         .listRowSeparator(.hidden)

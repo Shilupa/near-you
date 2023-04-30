@@ -54,10 +54,9 @@ struct MapView: View {
         
                     if preview {
                         productsCardView
-                        withAnimation(.easeIn(duration: 4)){
-                                .transition(.move(edge: .trailing))
-                        }
-            
+                            .transition(.move(edge: .trailing))
+                            .animation(.default)
+
                     }
                     
                     HStack{

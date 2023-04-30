@@ -16,17 +16,7 @@ struct ProductResponse: Codable {
         var product: [Product]
     }
     
-    struct Product: Codable, Equatable, Comparable{
-        static func == (lhs: ProductResponse.Product, rhs: ProductResponse.Product) -> Bool {
-            lhs.productInformations[0].name == rhs.productInformations[0].name
-        }
-        
-        
-        
-        static func < (lhs: ProductResponse.Product, rhs: ProductResponse.Product) -> Bool {
-            lhs.productInformations[0].name == rhs.productInformations[0].name
-        }
-        
+    struct Product: Codable{      
         let id, type, duration, durationType: String?
         let company: Company?
         let postalAddresses: [PostalAddress]?
