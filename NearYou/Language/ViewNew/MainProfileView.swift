@@ -11,6 +11,7 @@ struct MainProfileView: View {
     // Environment object
     @EnvironmentObject private var gvvm: GlobalVarsViewModel
     
+    
     // Tracks the selected tab
     @State private var selectedTab = 0
     
@@ -107,8 +108,10 @@ struct MainProfilePickerView: View {
     var body: some View {
         if(selectedTab == 0){
             PlannedView()
+                .environmentObject(MapViewModel())
         }else if(selectedTab == 2){
             FavouritesView()
+                .environmentObject(MapViewModel())
         }
     }
 }

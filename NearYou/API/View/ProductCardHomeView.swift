@@ -143,7 +143,7 @@ struct ProductCardHomeView: View {
                     
                     VStack (alignment: .leading){
                         let trimmedCoordinates = data.postalAddresses![0].location!
-                            .trimmingCharacters(in: CharacterSet(charactersIn: "()")) ?? ""
+                            .trimmingCharacters(in: CharacterSet(charactersIn: "()"))
                         
                         let coordinateComponents = trimmedCoordinates.components(separatedBy: ",")
                         let coordinate = CLLocationCoordinate2D(latitude: Double(coordinateComponents[0]) ?? 0.0, longitude: Double(coordinateComponents[1]) ?? 0.0)

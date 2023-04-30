@@ -19,24 +19,34 @@ struct SearchView: View {
     @State  var selectedCategory : String? = ""
     @StateObject var speechRecognizer = SpeechRecognizer()
     
+
+    
+    
     var body: some View {
         
-        VStack {
-            SearchBar(text: $searchText, placeholder: "Search", onSearch: performSearch, onClear: {
-                // Unselect category when search text is cleared
-                selectedCategory = nil
+        if vm.isRefreshing {
+            ProgressView()
+            Spacer()
+        } else {
+            VStack {
+                SearchBar(text: $searchText, placeholder: "Search", onSearch: performSearch, onClear: {
+                    // Unselect category when search text is cleared
+                    selectedCategory = nil
+                    performSearch()
+                })
+                .padding(.horizontal)
+                
+                categoriesSection
+                productsListSection
+                
+            }
+            .onAppear(perform: makeCategories)
+            .onAppear(perform: performSearch)
+            .onChange(of: searchText) { _ in
                 performSearch()
-            })
-            .padding(.horizontal)
-            
-            categoriesSection
-            productsListSection
+            }
         }
-        .onAppear(perform: makeCategories)
-        .onAppear(perform: performSearch)
-        .onChange(of: searchText) { _ in
-            performSearch()
-        }
+        
     }
     
     //Function to perform search
@@ -100,18 +110,20 @@ extension SearchView {
     
     //List of filtered list
     private var productsListSection : some View {
-        List {
-            ForEach(filteredList, id: \.id) { product in
-                ZStack(alignment: .leading){
-                    ProductCardHomeView(data: product)
-                        .listRowSeparator(.hidden)
-                    //Hiding navigation link arrow shown on the card
-                    NavigationLink(destination: DetailProductView(data: product)){
+
+            List {
+                ForEach(filteredList, id: \.id) { product in
+                    ZStack(alignment: .leading){
+                        ProductCardHomeView(data: product)
+                            .listRowSeparator(.hidden)
+                        //Hiding navigation link arrow shown on the card
+                        NavigationLink(destination: DetailProductView(data: product)){
+                        }
+                        .opacity(0.0)
                     }
-                    .opacity(0.0)
                 }
             }
-        }
-        .listStyle(.plain)
+            .listStyle(.plain)
+
     }
 }

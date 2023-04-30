@@ -19,7 +19,7 @@ struct MapView: View {
     @State private var currentIndex = 0
     @EnvironmentObject var vm: DataViewModel
     @State private var isSelected = false
-    @State private var preview = false
+    @State private var preview = true
     
     var body: some View {
         ZStack(alignment: .bottomTrailing){

@@ -10,6 +10,7 @@ import SwiftUI
 struct PlannedView: View {
     @StateObject private var pvm = PlannedViewModel()
     @EnvironmentObject var vm: DataViewModel
+    
     @State var plannedList = [ProductResponse.Product]()
     
     var body: some View {
@@ -18,6 +19,7 @@ struct PlannedView: View {
                 ForEach(plannedList , id: \.id) { product in
                     ZStack(alignment: .leading){
                         ProductCardHomeView(data: product)
+                            
                             .listRowSeparator(.hidden)
                         NavigationLink(destination: DetailProductView(data: product)){
                         }
