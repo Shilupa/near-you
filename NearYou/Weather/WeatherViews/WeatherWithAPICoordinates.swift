@@ -67,16 +67,19 @@ struct ShowPopover: View {
                 AsyncImage(url: URL(string: viewModel.icon), content: { image in image
                         .resizable()
                         .aspectRatio(contentMode:.fit)
-                        .frame(maxWidth: 50, maxHeight: 50)
+                        .frame(width: 30, height: 30)
                 }, placeholder: {
                     ProgressView()
                 })
                 
                 Text(viewModel.temperature.roundDouble() + "°C")
-                    .font(.system(size: 15))
+                    .font(Font.custom("Poppins-Regular", size: 14))
                     .fontWeight(.bold)
+                    .foregroundColor(.white)
             }
-            .background(Color.white .cornerRadius(10) .shadow(radius: 10, x: 10, y: 10))
+            .padding(.leading,4)
+            .padding(.trailing, 12)
+            .background(Color(.lightGray) .cornerRadius(10) .shadow(radius: 5, x: 3, y: 0))
         }
         
         //The card for the detailed view with min and max temp, wind and humidity
@@ -144,6 +147,8 @@ struct ShowPopover: View {
         }
     }
 }
+
+
 struct BackgroundBlurView: UIViewRepresentable {
     func makeUIView(context: Context) -> UIView {
         let view = UIVisualEffectView(effect: UIBlurEffect(style: .light))

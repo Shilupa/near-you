@@ -74,12 +74,14 @@ struct ProductDetailDescription: View {
                                 Text(data.postalAddresses?[0].city ?? "")
                                 Text(data.postalAddresses?[0].postalCode ?? "")
                             }
-                            
+                            // showing pop over of weather
                             ShowPopover(data: data)
                         }
                         .font(Font.custom("Poppins-Regular", size: 14))
                         .frame(width: 150, height: 20)
                     }.padding(.top)
+                    
+                    Spacer(minLength: 30)
                     
                     // language functionality in description
                     if let descriptionLanguage: ProductResponse.ProductInformation = data.productInformations?.first(where: { $0.language == selectedLanguageOption }){

@@ -25,9 +25,8 @@ struct WeatherItem: View {
         }
         .frame(maxWidth: .infinity)
         .padding()
-        .padding(.horizontal, 40)
+        .padding(.horizontal, 10)
         .background(Color.gray.opacity(0.2).cornerRadius(10).shadow(radius: 10))
-//        .fixedSize(horizontal: true, vertical: false)
     }
 }
 

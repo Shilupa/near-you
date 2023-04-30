@@ -28,14 +28,11 @@ struct PhotoGalaryView: View {
                                 .resizable()
                                 .scaledToFill()
                         } placeholder: {
-
+                            
                             ProgressView()
                                 .frame(width: 120, height: 100)
                         }
                     }
-                    
-                    
-                    
                     
 //                    ForEach(ImagesFile, id: \.self ){ urlName in
 //                        let url = URL(string: urlName )
@@ -44,11 +41,11 @@ struct PhotoGalaryView: View {
 //                                .resizable()
 //                                .scaledToFill()
 //                        } placeholder: {
-//
 //                            ProgressView()
 //                                .frame(width: 120, height: 100)
 //                        }
 //                    }
+                    
                 }
                 .tabViewStyle(PageTabViewStyle())
                 .onReceive(timer, perform: {_ in
