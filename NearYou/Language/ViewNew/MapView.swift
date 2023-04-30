@@ -20,6 +20,8 @@ struct MapView: View {
     @EnvironmentObject var vm: DataViewModel
     @State private var isSelected = false
     @State private var preview = true
+    @State private var swipeLeft = true
+    @State private var firstChangeSwipe = false
     
     var body: some View {
         ZStack(alignment: .bottomTrailing){
@@ -28,7 +30,7 @@ struct MapView: View {
             } else {
                 let markers = getMarkers()
                 //let _ = print("Markers", markers)
-                let _ = print("UserLocation", viewModel.locationManager.location as Any)
+                //let _ = print("UserLocation", viewModel.locationManager.location as Any)
                 Map(coordinateRegion: $viewModel.region, showsUserLocation: true,
                     annotationItems: markers
                     // Array(markers.shuffled().prefix(5)))
@@ -40,30 +42,29 @@ struct MapView: View {
                 VStack{
                     Spacer()
                     
-                    Button(action: {
-                        preview.toggle()
-                    }) {
-                        Image(systemName: "scope")
-                            .foregroundColor(.white)
-                            .symbolVariant(.fill)
-                            .font(Font.system(size: 24, weight: .bold))
-                            .frame(width: 40, height: 40)
-                            .background(Color("ThemeColour"))
-                            .clipShape(RoundedRectangle(cornerRadius: 10))
-                    }
-        
                     if preview {
+                        
                         productsCardView
-                            .transition(.move(edge: .trailing))
-                            .animation(.default)
-
+                            .transition(.asymmetric(
+                                insertion: .move(edge: swipeLeft ? .trailing : .leading),
+                                //removal: .scale(scale: 0.0)))
+                                removal: .move(edge: swipeLeft ? .leading : .trailing)))
+                            .onDisappear(perform: {
+                                
+                                preview.toggle()
+                                
+                            })
+                            .animation(.easeInOut(duration: 0.3))
+                        
+                        
+                        
                     }
                     
                     HStack{
                         CustomSearchBar(searchText: $searchText)
                         currentUserLocationButton
                             .shadow(color:.gray,radius: 10)
-
+                    
                     }
                     .padding()
                 }
@@ -110,9 +111,19 @@ extension MapView {
                                         
                                         if value.translation.width > 0 {
                                             currentIndex = max(currentIndex - 1, 0)
+                                            
+                                            swipeLeft = false
+                                            preview.toggle()
+                                            
                                         } else {
                                             currentIndex = min(currentIndex + 1, products.count - 1)
+
+                                            swipeLeft = true
+                                            preview.toggle()
+
                                         }
+                                        
+                                        
                                         let trimmedCoordinates = products[currentIndex].postalAddresses?[0]
                                             .location?
                                             .trimmingCharacters(in: CharacterSet(charactersIn: "()")) ?? ""

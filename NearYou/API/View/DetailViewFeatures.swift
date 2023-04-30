@@ -14,8 +14,6 @@ struct DetailViewFeatures: View {
     @Binding var id: String
     @StateObject private var fvm = FavouritesViewModel()
     @StateObject private var pvm = PlannedViewModel()
-    @Binding var isFavourite: Bool
-    @Binding var id: String
     @Binding var isPlanned: Bool
     
     var body: some View {

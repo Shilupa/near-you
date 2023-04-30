@@ -79,7 +79,7 @@ struct ShowPopover: View {
             }
             .padding(.leading,4)
             .padding(.trailing, 12)
-            .background(Color(.lightGray) .cornerRadius(10) .shadow(radius: 5, x: 3, y: 0))
+            .background(Color("ThemeColour") .cornerRadius(10) .shadow(radius: 5, x: 3, y: 0))
         }
         
         //The card for the detailed view with min and max temp, wind and humidity

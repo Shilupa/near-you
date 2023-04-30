@@ -106,7 +106,7 @@ struct LocationsPreviewCard: View {
             
             VStack(spacing: 8){
                 titleSection
-                WeatherWithAPICoordinates(data: data)
+                //WeatherWithAPICoordinates(data: data)
             }
         }
         .padding(20)

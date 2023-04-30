@@ -52,9 +52,11 @@ struct HomeView: View {
                                 
                                 if(gvvm.showHamButton){
                                     Button(action: {
-                                        gvvm.updateShowSideView(true)
-                                        gvvm.updateShowBackButton(true)
-                                        gvvm.updateShowHamButton(false)
+                                        withAnimation(.easeInOut(duration: 0.5)) {
+                                            gvvm.updateShowSideView(true)
+                                            gvvm.updateShowBackButton(true)
+                                            gvvm.updateShowHamButton(false)
+                                        }
                                     },label: {
                                         Image(systemName: "line.horizontal.3")
                                             .imageScale(.large)
@@ -63,9 +65,11 @@ struct HomeView: View {
                                     })
                                 }else if(gvvm.showBackButton){
                                     Button(action: {
-                                        gvvm.updateShowSideView(false)
-                                        gvvm.updateShowBackButton(false)
-                                        gvvm.updateShowHamButton(true)
+                                        withAnimation(.easeInOut(duration: 0.5)) {
+                                            gvvm.updateShowSideView(false)
+                                            gvvm.updateShowBackButton(false)
+                                            gvvm.updateShowHamButton(true)
+                                        }
                                     },label: {
                                         Image(systemName: "arrowshape.turn.up.backward.fill")
                                             .imageScale(.large)
@@ -132,6 +136,8 @@ struct MixedView: View {
     
     var body: some View {
         SideMenuView().frame(height: 800)
+            .transition(.move(edge: .leading))
+            .animation(.spring(), value: 0.5)
         ToggleHomeView(selectedTab: $selectedTab).cornerRadius(gvvm.showSideView ? 20 : 10)
             .overlay(
                 RoundedRectangle(cornerRadius: gvvm.showSideView ? 20 : 10)
@@ -140,6 +146,7 @@ struct MixedView: View {
             )
             .offset(x: gvvm.showSideView ? 300 : 0, y: gvvm.showSideView ? 44 : 0)
             .scaleEffect(gvvm.showSideView ? 0.8 : 1)
+            .transition(.move(edge: .trailing))
         // Disables MainView
             .allowsHitTesting(false)
     }
@@ -157,6 +164,7 @@ struct ToggleHomeView: View {
             SearchView(searchText: "All", isRecording: false, selectedCategory: "All")
                 .environmentObject(MapViewModel())
                 .padding(.top, 60)
+                
         }else{
                 MapView()
                     .environmentObject(MapViewModel())
