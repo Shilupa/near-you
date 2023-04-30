@@ -12,6 +12,7 @@ struct HomeListView: View {
     //    @StateObject var vm = DataViewModel()
     @EnvironmentObject var vm: DataViewModel
     
+    
     //    init(){
     //        for familyName in UIFont.familyNames{
     //            print(familyName)
@@ -31,7 +32,7 @@ struct HomeListView: View {
             if vm.isRefreshing {
                 ProgressView()
             } else {
-                
+                                
                 List {
                     ForEach(vm.allData?.data.product ?? [] , id: \.id) { product in
                         
@@ -47,6 +48,8 @@ struct HomeListView: View {
                     }
                 }
                 .listStyle(.plain)
+                
+                
                 
             }
         }

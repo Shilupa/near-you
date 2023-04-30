@@ -1,8 +1,8 @@
 //
-////  MainView.swift
-////  NearYou
-////
-////  Created by iosdev on 15.4.2023.
+//  MainView.swift
+//  NearYou
+//
+//  Created by iosdev on 15.4.2023.
 //
 //
 //import SwiftUI

@@ -2,21 +2,50 @@
 //  SearchView.swift
 //  NearYou
 //
-//  Created by iosdev on 20.4.2023.
+//  Created by Bibek on 20.4.2023.
 //
 
 import SwiftUI
 
+/*
+ UI View where users are able to search for locations
+ */
 struct SearchView: View {
     @State var searchText = ""
-    @State private var isRecording = false
+    @State var isRecording = false
     @EnvironmentObject var vm: DataViewModel
     @State private var filteredList: [ProductResponse.Product] = []
     @State private var categories : [String] = []
-    @State private var selectedCategory : String?
+    @State  var selectedCategory : String? = ""
+    @StateObject var speechRecognizer = SpeechRecognizer()
     
+    var body: some View {
+        
+        VStack {
+            SearchBar(text: $searchText, placeholder: "Search", onSearch: performSearch, onClear: {
+                // Unselect category when search text is cleared
+                selectedCategory = nil
+                performSearch()
+            })
+            .padding(.horizontal)
+            
+            categoriesSection
+            productsListSection
+        }
+        .onAppear(perform: makeCategories)
+        .onAppear(perform: performSearch)
+        .onChange(of: searchText) { _ in
+            performSearch()
+        }
+    }
     
+    //Function to perform search
     private func performSearch() {
+        // Clear selected category if search text is empty
+        if searchText.isEmpty {
+            selectedCategory = nil
+        }
+        //Filtering data based on key search words
         if let allData = vm.allData {
             filteredList = allData.data.product.filter { product in
                 let containsKeyword = product.productInformations.contains { information in
@@ -31,131 +60,59 @@ struct SearchView: View {
         }
     }
     
+    //Function to make categories from types of the products
     private func makeCategories() {
         if let allData = vm.allData {
             let types = allData.data.product.compactMap { $0.type }
             categories = Array(Set(types)).sorted()
+            categories.insert("All", at: 0)
         }
     }
     
+    //Function to check if categories are selected
     private func didSelectCategory(_ category: String) {
         selectedCategory = category
-        searchText = category
-    }
-    @StateObject var speechRecognizer = SpeechRecognizer()
-    
-    
-    var body: some View {
-        NavigationView {
-            VStack {
-                SearchBar(text: $searchText, placeholder: "Search", onSearch: performSearch)
-                    .padding()
-                
-                
-                ScrollView(.horizontal, showsIndicators: false) {
-                    LazyHStack {
-                        ForEach(categories, id: \.self) { category in
-                            CategoryCardView(category: category, isSelected: category == selectedCategory)
-                                .padding(.horizontal, 2)
-                                .onTapGesture {
-                                    selectedCategory = category == selectedCategory ? nil : category
-                                    searchText = selectedCategory ?? ""
-                                    performSearch()
-                                }
-                        }
-                    }
-                }
-                .frame(height: 40)
-                .padding(.horizontal)
-                
-                
-                List {
-                    ForEach(filteredList, id: \.id) { product in
-                        ZStack(alignment: .leading){
-                            
-                            ProductCardHomeView(data: product)
-                                .listRowSeparator(.hidden)
-                            NavigationLink(destination: DetailProductView(data: product)){
-                                
-                                
-                            }
-                            .opacity(0.0)
-                        }
-                    }
-                }
-                .listStyle(.plain)
-            }
-            .onAppear(perform: makeCategories)
-        }
-        .onChange(of: searchText) { _ in
-            performSearch()
-        }
-    }
-}
-
-struct SearchBar: View {
-    @State private var isRecording = false
-    @StateObject var speechRecognizer = SpeechRecognizer()
-    @Binding var text: String
-    var placeholder: String
-    var onSearch: () -> Void
-    
-    var body: some View {
-        HStack {
-            Image(systemName: "magnifyingglass")
-                .foregroundColor(.gray)
-                .padding(.horizontal)
-            TextField(placeholder, text: $text, onCommit: onSearch)
-                .foregroundColor(.primary)
-                .autocapitalization(.none)
-                .disableAutocorrection(true)
-            
-            if !text.isEmpty {
-                Button(action: {
-                    text = ""
-                    onSearch()
-                }) {
-                    Image(systemName: "xmark.circle.fill")
-                        .foregroundColor(.gray)
-                }
-            }
-            
-            Button(action: {
-                isRecording.toggle()
-                if isRecording {
-                    speechRecognizer.transcribe()
-                } else {
-                    speechRecognizer.stopTranscribing()
-                    text = speechRecognizer.transcript
-                }
-            }, label: {
-                Image(systemName: "mic.fill")
-                    .foregroundColor(isRecording ? .red : .gray)
-            })
-            .padding(.horizontal)
-        }
-        .frame(height: 30)
-        .padding(.vertical, 10)
-        .background(Color(.systemGray5))
-        .cornerRadius(10)
-        
+        searchText = (selectedCategory == "All" ? "" : selectedCategory) ?? ""
+        performSearch()
     }
 }
 
 
-struct CategoryCardView: View {
-    let category: String
-    let isSelected: Bool
-    
-    var body: some View {
-        VStack {
-            Text(category)
-                .font(.headline)
-                .foregroundColor(.black)
-                .padding()
+extension SearchView {
+    //Scrollable view of all the categories
+    private var categoriesSection : some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            LazyHStack {
+                ForEach(categories, id: \.self) { category in
+                    CategoryCardView(category: category.capitalized.replacingOccurrences(of: "_", with: " "), isSelected: category == selectedCategory)
+                        .padding(.horizontal, 2)
+                        .onTapGesture {
+                            selectedCategory = category == selectedCategory ? nil : category
+                            searchText = selectedCategory ?? ""
+                            performSearch()
+                        }
+                }
+            }
         }
-        .frame(width: .none, height: 40)
-        .background(isSelected ? Color.orange : Color(.systemGray6))
-        .cornerRadius(10)
+        .frame(height: 40)
+        .padding(.horizontal)
+    }
+    
+    //List of filtered list
+    private var productsListSection : some View {
+        List {
+            let haha = filteredList.sorted()
+            ForEach(haha, id: \.id) { product in
+                ZStack(alignment: .leading){
+                    ProductCardHomeView(data: product)
+                        .listRowSeparator(.hidden)
+                    //Hiding navigation link arrow shown on the card
+                    NavigationLink(destination: DetailProductView(data: product)){
+                    }
+                    .opacity(0.0)
+                }
+            }
+        }
+        .listStyle(.plain)
     }
 }

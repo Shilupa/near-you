@@ -6,11 +6,14 @@
 //
 
 import SwiftUI
+import CoreLocation
+
 
 struct ProductCardHomeView: View {
     @StateObject private var fvm = FavouritesViewModel()
     let data: ProductResponse.Product
-    
+    @EnvironmentObject  var viewModel : MapViewModel
+
     func weekdayName(from weekday: Int) -> String {
         switch weekday {
         case 1:
@@ -124,7 +127,7 @@ struct ProductCardHomeView: View {
                         if isopen == "Open" {
                             Text(isopen)
                                 .font(Font.custom("Poppins-Regular", size: 12))
-                                .foregroundColor(Color(.green))
+                                .foregroundColor(Color(.systemGreen))
                                 .bold()
                         }else {
                             Text(isopen)
@@ -139,7 +142,17 @@ struct ProductCardHomeView: View {
                 HStack{
                     
                     VStack (alignment: .leading){
-                        Text("2 km away")
+                        let trimmedCoordinates = data.postalAddresses![0].location!
+                            .trimmingCharacters(in: CharacterSet(charactersIn: "()")) ?? ""
+                        
+                        let coordinateComponents = trimmedCoordinates.components(separatedBy: ",")
+                        let coordinate = CLLocationCoordinate2D(latitude: Double(coordinateComponents[0]) ?? 0.0, longitude: Double(coordinateComponents[1]) ?? 0.0)
+                        let distanceInMeters = viewModel.locationManager.location?.distance(from: CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude))
+                        let distanceInKm = (distanceInMeters ?? 0.0) / 1000
+
+                        
+                
+                        Text(String(round(distanceInKm * 100) / 100) + "km away")
                             .lineLimit(1)
                             .font(Font.custom("Poppins-Regular", size: 12))
                         
