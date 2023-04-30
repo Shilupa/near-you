@@ -21,7 +21,7 @@ struct MapView: View {
     @State private var isSelected = false
     @State private var preview = true
     @State private var swipeLeft = true
-    @State private var firstChangeSwipe = false
+    @State private var isSwipe = false
     
     var body: some View {
         ZStack(alignment: .bottomTrailing){
@@ -47,14 +47,14 @@ struct MapView: View {
                         productsCardView
                             .transition(.asymmetric(
                                 insertion: .move(edge: swipeLeft ? .trailing : .leading),
-                                //removal: .scale(scale: 0.0)))
-                                removal: .move(edge: swipeLeft ? .leading : .trailing)))
+                                removal: .scale(scale: 0.01)))
                             .onDisappear(perform: {
-                                
-                                preview.toggle()
-                                
+                                if isSwipe{
+                                    preview.toggle()
+                                    isSwipe.toggle()
+                                }
                             })
-                            .animation(.easeInOut(duration: 0.3))
+                            .animation(.easeInOut(duration: 0.5))
                         
                         
                         
@@ -114,12 +114,18 @@ extension MapView {
                                             
                                             swipeLeft = false
                                             preview.toggle()
+                                            isSwipe=true
+                                            
+                                            //print("Right swipe: ", preview)
                                             
                                         } else {
                                             currentIndex = min(currentIndex + 1, products.count - 1)
 
                                             swipeLeft = true
                                             preview.toggle()
+                                            isSwipe=true
+                                            
+                                            //print("Left swipe: ", preview)
 
                                         }
                                         
@@ -135,6 +141,10 @@ extension MapView {
                                 }
                         )
                 }
+//                .onTapGesture(perform: {
+//                    isSwipe = false
+//                    print("Is swipe: ", isSwipe)
+//                })
                 .buttonStyle(PlainButtonStyle())
             } else {
                 Text("Products loading...")
