@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PhotoGalaryView: View {
     
-    var ImagesFile: [String]
+    let ImagesFile: [String]
 
     private let timer = Timer.publish(every: 3, on: .main, in: .common).autoconnect()
     
@@ -20,7 +20,6 @@ struct PhotoGalaryView: View {
         VStack{
             GeometryReader{ proxy in
                 TabView (selection: $currentIndex) {
-                    
                     
                     ForEach(0..<ImagesFile.count){ count in
                         let url = URL(string: ImagesFile[count] )
