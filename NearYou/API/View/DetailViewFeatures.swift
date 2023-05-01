@@ -39,7 +39,7 @@ struct DetailViewFeatures: View {
             } label: {
                 Text("Plan Trip")
                     .padding()
-            }.background(isPlanned ? Color.blue: Color.gray)
+            }.background(isPlanned ? Color.gray: Color.blue)
                 .cornerRadius(10)
                 .foregroundColor(Color.white)
                 .alert(isPresented: $showAlert) {

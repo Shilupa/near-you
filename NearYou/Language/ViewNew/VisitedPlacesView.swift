@@ -14,19 +14,23 @@ struct VisitedPlacesView: View {
     var body: some View {
         List{
             ForEach(vvm.savedSetting, id: \.self) { place in
-                VStack{
+                VStack(alignment: .leading){
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack(spacing: 10) {
+                            ForEach(pivm.savedSetting.filter({ $0.placeId == place.placeId }), id: \.id) { image in
+                                let placeImage = UIImage(data: image.placeImage ?? Data()) ?? UIImage(named: "profile")!
+                                Image(uiImage: placeImage)
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(maxWidth: .infinity, maxHeight: 250)
+                                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                            }
+                        }
+                    }
                     Text(place.address ?? "Not Found")
                     Text(place.city ?? "Not Found")
                     Text(place.postalCode ?? "Not Found")
                     Text(place.eventName ?? "Not Found")
-                    ForEach(pivm.savedSetting.filter({ $0.placeId == place.placeId }), id: \.id) { image in
-                        let placeImage = UIImage(data: image.placeImage ?? Data()) ?? UIImage(named: "profile")!
-                        VStack{
-                            Image(uiImage: placeImage)
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                        }
-                    }
                 }
             }
         }
