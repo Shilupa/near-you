@@ -15,19 +15,20 @@ struct DetailViewFeatures: View {
     @StateObject private var fvm = FavouritesViewModel()
     @StateObject private var pvm = PlannedViewModel()
     @Binding var isPlanned: Bool
+    @State private var showAlert = false
     
     var body: some View {
         
         HStack{
-            
-            
             Button {
                 if(isPlanned){
                     pvm.deletePlanned(id)
                     isPlanned = false
+                    self.showAlert = true
                 }else{
                     isPlanned = true
                     pvm.addplanned(id)
+                    self.showAlert = true
                 }
             } label: {
                 Text("Plan Trip")
@@ -35,47 +36,35 @@ struct DetailViewFeatures: View {
             }.background(isPlanned ? Color.blue: Color.gray)
                 .cornerRadius(10)
                 .foregroundColor(Color.white)
+                .alert(isPresented: $showAlert) {
+                    Alert(title: Text("Alert"), message: isPlanned ? Text("Product added to Planned List \u{1F601}") : Text("Product removed from Planned List \u{1F614}"), dismissButton: .default(Text("OK")))
+                }
             
             
             Button {
-                
+                // TODO
             } label: {
                 Text("Visited")
                     .padding()
             }.background(Color.blue)
                 .cornerRadius(10)
                 .foregroundColor(Color.white)
-
             
             
-
-                Image(systemName: isFavourite ? "heart.fill" : "heart")
-                    .resizable()
-                    .foregroundColor(isFavourite ? .red : .gray)
-                    .scaledToFit()
-                    .frame(width: 30, height: 30)
-                    .onTapGesture {
-                        if(!isFavourite){
-                            fvm.addfavourite(id)
-                        }else{
-                            fvm.deleteFavourite(id)
-                        }
-            
-            
-//            Toggle(isOn: $isFavourite) {
-//                Image(systemName: isFavourite ? "heart.fill" : "heart")
-//                    .resizable()
-//                    .foregroundColor(isFavourite ? .red : .gray)
-//                    .scaledToFit()
-//                    .frame(width: 30, height: 30)
-//            }.onTapGesture {
-//                if(!isFavourite){
-//                    fvm.addfavourite(id)
-//                }else{
-//                    fvm.deleteFavourite(id)
-//                }
-            }
-            
+            Image(systemName: isFavourite ? "heart.fill" : "heart")
+                .resizable()
+                .foregroundColor(isFavourite ? .red : .gray)
+                .scaledToFit()
+                .frame(width: 30, height: 30)
+                .onTapGesture {
+                    if(!isFavourite){
+                        fvm.addfavourite(id)
+                        isFavourite.toggle()
+                    }else{
+                        fvm.deleteFavourite(id)
+                        isFavourite.toggle()
+                    }
+                }
         }
     }
 }
