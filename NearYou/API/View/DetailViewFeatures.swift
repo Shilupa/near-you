@@ -16,6 +16,7 @@ struct DetailViewFeatures: View {
     @StateObject private var pvm = PlannedViewModel()
     @Binding var isPlanned: Bool
     @State private var showAlert = false
+    @State var isPresented = false
     
     var body: some View {
         
@@ -42,7 +43,7 @@ struct DetailViewFeatures: View {
             
             
             Button {
-                // TODO
+                isPresented = true
             } label: {
                 Text("Visited")
                     .padding()
@@ -65,6 +66,16 @@ struct DetailViewFeatures: View {
                         isFavourite.toggle()
                     }
                 }
+        }.fullScreenCover(isPresented: $isPresented){
+            NavigationView {
+                UploadPhotosView()
+                    .navigationTitle("Upload Photos")
+                    .navigationBarItems(
+                        leading: Button("Back") {
+                            isPresented = false
+                        }
+                    )
+            }
         }
     }
 }

@@ -80,6 +80,10 @@
 		A77C012829F954C10069D6D2 /* PlannedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77C012729F954C10069D6D2 /* PlannedView.swift */; };
 		A77C012B29F956A00069D6D2 /* MyPlanned.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A77C012929F956A00069D6D2 /* MyPlanned.xcdatamodeld */; };
 		A77C013529FAE1450069D6D2 /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77C013429FAE1450069D6D2 /* SplashScreenView.swift */; };
+		A7B6BD7E29FFDEAF00709FE5 /* UploadPhotosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B6BD7D29FFDEAF00709FE5 /* UploadPhotosView.swift */; };
+		A7B6BD8129FFDEF200709FE5 /* VisitedPlaces.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A7B6BD7F29FFDEF200709FE5 /* VisitedPlaces.xcdatamodeld */; };
+		A7B6BD8429FFDFFF00709FE5 /* VisitePlaceImages.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A7B6BD8229FFDFFF00709FE5 /* VisitePlaceImages.xcdatamodeld */; };
+		A7B6BD8629FFE07100709FE5 /* VisitedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B6BD8529FFE07100709FE5 /* VisitedViewModel.swift */; };
 		A7C125CC29DA0A0F0076B479 /* NearYouApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C125CB29DA0A0F0076B479 /* NearYouApp.swift */; };
 		A7C125D029DA0A110076B479 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A7C125CF29DA0A110076B479 /* Assets.xcassets */; };
 		A7C125D329DA0A110076B479 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A7C125D229DA0A110076B479 /* Preview Assets.xcassets */; };
@@ -186,6 +190,10 @@
 		A77C012729F954C10069D6D2 /* PlannedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannedView.swift; sourceTree = "<group>"; };
 		A77C012A29F956A00069D6D2 /* MyPlanned.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyPlanned.xcdatamodel; sourceTree = "<group>"; };
 		A77C013429FAE1450069D6D2 /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
+		A7B6BD7D29FFDEAF00709FE5 /* UploadPhotosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPhotosView.swift; sourceTree = "<group>"; };
+		A7B6BD8029FFDEF200709FE5 /* VisitedPlaces.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = VisitedPlaces.xcdatamodel; sourceTree = "<group>"; };
+		A7B6BD8329FFDFFF00709FE5 /* VisitePlaceImages.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = VisitePlaceImages.xcdatamodel; sourceTree = "<group>"; };
+		A7B6BD8529FFE07100709FE5 /* VisitedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitedViewModel.swift; sourceTree = "<group>"; };
 		A7C125C829DA0A0F0076B479 /* NearYou.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NearYou.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7C125CB29DA0A0F0076B479 /* NearYouApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearYouApp.swift; sourceTree = "<group>"; };
 		A7C125CF29DA0A110076B479 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -239,6 +247,8 @@
 				036F0C2629EC9CBD004A8A14 /* Localizable.strings */,
 				A7CD132929F704160083426C /* MyFavourites.xcdatamodeld */,
 				A77C012929F956A00069D6D2 /* MyPlanned.xcdatamodeld */,
+				A7B6BD7F29FFDEF200709FE5 /* VisitedPlaces.xcdatamodeld */,
+				A7B6BD8229FFDFFF00709FE5 /* VisitePlaceImages.xcdatamodeld */,
 			);
 			path = Language;
 			sourceTree = "<group>";
@@ -248,16 +258,8 @@
 			children = (
 				03553C9F29EC88E8008B7286 /* View */,
 				03553C9E29EC88DE008B7286 /* ViewModel */,
-				03553C9D29EC88D8008B7286 /* Model */,
 			);
 			path = Map;
-			sourceTree = "<group>";
-		};
-		03553C9D29EC88D8008B7286 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		03553C9E29EC88DE008B7286 /* ViewModel */ = {
@@ -363,6 +365,7 @@
 				A7CD132E29F71A4C0083426C /* FavouritesView.swift */,
 				A77C012729F954C10069D6D2 /* PlannedView.swift */,
 				A77C013429FAE1450069D6D2 /* SplashScreenView.swift */,
+				A7B6BD7D29FFDEAF00709FE5 /* UploadPhotosView.swift */,
 			);
 			path = ViewNew;
 			sourceTree = "<group>";
@@ -377,6 +380,7 @@
 				036F0C1229EC984A004A8A14 /* MapViewModel.swift */,
 				A7CD132C29F7044F0083426C /* FavouritesViewModel.swift */,
 				A77C012529F954AB0069D6D2 /* PlannedViewModel.swift */,
+				A7B6BD8529FFE07100709FE5 /* VisitedViewModel.swift */,
 			);
 			path = ViewModelNew;
 			sourceTree = "<group>";
@@ -669,6 +673,7 @@
 				036F0C0C29EC9820004A8A14 /* EditProfileView.swift in Sources */,
 				03F7BA2529F5DD840033A484 /* DefaultLangViewModel.swift in Sources */,
 				6A4BDEC629F03FCE00D8598C /* WeatherViewModel.swift in Sources */,
+				A7B6BD8429FFDFFF00709FE5 /* VisitePlaceImages.xcdatamodeld in Sources */,
 				0388942129E3471300B2EC01 /* ProductModel.swift in Sources */,
 				036F0C0E29EC9820004A8A14 /* SideMenuView.swift in Sources */,
 				A77C012629F954AB0069D6D2 /* PlannedViewModel.swift in Sources */,
@@ -705,6 +710,7 @@
 				6ADD1DDA29FBEC5500F0ABCC /* SearchBar.swift in Sources */,
 				03F6F8F729EE831500DE28C6 /* DetailViewOptions.swift in Sources */,
 				A7CD132B29F704160083426C /* MyFavourites.xcdatamodeld in Sources */,
+				A7B6BD8629FFE07100709FE5 /* VisitedViewModel.swift in Sources */,
 				03F6F8FB29EF014400DE28C6 /* DetailViewSocialMedia.swift in Sources */,
 				036F0C1729EC984A004A8A14 /* LanguageViewModel.swift in Sources */,
 				03553CA629EC892E008B7286 /* MapCardView.swift in Sources */,
@@ -726,8 +732,10 @@
 				03F6F8BC29EDE14200DE28C6 /* PhotoGalaryView.swift in Sources */,
 				6ADD1DDE29FD0ACD00F0ABCC /* LocationsPreviewCard.swift in Sources */,
 				03F7BA1E29F5DD020033A484 /* MyProfile.xcdatamodeld in Sources */,
+				A7B6BD7E29FFDEAF00709FE5 /* UploadPhotosView.swift in Sources */,
 				036F0C0929EC9820004A8A14 /* LanguageTabView.swift in Sources */,
 				0388941A29E20C6600B2EC01 /* Persistence.swift in Sources */,
+				A7B6BD8129FFDEF200709FE5 /* VisitedPlaces.xcdatamodeld in Sources */,
 				A7F2956629EC4E6D00F0A449 /* Testview.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1130,6 +1138,26 @@
 			);
 			currentVersion = A77C012A29F956A00069D6D2 /* MyPlanned.xcdatamodel */;
 			path = MyPlanned.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		A7B6BD7F29FFDEF200709FE5 /* VisitedPlaces.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				A7B6BD8029FFDEF200709FE5 /* VisitedPlaces.xcdatamodel */,
+			);
+			currentVersion = A7B6BD8029FFDEF200709FE5 /* VisitedPlaces.xcdatamodel */;
+			path = VisitedPlaces.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		A7B6BD8229FFDFFF00709FE5 /* VisitePlaceImages.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				A7B6BD8329FFDFFF00709FE5 /* VisitePlaceImages.xcdatamodel */,
+			);
+			currentVersion = A7B6BD8329FFDFFF00709FE5 /* VisitePlaceImages.xcdatamodel */;
+			path = VisitePlaceImages.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

@@ -78,6 +78,7 @@ struct DetailProductView: View {
         
         
         VStack(alignment: .leading){
+            let _ = print("data", data)
             ScrollView{
                 // Photos
                 PhotoGalaryView(ImagesFile: allPhoto())
