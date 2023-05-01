@@ -56,7 +56,8 @@ final class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate 
         }
         
         DispatchQueue.main.async {
-            self.region = MKCoordinateRegion(center: latestLocation.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
+            self.region = MKCoordinateRegion(center: latestLocation.coordinate,
+                                             span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
         }
     }
     

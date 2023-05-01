@@ -31,14 +31,19 @@ struct MapView: View {
                 let markers = getMarkers()
                 //let _ = print("Markers", markers)
                 //let _ = print("UserLocation", viewModel.locationManager.location as Any)
-                Map(coordinateRegion: $viewModel.region, showsUserLocation: true,
-                    annotationItems: markers
-                    // Array(markers.shuffled().prefix(5)))
-                ) { marker in
-                    marker.location
+                
+                withAnimation(.spring()) {
+                    Map(coordinateRegion: $viewModel.region, showsUserLocation: true,
+                        annotationItems: markers
+                        // Array(markers.shuffled().prefix(5)))
+                    ) { marker in
+                        marker.location
+                    }
+                    .ignoresSafeArea()
+                    .accentColor(Color(.systemPink))
                 }
-                .ignoresSafeArea()
-                .accentColor(Color(.systemPink))
+                
+                
                 VStack{
                     Spacer()
                     
@@ -136,10 +141,21 @@ extension MapView {
                                         
                                         let coordinateComponents = trimmedCoordinates.components(separatedBy: ",")
                                         let coordinate = CLLocationCoordinate2D(latitude: Double(coordinateComponents[0]) ?? 0.0, longitude: Double(coordinateComponents[1]) ?? 0.0)
-                                        viewModel.region = MKCoordinateRegion(center: coordinate, span: MKCoordinateSpan(latitudeDelta: 0.001, longitudeDelta: 0.001))
+                                        viewModel.region = MKCoordinateRegion(center: coordinate, span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
+                                        
+                                        
                                     }
                                 }
                         )
+                        .onDisappear{
+                            let trimmedCoordinates = products[currentIndex].postalAddresses?[0]
+                                .location?
+                                .trimmingCharacters(in: CharacterSet(charactersIn: "()")) ?? ""
+                            
+                            let coordinateComponents = trimmedCoordinates.components(separatedBy: ",")
+                            let coordinate = CLLocationCoordinate2D(latitude: Double(coordinateComponents[0]) ?? 0.0, longitude: Double(coordinateComponents[1]) ?? 0.0)
+                            viewModel.region = MKCoordinateRegion(center: coordinate, span: MKCoordinateSpan(latitudeDelta: 0.001, longitudeDelta: 0.001))
+                        }
                 }
 //                .onTapGesture(perform: {
 //                    isSwipe = false
