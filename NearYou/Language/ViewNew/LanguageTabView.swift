@@ -70,7 +70,6 @@ struct CustomButtonStyle: ButtonStyle {
     }
 }
 
-
 struct LanguageOptionView: View {
     @EnvironmentObject private var gvvm: GlobalVarsViewModel
     @FocusState private var defaultButton: Int?

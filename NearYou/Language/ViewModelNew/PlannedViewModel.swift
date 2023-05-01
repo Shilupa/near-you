@@ -9,6 +9,7 @@ import Foundation
 import CoreData
 import SwiftUI
 
+// Sets user planned list
 class PlannedViewModel: ObservableObject{
     //static let shared = CoreDataViewModel()
     let container: NSPersistentContainer

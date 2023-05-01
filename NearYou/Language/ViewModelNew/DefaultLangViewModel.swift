@@ -9,6 +9,7 @@ import Foundation
 import CoreData
 import SwiftUI
 
+// Sets default language for App
 class DefaultLangViewModel: ObservableObject {
     let container: NSPersistentContainer
     @Published var savedSetting: [MyDefaultLang] = []
@@ -34,7 +35,8 @@ class DefaultLangViewModel: ObservableObject {
         }
     }
     
-    // Saving default language in Core Data
+    // string lang: user pick default langugae choice
+    // Adds default user language to Core Data
     func addDefaultLang(_ lang: String){
         let userDefault = MyDefaultLang(context: container.viewContext)
         userDefault.myLang = lang

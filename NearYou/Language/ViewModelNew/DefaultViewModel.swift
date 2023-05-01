@@ -9,6 +9,8 @@ import Foundation
 import CoreData
 import SwiftUI
 
+// Sets default View for user
+// View options: ListView or MapView
 class DefaultViewModel: ObservableObject {
     let container: NSPersistentContainer
     @Published var savedSetting: [DefaultEntity] = []
@@ -34,7 +36,7 @@ class DefaultViewModel: ObservableObject {
         }
     }
     
-    // Saving default View in Core Data
+    // Saving default View(list or map) in Core Data
     func addDefaultView(_ listOrMap: Int32){
         let userDefault = DefaultEntity(context: container.viewContext)
         userDefault.listOrMap = listOrMap

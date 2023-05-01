@@ -9,8 +9,8 @@ import Foundation
 import CoreData
 import SwiftUI
 
+// Sets products as user favorurites
 class FavouritesViewModel: ObservableObject {
-    //static let shared = CoreDataViewModel()
     let container: NSPersistentContainer
     @Published var savedSetting: [Favourites] = []
     

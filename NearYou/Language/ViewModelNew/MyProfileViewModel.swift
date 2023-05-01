@@ -9,8 +9,8 @@ import Foundation
 import CoreData
 import SwiftUI
 
+// Sets user data 
 class MyProfileViewModel: ObservableObject {
-    //static let shared = CoreDataViewModel()
     let container: NSPersistentContainer
     @Published var savedSetting: [MyData] = []
     
@@ -61,6 +61,5 @@ class MyProfileViewModel: ObservableObject {
             print("Error saving  user data \(error)")
         }
     }
-
 }
 

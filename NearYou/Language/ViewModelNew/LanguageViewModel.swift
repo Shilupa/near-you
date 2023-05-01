@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 
+// Class to store global variables
 class GlobalVarsViewModel: ObservableObject {
     @Published internal var currLang: String = "en"
     @Published internal var showProfileView: Bool = false
@@ -18,22 +19,27 @@ class GlobalVarsViewModel: ObservableObject {
     @Published internal var userName: String = "Not Set"
     @Published internal var userAddress: String = "Not Set"
     
+    // Updates language
     func updateLang(_ lang: String){
         self.currLang = lang
     }
 
+    // Updates user profile visibility to true or false
     func updateShowProfileView(_ showProfile: Bool){
         self.showProfileView = showProfile
     }
     
+    // Update sideMenuView visibility to true or false
     func updateShowSideView(_ sideView: Bool){
         self.showSideView = sideView
     }
     
+    // Update sideMenuView  back button visibility to true or false
     func updateShowBackButton(_ showBackButton: Bool){
         self.showBackButton = showBackButton
     }
     
+    // Update hamnburger menu button visibility to true or false
     func updateShowHamButton(_ showHamButton: Bool){
         self.showHamButton = showHamButton
     }
