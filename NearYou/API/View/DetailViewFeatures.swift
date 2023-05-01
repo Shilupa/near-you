@@ -15,10 +15,6 @@ struct DetailViewFeatures: View {
     @StateObject private var fvm = FavouritesViewModel()
     @StateObject private var pvm = PlannedViewModel()
     @Binding var isPlanned: Bool
-    @Binding var city: String
-    @Binding var address: String
-    @Binding var postalCode: String
-    @Binding var eventName: String
     @State private var showAlert = false
     @State var isPresented = false
     
@@ -73,7 +69,7 @@ struct DetailViewFeatures: View {
                 }
         }.fullScreenCover(isPresented: $isPresented){
             NavigationView {
-                UploadPhotosView(id: $id, city: $city, address: $address, postalCode: $postalCode, eventName: $eventName)
+                UploadPhotosView(id: $id)
                     .navigationTitle("Upload Photos")
                     .navigationBarItems(
                         leading: Button("Back") {

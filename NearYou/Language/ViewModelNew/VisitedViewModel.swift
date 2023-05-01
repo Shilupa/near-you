@@ -37,13 +37,9 @@ class VisitedViewModel: ObservableObject {
     }
     
     // Adding user data to Core Data
-    func addPlace(_ id: String, _ city: String, _ address: String, _ postalCode: String, _ eventName: String){
+    func addPlace(_ id: String){
         let place = Places(context: container.viewContext)
         place.placeId = id
-        place.city = city
-        place.address = address
-        place.postalCode = postalCode
-        place.eventName = eventName
         saveData()
         print("Data saved")
     }

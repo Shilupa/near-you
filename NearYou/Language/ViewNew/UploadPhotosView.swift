@@ -20,10 +20,6 @@ struct UploadPhotosView: View {
     @StateObject private var pivm = PlaceImageViewModel()
     
     @Binding var id: String
-    @Binding var city: String
-    @Binding var address: String
-    @Binding var postalCode: String
-    @Binding var eventName: String
     
     var body: some View {
         VStack {
@@ -65,7 +61,7 @@ struct UploadPhotosView: View {
                 })
                 
                 Button(action: {
-                    vvm.addPlace(id, city, address, postalCode, eventName)
+                    vvm.addPlace(id)
                     for index in selectedPhotos.indices {
                         print(selectedPhotos[index])
                         pivm.addPlaceImage(id, selectedPhotos[index])
