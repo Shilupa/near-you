@@ -14,10 +14,12 @@ struct DetailProductView: View {
     let data: ProductResponse.Product
     @State var isFavourite = false
     @State var isPlanned = false
+    @State var isVisited = false
     @StateObject private var fvm = FavouritesViewModel()
     @StateObject private var pvm = PlannedViewModel()
-    @State var id = ""
+    @StateObject private var vvm = VisitedViewModel()
     
+    @State var id = ""
     @State private var showCallToast = false
     @State private var showEmailToast = false
     @State var selectedLanguageOption = "en"
@@ -82,7 +84,7 @@ struct DetailProductView: View {
                 // Photos
                 PhotoGalaryView(ImagesFile: allPhoto())
                 //PhotoGalaryView()
-
+                
                 // Information update date
                 Text("Information updated on " + dateFormated(data.updatedAt).formatted(date: .abbreviated, time: .shortened))
                     .font(Font.custom("Poppins-LightItalic", size: 14))
@@ -98,7 +100,7 @@ struct DetailProductView: View {
                 
                 Spacer(minLength: 30)
                 // Language selector, Plan the trip, favourite
-                DetailViewFeatures(isFavourite: $isFavourite, id: $id, isPlanned: $isPlanned)
+                DetailViewFeatures(isFavourite: $isFavourite, id: $id, isPlanned: $isPlanned ,isVisited: $isVisited)
                 
                 Spacer(minLength: 30)
                 
@@ -114,6 +116,7 @@ struct DetailProductView: View {
             id = data.id ?? "No value"
             isFavourite = fvm.savedSetting.contains(where: {$0.favouriteId == data.id})
             isPlanned = pvm.savedSetting.contains(where: {$0.plannedId == data.id})
+            isVisited = vvm.savedSetting.contains(where: {$0.placeId == data.id})
         }.simpleToast(isPresented: $showCallToast, options: toastOptions){
             Text("Call functionality is disabled in simulator")
                 .bold()

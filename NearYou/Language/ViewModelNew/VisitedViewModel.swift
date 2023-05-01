@@ -46,7 +46,7 @@ class VisitedViewModel: ObservableObject {
     
     // Deletes visited from Core Data by favouriteId
     func deleteVisited(_ id: String){
-        let fetchRequest = NSFetchRequest<Places>(entityName: "MyPlaces")
+        let fetchRequest = NSFetchRequest<Places>(entityName: "Places")
         fetchRequest.predicate = NSPredicate(format: "placeId == %@", id)
         // Searches for entity with given id in Core Data and returns entity if found
         guard let entity = try? container.viewContext.fetch(fetchRequest).first else {

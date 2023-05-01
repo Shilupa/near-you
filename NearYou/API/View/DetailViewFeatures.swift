@@ -8,49 +8,67 @@
 import SwiftUI
 
 struct DetailViewFeatures: View {
-    
+    @StateObject private var fvm = FavouritesViewModel()
+    @StateObject private var pvm = PlannedViewModel()
+    @StateObject private var vvm = VisitedViewModel()
+    @StateObject private var pivm = PlaceImageViewModel()
     
     @Binding var isFavourite: Bool
     @Binding var id: String
-    @StateObject private var fvm = FavouritesViewModel()
-    @StateObject private var pvm = PlannedViewModel()
     @Binding var isPlanned: Bool
-    @State private var showAlert = false
+    @Binding var isVisited: Bool
+    @State private var showPlannedAlert = false
+    @State private var showVisitedAlert = false
     @State var isPresented = false
     
     var body: some View {
         
         HStack{
-            
             Button {
                 if(isPlanned){
                     pvm.deletePlanned(id)
                     isPlanned = false
-                    self.showAlert = true
+                    self.showPlannedAlert = true
                 }else{
                     isPlanned = true
                     pvm.addplanned(id)
-                    self.showAlert = true
+                    self.showPlannedAlert = true
                 }
             } label: {
                 Text("Plan Trip")
                     .padding()
-            }.background(isPlanned ? Color.gray: Color.blue)
+            }.background(isPlanned ? Color.blue: Color.gray)
                 .cornerRadius(10)
                 .foregroundColor(Color.white)
-                .alert(isPresented: $showAlert) {
+                .alert(isPresented: $showPlannedAlert) {
                     Alert(title: Text("Alert"), message: isPlanned ? Text("Product added to Planned List \u{1F601}") : Text("Product removed from Planned List \u{1F614}"), dismissButton: .default(Text("OK")))
                 }
             
-            
+            let _ = print(isVisited)
             Button {
-                isPresented = true
+                //isPresented = true
+                if(isVisited){
+                    isVisited = false
+                    vvm.deleteVisited(id)
+                    self.showVisitedAlert = true
+                    for _ in 0..<pivm.savedSetting.count{
+                        pivm.deletePlaceImage(id)
+                    }
+                }else{
+                    isVisited = true
+                    vvm.addPlace(id)
+                    self.showVisitedAlert = true
+                }
             } label: {
                 Text("Visited")
                     .padding()
-            }.background(Color.blue)
+            }.background(isVisited ? Color.blue: Color.gray)
                 .cornerRadius(10)
                 .foregroundColor(Color.white)
+                .alert(isPresented: $showVisitedAlert) {
+                    Alert(title: Text("Alert"), message: isVisited ? Text("Product added to Visited List \u{1F601}") : Text("Product removed from Visited List \u{1F614}"), dismissButton: .default(Text("OK")))
+                }
+              
             
             
             Image(systemName: isFavourite ? "heart.fill" : "heart")
