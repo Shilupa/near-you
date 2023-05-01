@@ -17,6 +17,10 @@ struct DetailProductView: View {
     @StateObject private var fvm = FavouritesViewModel()
     @StateObject private var pvm = PlannedViewModel()
     @State var id = ""
+    @State var city = ""
+    @State var address = ""
+    @State var postalCode = ""
+    @State var eventName = ""
     
     @State private var showCallToast = false
     @State private var showEmailToast = false
@@ -78,12 +82,11 @@ struct DetailProductView: View {
         
         
         VStack(alignment: .leading){
-            let _ = print("data", data)
             ScrollView{
                 // Photos
                 PhotoGalaryView(ImagesFile: allPhoto())
                 //PhotoGalaryView()
-                
+
                 // Information update date
                 Text("Information updated on " + dateFormated(data.updatedAt).formatted(date: .abbreviated, time: .shortened))
                     .font(Font.custom("Poppins-LightItalic", size: 14))
@@ -99,7 +102,7 @@ struct DetailProductView: View {
                 
                 Spacer(minLength: 30)
                 // Language selector, Plan the trip, favourite
-                DetailViewFeatures(isFavourite: $isFavourite, id: $id, isPlanned: $isPlanned)
+                DetailViewFeatures(isFavourite: $isFavourite, id: $id, isPlanned: $isPlanned, city: $city, address: $address, postalCode: $postalCode, eventName: $eventName)
                 
                 Spacer(minLength: 30)
                 
@@ -113,6 +116,14 @@ struct DetailProductView: View {
             }
         }.onAppear{
             id = data.id ?? "No value"
+            if let firstAddress = data.postalAddresses?.first {
+                city = firstAddress.city ?? "Not Found"
+                address = firstAddress.streetName ?? "Not Found"
+                postalCode = firstAddress.postalCode ?? "Not Found"
+            }
+            if let firstAddress = data.productInformations?.first{
+                eventName = firstAddress.name ?? "Not Found"
+            }
             isFavourite = fvm.savedSetting.contains(where: {$0.favouriteId == data.id})
             isPlanned = pvm.savedSetting.contains(where: {$0.plannedId == data.id})
         }.simpleToast(isPresented: $showCallToast, options: toastOptions){

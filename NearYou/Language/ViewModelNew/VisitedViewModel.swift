@@ -37,15 +37,19 @@ class VisitedViewModel: ObservableObject {
     }
     
     // Adding user data to Core Data
-    func addPlace(_ selectedPhoto: UIImage){
+    func addPlace(_ id: String, _ city: String, _ address: String, _ postalCode: String, _ eventName: String){
         let place = Places(context: container.viewContext)
-        
+        place.placeId = id
+        place.city = city
+        place.address = address
+        place.postalCode = postalCode
+        place.eventName = eventName
         saveData()
         print("Data saved")
     }
     
     // Deletes visited from Core Data by favouriteId
-    func deleteFavourite(_ id: String){
+    func deleteVisited(_ id: String){
         let fetchRequest = NSFetchRequest<Places>(entityName: "MyPlaces")
         fetchRequest.predicate = NSPredicate(format: "placeId == %@", id)
         // Searches for entity with given id in Core Data and returns entity if found
@@ -58,6 +62,7 @@ class VisitedViewModel: ObservableObject {
     }
     
     // Deletes all Entity for Core Data
+    // Just in case to clear data base
     func deleteAllData() {
         let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "Places")
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
@@ -81,7 +86,6 @@ class VisitedViewModel: ObservableObject {
     }
     
 }
-
 
 class PlaceImageViewModel: ObservableObject {
     let container: NSPersistentContainer
@@ -108,13 +112,13 @@ class PlaceImageViewModel: ObservableObject {
         }
     }
     
-    // Adding user data to Core Data
+    // Adding image data to Core Data
     func addPlaceImage(_ id: String,  _ selectedImage: UIImage?){
-        let place = PlaceImage(context: container.viewContext)
+        let placeImage = PlaceImage(context: container.viewContext)
         // Adding image to Core Data
         guard let imageData = selectedImage?.jpegData(compressionQuality: 1.0) else { return }
-        //place.pId = id
-        //place.pImage = imageData
+        placeImage.placeId = id
+        placeImage.placeImage = imageData
         saveData()
     }
     
@@ -129,5 +133,17 @@ class PlaceImageViewModel: ObservableObject {
         }
     }
     
+    // Deletes visited from Core Data by favouriteId
+    func deletePlaceImage(_ id: String){
+        let fetchRequest = NSFetchRequest<PlaceImage>(entityName: "PlaceImage")
+        fetchRequest.predicate = NSPredicate(format: "placeId == %@", id)
+        // Searches for entity with given id in Core Data and returns entity if found
+        guard let entity = try? container.viewContext.fetch(fetchRequest).first else {
+            return
+        }
+        // Deletes entity from CoreData
+        container.viewContext.delete(entity)
+        saveData()
+    }
 }
 

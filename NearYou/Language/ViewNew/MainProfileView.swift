@@ -112,6 +112,8 @@ struct MainProfilePickerView: View {
         }else if(selectedTab == 2){
             FavouritesView()
                 .environmentObject(MapViewModel())
+        }else if(selectedTab == 1){
+            VisitedPlaces()
         }
     }
 }

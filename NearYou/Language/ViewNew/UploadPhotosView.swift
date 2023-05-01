@@ -8,34 +8,25 @@
 import SwiftUI
 import PhotosUI
 
+struct ImageData {
+    let id: Int
+    let images: [UIImage]
+}
+
 struct UploadPhotosView: View {
     @State private var selectedPhotos: [UIImage] = []
     @State private var isShowingPhotoPicker = false
-    //@StateObject private var vvm = VisitedViewModel()
-    //@StateObject private var pvm = PlaceImageViewModel()
+    @StateObject private var vvm = VisitedViewModel()
+    @StateObject private var pivm = PlaceImageViewModel()
+    
+    @Binding var id: String
+    @Binding var city: String
+    @Binding var address: String
+    @Binding var postalCode: String
+    @Binding var eventName: String
     
     var body: some View {
         VStack {
-            
-//            List{
-//                ForEach(pvm.savedSetting, id: \.self){ myImage in
-//                    let _ = print(myImage.pImage ?? "null", myImage.pId ?? "null")
-//                    let image = UIImage(data: myImage.pImage ?? Data()) ?? UIImage(named: "profile")!
-//                    Image(uiImage: image)
-//                        .resizable()
-//                        .aspectRatio(contentMode: .fill)
-//                        .frame(width: (UIScreen.main.bounds.width - 32 - 16) / 3, height: (UIScreen.main.bounds.width - 32 - 16) / 3)
-//                        .clipped()
-//                        .cornerRadius(10)
-//                }
-//                ForEach(vvm.savedSetting, id: \.self){ place in
-//                    Section(header: Text(place.getPlaceName)){
-//                        ForEach(place.getPlaceImages, id: \.self){ image in
-//
-//                        }
-//                    }
-//                }
-//            }
             if selectedPhotos.isEmpty {
                 Image(systemName: "photo.on.rectangle")
                     .resizable()
@@ -74,11 +65,10 @@ struct UploadPhotosView: View {
                 })
                 
                 Button(action: {
-                    //vvm.addPlace(selectedPhotos)
-                    
+                    vvm.addPlace(id, city, address, postalCode, eventName)
                     for index in selectedPhotos.indices {
-                        //pvm.addUser("1", selectedPhotos[index])
                         print(selectedPhotos[index])
+                        pivm.addPlaceImage(id, selectedPhotos[index])
                     }
                 }, label: {
                     Text("Upload Photos")
@@ -151,8 +141,8 @@ struct PhotoPicker: UIViewControllerRepresentable {
     }
 }
 
-struct UploadPhotosView_Previews: PreviewProvider {
-    static var previews: some View {
-        UploadPhotosView()
-    }
-}
+//struct UploadPhotosView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        UploadPhotosView()
+//    }
+//}
