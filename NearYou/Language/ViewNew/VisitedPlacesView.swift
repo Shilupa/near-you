@@ -11,30 +11,12 @@ struct VisitedPlacesView: View {
     @StateObject private var vvm = VisitedViewModel()
     @EnvironmentObject var vm: DataViewModel
     @StateObject private var pivm = PlaceImageViewModel()
-    @State var plannedList = [ProductResponse.Product]()
+    @State var visitedList = [ProductResponse.Product]()
     
     var body: some View {
         ZStack {
-            //            List{
-            //                ForEach(vvm.savedSetting, id: \.self) { place in
-            //                    VStack(alignment: .leading){
-            //                        ScrollView(.horizontal, showsIndicators: false) {
-            //                            HStack(spacing: 10) {
-            //                                ForEach(pivm.savedSetting.filter({ $0.placeId == place.placeId }), id: \.id) { image in
-            //                                    let placeImage = UIImage(data: image.placeImage ?? Data()) ?? UIImage(named: "profile")!
-            //                                    Image(uiImage: placeImage)
-            //                                        .resizable()
-            //                                        .aspectRatio(contentMode: .fit)
-            //                                        .frame(maxWidth: .infinity, maxHeight: 250)
-            //                                        .clipShape(RoundedRectangle(cornerRadius: 10))
-            //                                }
-            //                            }
-            //                        }
-            //                    }
-            //                }
-            //            }
             List {
-                ForEach( plannedList, id: \.id) { product in
+                ForEach( visitedList, id: \.id) { product in
                     let _ = print("data", product)
                     ZStack(alignment: .leading){
                         ProductCardHomeView(data: product)
@@ -50,7 +32,7 @@ struct VisitedPlacesView: View {
             
         }.onAppear{
             // Product is added to plannedList if product id is equal to Coredata plannedId
-            plannedList = vm.allData?.data.product.filter { product in
+            visitedList = vm.allData?.data.product.filter { product in
                 vvm.savedSetting.contains {  place in
                     place.placeId == product.id
                 }

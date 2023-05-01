@@ -47,7 +47,6 @@ struct UploadPhotosView: View {
             
             HStack {
                 Spacer()
-                
                 Button(action: {
                     self.isShowingPhotoPicker = true
                 }, label: {
@@ -61,9 +60,7 @@ struct UploadPhotosView: View {
                 })
                 
                 Button(action: {
-                    vvm.addPlace(id)
                     for index in selectedPhotos.indices {
-                        print(selectedPhotos[index])
                         pivm.addPlaceImage(id, selectedPhotos[index])
                     }
                 }, label: {
@@ -80,8 +77,6 @@ struct UploadPhotosView: View {
                 Spacer()
             }
             .padding(.top, 16)
-        }.onAppear{
-            //vvm.deleteAllData()
         }
         .sheet(isPresented: $isShowingPhotoPicker) {
             PhotoPicker(selectedPhotos: self.$selectedPhotos)
