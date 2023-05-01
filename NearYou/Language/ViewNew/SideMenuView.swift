@@ -87,10 +87,14 @@ struct ProfileView: View {
 struct CombineView: View{
     var body: some View {
         VStack(spacing: 0) {
+            
+            ContentView()
+                .frame(width: 100, height: 100)
             MyHomeView()
             LanguageView()
             AboutUs()
-            ContentView()
+            Spacer()
+
         }
         .padding(.top, -50)
     }

@@ -51,14 +51,14 @@ struct DetailProductView: View {
         var socialMediaArray : [[String]] = []
         
         if let count: Int = data.socialMedia?.socialMediaLinks.count {
-            print("Count:", count)
+            //print("Count:", count)
             for i in 0..<count {
                 var item: [String] = []
                 item.append(data.socialMedia?.socialMediaLinks[i]?.linkType ?? "")
                 item.append(data.socialMedia?.socialMediaLinks[i]?.verifiedLink?.url ?? "")
                 socialMediaArray.append(item)
             }
-            print("Hahaha: ", socialMediaArray)
+            //print("Hahaha: ", socialMediaArray)
             return socialMediaArray
         } else{
             return socialMediaArray
