@@ -2,12 +2,15 @@ import SwiftUI
 
 struct AboutUsView: View {
     var body: some View {
+        // Use a ScrollView to make the content scrollable
         ScrollView {
             VStack(spacing: 20) {
+                // Add a title to the view
                 Text("ABOUT US")
                     .font(Font.custom("Poppins-Bold", size: 27))
                     .padding(.top, 70)
                 
+                // Add an image to the view
                 Image("finland")
                     .resizable()
                     .aspectRatio(contentMode: .fill)
@@ -16,6 +19,7 @@ struct AboutUsView: View {
                     .overlay(Circle().stroke(Color("ThemeColour"), lineWidth: 4))
                     .shadow(radius: 7)
                 
+                // Add a description of the app and its features
                 VStack(alignment: .center, spacing: 10) {
                     Text("We are a group of students who are passionate about traveling and exploring different cultures. Our love for Finland inspired us to create this travel app called 'Near You' that will help you plan your dream trip to this beautiful country.")
                         .font(Font.custom("Poppins-Regular", size: 16))
@@ -31,6 +35,7 @@ struct AboutUsView: View {
                 .background(Color.secondary.opacity(0.2))
                 .cornerRadius(10)
                 
+                // Add a section for contacting the app developers or contact person
                 VStack(spacing: 10) {
                     Text("Contact Us")
                         .font(Font.custom("Poppins-Bold", size: 27))
@@ -65,12 +70,14 @@ struct AboutUsView: View {
                 .cornerRadius(10)
                 .font(Font.custom("Poppins-LightItalic", size: 16))
                 
+                // Add a closing message to the view
                 Text("We hope our app will inspire you to discover the beauty of Finland and create unforgettable memories. Happy travels!")
                     .font(Font.custom("Poppins-Regular", size: 16))
                     .multilineTextAlignment(.center)
                     .padding(.horizontal)
                     .padding(.top, 20)
                 
+                //Addition of app's own logo
                 Image("AppIconLogo")
                     .resizable()
                     .scaledToFit()

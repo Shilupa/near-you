@@ -7,7 +7,9 @@
 
 import SwiftUI
 
+// This is a view that displays language options
 struct LanguageTabView: View {
+    // Accesses the global language variable
     @EnvironmentObject private var lang: GlobalVarsViewModel
     var body: some View {
         VStack{
@@ -16,12 +18,14 @@ struct LanguageTabView: View {
     }
 }
 
+// This is a view that displays a button to toggle between list and map views
 struct ListAndMap: View {
     @EnvironmentObject private var gvvm: GlobalVarsViewModel
     @StateObject private var dvm = DefaultViewModel()
     
     var body: some View {
         HStack {
+            // Button to display list view
             Button(action: {
                 // Sets list as default view
                 dvm.addDefaultView(0)
@@ -36,6 +40,7 @@ struct ListAndMap: View {
                     .environment(\.locale, Locale.init(identifier: gvvm.currLang))
             }
             
+            // Button to display map view
             Button(action: {
                 // Sets Map as default view
                 dvm.addDefaultView(1)
@@ -52,12 +57,13 @@ struct ListAndMap: View {
         }
         .padding(EdgeInsets(top: 5, leading: 0, bottom: 5, trailing: 0))
         .mask {
+            // A mask to apply rounded corners to the view
             RoundedRectangle(cornerRadius: 25)
-            // or Capsule()
         }
     }
 }
 
+// A custom button style that applies rounded corners and a stroke to the button
 struct CustomButtonStyle: ButtonStyle {
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
@@ -70,6 +76,7 @@ struct CustomButtonStyle: ButtonStyle {
     }
 }
 
+// This is a view that displays language options as buttons
 struct LanguageOptionView: View {
     @EnvironmentObject private var gvvm: GlobalVarsViewModel
     @FocusState private var defaultButton: Int?
@@ -80,7 +87,9 @@ struct LanguageOptionView: View {
     var body: some View {
         
         HStack {
+            // Button for Finnish language
             Button(action: {
+                // Updates the language and default language settings
                 gvvm.updateLang("fi")
                 dlvm.addDefaultLang("fi")
                 defaultButton = 1
@@ -88,14 +97,16 @@ struct LanguageOptionView: View {
             }, label: {
                 Text("Fi")
             })
+            // Focused state for this button is set to 1 when it is focused
             .focused($defaultButton, equals: 1)
             
             .buttonStyle(RoundedButtonStyle(
                 backgroundColor: selectedLanguage == "fi" ? Color("ThemeColour") : Color(.systemGray5),
                 foregroundColor: .black
             ))
-            // Default language
+            // Default language button for english language
             Button(action: {
+                // Updates the language and default language settings to English
                 gvvm.updateLang("en")
                 dlvm.addDefaultLang("en")
                 defaultButton = 0
@@ -103,13 +114,16 @@ struct LanguageOptionView: View {
             }, label: {
                 Text("En")
             })
+            // Focused state for this button is set to 0 when it is focused
             .focused($defaultButton, equals: 0)
             .buttonStyle(RoundedButtonStyle(
                 backgroundColor: selectedLanguage == "en" ? Color("ThemeColour") : Color(.systemGray5),
                 foregroundColor: .black
             ))
             
+            // Button for Swedish language
             Button(action: {
+                // Updates the language and default language settings to Swedish
                 gvvm.updateLang("sv")
                 dlvm.addDefaultLang("sv")
                 defaultButton = 2
@@ -117,6 +131,7 @@ struct LanguageOptionView: View {
             }, label: {
                 Text("Sv")
             })
+            // Focused state for this button is set to 2 when it is focused
             .focused($defaultButton, equals: 2)
             .buttonStyle(RoundedButtonStyle(
                 backgroundColor: selectedLanguage == "sv" ? Color("ThemeColour") : Color(.systemGray5),
@@ -134,6 +149,7 @@ struct LanguageOptionView: View {
     }
 }
 
+// Button style with rounded corners and a border
 struct RoundedButtonStyle: ButtonStyle {
     var backgroundColor: Color
     var foregroundColor: Color

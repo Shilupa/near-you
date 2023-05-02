@@ -12,23 +12,28 @@ struct SplashScreenView: View {
     
     var body: some View {
         ZStack {
+            // Background image with gradient overlay
             Image("finland") .resizable() .scaledToFill() .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity) .edgesIgnoringSafeArea(.all) .overlay(LinearGradient(gradient: Gradient(colors: [.clear, .black]), startPoint: .top, endPoint: .bottom))
             
+            // Main content of splash screen
             VStack {
                 Spacer()
                 
+                // App logo
                 Image("AppLogo")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 200, height: 200)
                     .padding(.bottom, -50)
                 
+                // Title text
                 Text("NEAR YOU")
                     .font(Font.custom("Poppins-Bold", size: 48))
                     .foregroundColor(.yellow)
                     .shadow(color: Color.black.opacity(0.8), radius: 4, x: 0, y: 4)
                     .padding(.bottom, 16)
                 
+                // Subtitle text
                 Text("Discover Finland at your fingertips with Near You")
                     .font(Font.custom("Poppins-Regular", size: 19))
                     .foregroundColor(.white)
@@ -37,8 +42,9 @@ struct SplashScreenView: View {
                     .padding(.horizontal, 32)
                     .padding(.bottom, 32)
                 
+                // Button to start exploring
                 Button(action: {
-                    // set state to true to trigger navigation
+                    // Set state to true to trigger navigation
                     isShowingHomeView = true
                 }) {
                     Text("Start Exploring")
@@ -55,6 +61,7 @@ struct SplashScreenView: View {
                 Spacer()
             }
             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .bottom)
+            // Full screen cover to navigate to home view
             .fullScreenCover(isPresented: $isShowingHomeView) {
                 HomeView()
             }

@@ -156,7 +156,6 @@ struct MixedView: View {
 // Conditional view rendering between MapView and HomeListView
 struct ToggleHomeView: View {
     @EnvironmentObject private var gvvm: GlobalVarsViewModel
-    //@Binding var selectedView: Int
     @Binding var selectedTab: Int
     
     var body: some View {
@@ -164,11 +163,10 @@ struct ToggleHomeView: View {
             SearchView(searchText: "All", isRecording: false, selectedCategory: "All")
                 .environmentObject(MapViewModel())
                 .padding(.top, 60)
-                
+            
         }else{
-                MapView()
-                    .environmentObject(MapViewModel())
-//            DraggablePins()
+            MapView()
+                .environmentObject(MapViewModel())
         }
     }
 }

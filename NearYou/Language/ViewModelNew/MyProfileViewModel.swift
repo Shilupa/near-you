@@ -34,7 +34,7 @@ class MyProfileViewModel: ObservableObject {
             print("Error fetching user data \(error)")
         }
     }
-
+    
     // Adding user data to Core Data
     func addUser(_ name: String, _ address: String, _ selectedImage: UIImage?){
         // Assigning default value if name or address is empty string
@@ -50,7 +50,7 @@ class MyProfileViewModel: ObservableObject {
         user.my_Image = imageData
         saveData()
     }
-
+    
     // Saving data in Core Data
     func saveData(){
         do{

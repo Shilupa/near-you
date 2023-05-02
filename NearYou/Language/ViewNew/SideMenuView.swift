@@ -13,9 +13,6 @@ struct SideMenuView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                //LinearGradient(gradient: Gradient(colors: [Color(hex: "FBF2B8"), Color(hex: "FACFD9")]), startPoint: .top, endPoint: .bottom)
-                //.ignoresSafeArea()
-                
                 VStack {
                     ProfileView().frame(height: 300)
                     
@@ -25,6 +22,7 @@ struct SideMenuView: View {
                 }
                 .padding(.trailing, 100)
             }
+            // Hides the navigation bar of the NavigationView.
             .navigationBarHidden(true)
         }
     }
@@ -38,6 +36,7 @@ struct ProfileView: View {
         VStack {
             ZStack(alignment: .topTrailing) {
                 VStack {
+                    // Displays the user's profile image.
                     let defImage = UIImage(named: "profile")!
                     Image(uiImage: gvvm.profileImage ?? defImage)
                         .resizable()
@@ -84,22 +83,23 @@ struct ProfileView: View {
     }
 }
 
+//A vertical stack of subviews including ContentView, MyHomeView, LanguageView and AboutUs
 struct CombineView: View{
     var body: some View {
         VStack(spacing: 0) {
-            
             ContentView()
                 .frame(width: 100, height: 100)
             MyHomeView()
             LanguageView()
             AboutUs()
             Spacer()
-
+            
         }
         .padding(.top, -50)
     }
 }
 
+// Displays the home view, including an HStack with an image and text, and a ListAndMap subview.
 struct MyHomeView: View {
     @EnvironmentObject private var gvvm: GlobalVarsViewModel
     var body: some View {
@@ -123,6 +123,7 @@ struct MyHomeView: View {
     }
 }
 
+// LanguageView is a subview that displays language options.
 struct LanguageView: View {
     @EnvironmentObject private var gvvm: GlobalVarsViewModel
     var body: some View {
@@ -132,6 +133,7 @@ struct LanguageView: View {
                     .frame(width: 24, height: 24)
                     .padding(15)
                 
+                // The title of the language settings view, localized based on the current language setting.
                 Text("Language")
                     .environment(\.locale, Locale.init(identifier: gvvm.currLang))
                     .font(Font.custom("Poppins-SemiBold", size: 20))
@@ -154,6 +156,7 @@ struct AboutUs: View {
     @State private var navigateToAboutUsView = false
     
     var body: some View {
+        // A button that toggles the "navigateToAboutUsView" when tapped
         Button(action: {
             navigateToAboutUsView = true
         }) {
@@ -171,9 +174,11 @@ struct AboutUs: View {
             .padding(.leading, 28)
             .environment(\.locale, Locale.init(identifier: gvvm.currLang))
         }
+        // A full screen cover that presents the "About Us" screen when the "navigateToAboutUsView" is true
         .fullScreenCover(isPresented: $navigateToAboutUsView) {
             NavigationView {
                 AboutUsView()
+                // A navigation bar button that dismisses the "About Us" screen when tapped
                     .navigationBarItems(leading: Button(action: {
                         navigateToAboutUsView = false
                     }, label: {

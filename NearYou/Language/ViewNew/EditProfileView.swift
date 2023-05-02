@@ -35,6 +35,7 @@ struct EditProfileView: View {
                                     .stroke(Color("ThemeColour"), lineWidth: 5)
                             )
                     }
+                    // Button to open the image picker
                     Button(action: {
                         showImagePicker.toggle()
                         isButtonDisabled = false
@@ -50,6 +51,7 @@ struct EditProfileView: View {
                         ImagePicker(selectedImage: $selectedImage)
                     }.padding(.bottom, -70)
                     
+                    // Text fields to allow the user to input their name and address
                     VStack {
                         HStack {
                             Text("Name")
@@ -97,7 +99,8 @@ struct EditProfileView: View {
                     
                     Button(action: {
                         mypvm.addUser(name, address, selectedImage)
-                        navigateToMainProfileView = true // Set the state variable to true to trigger navigation
+                        // Set the state variable to true to trigger navigation
+                        navigateToMainProfileView = true
                     }) {
                         Text("Update")
                             .foregroundColor(.white)
@@ -125,6 +128,7 @@ struct ImagePicker: UIViewControllerRepresentable {
     @Environment(\.presentationMode) var presentationMode
     @Binding var selectedImage: UIImage?
     
+    // Function to create and configure the UIImagePickerController
     func makeUIViewController(context: Context) -> UIImagePickerController {
         let imagePicker = UIImagePickerController()
         imagePicker.sourceType = .photoLibrary
@@ -132,14 +136,17 @@ struct ImagePicker: UIViewControllerRepresentable {
         return imagePicker
     }
     
+    //Called when view needs to be updated
     func updateUIViewController(_ uiViewController: UIImagePickerController, context: Context) {
         
     }
     
+    //Creates a new coordinator object to handle interactions between this view and the UIImagePickerController.
     func makeCoordinator() -> Coordinator {
         Coordinator(self)
     }
     
+    //Coordinator class that will handle interactions with the UIImagePickerController.
     class Coordinator: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
         let parent: ImagePicker
         
@@ -147,6 +154,7 @@ struct ImagePicker: UIViewControllerRepresentable {
             self.parent = parent
         }
         
+        // This function is called when the user selects an image in the UIImagePickerController.
         func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
             if let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
                 parent.selectedImage = selectedImage

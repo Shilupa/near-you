@@ -106,6 +106,8 @@ struct MainProfileView: View {
 struct MainProfilePickerView: View {
     @Binding var selectedTab: Int
     var body: some View {
+        // Depending on the selected tab, display a different view.
+        // The environmentObject() modifier is used to inject a MapViewModel into each child view.
         if(selectedTab == 0){
             PlannedView()
                 .environmentObject(MapViewModel())
