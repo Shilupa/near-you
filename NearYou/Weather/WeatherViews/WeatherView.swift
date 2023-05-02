@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+//Weather icon and temperature
 struct WeatherView: View {
     var weather: ResponseBody
     @State private var showingPopover = false

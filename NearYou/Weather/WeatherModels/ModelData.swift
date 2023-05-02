@@ -7,6 +7,7 @@
 
 import Foundation
 
+//Uses weatherData.json as example weather details for the preview
 var previewWeather: ResponseBody = load("weatherData.json")
 
 func load<T: Decodable>(_ filename: String) -> T {

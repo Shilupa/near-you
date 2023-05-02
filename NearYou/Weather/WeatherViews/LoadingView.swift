@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+//Showing progress animation
 struct LoadingView: View {
     var body: some View {
         ProgressView()
