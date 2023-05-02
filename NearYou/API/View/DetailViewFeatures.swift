@@ -140,7 +140,6 @@ extension DetailViewFeatures{
             }
         } label: {
             Text(isPlanned ? "Cancel Plan": "Plan Trip")
-                .bold()
                 .font(Font.custom("Poppins-Regular", size: 14))
                 .frame(width: 120, height: 40)
             
@@ -166,13 +165,9 @@ extension DetailViewFeatures{
                 }
             }
             
-            
-            
-            
-            
+
         } label: {
             Text(isVisited ? "Remove Visited" : "Mark Visited")
-                .bold()
                 .font(Font.custom("Poppins-Regular", size: 14))
                 .frame(width: 150, height: 40)
             
