@@ -9,7 +9,7 @@ import SwiftUI
 import CoreLocation
 
 
-struct ContentView: View {
+struct UserWeatherView: View {
     @StateObject var locationManager = LocationManager()
     var weatherManager = WeatherManager()
     @State var weather: ResponseBody?
@@ -35,6 +35,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        UserWeatherView()
     }
 }

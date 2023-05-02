@@ -24,17 +24,6 @@ class LocationsViewModel: NSObject, ObservableObject, CLLocationManagerDelegate 
     // Map type
     @Published var mapType : MKMapType = .standard
     
-//    func updateAttributes() {
-//        ForEach(vm.allData?.data.product ?? [] , id: \.id) { product in
-//            let trimmedCoordinates = product.postalAddresses?[0]
-//                .location?
-//                .trimmingCharacters(in: CharacterSet(charactersIn: "()")) ?? ""
-//
-//            let coordinateComponents = trimmedCoordinates.components(separatedBy: ",")
-//            vm.allData?.data.product?[0].coordinate = CLLocationCoordinate2D(latitude: Double(coordinateComponents[0]) ?? 0.0, longitude: Double(coordinateComponents[1]) ?? 0.0)
-//        }
-//
-//    }
     
     //updating maptype
     func updateMapType(){

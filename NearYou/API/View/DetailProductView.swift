@@ -97,11 +97,7 @@ struct DetailProductView: View {
                 let coordinate = CLLocationCoordinate2D(latitude: Double(coordinateComponents[0]) ?? 0.0, longitude: Double(coordinateComponents[1]) ?? 0.0)
                
                 DetailViewOptions(websiteURL: data.productInformations?[0].url ?? "https://www.example.com",destination: coordinate, data: data, selectedOption: "nice", showCallToast: $showCallToast, showEmailToast: $showEmailToast, selectedLanguageOption : $selectedLanguageOption)
-                
-//                Spacer(minLength: 30)
-//                // Language selector, Plan the trip, favourite
-//                DetailViewFeatures(isFavourite: $isFavourite, id: $id, isPlanned: $isPlanned ,isVisited: $isVisited)
-                
+                           
                 Spacer(minLength: 30)
                 
                 // pass all this information to product detail description

@@ -129,7 +129,7 @@ class SpeechRecognizer: ObservableObject {
 
     private func speak(_ message: String) {
             transcript = message
-        print("Transcript", transcript)
+        //print("Transcript", transcript)
     }
 
     private func speakError(_ error: Error) {

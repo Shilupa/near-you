@@ -49,13 +49,6 @@ class WeatherViewModel: ObservableObject {
 }
 
 
-//var feels_like: Double
-//var temp_min: Double
-//var temp_max: Double
-//var humidity: Double
-//var speed: Double
-
-
 struct WeatherData: Codable {
     let name: String
     let main: Main

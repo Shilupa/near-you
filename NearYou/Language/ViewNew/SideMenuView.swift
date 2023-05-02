@@ -98,7 +98,7 @@ struct CombineView: View{
     var body: some View {
         VStack(spacing: 0) {
             // Displays the user's home view.
-            ContentView()
+            UserWeatherView()
                 .frame(width: 100, height: 100)
             MyHomeView()
             LanguageView()

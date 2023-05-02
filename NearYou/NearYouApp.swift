@@ -19,7 +19,6 @@ struct NearYouApp: App {
         WindowGroup {
             SplashScreenView().environmentObject(GlobalVarsViewModel())
                 .environmentObject(DataViewModel())
-            //MainView()
         }
     }
 }

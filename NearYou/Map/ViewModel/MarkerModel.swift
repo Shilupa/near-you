@@ -9,6 +9,12 @@ import Foundation
 import CoreLocation
 import _MapKit_SwiftUI
 
+
+struct Marker: Identifiable {
+    let id = UUID()
+    var location: MapMarker
+}
+
 let vm = DataViewModel()
 
 func getMarkers() -> [Marker] {
@@ -16,8 +22,8 @@ func getMarkers() -> [Marker] {
     vm.getData()
     var latitudes :Array<Double> = []
     var longitudes :Array<Double> = []
-    
-    
+
+
     if let products = vm.allData?.data.product {
         for product in products {
             let trimmedCoordinates = product.postalAddresses?[0].location?
@@ -29,7 +35,7 @@ func getMarkers() -> [Marker] {
             }
         }
     }
-    
+
     let locations = zip(latitudes, longitudes).map { CLLocationCoordinate2D(latitude: $0.0, longitude: $0.1) }
 
     var markers = [Marker]()
