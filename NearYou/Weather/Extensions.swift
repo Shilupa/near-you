@@ -7,6 +7,7 @@
 
 import Foundation
 
+//rounds the temperature fetched from the Weather API
 extension Double {
     func roundDouble() -> String {
         return String(format: "%.0f", self)

@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+//Used for detailed weather view
 struct WeatherItem: View {
     var logo: String
     var name: String

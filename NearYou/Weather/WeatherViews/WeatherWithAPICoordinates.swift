@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+//View with weather details(weather icon and temperature) based on coordinates coming from the Helsinki API
 struct WeatherWithAPICoordinates: View {
     
     let data: ProductResponse.Product
@@ -52,6 +53,7 @@ struct WeatherWithAPICoordinates: View {
 }
 
 
+//Code for the weather details with added popover view that includes (minTemp., maxTemp, humidity and wind)
 struct ShowPopover: View {
     let data: ProductResponse.Product
     @StateObject var viewModel = WeatherViewModel()
