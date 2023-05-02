@@ -18,6 +18,7 @@ struct DetailViewFeatures: View {
     @Binding var isPlanned: Bool
     @Binding var isVisited: Bool
     @State private var showVisitedAlert = false
+    @State private var isPresented = false
     @State var imageList = [Data]()
     
     var body: some View {
@@ -75,27 +76,24 @@ struct DetailViewFeatures: View {
                         })
                         .padding(.trailing,20)
                     }.padding(.top, 10)
-                    
-                    
-                    
-//                    .fullScreenCover(isPresented: $isPresented){
-//                        NavigationView {
-//                            UploadPhotosView(id: $id)
-//                            //.navigationTitle("Upload Photos")
-//                                .navigationBarItems(
-//                                    leading: Button(action: {
-//                                        isPresented = false
-//                                        pivm.fetchSettings()
-//                                    }) {
-//                                        HStack {
-//                                            Image(systemName: "chevron.left")
-//                                                .foregroundColor(.blue)
-//                                            Text("Back")
-//                                        }
-//                                    }
-//                                )
-//                        }
-//                    }
+                    .fullScreenCover(isPresented: $isPresented){
+                        NavigationView {
+                            UploadPhotosView(id: $id)
+                            //.navigationTitle("Upload Photos")
+                                .navigationBarItems(
+                                    leading: Button(action: {
+                                        isPresented = false
+                                        pivm.fetchSettings()
+                                    }) {
+                                        HStack {
+                                            Image(systemName: "chevron.left")
+                                                .foregroundColor(.blue)
+                                            Text("Back")
+                                        }
+                                    }
+                                )
+                        }
+                    }
                     
                     ScrollView(.horizontal, showsIndicators: false){
                         LazyHStack{
@@ -187,6 +185,7 @@ extension DetailViewFeatures{
                         for _ in 0..<pivm.savedSetting.count{
                             pivm.deletePlaceImage(id)
                         }
+                        
                         isVisited = false
                     }
                     

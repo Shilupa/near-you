@@ -22,8 +22,5 @@ struct CategoryCardView: View {
                 .foregroundColor(isSelected ? Color("ThemeColour") : Color.black)
                 .padding()
         }
-//        .frame(width: .none, height: 30)
-//        .background(isSelected ? Color.orange : Color(.systemGray6))
-//        .cornerRadius(10)
     }
 }

@@ -85,8 +85,6 @@ struct UploadPhotosView: View {
                     
                     selectedPhotos = []
                     
-                    
-                    
 
                 }, label: {
                     Text("Upload Photos")

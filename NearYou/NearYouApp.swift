@@ -13,8 +13,7 @@ struct NearYouApp: App {
     
     @StateObject var vm: DataViewModel = DataViewModel()
     
-    
-    
+
     var body: some Scene {
         WindowGroup {
             SplashScreenView().environmentObject(GlobalVarsViewModel())
