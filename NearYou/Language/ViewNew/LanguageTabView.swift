@@ -37,6 +37,7 @@ struct ListAndMap: View {
                     .frame(minHeight: 0, maxHeight: 25)
                     .background(Int(dvm.savedSetting.last?.listOrMap ?? 0) == 0 ? Color("ThemeColour") : Color.gray.opacity(0.5))
                     .buttonStyle(CustomButtonStyle())
+                //converting app's language to stored default language
                     .environment(\.locale, Locale.init(identifier: gvvm.currLang))
             }
             
@@ -52,6 +53,7 @@ struct ListAndMap: View {
                     .frame(minHeight: 0, maxHeight: 25)
                     .background(Int(dvm.savedSetting.last?.listOrMap ?? 0) == 1 ? Color("ThemeColour") : Color.gray.opacity(0.5))
                     .buttonStyle(CustomButtonStyle())
+                //converting app's language to stored default language
                     .environment(\.locale, Locale.init(identifier: gvvm.currLang))
             }
         }
@@ -100,6 +102,7 @@ struct LanguageOptionView: View {
             // Focused state for this button is set to 1 when it is focused
             .focused($defaultButton, equals: 1)
             
+            // Styling of the RoundedButton
             .buttonStyle(RoundedButtonStyle(
                 backgroundColor: selectedLanguage == "fi" ? Color("ThemeColour") : Color(.systemGray5),
                 foregroundColor: .black

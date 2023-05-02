@@ -49,7 +49,7 @@ struct HomeView: View {
                         
                         HStack (alignment: .top){
                             ZStack{
-                                
+                                // Adds animation on the hamburger button"
                                 if(gvvm.showHamButton){
                                     Button(action: {
                                         withAnimation(.easeInOut(duration: 0.5)) {
@@ -63,6 +63,7 @@ struct HomeView: View {
                                             .padding(25)
                                             .accentColor(Color("ThemeColour"))
                                     })
+                                    // Animation in back button
                                 }else if(gvvm.showBackButton){
                                     Button(action: {
                                         withAnimation(.easeInOut(duration: 0.5)) {
@@ -81,6 +82,7 @@ struct HomeView: View {
                             
                             Spacer()
                             
+                            //Shows List and Map tab on home
                             if(gvvm.showHamButton){
                                 Picker(selection: $selectedTab, label: Text("Select a Tab")){
                                     Text("List").tag(0).environment(\.locale, Locale.init(identifier: gvvm.currLang))
@@ -97,6 +99,7 @@ struct HomeView: View {
                                 
                                 Spacer()
                                 
+                                //Icon of Near You
                                 Image("AppIconLogo")
                                     .resizable()
                                     .frame(width: 50, height: 50)

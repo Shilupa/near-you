@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+//View where user profile can be created/edited
 struct EditProfileView: View {
     @State private var profileImage: Image?
     @State private var name = ""
@@ -51,9 +52,9 @@ struct EditProfileView: View {
                         ImagePicker(selectedImage: $selectedImage)
                     }.padding(.bottom, -70)
                     
-                    // Text fields to allow the user to input their name and address
                     VStack {
                         HStack {
+                            //Text with no functionality
                             Text("Name")
                                 .foregroundColor(Color("ThemeColour"))
                                 .environment(\.locale, Locale.init(identifier: gvvm.currLang))
@@ -62,6 +63,7 @@ struct EditProfileView: View {
                         }
                         .padding(.horizontal)
                         
+                        //Field to write the name
                         TextField("Jane Korhonen", text: $name)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 8)
@@ -72,6 +74,7 @@ struct EditProfileView: View {
                             .padding(.horizontal)
                         
                         HStack {
+                            //Text with no functionality
                             Text("Address")
                                 .foregroundColor(Color("ThemeColour"))
                                 .environment(\.locale, Locale.init(identifier: gvvm.currLang))
@@ -85,6 +88,7 @@ struct EditProfileView: View {
                         }
                         .padding(.horizontal)
                         
+                        //Field to write the address
                         TextField("Some street no.15, London", text: $address)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 8)
@@ -97,6 +101,7 @@ struct EditProfileView: View {
                     }
                     .padding(.top, 80)
                     
+                    //Button to update the information and image
                     Button(action: {
                         mypvm.addUser(name, address, selectedImage)
                         // Set the state variable to true to trigger navigation
@@ -118,6 +123,7 @@ struct EditProfileView: View {
                     selectedImage = gvvm.profileImage
                 }
             }
+            //When navigated gives a full screen
         }.fullScreenCover(isPresented: $navigateToMainProfileView) {
             MainProfileView()
         }

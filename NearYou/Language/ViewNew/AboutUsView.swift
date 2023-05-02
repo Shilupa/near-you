@@ -46,12 +46,14 @@ struct AboutUsView: View {
                         .padding(.horizontal)
                         .fixedSize(horizontal: false, vertical: true)
                     
+                    //button of email addresses and on click opens a url
                     Button(action: {
                         let email = "Bibek.Shrestha@metropolia.fi, LaurentiuSebastian.Hategan@metropolia.fi, Suraj.RanaBhat@metropolia.fi, Shilpa.Yadav@metropolia.fi"
                         if let url = URL(string: "mailto:\(email)") {
                             UIApplication.shared.open(url)
                         }
                     }) {
+                        //VStack of  email addresses
                         VStack(spacing: 5) {
                             Text("Bibek.Shrestha@metropolia.fi")
                                 .underline()
@@ -87,6 +89,7 @@ struct AboutUsView: View {
             .padding()
             .frame(maxWidth: 500)
         }
+        // Make the color fill the entire screen, ignoring the safe area insets
         .edgesIgnoringSafeArea(.all)
     }
     

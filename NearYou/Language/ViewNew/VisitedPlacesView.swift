@@ -16,12 +16,15 @@ struct VisitedPlacesView: View {
     var body: some View {
         ZStack {
             List {
+                // iterate through each visited product and create a ProductCardHomeView for each
                 ForEach( visitedList, id: \.id) { product in
                     let _ = print("data", product)
+                    // place the ProductCardHomeView inside a ZStack to allow for a hidden NavigationLink to be added
                     ZStack(alignment: .leading){
                         ProductCardHomeView(data: product)
                         
                             .listRowSeparator(.hidden)
+                        // create a hidden NavigationLink to the DetailProductView
                         NavigationLink(destination: DetailProductView(data: product)){
                         }
                         .opacity(0.0)
