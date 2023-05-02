@@ -16,11 +16,13 @@ struct PlannedView: View {
     var body: some View {
         ZStack {
             List {
+                // Iterate through plannedList and create a ProductCardHomeView for each product
                 ForEach(plannedList , id: \.id) { product in
                     ZStack(alignment: .leading){
                         ProductCardHomeView(data: product)
-                            
+                        
                             .listRowSeparator(.hidden)
+                        // Create a hidden NavigationLink to DetailProductView for the product
                         NavigationLink(destination: DetailProductView(data: product)){
                         }
                         .opacity(0.0)

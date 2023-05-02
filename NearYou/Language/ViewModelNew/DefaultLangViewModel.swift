@@ -35,7 +35,7 @@ class DefaultLangViewModel: ObservableObject {
         }
     }
     
-    // string lang: user pick default langugae choice
+    // string lang: user pick default langugage choice
     // Adds default user language to Core Data
     func addDefaultLang(_ lang: String){
         let userDefault = MyDefaultLang(context: container.viewContext)

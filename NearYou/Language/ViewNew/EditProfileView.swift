@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+//View where user profile can be created/edited
 struct EditProfileView: View {
     @State private var profileImage: Image?
     @State private var name = ""
@@ -136,6 +137,7 @@ struct EditProfileView: View {
             .onAppear{
                 selectedImage = gvvm.profileImage
             }
+            //When navigated gives a full screen
         }.fullScreenCover(isPresented: $navigateToMainProfileView) {
             MainProfileView()
         }
@@ -146,6 +148,7 @@ struct ImagePicker: UIViewControllerRepresentable {
     @Environment(\.presentationMode) var presentationMode
     @Binding var selectedImage: UIImage?
     
+    // Function to create and configure the UIImagePickerController
     func makeUIViewController(context: Context) -> UIImagePickerController {
         let imagePicker = UIImagePickerController()
         imagePicker.sourceType = .photoLibrary
@@ -153,14 +156,17 @@ struct ImagePicker: UIViewControllerRepresentable {
         return imagePicker
     }
     
+    //Called when view needs to be updated
     func updateUIViewController(_ uiViewController: UIImagePickerController, context: Context) {
         
     }
     
+    //Creates a new coordinator object to handle interactions between this view and the UIImagePickerController.
     func makeCoordinator() -> Coordinator {
         Coordinator(self)
     }
     
+    //Coordinator class that will handle interactions with the UIImagePickerController.
     class Coordinator: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
         let parent: ImagePicker
         
@@ -168,6 +174,7 @@ struct ImagePicker: UIViewControllerRepresentable {
             self.parent = parent
         }
         
+        // This function is called when the user selects an image in the UIImagePickerController.
         func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
             if let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
                 parent.selectedImage = selectedImage

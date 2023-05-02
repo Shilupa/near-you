@@ -16,6 +16,16 @@
 "Visited" = "Besökt";
 "Name" = "Namn";
 "Address" = "Adress";
-"Add Photo" = "Lägg till foto";
+"Change Profile" = "Ändra Profil";
 "Update" = "Uppdatering";
 "Search" = "Sök";
+"All" = "Allt";
+"Accommodation" = "Boende";
+"Attraction" = "Attraktion";
+"Event" = "Händelse";
+"Experience" = "Erfarenhet";
+"Rental Service" = "Uthyrning";
+"Restaurant" = "Restaurang";
+"Shop" = "Affär";
+"Transportation" = "Transport";
+"Venue" = "Mötesplats";

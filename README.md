@@ -39,9 +39,14 @@ Requirements to run the project:
 2. Clone the repository from [Github](https://github.com/Shilupa/near-you.git) and open with Xcode.
 3. Choose simulator (at least ios 15) or run the app on physical iOS devices by cable and build project.
 
+## Screenshots
+
+<img width="175" alt="splashScreen" src="https://user-images.githubusercontent.com/59287175/235557917-245296b8-87d4-4f3c-9e55-d0cf2d18fccc.png"><img width="174" alt="editProfileView" src="https://user-images.githubusercontent.com/59287175/235558859-1e8e8773-8c08-4f9a-a1fe-b02ac9c9c785.png"><img width="174" alt="profileView" src="https://user-images.githubusercontent.com/59287175/235558527-e0685470-2e9b-4ad1-a53d-9c2ba64c56ce.png"><img width="174" alt="listView" src="https://user-images.githubusercontent.com/59287175/235558560-1cd63a2b-239d-463f-9007-f679392c57fa.png"><img width="175" alt="mapView" src="https://user-images.githubusercontent.com/59287175/235558589-e9389179-a1ac-40a3-ae4c-3d790fb3243a.png"><img width="174" alt="aboutUs" src="https://user-images.githubusercontent.com/59287175/235558630-16719e08-766e-4676-bc14-ae33fdefab74.png">
+
 ## Documentation
 - [Figma Prototype](https://www.figma.com/proto/46jCzdZVoSx7FxgZQcDcYE/Near-You?node-id=97-2902&scaling=scale-down&page-id=0%3A1&starting-point-node-id=97%3A2902)
 - [Storyboard](https://users.metropolia.fi/~shilpasy/nearyouLogo/storyboard.jpg)
+- [Product backlog](https://trello.com/b/rjpdI7hr/near-you-project-backlog)
 
 ## License
 

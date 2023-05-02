@@ -23,7 +23,7 @@ class GlobalVarsViewModel: ObservableObject {
     func updateLang(_ lang: String){
         self.currLang = lang
     }
-
+    
     // Updates user profile visibility to true or false
     func updateShowProfileView(_ showProfile: Bool){
         self.showProfileView = showProfile
