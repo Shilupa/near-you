@@ -48,7 +48,8 @@ struct CustomSearchBar: View {
             isSearchViewActive = true
         }
         .sheet(isPresented: $isSearchViewActive, content: {
-            SearchView()
+            SearchView(searchText: "All", isRecording: false, selectedCategory: "All")
+                .environmentObject(MapViewModel())
                 .padding(.top)
                 .transition(.move(edge: .bottom))
                 .animation(.spring(), value: 1)

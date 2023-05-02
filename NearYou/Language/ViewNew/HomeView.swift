@@ -126,7 +126,18 @@ struct HomeView: View {
                 }
             }
         }
-        
+        // alert is presented if permission for location has been denied
+        .alert(isPresented: $viewModel.permissionDenied,
+               content: {
+            Alert(title: Text("Permission Denied"),
+                  message: Text("Please enable permission"),
+                  dismissButton: .default(Text("Go to Settings"),
+                                          action: {
+                //Redirect to settings
+                UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
+                
+            }))
+        })
     }
 }
 
@@ -166,11 +177,11 @@ struct ToggleHomeView: View {
             SearchView(searchText: "All", isRecording: false, selectedCategory: "All")
                 .environmentObject(MapViewModel())
                 .padding(.top, 60)
-                
+            
         }else{
-                MapView()
-                    .environmentObject(MapViewModel())
-//            DraggablePins()
+            MapView()
+                .environmentObject(MapViewModel())
+            //            DraggablePins()
         }
     }
 }

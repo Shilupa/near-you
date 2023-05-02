@@ -19,8 +19,6 @@ struct SearchView: View {
     @State  var selectedCategory : String? = ""
     @StateObject var speechRecognizer = SpeechRecognizer()
     
-
-    
     
     var body: some View {
         

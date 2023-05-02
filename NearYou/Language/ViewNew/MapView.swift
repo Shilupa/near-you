@@ -134,7 +134,7 @@ extension MapView {
 
                                         }
                                         
-                                        
+                                    
                                         let trimmedCoordinates = products[currentIndex].postalAddresses?[0]
                                             .location?
                                             .trimmingCharacters(in: CharacterSet(charactersIn: "()")) ?? ""
