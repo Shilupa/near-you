@@ -39,9 +39,15 @@ Requirements to run the project:
 2. Clone the repository from [Github](https://github.com/Shilupa/near-you.git) and open with Xcode.
 3. Choose simulator (at least ios 15) or run the app on physical iOS devices by cable and build project.
 
+## Screenshots
+
+### Splash screen
+<img width="175" alt="splashScreen" src="https://user-images.githubusercontent.com/59287175/235557917-245296b8-87d4-4f3c-9e55-d0cf2d18fccc.png">
+
 ## Documentation
 - [Figma Prototype](https://www.figma.com/proto/46jCzdZVoSx7FxgZQcDcYE/Near-You?node-id=97-2902&scaling=scale-down&page-id=0%3A1&starting-point-node-id=97%3A2902)
 - [Storyboard](https://users.metropolia.fi/~shilpasy/nearyouLogo/storyboard.jpg)
+- [Product backlog](https://trello.com/b/rjpdI7hr/near-you-project-backlog)
 
 ## License
 
