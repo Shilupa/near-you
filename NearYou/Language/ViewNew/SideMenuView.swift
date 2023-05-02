@@ -55,12 +55,12 @@ struct ProfileView: View {
                         }
                     
                     Text(gvvm.userName)
-                        .font(.system(size: 24, weight: .semibold))
+                        .font(Font.custom("Poppins-SemiBold", size: 24))
                         .fixedSize(horizontal: false, vertical: true)
                         .padding(.bottom, -5)
                     
                     Text(gvvm.userAddress)
-                        .font(.subheadline)
+                        .font(Font.custom("Poppins-SemiBold", size: 14))
                         .foregroundColor(.secondary)
                         .fixedSize(horizontal: false, vertical: true)
                         .padding(.bottom, 24)

@@ -31,6 +31,8 @@ struct VisitedPlacesView: View {
             .listStyle(.plain)
             
         }.onAppear{
+            // Fetching latest data from Core Data
+            vvm.fetchSettings()
             // Product is added to plannedList if product id is equal to Coredata plannedId
             visitedList = vm.allData?.data.product.filter { product in
                 vvm.savedSetting.contains {  place in

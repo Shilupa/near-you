@@ -102,6 +102,7 @@ struct HomeView: View {
                                     .frame(width: 50, height: 50)
                                     .padding(.trailing, 20)
                                     .padding(.top, 8)
+                                    
                             }
                         }}
                     Spacer()
@@ -138,6 +139,7 @@ struct MixedView: View {
         SideMenuView().frame(height: 800)
             .transition(.move(edge: .leading))
             .animation(.spring(), value: 0.5)
+        
         ToggleHomeView(selectedTab: $selectedTab).cornerRadius(gvvm.showSideView ? 20 : 10)
             .overlay(
                 RoundedRectangle(cornerRadius: gvvm.showSideView ? 20 : 10)

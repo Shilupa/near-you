@@ -17,25 +17,47 @@ struct DetailViewSocialMedia: View {
         
         VStack(alignment: .leading){
             
-            if socialMediaList.count == 0 {
-                Text("No social media available.")
-                    .padding(.leading)
-            } else{
-                HStack{
-                    ForEach(socialMediaList, id: \.self){ item in
-                        Link(destination: URL(string: item[1])!, label: {
-                            Image(item[0])
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 60, height: 60)
-                                .shadow(color: Color.gray, radius: 7, x: 0, y: 2)
-                                .padding(10)
-                            
-                        })
+            
+            Text("Social Media")
+                .font(Font.custom("Poppins-Regular", size: 16))
+                .bold()
+                .padding(.leading)
+                
+            
+            VStack(alignment: .leading){
+                
+                
+                if socialMediaList.count == 0 {
+                    
+                    HStack{
+                        Spacer()
+                        Text("No social media available.")
+                            .padding(.leading)
+                            .padding(.top)
+                        Spacer()
+                    }
+                    
+                } else{
+                    HStack{
+                        Spacer()
+                        ForEach(socialMediaList, id: \.self){ item in
+                            Link(destination: URL(string: item[1])!, label: {
+                                Image(item[0])
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 60, height: 60)
+                                    .shadow(color: Color.gray, radius: 7, x: 0, y: 2)
+                                    .padding(10)
+                                
+                            })
+                        }
+                        Spacer()
                     }
                 }
             }
         }
+        
+       
     }
 }
 

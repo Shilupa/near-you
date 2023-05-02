@@ -98,18 +98,23 @@ struct DetailProductView: View {
                
                 DetailViewOptions(websiteURL: data.productInformations?[0].url ?? "https://www.example.com",destination: coordinate, data: data, selectedOption: "nice", showCallToast: $showCallToast, showEmailToast: $showEmailToast, selectedLanguageOption : $selectedLanguageOption)
                 
-                Spacer(minLength: 30)
-                // Language selector, Plan the trip, favourite
-                DetailViewFeatures(isFavourite: $isFavourite, id: $id, isPlanned: $isPlanned ,isVisited: $isVisited)
+//                Spacer(minLength: 30)
+//                // Language selector, Plan the trip, favourite
+//                DetailViewFeatures(isFavourite: $isFavourite, id: $id, isPlanned: $isPlanned ,isVisited: $isVisited)
                 
                 Spacer(minLength: 30)
                 
                 // pass all this information to product detail description
                 ProductDetailDescription(data: data, selectedLanguageOption: $selectedLanguageOption)
                 
-                //let _ = allSocialMedia()
+                Spacer(minLength: 30)
+                // Language selector, Plan the trip, favourite
+                DetailViewFeatures(isFavourite: $isFavourite, id: $id, isPlanned: $isPlanned ,isVisited: $isVisited)
+                
+                Spacer(minLength: 30)
                 
                 DetailViewSocialMedia(socialMediaList: allSocialMedia())
+                
                 
             }
         }.onAppear{

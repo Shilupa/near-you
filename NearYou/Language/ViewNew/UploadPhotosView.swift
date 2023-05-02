@@ -18,16 +18,17 @@ struct UploadPhotosView: View {
     @State private var isShowingPhotoPicker = false
     @StateObject private var vvm = VisitedViewModel()
     @StateObject private var pivm = PlaceImageViewModel()
-    
     @Binding var id: String
+    @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
-        VStack {
+        VStack{
             if selectedPhotos.isEmpty {
                 Image(systemName: "photo.on.rectangle")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .foregroundColor(Color(.systemGray4))
+                    .frame(width: 250, height: 500)
                     .padding()
             } else {
                 ScrollView {
@@ -39,11 +40,16 @@ struct UploadPhotosView: View {
                                 .frame(width: (UIScreen.main.bounds.width - 32 - 16) / 3, height: (UIScreen.main.bounds.width - 32 - 16) / 3)
                                 .clipped()
                                 .cornerRadius(10)
+                                .shadow(color: .black.opacity(0.3), radius: 5, x: 0, y: 2)
+                            
                         }
                     }
                     .padding(.horizontal)
                 }
+                .frame(width: .none, height: 500)
             }
+            
+            //Spacer()
             
             HStack {
                 Spacer()
@@ -51,38 +57,54 @@ struct UploadPhotosView: View {
                     self.isShowingPhotoPicker = true
                 }, label: {
                     Text("Select Photos")
-                        .font(.headline)
+                        .font(Font.custom("Poppins-Regular", size: 15))
+                        .bold()
                         .foregroundColor(.white)
                         .padding(.vertical, 10)
                         .padding(.horizontal, 20)
-                        .background(Color.orange)
-                        .cornerRadius(10)
+                        .background(Color("ThemeColour"))
+                        .cornerRadius(20)
+                        .shadow(color: .black.opacity(0.3), radius: 5, x: 0, y: 2)
+                        .shadow(color: Color("ThemeColour").opacity(0.1), radius: 5)
                 })
                 
+                Spacer()
+                
                 Button(action: {
+                    
                     for index in selectedPhotos.indices {
                         pivm.addPlaceImage(id, selectedPhotos[index])
                     }
+                    
+                    selectedPhotos = []
+                    
+                    presentationMode.wrappedValue.dismiss()
+
                 }, label: {
                     Text("Upload Photos")
-                        .font(.headline)
+                        .font(Font.custom("Poppins-Regular", size: 15))
+                        .bold()
                         .foregroundColor(.white)
                         .padding(.vertical, 10)
                         .padding(.horizontal, 20)
-                        .background(Color.orange)
-                        .cornerRadius(10)
+                        .background(selectedPhotos.isEmpty ? Color.gray :Color("ThemeColour"))
+                        .cornerRadius(20)
+                        .shadow(color: .black.opacity(0.3), radius: 5, x: 0, y: 2)
+                        .shadow(color: Color("ThemeColour").opacity(0.1), radius: 5)
                 })
                 .disabled(selectedPhotos.isEmpty)
                 
                 Spacer()
             }
             .padding(.top, 16)
+            
+            Spacer()
         }
         .sheet(isPresented: $isShowingPhotoPicker) {
             PhotoPicker(selectedPhotos: self.$selectedPhotos)
         }
-        .navigationBarTitle("Upload Photos")
-        .background(Color(.systemGray6))
+        .navigationBarTitle("")
+        //.background(Color(.systemGray6))
     }
 }
 

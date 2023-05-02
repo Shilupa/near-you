@@ -22,6 +22,7 @@ struct SplashScreenView: View {
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 200, height: 200)
                     .padding(.bottom, -50)
+                    .shadow(color: Color.white.opacity(0.5), radius: 10)
                 
                 Text("NEAR YOU")
                     .font(Font.custom("Poppins-Bold", size: 48))
@@ -47,10 +48,11 @@ struct SplashScreenView: View {
                         .padding(.horizontal, 32)
                         .padding(.vertical, 16)
                         .background(Color("ThemeColour"))
-                        .cornerRadius(8)
-                        .shadow(color: Color("ThemeColour").opacity(0.5), radius: 6, x: 0, y: 3)
+                        .cornerRadius(50)
+                        
                 }
                 .padding(.horizontal, 32)
+                .shadow(color: Color.white.opacity(0.5), radius: 10)
                 
                 Spacer()
             }

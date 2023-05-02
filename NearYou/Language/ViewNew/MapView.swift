@@ -141,26 +141,15 @@ extension MapView {
                                         
                                         let coordinateComponents = trimmedCoordinates.components(separatedBy: ",")
                                         let coordinate = CLLocationCoordinate2D(latitude: Double(coordinateComponents[0]) ?? 0.0, longitude: Double(coordinateComponents[1]) ?? 0.0)
-                                        viewModel.region = MKCoordinateRegion(center: coordinate, span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
+                                        viewModel.region = MKCoordinateRegion(center: coordinate, span: MKCoordinateSpan(latitudeDelta: 0.001, longitudeDelta: 0.001))
                                         
                                         
                                     }
                                 }
                         )
-                        .onDisappear{
-                            let trimmedCoordinates = products[currentIndex].postalAddresses?[0]
-                                .location?
-                                .trimmingCharacters(in: CharacterSet(charactersIn: "()")) ?? ""
-                            
-                            let coordinateComponents = trimmedCoordinates.components(separatedBy: ",")
-                            let coordinate = CLLocationCoordinate2D(latitude: Double(coordinateComponents[0]) ?? 0.0, longitude: Double(coordinateComponents[1]) ?? 0.0)
-                            viewModel.region = MKCoordinateRegion(center: coordinate, span: MKCoordinateSpan(latitudeDelta: 0.001, longitudeDelta: 0.001))
-                        }
+
                 }
-//                .onTapGesture(perform: {
-//                    isSwipe = false
-//                    print("Is swipe: ", isSwipe)
-//                })
+
                 .buttonStyle(PlainButtonStyle())
             } else {
                 Text("Products loading...")
