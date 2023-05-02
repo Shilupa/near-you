@@ -125,6 +125,7 @@ struct HomeView: View {
                 }
             }
         }
+        // alert is presented if permission for location has been denied
         .alert(isPresented: $viewModel.permissionDenied,
                content: {
             Alert(title: Text("Permission Denied"),
