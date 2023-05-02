@@ -19,7 +19,6 @@ struct UploadPhotosView: View {
     @StateObject private var vvm = VisitedViewModel()
     @StateObject private var pivm = PlaceImageViewModel()
     @Binding var id: String
-    @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
         VStack{
@@ -78,7 +77,8 @@ struct UploadPhotosView: View {
                     
                     selectedPhotos = []
                     
-                    presentationMode.wrappedValue.dismiss()
+                    
+                    
 
                 }, label: {
                     Text("Upload Photos")
