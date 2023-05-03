@@ -12,7 +12,8 @@ To fulfill the requirements of our second-year course at Metropolia University o
 - Overview
 - Features
 - Installation
-- Documents
+- Screenshots
+- Documentation
 - License
 - References
 - Contributors
