@@ -13,6 +13,9 @@ struct CustomSearchBar: View {
     @State private var isSearchViewActive = false
     
     var body: some View {
+        NavigationLink(destination: SearchView().environmentObject(MapViewModel())){
+            
+        
         ZStack {
             RoundedRectangle(cornerRadius: 30)
                 .fill(Color(.white))
@@ -44,15 +47,16 @@ struct CustomSearchBar: View {
                 .disabled(true)
             }
         }
-        .onTapGesture {
-            isSearchViewActive = true
         }
-        .sheet(isPresented: $isSearchViewActive, content: {
-            SearchView(searchText: "All", isRecording: false, selectedCategory: "All")
-                .environmentObject(MapViewModel())
-                .padding(.top)
-                .transition(.move(edge: .bottom))
-                .animation(.spring(), value: 1)
-        })
+//        .onTapGesture {
+//            isSearchViewActive = true
+//        }
+//        .sheet(isPresented: $isSearchViewActive, content: {
+//            SearchView(searchText: "All", isRecording: false, selectedCategory: "All")
+//                .environmentObject(MapViewModel())
+//                .padding(.top)
+//                .transition(.move(edge: .bottom))
+//                .animation(.spring(), value: 1)
+//        })
     }
 }
