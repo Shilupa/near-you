@@ -7,8 +7,6 @@
 
 import SwiftUI
 
-
-
 struct ProductDetailDescription: View {
     
     let data: ProductResponse.Product
@@ -89,8 +87,6 @@ struct ProductDetailDescription: View {
                             .font(Font.custom("Poppins-Regular", size: 16))
                     }
                     
-
-                    
                     if data.accessible != nil {
                         HStack{
                             Text("Accessibility: ")
@@ -161,7 +157,6 @@ struct ProductDetailDescription: View {
                             let endPrice:Double = data.productPricings[0].toPrice ?? 0.0
                             Text(String(format: "%.1f", endPrice))
                             Text("euros/" + unit)
-                            //Text(unit)
                         }.font(Font.custom("Poppins-Regular", size: 16))
                             .padding(.top)
                             .padding(.bottom)
@@ -179,8 +174,3 @@ struct ProductDetailDescription: View {
     }
 }
 
-//struct ProductDetailDescription_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ProductDetailDescription()
-//    }
-//}

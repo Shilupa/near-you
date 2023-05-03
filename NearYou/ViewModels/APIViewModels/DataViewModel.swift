@@ -114,7 +114,6 @@ final class DataViewModel: ObservableObject {
                         if let data = data,
                            let datas = try? decoder.decode(ProductResponse.self, from: data) {
 
-                            //print("Data: ", datas.data.product)
                             self?.allData = datas
 
                         } else {

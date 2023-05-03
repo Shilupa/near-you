@@ -183,7 +183,6 @@ struct ToggleHomeView: View {
         }else{
             MapView()
                 .environmentObject(MapViewModel())
-            //            DraggablePins()
         }
     }
 }

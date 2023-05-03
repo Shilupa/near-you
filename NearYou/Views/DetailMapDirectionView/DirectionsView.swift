@@ -107,6 +107,7 @@ extension DirectionsView {
         }
     }
     
+    //segmented picker to toggle between cycling and driving
     private var transportPickerSection : some View {
         HStack() {
             Spacer()
@@ -128,6 +129,7 @@ extension DirectionsView {
         }
     }
     
+    //Button that opens up the direction's sheet
     private var showDirectionButton : some View {
         Button(action: {
             self.showDirections.toggle()
@@ -138,6 +140,7 @@ extension DirectionsView {
         .padding()
     }
     
+    //Steps of the routes are displayed
     private var directionSheets : some View {
         VStack{
             Text("Directions")

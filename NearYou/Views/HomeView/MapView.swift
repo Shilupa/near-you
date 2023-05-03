@@ -29,13 +29,10 @@ struct MapView: View {
                 ProgressView()
             } else {
                 let markers = getMarkers()
-                //let _ = print("Markers", markers)
-                //let _ = print("UserLocation", viewModel.locationManager.location as Any)
                 
                 withAnimation(.spring()) {
                     Map(coordinateRegion: $viewModel.region, showsUserLocation: true,
                         annotationItems: markers
-                        // Array(markers.shuffled().prefix(5)))
                     ) { marker in
                         marker.location
                     }
@@ -43,12 +40,10 @@ struct MapView: View {
                     .accentColor(Color(.systemPink))
                 }
                 
-                
                 VStack{
                     Spacer()
                     
                     if preview {
-                        
                         productsCardView
                             .transition(.asymmetric(
                                 insertion: .move(edge: swipeLeft ? .trailing : .leading),
@@ -60,16 +55,12 @@ struct MapView: View {
                                 }
                             })
                             .animation(.easeInOut(duration: 0.5))
-                        
-                        
-                        
                     }
                     
                     HStack{
                         CustomSearchBar(searchText: $searchText)
                         currentUserLocationButton
                             .shadow(color:.gray,radius: 10)
-                    
                     }
                     .padding()
                 }
@@ -113,42 +104,28 @@ extension MapView {
                                 .onEnded { value in
                                     withAnimation(.spring())
                                     {
-                                        
                                         if value.translation.width > 0 {
                                             currentIndex = max(currentIndex - 1, 0)
-                                            
                                             swipeLeft = false
                                             preview.toggle()
                                             isSwipe=true
-                                            
-                                            //print("Right swipe: ", preview)
-                                            
                                         } else {
                                             currentIndex = min(currentIndex + 1, products.count - 1)
-
                                             swipeLeft = true
                                             preview.toggle()
                                             isSwipe=true
-                                            
-                                            //print("Left swipe: ", preview)
-
                                         }
-                                        
-                                    
                                         let trimmedCoordinates = products[currentIndex].postalAddresses?[0]
                                             .location?
                                             .trimmingCharacters(in: CharacterSet(charactersIn: "()")) ?? ""
-                                        
                                         let coordinateComponents = trimmedCoordinates.components(separatedBy: ",")
                                         let coordinate = CLLocationCoordinate2D(latitude: Double(coordinateComponents[0]) ?? 0.0, longitude: Double(coordinateComponents[1]) ?? 0.0)
                                         viewModel.region = MKCoordinateRegion(center: coordinate, span: MKCoordinateSpan(latitudeDelta: 0.001, longitudeDelta: 0.001))
-                                        
                                     }
                                 }
                         )
-
                 }
-
+                
                 .buttonStyle(PlainButtonStyle())
             } else {
                 Text("Products loading...")

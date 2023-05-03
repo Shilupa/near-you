@@ -24,8 +24,6 @@ struct DirectionsMapView : UIViewRepresentable {
     
     @ObservedObject var locationManager = DirectionsLocationManager()
     
-    
-    
     func makeCoordinator() -> DirectionsMapViewCoordinator {
         return DirectionsMapViewCoordinator()
     }
@@ -67,10 +65,7 @@ struct DirectionsMapView : UIViewRepresentable {
                 
                 // calculating the estimated travel time
                 self.estimatedTravelTime = round((route.expectedTravelTime/3600)*100)/100
-                
-            }
-            
-            
+            }   
         }
         return mapView
     }

@@ -27,7 +27,6 @@ struct CustomSearchBar: View {
             
             HStack {
                 Button(action: {
-                    // Your first button action goes here
                 }, label: {
                     Image(systemName: "magnifyingglass")
                         .foregroundColor(.gray)
@@ -42,7 +41,6 @@ struct CustomSearchBar: View {
                     .disabled(true)
                 
                 Button(action: {
-                    // Your second button action goes here
                 }, label: {
                     Image(systemName: "mic.fill")
                         .foregroundColor(.gray)

@@ -43,7 +43,7 @@ class SpeechRecognizer: ObservableObject {
     private let recognizer: SFSpeechRecognizer?
     private var isRecording = false
 
-    /// Reset the speech recognizer.
+    // Reset the speech recognizer.
     func reset() {
         task?.cancel()
         audioEngine?.stop()
@@ -129,7 +129,6 @@ class SpeechRecognizer: ObservableObject {
 
     private func speak(_ message: String) {
             transcript = message
-        //print("Transcript", transcript)
     }
 
     private func speakError(_ error: Error) {

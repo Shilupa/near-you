@@ -18,7 +18,6 @@ struct VisitedPlacesView: View {
             List {
                 // iterate through each visited product and create a ProductCardHomeView for each
                 ForEach( visitedList, id: \.id) { product in
-                    let _ = print("data", product)
                     // place the ProductCardHomeView inside a ZStack to allow for a hidden NavigationLink to be added
                     ZStack(alignment: .leading){
                         ProductCardHomeView(data: product)

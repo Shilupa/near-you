@@ -2,7 +2,7 @@
 //  MapViewModel.swift
 //  NearYou
 //
-//  Created by iosdev on 5.4.2023.
+//  Created by Bibek on 5.4.2023.
 //
 
 import SwiftUI
@@ -40,7 +40,7 @@ final class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate 
             // request user
             manager.requestWhenInUseAuthorization()
         case .restricted:
-            ()
+            print("Location permissions are restricted")
         case .denied:
             permissionDenied.toggle()
         case .authorizedWhenInUse, .authorizedAlways:
@@ -64,10 +64,4 @@ final class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate 
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print(error.localizedDescription)
     }
-    
-//    func updateRegion(for location: CLLocationCoordinate2D) {
-//        let newRegion = MKCoordinateRegion(center: location, span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05))
-//        self.region = newRegion
-//        selectedLocation = location
-//    }
 }

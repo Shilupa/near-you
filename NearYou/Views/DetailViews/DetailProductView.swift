@@ -51,14 +51,12 @@ struct DetailProductView: View {
         var socialMediaArray : [[String]] = []
         
         if let count: Int = data.socialMedia?.socialMediaLinks.count {
-            //print("Count:", count)
             for i in 0..<count {
                 var item: [String] = []
                 item.append(data.socialMedia?.socialMediaLinks[i]?.linkType ?? "")
                 item.append(data.socialMedia?.socialMediaLinks[i]?.verifiedLink?.url ?? "")
                 socialMediaArray.append(item)
             }
-            //print("Hahaha: ", socialMediaArray)
             return socialMediaArray
         } else{
             return socialMediaArray
@@ -83,7 +81,6 @@ struct DetailProductView: View {
             ScrollView{
                 // Photos
                 PhotoGalaryView(ImagesFile: allPhoto())
-                //PhotoGalaryView()
                 
                 // Information update date
                 Text("Information updated on " + dateFormated(data.updatedAt).formatted(date: .abbreviated, time: .shortened))
@@ -137,9 +134,3 @@ struct DetailProductView: View {
         
     }
 }
-
-//struct DetailProductView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        DetailProductView()
-//    }
-//}

@@ -48,9 +48,3 @@ struct PhotoGalaryView: View {
         }
     }
 }
-
-//struct PhotoGalaryView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        PhotoGalaryView()
-//    }
-//}

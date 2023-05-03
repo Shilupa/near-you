@@ -123,15 +123,6 @@ struct DetailViewOptions: View {
                 
             }.shadow(color: Color.gray, radius: 7, x: 0, y: 2)
                 .padding(5)
-            
         }
-        
-        
     }
 }
-
-//struct DetailViewOptions_Previews: PreviewProvider {
-//    static var previews: some View {
-//        DetailViewOptions()
-//    }
-//}

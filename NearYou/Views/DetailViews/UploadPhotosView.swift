@@ -111,7 +111,6 @@ struct UploadPhotosView: View {
             PhotoPicker(selectedPhotos: self.$selectedPhotos)
         }
         .navigationBarTitle("")
-        //.background(Color(.systemGray6))
     }
 }
 
@@ -168,10 +167,3 @@ struct PhotoPicker: UIViewControllerRepresentable {
         }
     }
 }
-
-//
-//struct UploadPhotosView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        UploadPhotosView()
-//    }
-//}

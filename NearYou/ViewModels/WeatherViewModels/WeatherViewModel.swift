@@ -7,8 +7,6 @@
 
 import SwiftUI
 
-
-
 class WeatherViewModel: ObservableObject {
     @Published var icon: String = ""
     @Published var temperature: Double = 0

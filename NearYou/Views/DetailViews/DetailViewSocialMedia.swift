@@ -7,8 +7,6 @@
 
 import SwiftUI
 
-
-
 struct DetailViewSocialMedia: View {
     
     let socialMediaList: [[String]]
@@ -16,19 +14,13 @@ struct DetailViewSocialMedia: View {
     var body: some View {
         
         VStack(alignment: .leading){
-            
-            
             Text("Social Media")
                 .font(Font.custom("Poppins-Regular", size: 16))
                 .bold()
                 .padding(.leading)
                 
-            
             VStack(alignment: .leading){
-                
-                
                 if socialMediaList.count == 0 {
-                    
                     HStack{
                         Spacer()
                         Text("No social media available.")
@@ -36,7 +28,6 @@ struct DetailViewSocialMedia: View {
                             .padding(.top)
                         Spacer()
                     }
-                    
                 } else{
                     HStack{
                         Spacer()
@@ -48,7 +39,6 @@ struct DetailViewSocialMedia: View {
                                     .frame(width: 60, height: 60)
                                     .shadow(color: Color.gray, radius: 7, x: 0, y: 2)
                                     .padding(10)
-                                
                             })
                         }
                         Spacer()
@@ -56,13 +46,5 @@ struct DetailViewSocialMedia: View {
                 }
             }
         }
-        
-       
     }
 }
-
-//struct DetailViewSocialMedia_Previews: PreviewProvider {
-//    static var previews: some View {
-//        DetailViewSocialMedia()
-//    }
-//}

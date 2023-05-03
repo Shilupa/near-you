@@ -40,7 +40,6 @@ struct DetailViewFeatures: View {
                     favouriteIcon
                     Spacer()
                 }
-                
             }
             
             if(isVisited){
@@ -57,12 +56,7 @@ struct DetailViewFeatures: View {
                         
                         // button sample to add photo for visited place
                         Button(action: {
-                            // isPresented = true
-                            
-                            
                         }, label: {
-                            
-                            
                             NavigationLink(destination: UploadPhotosView(id: $id)){
                                 Image(systemName: "plus.circle")
                                     .foregroundColor(.primary)
@@ -79,7 +73,6 @@ struct DetailViewFeatures: View {
                     .fullScreenCover(isPresented: $isPresented){
                         NavigationView {
                             UploadPhotosView(id: $id)
-                            //.navigationTitle("Upload Photos")
                                 .navigationBarItems(
                                     leading: Button(action: {
                                         isPresented = false
@@ -219,12 +212,3 @@ extension DetailViewFeatures{
         }
     }
 }
-
-
-
-
-//struct DetailViewFeatures_Previews: PreviewProvider {
-//    static var previews: some View {
-//        DetailViewFeatures()
-//    }
-//}
