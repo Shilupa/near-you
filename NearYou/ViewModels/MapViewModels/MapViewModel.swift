@@ -10,7 +10,7 @@ import CoreLocationUI
 import MapKit
 
 /*
- MapViewModel to be used in Home Map View
+ MapViewModel is used to display map in the map view
  */
 final class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     
