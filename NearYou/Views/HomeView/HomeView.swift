@@ -8,6 +8,10 @@
 import SwiftUI
 import CoreLocationUI
 
+/*
+ In the Home view, user is able to toggle between list view and MapView,
+ Also user can see the hamburger menu and open a side navigation drawer using the hamburger menu
+ */
 struct HomeView: View {
     
     @StateObject var viewModel = MapViewModel()

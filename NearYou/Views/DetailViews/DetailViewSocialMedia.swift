@@ -7,6 +7,9 @@
 
 import SwiftUI
 
+/*
+ All the available social media links are shown to the user
+ */
 struct DetailViewSocialMedia: View {
     
     let socialMediaList: [[String]]

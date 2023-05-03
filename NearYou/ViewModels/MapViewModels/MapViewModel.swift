@@ -9,6 +9,9 @@ import SwiftUI
 import CoreLocationUI
 import MapKit
 
+/*
+ MapViewModel to be used in Home Map View
+ */
 final class MapViewModel: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     @Published var region = MKCoordinateRegion()

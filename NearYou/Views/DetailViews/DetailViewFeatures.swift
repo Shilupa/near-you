@@ -7,6 +7,10 @@
 
 import SwiftUI
 
+/*
+ In the detail view, users are presented with multiple features such as adding a destination to favourites,
+ planning a visit and also add memories to the visited place
+ */
 struct DetailViewFeatures: View {
     @StateObject private var fvm = FavouritesViewModel()
     @StateObject private var pvm = PlannedViewModel()

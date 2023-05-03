@@ -9,6 +9,9 @@ import Foundation
 import AVFoundation
 import Speech
 
+/*
+ Speech Recognizer class is used to convert audio into texts
+ */
 class SpeechRecognizer: ObservableObject {
 
     init() {

@@ -9,7 +9,9 @@ import Foundation
 import CoreLocation
 import _MapKit_SwiftUI
 
-
+/*
+ creating markers to annotate on Map View
+ */
 struct Marker: Identifiable {
     let id = UUID()
     var location: MapMarker

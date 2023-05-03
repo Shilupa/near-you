@@ -10,24 +10,15 @@ import UIKit
 import CoreLocation
 import SimpleToast
 
+/*
+ In the detail View for each product, 4 options of
+ viewing directions to the destination,
+ making a call to the destination,
+ visiting their website and
+ sending an email to a specifc destination
+ are presented to the user
 
-func sendEmail () {
-    
-}
-
-func makeCall () {
-    
-    let phoneNumber = "+358442311309"
-    
-    if let phoneCallURL = URL(string: "tel:\(phoneNumber)") {
-        let application:UIApplication = UIApplication.shared
-        if (application.canOpenURL(phoneCallURL)) {
-            application.open(phoneCallURL, options: [:], completionHandler: nil)
-        }
-    }
-}
-
-
+ */
 struct DetailViewOptions: View {
     
     let websiteURL: String
@@ -126,3 +117,20 @@ struct DetailViewOptions: View {
         }
     }
 }
+
+func sendEmail () {
+    
+}
+
+func makeCall () {
+    
+    let phoneNumber = "+358442311309"
+    
+    if let phoneCallURL = URL(string: "tel:\(phoneNumber)") {
+        let application:UIApplication = UIApplication.shared
+        if (application.canOpenURL(phoneCallURL)) {
+            application.open(phoneCallURL, options: [:], completionHandler: nil)
+        }
+    }
+}
+

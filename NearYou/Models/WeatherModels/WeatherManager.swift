@@ -8,6 +8,9 @@
 import Foundation
 import CoreLocation
 
+/*
+ Weather Manager to get the weather data of current location
+ */
 class WeatherManager: ObservableObject {
     
         func getCurrentWeather(latitude: CLLocationDegrees, longitude: CLLocationDegrees) async throws -> ResponseBody {

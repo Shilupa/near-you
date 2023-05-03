@@ -7,7 +7,9 @@
 
 import Foundation
 
-
+/*
+ Model of each the data fetched from the API
+ */
 struct ProductResponse: Codable {
     let data: DataClass
     

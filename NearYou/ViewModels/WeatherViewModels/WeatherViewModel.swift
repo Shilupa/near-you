@@ -7,6 +7,9 @@
 
 import SwiftUI
 
+/*
+ Weather View Model fetches weather data of location using coordinates
+ */
 class WeatherViewModel: ObservableObject {
     @Published var icon: String = ""
     @Published var temperature: Double = 0

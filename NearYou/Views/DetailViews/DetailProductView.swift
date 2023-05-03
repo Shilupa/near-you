@@ -9,6 +9,9 @@ import SwiftUI
 import CoreLocation
 import SimpleToast
 
+/*
+ Detail Product View displays all the information available for aproduct fetched from the API
+ */
 struct DetailProductView: View {
     
     let data: ProductResponse.Product
@@ -71,11 +74,8 @@ struct DetailProductView: View {
         let date = formatter.date(from: String(trimmedDateString))
         return date ?? Date()
     }
-    
-    
-    
+     
     var body: some View {
-        
         
         VStack(alignment: .leading){
             ScrollView{

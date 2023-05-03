@@ -7,6 +7,10 @@
 
 import SwiftUI
 
+/*
+ Product Detail Description is used in Product Detail View to present all the available description of the product in all the
+ available languages
+ */
 struct ProductDetailDescription: View {
     
     let data: ProductResponse.Product

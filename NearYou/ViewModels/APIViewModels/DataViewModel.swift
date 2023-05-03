@@ -7,6 +7,9 @@
 
 import Foundation
 
+/*
+ Data from API is fetched
+ */
 final class DataViewModel: ObservableObject {
 
     @Published var hasError = false
