@@ -48,6 +48,7 @@ Requirements to run the project:
 - [Figma Prototype](https://www.figma.com/proto/46jCzdZVoSx7FxgZQcDcYE/Near-You?node-id=97-2902&scaling=scale-down&page-id=0%3A1&starting-point-node-id=97%3A2902)
 - [Storyboard](https://users.metropolia.fi/~shilpasy/nearyouLogo/storyboard.jpg)
 - [Product backlog](https://trello.com/b/rjpdI7hr/near-you-project-backlog)
+- [Demo Video](https://youtu.be/nOtGB2bpd0o)
 
 ## License
 
