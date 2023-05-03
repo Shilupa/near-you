@@ -56,7 +56,11 @@ Requirements to run the project:
 [docs.swift.org](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/thebasics/)
 
 ## Contributors
-    Bibek Shrestha
-    Laurentiu Sebastian Hategan
-    Suraj Rana Bhat
-    Shilpa Singh Yadav
+   [Bibek Shrestha](https://github.com/bekstha)
+
+   [Laurentiu Sebastian Hategan](https://github.com/laurenthat)
+   
+   [Suraj Rana Bhat](https://github.com/SurajKRB)
+
+   [Shilpa Singh Yadav](https://github.com/Shilupa)
+
