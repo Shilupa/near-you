@@ -5,7 +5,7 @@
   <img width="200" height="200" src="https://users.metropolia.fi/~shilpasy/nearyouLogo/transparentLogo.png">
 </p>
 
-## Swift UI IOS project
+# Sibbo Sensor Based Android App Project
 To fulfill the requirements of our second-year course at Metropolia University of Applied Sciences, our group of four students has been tasked with creating an iOS app using SwiftUI. The purpose of the course is to create a mobile application while integrating user interface control with SwiftUI and following guidelines as well as course requirements.  
 
 ## Contents
